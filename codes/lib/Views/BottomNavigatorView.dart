@@ -1,3 +1,4 @@
+import 'package:demo5/Views/LoginView.dart';
 import 'package:flutter/material.dart';
 import 'AlarmView.dart';
 import 'UserView.dart';
@@ -17,7 +18,7 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
     pages
       ..add(AlarmView())
       ..add(AlarmView())
-      ..add(UserView());
+      ..add(LoginTwoPage());
     super.initState();
   }
 

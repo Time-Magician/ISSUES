@@ -18,7 +18,7 @@ class AlarmList extends State<AlarmView> {
     _alarmList.add(new AlarmInfo());
     return Scaffold(
         appBar: AppBar(
-          title: Text('闹钟'),
+          title: Text('hello'),
         ),
         body: ListView.builder(
           itemCount: _alarmList.length,

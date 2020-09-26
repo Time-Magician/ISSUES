@@ -1,3 +1,4 @@
+import 'package:demo5/Views/LoginView.dart';
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'Views/AlarmView.dart';
@@ -13,10 +14,11 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primaryColor: Colors.indigo,
       ),
-      routes:{
-        // "new_page":(context) => NewRoute(),
-        "/":(context) => BottomNavigationWidget(),
-      },
+      home: BottomNavigationWidget(),
+      // routes:{
+      //   "HomePage":(context) => Bo(),
+      //   "/":(context) => LoginTwoPage(),
+      // }
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/utils/uidata.dart';
+import 'package:demo5/Utils/uidata.dart';
 
 class LoginTwoPage extends StatelessWidget {
   @override

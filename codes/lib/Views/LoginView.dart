@@ -7,15 +7,15 @@ class LoginTwoPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: loginBody(),
+        child: loginBody(context),
       ),
     );
   }
 
-  loginBody() => SingleChildScrollView(
+  loginBody(context) => SingleChildScrollView(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: <Widget>[loginHeader(), loginFields()],
+      children: <Widget>[loginHeader(), loginFields(context)],
     ),
   );
 
@@ -43,7 +43,7 @@ class LoginTwoPage extends StatelessWidget {
     ],
   );
 
-  loginFields() => Container(
+  loginFields(context) => Container(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       mainAxisSize: MainAxisSize.min,
@@ -83,7 +83,9 @@ class LoginTwoPage extends StatelessWidget {
               style: TextStyle(color: Colors.white),
             ),
             color: Colors.green,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context,"HomePage");
+            },
           ),
         ),
         SizedBox(

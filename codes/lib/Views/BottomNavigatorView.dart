@@ -18,7 +18,7 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
     pages
       ..add(AlarmView())
       ..add(AlarmView())
-      ..add(LoginTwoPage());
+      ..add(UserView());
     super.initState();
   }
 

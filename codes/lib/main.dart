@@ -14,11 +14,10 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primaryColor: Colors.indigo,
       ),
-      home: BottomNavigationWidget(),
-      // routes:{
-      //   "HomePage":(context) => Bo(),
-      //   "/":(context) => LoginTwoPage(),
-      // }
+      routes:{
+        "HomePage":(context) => BottomNavigationWidget(),
+        "/":(context) => LoginTwoPage(),
+      }
     );
   }
 }

@@ -12,9 +12,13 @@ class AlarmList extends State<UserView> {
   Widget build(BuildContext context){
     _alarmList.clear();
     _alarmList.add(new AlarmInfo());
+    _alarmList.add(new AlarmInfo());
+    _alarmList.add(new AlarmInfo());
+    _alarmList.add(new AlarmInfo());
+    _alarmList.add(new AlarmInfo());
     return Scaffold(
       appBar: AppBar(
-        title: Text('我的'),
+        title: Text('闹钟'),
       ),
       body: ListView.builder(
         itemCount: _alarmList.length,

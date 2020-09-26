@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'AlarmView.dart';
+import 'UserView.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
     pages
       ..add(AlarmView())
       ..add(AlarmView())
-      ..add(AlarmView());
+      ..add(UserView());
     super.initState();
   }
 

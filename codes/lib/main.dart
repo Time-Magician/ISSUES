@@ -14,10 +14,9 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primaryColor: Colors.indigo,
       ),
-      home: BottomNavigationWidget(),
       routes:{
-        "AlarmPage":(context) => AlarmView(),
-        "/LoginPage":(context) => LoginView(),
+        "HomePage":(context) => BottomNavigationWidget(),
+        "/":(context) => LoginTwoPage(),
       }
     );
   }

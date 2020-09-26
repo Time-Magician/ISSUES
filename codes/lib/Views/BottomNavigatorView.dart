@@ -1,6 +1,7 @@
 import 'package:demo5/Views/LoginView.dart';
 import 'package:flutter/material.dart';
 import 'AlarmView.dart';
+import 'UserView.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
   @override
@@ -17,7 +18,7 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
     pages
       ..add(AlarmView())
       ..add(AlarmView())
-      ..add(LoginView());
+      ..add(UserView());
     super.initState();
   }
 

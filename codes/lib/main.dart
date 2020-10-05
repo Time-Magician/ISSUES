@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       ),
       routes:{
         "HomePage":(context) => BottomNavigationWidget(),
-        "/":(context) => LoginTwoPage(),
+        "/":(context) => LoginView(),
       }
     );
   }

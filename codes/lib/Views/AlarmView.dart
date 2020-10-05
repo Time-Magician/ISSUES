@@ -7,6 +7,10 @@ class AlarmView extends StatefulWidget {
 
 class AlarmList extends State<AlarmView> {
   final _alarmList = new Set<AlarmInfo>();
+
+  void addAlarm(){
+    Navigator.pushNamed(context,"AlarmSetting");
+  }
   
   @override
   Widget build(BuildContext context){
@@ -18,7 +22,15 @@ class AlarmList extends State<AlarmView> {
     _alarmList.add(new AlarmInfo());
     return Scaffold(
         appBar: AppBar(
+            automaticallyImplyLeading: false,
           title: Text('闹钟'),
+          actions: <Widget>[
+            new IconButton(
+                icon: new Icon(Icons.add_alarm),
+                tooltip: 'Add Alarm',
+                onPressed: addAlarm,
+            ),
+          ],
         ),
         body: ListView.builder(
           itemCount: _alarmList.length,
@@ -26,6 +38,7 @@ class AlarmList extends State<AlarmView> {
             return new AlarmWidget();
           },
         ),
+
     );
   }
 }
@@ -73,7 +86,7 @@ class Alarm extends State<AlarmWidget> {
                   Container(
                     child: new Text(
                         this.alarmInfo.time,
-                        style: const TextStyle(fontSize: 42.0),
+                        style: const TextStyle(fontSize: 42.0, fontFamily: 'Miriam'),
                     ),
                     width: 300,
                     margin: EdgeInsets.fromLTRB(15, 5, 5, 10),

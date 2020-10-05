@@ -5,17 +5,18 @@ class UserView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text('个人中心'),
       ),
       body:ListView(
         children: <Widget>[
            _topHeader(),
-          _orderTitle("个人信息设置"),
-          _orderTitle("趣味闹钟设置"),
-          _orderTitle("深度学习设置"),
-          _orderTitle("社交与好友设置"),
-          _orderTitle("音效与通知设置"),
-          _orderTitle("关于一心"),
+          OrderTitle(str: "个人信息设置"),
+          OrderTitle(str: "趣味闹钟设置"),
+          OrderTitle(str: "深度学习设置"),
+          OrderTitle(str: "社交与好友设置"),
+          OrderTitle(str: "音效与通知设置"),
+          OrderTitle(str: "关于一心"),
         ],
       ) ,
     );
@@ -46,19 +47,26 @@ Widget _topHeader(){
   );
 }
 
-Widget _orderTitle(str){
-  return Container(
-    margin: EdgeInsets.only(top:10),
-    decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border(
-            bottom:BorderSide(width: 1,color:Colors.black12)
-        )
-    ),
-    child: ListTile(
-      leading: Icon(Icons.list),
-      title:Text(str),
-      trailing: Icon(Icons.arrow_right),
-    ),
-  );
+class OrderTitle extends StatelessWidget{
+  final str;
+  const OrderTitle({Key key, this.str}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      // margin: EdgeInsets.only(top:10),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border(
+              bottom:BorderSide(width: 1,color:Colors.black12)
+          )
+      ),
+      child: ListTile(
+        leading: Icon(Icons.list),
+        title:Text(str),
+        trailing: Icon(Icons.arrow_right),
+      ),
+    );
+  }
 }

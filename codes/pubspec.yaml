@@ -31,6 +31,8 @@ dependencies:
   english_words: ^3.1.0
   flutter_circular_slider : ^2.5.0
   day_night_time_picker: ^0.2.1
+  flutter_animation_progress_bar: ^1.0.5
+  flutter_gradient_colors: ^1.0.0
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_circular_slider/flutter_circular_slider.dart';
+import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 
 class StudyView extends StatefulWidget {
   @override
@@ -8,11 +9,16 @@ class StudyView extends StatefulWidget {
 
 class MyStudyView extends State<StudyView> {
   int totalTime = 0;
+  int exp = 70;
 
   _updateTime(int end) {
     setState(() {
       totalTime = end;
     });
+  }
+
+  _showDiploma(){
+    Navigator.pushNamed(context, "Diplomas");
   }
 
   @override
@@ -22,13 +28,26 @@ class MyStudyView extends State<StudyView> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text('学习哇'),
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.school),
+            tooltip: 'Show Diplomas',
+            onPressed: _showDiploma,
+          ),
+        ],
       ),
       body:Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Container(
+                alignment: Alignment.center,
+                width: 320,
+                height: 60,
+                child: ProgressBlock(exp: this.exp)
+            ),
+            Container(
                 width: 720,
-                height: 360,
+                height: 320,
                 child: FrogBlock(updateTime:  (end) => _updateTime(end))
             ),
             Container(
@@ -43,6 +62,46 @@ class MyStudyView extends State<StudyView> {
             ),
           ]
       ),
+    );
+  }
+}
+
+class ProgressBlock extends StatefulWidget{
+  final exp;
+  const ProgressBlock({Key key, this.exp}) : super(key: key);
+
+  @override
+  createState() => new MyProgressBlock();
+}
+
+class MyProgressBlock extends State<ProgressBlock>{
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: Row(
+            children: <Widget>[
+              Container(
+                  width: 80,
+                  child:Text(
+                    "Lv 一年级",
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.black45,
+                    ),
+                  )
+              ),
+              Container(
+                  width: 240,
+                  height: 20,
+                  child: FAProgressBar(
+                    backgroundColor: Colors.white,
+                    currentValue: widget.exp,
+                    maxValue: 100,
+                    changeColorValue: 60,
+                    displayText: '%',
+                  )
+              ),]
+        )
     );
   }
 }

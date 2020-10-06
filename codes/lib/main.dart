@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'Views/AlarmSettingView.dart';
 import 'Views/BottomNavigatorView.dart';
+import 'Views/DiplomasView.dart';
 
 void main() => runApp(new MyApp());
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.indigo,
       ),
       routes:{
+        "Diplomas":(context) => DiplomasWidget(),
         "AlarmSetting":(context) => AlarmSettingWidget(),
         "HomePage":(context) => BottomNavigationWidget(),
         "/":(context) => LoginTwoPage(),

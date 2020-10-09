@@ -13,7 +13,7 @@ class MyDiplomasView extends State<DiplomasWidget>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.teal,
+        backgroundColor: const Color(0xFF75CCE8),
         appBar: AppBar(
             title: Text('荣誉室'),
         ),
@@ -44,83 +44,107 @@ class MyDiploma extends State<Diploma>{
             elevation: 20.0,  //设置阴影
             child: Container(
               width: 380,
-              height: 210,
+              height: 250,
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: GradientColors.sunrise,
-                  ),
-                ),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                    child: Text(
-                      "毕 业 证 书",
-                      style: TextStyle(color: Colors.white, fontSize: 28),
-                    ),
-                  ),
-                  Container(
-                    width: 320,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 5),
-                    height: 150,
-                    child: Row(
-                      children: <Widget>[
-                        ClipOval( //圆形头像
-                          child: Image.network(
-                            'https://pic2.zhimg.com/v2-639b49f2f6578eabddc458b84eb3c6a1.jpg',
-                            width: 80.0,
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(20, 10, 0, 0),
-                          width: 220,
-                          height: 140,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.max,
-                            children: <Widget>[
-                              Container(
-                                width: 220,
-                                child: Text(
-                                    "陈二狗 同学",
-                                    style: TextStyle(color: Colors.black, fontSize: 24),
-                                    textAlign: TextAlign.left,
-                                  )
-                              ),
-                              Container(
-                                width: 220,
-                                child: Text(
-                                  "学习专注，作息规律\n品学兼优，成绩优异",
-                                  style: TextStyle(color: Colors.black, fontSize: 16,),
-                                  textAlign: TextAlign.center,
-                                )
-                              ),
-                              Container(
-                                width: 220,
-                                child: Text(
-                                  "于 2020/09/30",
-                                  style: TextStyle(color: Colors.black, fontSize: 16,),
-                                  textAlign: TextAlign.right,
-                                ) ,
-                              ),
-                              Container(
-                                width: 220,
-                                child: Text(
-                                  "毕业于 氢化大学",
-                                  style: TextStyle(color: Colors.black, fontSize: 16,),
-                                  textAlign: TextAlign.right,
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                  ))
-                ],
+                color: const Color(0xFFFFF8DC),
+                border: Border.all(color: const Color(0xFFFFF8DC), width: 3),//边框
               ),
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: const Color(0xFFFFD700), width: 3),//边框
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: Text(
+                        "※※※※毕 ※ 业 ※ 证 ※ 书※※※※",
+                        style: TextStyle(color: Colors.black, fontSize: 28),
+                      ),
+                    ),
+                    Container(
+                        width: 320,
+                        margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                        height: 160,
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                                width: 80,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: const Color(0xFFFFD700), width: 3),//边框
+                                ),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFF08080),
+                                    border: Border.all(color: const Color(0xFFFFFACD), width: 3),//边框
+                                  ),
+                                  child: ClipRect(//圆形头像
+                                    child: Image.asset(
+                                      "assets/image/frog3.png",
+                                      width: 80.0,
+                                    ),
+                                  ),
+                                )
+                            ),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
+                              width: 220,
+                              height: 145,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  Container(
+                                      width: 220,
+                                      height: 40,
+                                      child: Text(
+                                        "陈二狗 同学",
+                                        style: TextStyle(color: Colors.black, fontSize: 28, fontFamily: "KeShi"),
+                                        textAlign: TextAlign.left,
+                                      )
+                                  ),
+                                  Container(
+                                      width: 220,
+                                      height: 55,
+                                      child: Text(
+                                        "学习专注，作息规律\n品学兼优，成绩优异",
+                                        style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: "KeShi"),
+                                        textAlign: TextAlign.center,
+                                      )
+                                  ),
+                                  Container(
+                                    width: 220,
+                                    child: Text(
+                                      "于 2020/09/30",
+                                      style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: "KeShi"),
+                                      textAlign: TextAlign.right,
+                                    ) ,
+                                  ),
+                                  Container(
+                                    width: 220,
+                                    child: Text(
+                                      "毕业于 氢化大学",
+                                      style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: "KeShi"),
+                                      textAlign: TextAlign.right,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        )),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: Text(
+                        "※ ※ ※ ※ ※ ※ ※ ※ ※ ※ ※ ※ ※ ※ ※",
+                        style: TextStyle(color: Colors.black, fontSize: 28),
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ),
        )
     );

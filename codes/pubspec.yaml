@@ -56,6 +56,16 @@ flutter:
     - family: Nycd
       fonts:
         - asset: assets/fonts/NothingYouCouldDo-Regular.ttf
+    - family: ZhiMangXing
+      fonts:
+        - asset: assets/fonts/ZhiMangXing-Regular.ttf
+    - family: KeShi
+      fonts:
+        - asset: assets/fonts/KeShi.ttf
+  assets:
+    - assets/image/frog.png
+    - assets/image/frog2.png
+    - assets/image/frog3.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

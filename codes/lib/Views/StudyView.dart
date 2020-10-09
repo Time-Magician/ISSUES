@@ -24,7 +24,7 @@ class MyStudyView extends State<StudyView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal,
+      backgroundColor: const Color(0xFF75CCE8),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text('学习哇'),
@@ -124,7 +124,7 @@ class MyFrogBlock extends State<FrogBlock>{
   Widget build(BuildContext context) {
     return Container(
         child: Scaffold(
-            backgroundColor: Colors.teal,
+            backgroundColor: const Color(0xFF75CCE8),
             body: Center(
               child: Container(
                   child: SingleCircularSlider(
@@ -135,8 +135,8 @@ class MyFrogBlock extends State<FrogBlock>{
                     selectionColor: Color.fromRGBO(255, 255, 255, 0.5),
                     onSelectionChange:  _updateLabels,
                     child: ClipOval( //圆形头像
-                      child: Image.network(
-                        'https://pic2.zhimg.com/v2-639b49f2f6578eabddc458b84eb3c6a1.jpg',
+                      child: Image.asset(
+                        'assets/image/frog2.png',
                         width: 240.0,
                       ),
                     ),
@@ -213,7 +213,7 @@ Widget btnBlock(){
         width: 50,
         child: RaisedButton(
           textTheme: ButtonTextTheme.accent,
-          color: Colors.cyan,
+          color: const Color(0xFF33539E),
           highlightColor: Colors.deepPurpleAccent,
           splashColor: Colors.deepOrangeAccent,
           colorBrightness: Brightness.dark,

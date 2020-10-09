@@ -32,6 +32,7 @@ class AlarmList extends State<AlarmView> {
             ),
           ],
         ),
+        backgroundColor: const Color(0xFF75CCE8),
         body: ListView.builder(
           itemCount: _alarmList.length,
           itemBuilder: (BuildContext context,int index) {

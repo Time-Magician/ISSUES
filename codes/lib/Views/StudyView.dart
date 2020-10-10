@@ -81,17 +81,17 @@ class MyProgressBlock extends State<ProgressBlock>{
         child: Row(
             children: <Widget>[
               Container(
-                  width: 80,
+                  width: 120,
                   child:Text(
-                    "Lv 一年级",
+                    "🐸 Lv 一年级",
                     style: const TextStyle(
                       fontSize: 18.0,
-                      color: Colors.black45,
+                      color: Colors.black,
                     ),
                   )
               ),
               Container(
-                  width: 240,
+                  width: 200,
                   height: 20,
                   child: FAProgressBar(
                     backgroundColor: Colors.white,
@@ -221,7 +221,7 @@ Widget btnBlock(){
             //TODO
           },
           child: Text(
-            '开始学习',
+            '开 始 学 习',
             style: TextStyle(color: Colors.white, fontSize: 28),
           ),
         ));

@@ -59,7 +59,7 @@ class MyDiploma extends State<Diploma>{
                     Container(
                       margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                       child: Text(
-                        "※※※※毕 ※ 业 ※ 证 ※ 书※※※※",
+                        "※~※~毕 ※ 业 ※ 证 ※ 书~※~※",
                         style: TextStyle(color: Colors.black, fontSize: 28),
                       ),
                     ),
@@ -99,11 +99,20 @@ class MyDiploma extends State<Diploma>{
                                   Container(
                                       width: 220,
                                       height: 40,
-                                      child: Text(
-                                        "陈二狗 同学",
-                                        style: TextStyle(color: Colors.black, fontSize: 28, fontFamily: "KeShi"),
-                                        textAlign: TextAlign.left,
-                                      )
+                                      child: Row(
+                                        children: <Widget>[
+                                          Text(
+                                            "陈二狗",
+                                            style: TextStyle(color: Colors.black, fontSize: 28, fontFamily: "KeShi",  decoration: TextDecoration.underline,),
+                                            textAlign: TextAlign.left,
+                                          ),
+                                          Text(
+                                            " 同学",
+                                            style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: "KeShi"),
+                                            textAlign: TextAlign.left,
+                                          )
+                                        ],
+                                      ),
                                   ),
                                   Container(
                                       width: 220,
@@ -138,7 +147,7 @@ class MyDiploma extends State<Diploma>{
                     Container(
                       margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                       child: Text(
-                        "※ ※ ※ ※ ※ ※ ※ ※ ※ ※ ※ ※ ※ ※ ※",
+                        "※~※~※~※~※~※~※~※~※~※",
                         style: TextStyle(color: Colors.black, fontSize: 28),
                       ),
                     ),

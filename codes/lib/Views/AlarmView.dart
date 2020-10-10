@@ -32,6 +32,7 @@ class AlarmList extends State<AlarmView> {
             ),
           ],
         ),
+        backgroundColor: const Color(0xFF75CCE8),
         body: ListView.builder(
           itemCount: _alarmList.length,
           itemBuilder: (BuildContext context,int index) {
@@ -63,6 +64,12 @@ class Alarm extends State<AlarmWidget> {
   @override
   Widget build(BuildContext context){
     return Center(
+      child: GestureDetector(
+        onTap: (() => {
+          Navigator.pushNamed(
+              context,"AlarmSetting"
+          )
+        }),
         child: Card(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -134,7 +141,7 @@ class Alarm extends State<AlarmWidget> {
           ),
           margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
         ),
-    );
+    ));
   }
 }
 

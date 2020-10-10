@@ -62,6 +62,8 @@ flutter:
     - assets/image/frog.png
     - assets/image/frog2.png
     - assets/image/frog3.png
+    - assets/image/logo.png
+    - assets/image/Froglogo.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

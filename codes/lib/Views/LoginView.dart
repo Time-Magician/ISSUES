@@ -22,15 +22,12 @@ class LoginTwoPage extends StatelessWidget {
   loginHeader() => Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
-      FlutterLogo(
-        colors: Colors.green,
-        size: 80.0,
-      ),
+      Image.asset("assets/image/Froglogo.png", width: 100,),
       SizedBox(
         height: 30.0,
       ),
       Text(
-        "Welcome to ${UIData.appName}",
+        "Welcome to ISSUES",
         style: TextStyle(fontWeight: FontWeight.w700, color: Colors.green),
       ),
       SizedBox(
@@ -53,8 +50,15 @@ class LoginTwoPage extends StatelessWidget {
           child: TextField(
             maxLines: 1,
             decoration: InputDecoration(
+              prefixIcon: Icon(Icons.perm_identity, color: Colors.green),
               hintText: "Enter your username",
-              labelText: "Username",
+              labelText: "用户名/手机号",
+              labelStyle: TextStyle(color: Colors.green),
+              focusedBorder: OutlineInputBorder(
+                 borderSide: BorderSide(
+                   color: Colors.green, //边框颜色为绿色
+                   width: 5, //宽度为5
+                 ))
             ),
           ),
         ),
@@ -64,8 +68,15 @@ class LoginTwoPage extends StatelessWidget {
             maxLines: 1,
             obscureText: true,
             decoration: InputDecoration(
-              hintText: "Enter your password",
-              labelText: "Password",
+                prefixIcon: Icon(Icons.lock_outline, color: Colors.green),
+                hintText: "Enter your password",
+                labelText: "密码",
+                labelStyle: TextStyle(color: Colors.green),
+                focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.green, //边框颜色为绿色
+                      width: 5, //宽度为5
+                    ))
             ),
           ),
         ),
@@ -79,7 +90,7 @@ class LoginTwoPage extends StatelessWidget {
             padding: EdgeInsets.all(12.0),
             shape: StadiumBorder(),
             child: Text(
-              "SIGN IN",
+              "登录",
               style: TextStyle(color: Colors.white),
             ),
             color: Colors.green,

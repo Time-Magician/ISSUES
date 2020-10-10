@@ -64,6 +64,12 @@ class Alarm extends State<AlarmWidget> {
   @override
   Widget build(BuildContext context){
     return Center(
+      child: GestureDetector(
+        onTap: (() => {
+          Navigator.pushNamed(
+              context,"AlarmSetting"
+          )
+        }),
         child: Card(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -135,7 +141,7 @@ class Alarm extends State<AlarmWidget> {
           ),
           margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
         ),
-    );
+    ));
   }
 }
 

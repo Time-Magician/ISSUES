@@ -59,7 +59,7 @@ class MyDiploma extends State<Diploma>{
                     Container(
                       margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                       child: Text(
-                        "🐸🐸毕🐸业🐸证🐸书🐸🐸",
+                        "※~※~毕 ※ 业 ※ 证 ※ 书~※~※",
                         style: TextStyle(color: Colors.black, fontSize: 28),
                       ),
                     ),
@@ -147,7 +147,7 @@ class MyDiploma extends State<Diploma>{
                     Container(
                       margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                       child: Text(
-                        "🐸🐸🐸🐸🐸🐸🐸🐸🐸🐸",
+                        "※~※~※~※~※~※~※~※~※~※",
                         style: TextStyle(color: Colors.black, fontSize: 28),
                       ),
                     ),

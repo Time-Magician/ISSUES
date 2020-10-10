@@ -1,3 +1,4 @@
+import 'package:demo5/Views/FriendsView.dart';
 import 'package:demo5/Views/LoginView.dart';
 import 'package:flutter/material.dart';
 import 'AlarmView.dart';
@@ -19,7 +20,9 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
     pages
       ..add(AlarmView())
       ..add(StudyView())
-      ..add(UserView());
+      ..add(UserView())
+      ..add(FriendsView());
+
     super.initState();
   }
 
@@ -54,6 +57,15 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
               ),
               title: Text(
                 '我的',
+                style: TextStyle(color: _bottomNavigationColor),
+              )),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.group,
+                color: _bottomNavigationColor,
+              ),
+              title: Text(
+                '好友',
                 style: TextStyle(color: _bottomNavigationColor),
               )),
         ],

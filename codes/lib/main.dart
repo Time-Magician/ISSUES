@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         "AlarmSetting":(context) => AlarmSettingWidget(),
         "HomePage":(context) => BottomNavigationWidget(),
         "FriendPage":(context)=>FriendsView(),
-        "/":(context) => LoginTwoPage(),
+        "/":(context) => LoginView(),
       }
     );
   }

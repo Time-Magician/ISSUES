@@ -11,7 +11,7 @@ class UserView extends StatelessWidget {
       body:ListView(
         children: <Widget>[
            _topHeader(),
-          OrderTitle(str: "个人信息设置"),
+          OrderTitle(str: "个人信息设置",routeName:"UserDetail"),
           OrderTitle(str: "趣味闹钟设置"),
           OrderTitle(str: "深度学习设置"),
           OrderTitle(str: "社交与好友设置"),
@@ -49,7 +49,8 @@ Widget _topHeader(){
 
 class OrderTitle extends StatelessWidget{
   final str;
-  const OrderTitle({Key key, this.str}) : super(key: key);
+  final routeName; //点击后跳转的页面
+  const OrderTitle({Key key, this.str,this.routeName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +67,9 @@ class OrderTitle extends StatelessWidget{
         leading: Icon(Icons.list),
         title:Text(str),
         trailing: Icon(Icons.arrow_right),
+        onTap: (){
+          Navigator.pushNamed(context,routeName);
+        }
       ),
     );
   }

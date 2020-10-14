@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'Views/AlarmSettingView.dart';
 import 'Views/BottomNavigatorView.dart';
+import 'Views/UserDetailView.dart';
 
 void main() => runApp(new MyApp());
 
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       routes:{
         "AlarmSetting":(context) => AlarmSettingWidget(),
         "HomePage":(context) => BottomNavigationWidget(),
+        "UserDetail":(context) => UserDetailView(),
         "/":(context) => LoginTwoPage(),
       }
     );

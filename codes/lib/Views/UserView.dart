@@ -11,12 +11,10 @@ class UserView extends StatelessWidget {
       body:ListView(
         children: <Widget>[
            _topHeader(),
-          OrderTitle(str: "个人信息设置"),
-          OrderTitle(str: "趣味闹钟设置"),
-          OrderTitle(str: "深度学习设置"),
-          OrderTitle(str: "社交与好友设置"),
-          OrderTitle(str: "音效与通知设置"),
-          OrderTitle(str: "关于一心"),
+          OrderTitle(title: "个人信息", icon: Icons.assignment_ind),
+          OrderTitle(title: "设置", icon: Icons.settings),
+          OrderTitle(title: "我的好友", icon: Icons.group, router: "FriendPage"),
+          OrderTitle(title: "关于一心", icon: Icons.favorite),
         ],
       ) ,
     );
@@ -48,13 +46,15 @@ Widget _topHeader(){
 }
 
 class OrderTitle extends StatelessWidget{
-  final str;
-  const OrderTitle({Key key, this.str}) : super(key: key);
+  final title;
+  final icon;
+  final router;
+  const OrderTitle({Key key, this.title, this.router, this.icon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
+
       // margin: EdgeInsets.only(top:10),
       decoration: BoxDecoration(
           color: Colors.white,
@@ -62,11 +62,15 @@ class OrderTitle extends StatelessWidget{
               bottom:BorderSide(width: 1,color:Colors.black12)
           )
       ),
-      child: ListTile(
-        leading: Icon(Icons.list),
-        title:Text(str),
-        trailing: Icon(Icons.arrow_right),
+      child: GestureDetector(
+          onTap: (() => {
+            Navigator.pushNamed(context, router)
+          }),
+          child: ListTile(
+              leading: Icon(this.icon),
+              title:Text(title),
+              trailing: Icon(Icons.arrow_right),
       ),
-    );
+    ));
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_circular_slider/flutter_circular_slider.dart';
+import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 
 class StudyView extends StatefulWidget {
   @override
@@ -8,6 +9,7 @@ class StudyView extends StatefulWidget {
 
 class MyStudyView extends State<StudyView> {
   int totalTime = 0;
+  int exp = 70;
 
   _updateTime(int end) {
     setState(() {
@@ -15,20 +17,37 @@ class MyStudyView extends State<StudyView> {
     });
   }
 
+  _showDiploma(){
+    Navigator.pushNamed(context, "Diplomas");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal,
+      backgroundColor: const Color(0xFF75CCE8),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text('学习哇'),
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.school),
+            tooltip: 'Show Diplomas',
+            onPressed: _showDiploma,
+          ),
+        ],
       ),
       body:Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Container(
+                alignment: Alignment.center,
+                width: 320,
+                height: 60,
+                child: ProgressBlock(exp: this.exp)
+            ),
+            Container(
                 width: 720,
-                height: 360,
+                height: 320,
                 child: FrogBlock(updateTime:  (end) => _updateTime(end))
             ),
             Container(
@@ -43,6 +62,46 @@ class MyStudyView extends State<StudyView> {
             ),
           ]
       ),
+    );
+  }
+}
+
+class ProgressBlock extends StatefulWidget{
+  final exp;
+  const ProgressBlock({Key key, this.exp}) : super(key: key);
+
+  @override
+  createState() => new MyProgressBlock();
+}
+
+class MyProgressBlock extends State<ProgressBlock>{
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: Row(
+            children: <Widget>[
+              Container(
+                  width: 80,
+                  child:Text(
+                    "Lv 一年级",
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.black45,
+                    ),
+                  )
+              ),
+              Container(
+                  width: 240,
+                  height: 20,
+                  child: FAProgressBar(
+                    backgroundColor: Colors.white,
+                    currentValue: widget.exp,
+                    maxValue: 100,
+                    changeColorValue: 60,
+                    displayText: '%',
+                  )
+              ),]
+        )
     );
   }
 }
@@ -65,7 +124,7 @@ class MyFrogBlock extends State<FrogBlock>{
   Widget build(BuildContext context) {
     return Container(
         child: Scaffold(
-            backgroundColor: Colors.teal,
+            backgroundColor: const Color(0xFF75CCE8),
             body: Center(
               child: Container(
                   child: SingleCircularSlider(
@@ -76,8 +135,8 @@ class MyFrogBlock extends State<FrogBlock>{
                     selectionColor: Color.fromRGBO(255, 255, 255, 0.5),
                     onSelectionChange:  _updateLabels,
                     child: ClipOval( //圆形头像
-                      child: Image.network(
-                        'https://pic2.zhimg.com/v2-639b49f2f6578eabddc458b84eb3c6a1.jpg',
+                      child: Image.asset(
+                        'assets/image/frog2.png',
                         width: 240.0,
                       ),
                     ),
@@ -154,7 +213,7 @@ Widget btnBlock(){
         width: 50,
         child: RaisedButton(
           textTheme: ButtonTextTheme.accent,
-          color: Colors.cyan,
+          color: const Color(0xFF33539E),
           highlightColor: Colors.deepPurpleAccent,
           splashColor: Colors.deepOrangeAccent,
           colorBrightness: Brightness.dark,

@@ -5,13 +5,7 @@ class FriendsView extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: '好友',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-      ),
-      home: MyHomePage(title: '好友'),
-    );
+    return MyHomePage(title: '好友');
   }
 }
 

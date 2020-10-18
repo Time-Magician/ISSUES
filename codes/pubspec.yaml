@@ -38,6 +38,11 @@ dependencies:
   flutter_animation_progress_bar: ^1.0.5
   flutter_gradient_colors: ^1.0.0
   flutter_slidable: ^0.5.7
+  easy_dialog: ^1.0.5
+  grouped_buttons: ^1.0.4
+  day_picker: ^1.0.1
+  toggle_switch: ^0.1.8
+  flutter_swiper: ^1.1.6
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +74,12 @@ flutter:
     - assets/image/frog3.png
     - assets/image/logo.png
     - assets/image/Froglogo.png
+    - assets/image/day37-calculator.png
+    - assets/image/math.png
+    - assets/image/music.png
+    - assets/image/game.png
+    - assets/image/camera.png
+    - assets/image/random.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

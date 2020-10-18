@@ -56,7 +56,21 @@ packages:
       name: day_night_time_picker
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.2.1"
+    version: "0.2.1+1"
+  day_picker:
+    dependency: "direct main"
+    description:
+      name: day_picker
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.1"
+  easy_dialog:
+    dependency: "direct main"
+    description:
+      name: easy_dialog
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.5"
   english_words:
     dependency: "direct main"
     description:
@@ -97,11 +111,39 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.0"
+  flutter_page_indicator:
+    dependency: transitive
+    description:
+      name: flutter_page_indicator
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.0.3"
+  flutter_slidable:
+    dependency: "direct main"
+    description:
+      name: flutter_slidable
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.5.7"
+  flutter_swiper:
+    dependency: "direct main"
+    description:
+      name: flutter_swiper
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.1.6"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
+  grouped_buttons:
+    dependency: "direct main"
+    description:
+      name: grouped_buttons
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.4"
   matcher:
     dependency: transitive
     description:
@@ -170,6 +212,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.2.17"
+  toggle_switch:
+    dependency: "direct main"
+    description:
+      name: toggle_switch
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.8"
+  transformer_page_view:
+    dependency: transitive
+    description:
+      name: transformer_page_view
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.6"
   typed_data:
     dependency: transitive
     description:
@@ -186,3 +242,4 @@ packages:
     version: "2.0.8"
 sdks:
   dart: ">=2.9.0-14.0.dev <3.0.0"
+  flutter: ">=1.17.0 <2.0.0"

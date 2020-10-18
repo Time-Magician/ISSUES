@@ -8,30 +8,32 @@ class UserView extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: Text('个人中心'),
       ),
-      body:ListView(
+      body: ListView(
         children: <Widget>[
-           _topHeader(),
-          OrderTitle(str: "个人信息设置",routeName:"UserDetail"),
-          OrderTitle(str: "趣味闹钟设置"),
-          OrderTitle(str: "深度学习设置"),
-          OrderTitle(str: "社交与好友设置"),
-          OrderTitle(str: "音效与通知设置"),
-          OrderTitle(str: "关于一心"),
+          _topHeader(),
+          OrderTitle(
+              title: "个人信息",
+              icon: Icons.assignment_ind,
+              routeName: "UserDetail"),
+          OrderTitle(title: "设置", icon: Icons.settings),
+          OrderTitle(title: "我的好友", icon: Icons.group, router: "FriendPage"),
+          OrderTitle(title: "关于一心", icon: Icons.favorite),
         ],
-      ) ,
+      ),
     );
   }
 }
 
-Widget _topHeader(){
+Widget _topHeader() {
   return Container(
     padding: EdgeInsets.all(20.0),
     color: Colors.blueAccent,
     child: Column(
       children: <Widget>[
         Container(
-          margin: EdgeInsets.only(top:20.0),
-          child: ClipOval( //圆形头像
+          margin: EdgeInsets.only(top: 20.0),
+          child: ClipOval(
+            //圆形头像
             child: Image.network(
               'https://pic2.zhimg.com/v2-639b49f2f6578eabddc458b84eb3c6a1.jpg',
               width: 80.0,
@@ -39,38 +41,37 @@ Widget _topHeader(){
           ),
         ),
         Container(
-          margin: EdgeInsets.only(top:10.0),
-          child: Text("Chen Ergou",style: TextStyle(color:Colors.white)),
+          margin: EdgeInsets.only(top: 10.0),
+          child: Text("Chen Ergou", style: TextStyle(color: Colors.white)),
         )
       ],
     ),
   );
 }
 
-class OrderTitle extends StatelessWidget{
-  final str;
-  final routeName; //点击后跳转的页面
-  const OrderTitle({Key key, this.str,this.routeName}) : super(key: key);
+class OrderTitle extends StatelessWidget {
+  final title;
+  final icon;
+  final router;
+  const OrderTitle({Key key, this.title, this.router, this.icon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
-      // margin: EdgeInsets.only(top:10),
-      decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(
-              bottom:BorderSide(width: 1,color:Colors.black12)
-          )
-      ),
-      child: ListTile(
-        leading: Icon(Icons.list),
-        title:Text(str),
-        trailing: Icon(Icons.arrow_right),
-        onTap: (){
-          Navigator.pushNamed(context,routeName);
-        }
-      ),
-    );
+
+        // margin: EdgeInsets.only(top:10),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            border:
+                Border(bottom: BorderSide(width: 1, color: Colors.black12))),
+        child: GestureDetector(
+          onTap: (() => {Navigator.pushNamed(context, router)}),
+          child: ListTile(
+            leading: Icon(this.icon),
+            title: Text(title),
+            trailing: Icon(Icons.arrow_right),
+          ),
+        ));
   }
 }

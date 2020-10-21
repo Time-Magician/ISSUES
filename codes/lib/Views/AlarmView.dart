@@ -51,7 +51,8 @@ class AlarmWidget extends StatefulWidget{
 }
 
 class Alarm extends State<AlarmWidget> {
-  AlarmInfo alarmInfo = new AlarmInfo();
+  AlarmInfo alarmInfo;
+  String repeat = "";
 
   void _switchAlarm(isOpen){
     // bool isOpen = this.alarmInfo.isOpen? false : true;
@@ -63,6 +64,12 @@ class Alarm extends State<AlarmWidget> {
 
   @override
   Widget build(BuildContext context){
+    alarmInfo = new AlarmInfo();
+
+    alarmInfo.repeat.forEach((element) {
+      repeat += element + " ";
+    });
+
     return Center(
       child: GestureDetector(
         onTap: (() => {
@@ -76,7 +83,7 @@ class Alarm extends State<AlarmWidget> {
             children: <Widget>[
               Container(
                 child: Text(
-                  this.alarmInfo.name,
+                  this.alarmInfo.label,
                   textAlign: TextAlign.left,
                   maxLines:1,
                   overflow:TextOverflow.ellipsis,
@@ -111,7 +118,7 @@ class Alarm extends State<AlarmWidget> {
                   children: <Widget>[
                     Container(
                       child: Text(
-                        this.alarmInfo.date,
+                        repeat,
                         style: const TextStyle(
                           fontSize: 16.0,
                           color: Colors.cyan,
@@ -124,7 +131,7 @@ class Alarm extends State<AlarmWidget> {
                     ),
                     Container(
                         child: Text(
-                          this.alarmInfo.job,
+                          this.alarmInfo.mission,
                           style: const TextStyle(
                             fontSize: 16.0,
                             color: Colors.cyan,
@@ -145,12 +152,14 @@ class Alarm extends State<AlarmWidget> {
   }
 }
 
+const List<String> TmpRepeat = ["周一","周三"];
+
 class AlarmInfo {
-  String name;
-  String date;
+  String label;
+  List<String> repeat;
   String time;
-  String job;
+  String mission;
   bool isOpen;
 
-  AlarmInfo({this.name = "起床", this.date = "周一 周三", this.time = "06:30", this.job = "计算题", this.isOpen = false});
+  AlarmInfo({this.label = "起床", this.repeat = TmpRepeat, this.time = "06:30", this.mission = "计算题", this.isOpen = false});
 }

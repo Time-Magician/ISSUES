@@ -1,25 +1,48 @@
 import 'package:flutter/material.dart';
+import '../Class/AlarmInfo.dart';
+import 'package:easy_dialog/easy_dialog.dart';
+
+List<AlarmInfo> _alarmList = [
+  AlarmInfo("起床", ["周一","周二","周三","周四","周五"],TimeOfDay(hour: 6, minute: 30),"算术题","二狗汪汪叫",true,true),
+  AlarmInfo("班级会议", ["周三"],TimeOfDay(hour: 21, minute: 30),"随机任务","Audio 3",true,false),
+  AlarmInfo("高数作业DDL", ["周日"],TimeOfDay(hour: 23, minute: 30),"小游戏","Audio 2",true,false),
+  AlarmInfo("起床", ["周一","周二"],TimeOfDay(hour: 7, minute: 30),"算术题","Audio 1",true,false),
+  AlarmInfo("起床", ["周一","周二"],TimeOfDay(hour: 8, minute: 30),"算术题","二狗汪汪叫",true,false)
+];
 
 class AlarmView extends StatefulWidget {
+
   @override
   createState() => new AlarmList();
 }
 
 class AlarmList extends State<AlarmView> {
-  final _alarmList = new Set<AlarmInfo>();
+  int alarmCount;
 
-  void addAlarm(){
-    Navigator.pushNamed(context,"AlarmSetting");
+  void addAlarm() async {
+    final result = await Navigator.pushNamed(context,"AlarmSetting",arguments:
+      AlarmInfo("闹钟", ["周一"], TimeOfDay.now(), "算术题", "二狗汪汪叫", true, true),
+
+    );
+
+    if(result.runtimeType != AlarmInfo) return;
+
+    AlarmInfo newAlarmInfo = result as AlarmInfo;
+    _alarmList.add(newAlarmInfo);
+    setState(() {
+
+    });
+  }
+
+  void deleteAlarm(){
+    this.setState(() {
+
+    });
   }
   
   @override
   Widget build(BuildContext context){
-    _alarmList.clear();
-    _alarmList.add(new AlarmInfo());
-    _alarmList.add(new AlarmInfo());
-    _alarmList.add(new AlarmInfo());
-    _alarmList.add(new AlarmInfo());
-    _alarmList.add(new AlarmInfo());
+
     return Scaffold(
         appBar: AppBar(
             automaticallyImplyLeading: false,
@@ -36,7 +59,7 @@ class AlarmList extends State<AlarmView> {
         body: ListView.builder(
           itemCount: _alarmList.length,
           itemBuilder: (BuildContext context,int index) {
-            return new AlarmWidget();
+            return new AlarmWidget(alarmIndex: index, callbackFunc: deleteAlarm,);
           },
         ),
 
@@ -45,121 +68,268 @@ class AlarmList extends State<AlarmView> {
 }
 
 class AlarmWidget extends StatefulWidget{
+  final Function callbackFunc;
+  final int alarmIndex;
+  const AlarmWidget({Key key, this.alarmIndex, this.callbackFunc}) : super(key: key);
+
   @override
   createState() => new Alarm();
 
 }
 
-class Alarm extends State<AlarmWidget> {
-  AlarmInfo alarmInfo;
+class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
   String repeat = "";
+  bool isAnimated = false;
+  AlarmInfo alarmInfo;
+  double deleteButtonWidth;
+  bool refreshFlag = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+    alarmInfo = _alarmList[widget.alarmIndex];
+    deleteButtonWidth = 0;
+  }
 
   void _switchAlarm(isOpen){
     // bool isOpen = this.alarmInfo.isOpen? false : true;
-    this.alarmInfo.isOpen = isOpen;
+    alarmInfo.isOpen = isOpen;
+    _alarmList[widget.alarmIndex].isOpen = isOpen;
     setState(() {
-
     });
+  }
+
+  String timeToString(TimeOfDay time){
+    int hour = time.hour;
+    int minute = time.minute;
+    String hourS;
+    String minuteS;
+
+    if(hour < 10)
+      hourS = "0"+hour.toString();
+    else
+      hourS = hour.toString();
+
+    if(minute < 10)
+      minuteS = "0"+minute.toString();
+    else
+      minuteS = minute.toString();
+
+    return hourS + ":" + minuteS;
+  }
+
+  void editAlarm() async {
+    final result = await Navigator.pushNamed(
+        context,"AlarmSetting",
+        arguments: _alarmList[widget.alarmIndex]
+    );
+
+    if(result.runtimeType != AlarmInfo) return;
+
+    AlarmInfo newAlarmInfo = result as AlarmInfo;
+    this.setState(() {
+      alarmInfo = newAlarmInfo;
+    });
+    _alarmList[widget.alarmIndex] = alarmInfo;
+  }
+
+  void deleteAlarm(int index){
+    EasyDialog(
+      fogOpacity: 0.12,
+      width: 330,
+      height: 140,
+      closeButton: false,
+      title: Text(
+        "删除闹钟",
+        style: TextStyle(fontSize: 20),
+      ),
+      description: Text(
+        "您确定要删除闹钟吗？"
+      ),
+      contentList: [
+        Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                width: 90,
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "取消",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
+              ),
+              Container(
+                width: 90,
+                child: FlatButton(
+                  onPressed: () {
+                    _alarmList.removeAt(index);
+                    widget.callbackFunc();
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "确认",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+              )
+            ]
+        )
+      ],
+    ).show(context);
+  }
+
+  void zoomAlarm(){
+    if(!isAnimated){
+      setState(() {
+        isAnimated = true;
+        deleteButtonWidth = 40;
+      });
+    } else {
+      setState(() {
+        isAnimated = false;
+        deleteButtonWidth = 0;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context){
-    alarmInfo = new AlarmInfo();
+    repeat = "";
 
-    alarmInfo.repeat.forEach((element) {
-      repeat += element + " ";
-    });
+    if(alarmInfo.repeat.length == 7){
+      repeat = "每天";
+    }else {
+      alarmInfo.repeat.forEach((element) {
+        repeat += element + " ";
+      });
+    }
 
     return Center(
       child: GestureDetector(
         onTap: (() => {
-          Navigator.pushNamed(
-              context,"AlarmSetting"
-          )
+          editAlarm()
         }),
-        child: Card(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+        onLongPress: (() => {
+          zoomAlarm()
+        }),
+        child: Container(
+          width: 400,
+          margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
-              Container(
-                child: Text(
-                  this.alarmInfo.label,
-                  textAlign: TextAlign.left,
-                  maxLines:1,
-                  overflow:TextOverflow.ellipsis,
-                  style: const TextStyle(
-                      fontSize: 24.0,
-                      color: Colors.black45,
-                  ),
+              AnimatedContainer(
+                duration: Duration(milliseconds: 200),
+                width: deleteButtonWidth,
+                height: 100,
+                margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: IconButton(
+                  icon: Icon(Icons.alarm_off),
+                  color: Colors.red,
+                  iconSize: 28,
+                  onPressed: () => {
+                    deleteAlarm(widget.alarmIndex)
+                  },
                 ),
-                width: 360,
-                margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
               ),
-              Row(
-                children: <Widget>[
-                  Container(
-                    child: new Text(
-                        this.alarmInfo.time,
-                        style: const TextStyle(fontSize: 42.0, fontFamily: 'Miriam'),
-                    ),
-                    width: 300,
-                    margin: EdgeInsets.fromLTRB(15, 5, 5, 10),
-                  ),
-                  Container(
-                    child: new Switch(value: this.alarmInfo.isOpen, onChanged: _switchAlarm),
-                    width: 64,
-                  )
-                ]
-              ),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      child: Text(
-                        repeat,
-                        style: const TextStyle(
-                          fontSize: 16.0,
-                          color: Colors.cyan,
-                        ),
-                      )
-                    ),
-                    VerticalDivider(
-                      color: Colors.black45,
-                      width: 20,
-                    ),
-                    Container(
+              AnimatedContainer(
+                margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                duration: Duration(milliseconds: 200),
+                width: isAnimated?350:390,
+                child: Card(
+                  margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 200),
+                        width: isAnimated?340:380,
                         child: Text(
-                          this.alarmInfo.mission,
+                          alarmInfo.label,
+                          textAlign: TextAlign.left,
+                          maxLines:1,
+                          overflow:TextOverflow.ellipsis,
                           style: const TextStyle(
-                            fontSize: 16.0,
-                            color: Colors.cyan,
+                            fontSize: 24.0,
+                            color: Colors.black45,
                           ),
-                        )
-                    ),
-                  ],
+                        ),
+                        margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
+                      ),
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 200),
+                        width: isAnimated?340:380,
+                        child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              AnimatedContainer(
+                                duration: Duration(milliseconds: 200),
+                                width: isAnimated?256:296,
+                                child: new Text(
+                                  timeToString(alarmInfo.time),
+                                  style: const TextStyle(fontSize: 46.0, fontFamily: 'Miriam'),
+                                ),
+                                margin: EdgeInsets.fromLTRB(15, 7.5, 5, 7.5),
+                              ),
+                              AnimatedContainer(
+                                duration: Duration(milliseconds: 200),
+                                child: new Switch(value: alarmInfo.isOpen, onChanged: _switchAlarm),
+                                width: 64,
+                              )
+                            ]
+                        ),
+                      ),
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 200),
+                        width: isAnimated?340:380,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                                child: Text(
+                                  repeat,
+                                  style: const TextStyle(
+                                    fontSize: 16.0,
+                                    color: Colors.cyan,
+                                  ),
+                                )
+                            ),
+                            VerticalDivider(
+                              color: Colors.black45,
+                              width: 20,
+                            ),
+                            Container(
+                                child: Text(
+                                  alarmInfo.mission,
+                                  style: const TextStyle(
+                                    fontSize: 16.0,
+                                    color: Colors.cyan,
+                                  ),
+                                )
+                            ),
+                          ],
+                        ),
+                        height: 30,
+                        margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                      ),
+                    ],
+                  ),
                 ),
-                width: 360,
-                height: 30,
-                margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-              ),
+              )
             ],
           ),
-          margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-        ),
+        )
     ));
   }
 }
 
-const List<String> TmpRepeat = ["周一","周三"];
-
-class AlarmInfo {
-  String label;
-  List<String> repeat;
-  String time;
-  String mission;
-  bool isOpen;
-
-  AlarmInfo({this.label = "起床", this.repeat = TmpRepeat, this.time = "06:30", this.mission = "计算题", this.isOpen = false});
-}

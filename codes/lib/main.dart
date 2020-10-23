@@ -9,6 +9,11 @@ import 'Views/FriendsView.dart';
 import 'Views/FriendsView.dart';
 import 'Views/StudyView.dart';
 import 'Views/StudyRoomView.dart';
+import 'Views/DetailSettingView/GenderSetting.dart';
+import 'Views/DetailSettingView/UserNameSettingView.dart';
+import 'Views/DetailSettingView/NameSettingView.dart';
+import 'Views/DetailSettingView/EmailSettingView.dart';
+import 'Views/DetailSettingView/PasswordSettingView.dart';
 
 void main() => runApp(new MyApp());
 
@@ -27,6 +32,11 @@ class MyApp extends StatelessWidget {
         "HomePage":(context) => BottomNavigationWidget(),
         "UserDetail":(context) => UserDetailView(),
         "FriendPage":(context)=>FriendsView(),
+        "UserNameSetting":(context)=>UserNameSettingView(),
+        "NameSetting":(context)=>NameSettingView(),
+        "EmailSetting":(context)=>EmailSettingView(),
+        "PasswordSetting":(context)=>PasswordSettingView(),
+        "GenderSetting":(context)=>GenderSettingView(),
         "/":(context) => LoginTwoPage(),
       }
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-const DetailItem=['用户名','姓名','性别','电子邮箱','密码'];
-const _name="zhuYicheng";
+var itemValuePair=new Map.from({"用户名":"陈二狗","姓名":"陈零蛋","性别":"男","电子邮箱":"haha@sjtu.edu.cn","密码":"******"});
+
 class UserDetailView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -8,24 +8,47 @@ class UserDetailView extends StatelessWidget{
       appBar: AppBar(
         title: Text('个人中心'),
       ),
-      // body:ListView.builder(
-      //     itemCount: DetailItem.length*2,
-      //     itemBuilder:(context,i){
-      //       if(i.isOdd)return new Divider();
-      //       var index = i~/2;
-      //       return ListTile(
-      //         title: Text(DetailItem[index]),
-      //         trailing: Icon(Icons.arrow_right),
-      //       );
-      //     }),
-      body: Center(
-        child:Text(
-        'Hello, $_name! How are you?',
-        textAlign: TextAlign.center,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40),
-      )),
+      body:
+      ListView(
+        children: <Widget>[
+          _DetailItem(item:'用户名',value:'陈二狗',router:'UserNameSetting'),
+          _DetailItem(item:'姓名',value:'陈零蛋',router:'NameSetting'),
+          _DetailItem(item:'性别',value:'男',router:'GenderSetting'),
+          _DetailItem(item:'电子邮箱',value:'haha@sjtu.edu.cn',router:'EmailSetting'),
+          _DetailItem(item:'密码',value:'******',router:'PasswordSetting')
+        ],
+      )
+
     );
   }
 
+}
+class _DetailItem extends StatelessWidget{
+  final item;
+  final value;
+  final router;
+  const _DetailItem({Key key,this.item,this.value,this.router}):super(key:key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // margin: EdgeInsets.only(top:10),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            border:
+            Border(bottom: BorderSide(width: 1, color: Colors.black12))),
+        child: GestureDetector(
+          onTap: (() => {Navigator.pushNamed(context, router)}),
+          child: ListTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(item),
+                  Text(value)
+                ],
+              ),
+              trailing: Icon(Icons.arrow_right),
+          ),
+        ));
+  }
 }

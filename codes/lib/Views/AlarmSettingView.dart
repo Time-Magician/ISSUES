@@ -5,8 +5,30 @@ import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:day_picker/day_picker.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import '../Class/AlarmInfo.dart';
+
+const List<String> audios = [
+"Audio 1",
+"Audio 2",
+"Audio 3",
+"Audio 4",
+"Audio 5",
+"二狗汪汪叫",
+];
+
+List<MissionItem> missionList = [
+  MissionItem("算术题","assets/image/math.png","闹钟响起时会出现一道数学题，填写正确答案之后就能关闭闹钟。"),
+  MissionItem("唱歌","assets/image/music.png","闹钟响起时需要对着麦克风唱歌，跟唱15秒之后就能关闭闹钟。"),
+  MissionItem("小游戏","assets/image/game.png","闹钟响起时需要玩连连看、消消乐等小游戏，获得足够的积分之后就能关闭闹钟。"),
+  MissionItem("指定物品拍照","assets/image/camera.png","闹钟响起后，需要拍一张指定物品的照片并上传，识别正确后就能关闭闹钟。"),
+  MissionItem("随机任务","assets/image/random.png","闹钟任务会从任务库中随机指定，完成对应任务之后即可关闭闹钟。"),
+];
+
+AlarmInfo newAlarmInfo;
 
 class AlarmSettingWidget extends StatefulWidget{
+
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -16,10 +38,35 @@ class AlarmSettingWidget extends StatefulWidget{
 }
 
 class AlarmSetting extends State<AlarmSettingWidget>{
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // alarmInfo = ModalRoute.of(context).settings.arguments;
+  }
+
   @override
   Widget build(BuildContext context) {
+    AlarmInfo alarmInfo = ModalRoute.of(context).settings.arguments;
+
+
+    newAlarmInfo = new AlarmInfo(
+      alarmInfo.label,
+      alarmInfo.repeat,
+      alarmInfo.time,
+      alarmInfo.mission,
+      alarmInfo.audio,
+      alarmInfo.vibration,
+      alarmInfo.isOpen
+    );
+
     return Scaffold(
       appBar: AppBar(
+        leading: new IconButton(
+            icon: new Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => {Navigator.of(context).pop()}),
         title: Text('闹钟设置'),
         actions: <Widget>[
           new MaterialButton(
@@ -28,17 +75,19 @@ class AlarmSetting extends State<AlarmSettingWidget>{
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
             onPressed: (() => {
-              Navigator.pop(context)
+              Navigator.of(context).pop(newAlarmInfo)
             }),
           ),
         ],
       ),
-      body: Settings(),
+      body: Settings(alarmInfo: alarmInfo),
     );
   }
 }
 
 class Settings extends StatefulWidget{
+  final alarmInfo;
+  const Settings({Key key, this.alarmInfo}): super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -48,7 +97,14 @@ class Settings extends StatefulWidget{
 }
 
 class MySettings extends State<Settings>{
-  TimeOfDay _time = TimeOfDay.now();
+  TimeOfDay _time;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _time = widget.alarmInfo.time;
+  }
 
   void onTimeChanged(TimeOfDay newTime) {
     setState(() {
@@ -81,6 +137,7 @@ class MySettings extends State<Settings>{
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         body:SingleChildScrollView(
             child:Center(
@@ -108,11 +165,11 @@ class MySettings extends State<Settings>{
                           )
                       )
                   ),
-                  OrderTitle(title: "标签", icon: Icons.loyalty, subtitle: "起床", onClick: "label"),
-                  OrderTitle(title: "铃声", icon: Icons.audiotrack, subtitle: "audio1", onClick: "audio"),
-                  OrderTitle(title: "重复", icon: Icons.calendar_today, subtitle: "每天", onClick: "repeat"),
-                  OrderTitle(title: "振动", icon: Icons.notifications_active, subtitle: "是", onClick: "vibration"),
-                  OrderTitle(title: "任务", icon: Icons.games, subtitle: "算术题", onClick: "mission"),
+                  OrderTitle(title: "标签", icon: Icons.loyalty, subtitle: widget.alarmInfo.label, onClick: "label"),
+                  OrderTitle(title: "铃声", icon: Icons.audiotrack, subtitle: widget.alarmInfo.audio, onClick: "audio"),
+                  OrderTitle(title: "重复", icon: Icons.calendar_today, subtitle: generateRepeat(widget.alarmInfo.repeat), onClick: "repeat"),
+                  OrderTitle(title: "振动", icon: Icons.notifications_active, subtitle: widget.alarmInfo.vibration == true?"是":"否", onClick: "vibration"),
+                  OrderTitle(title: "任务", icon: Icons.games, subtitle: widget.alarmInfo.mission, onClick: "mission"),
                 ],
               ),
             )
@@ -160,11 +217,11 @@ class MyOrderTitle extends State<OrderTitle>{
       child: GestureDetector(
         onTap: () {
           switch(widget.onClick){
-            case "label": labelSetting(context);break;
-            case "audio": audioSetting(context);break;
-            case "repeat": repeatSetting(context);break;
-            case "vibration": vibrationSetting(context);break;
-            case "mission": missionSetting(context);break;
+            case "label": labelSetting(context, label);break;
+            case "audio": audioSetting(context, label);break;
+            case "repeat": repeatSetting(context, label);break;
+            case "vibration": vibrationSetting(context, label);break;
+            case "mission": missionSetting(context, label);break;
             default: break;
           }
         },
@@ -178,8 +235,8 @@ class MyOrderTitle extends State<OrderTitle>{
     );
   }
 
-  void labelSetting (context){
-    String newLabel = "";
+  void labelSetting (context, String oldLabel){
+    String newLabel = oldLabel;
 
     EasyDialog(
       fogOpacity: 0.12,
@@ -195,6 +252,7 @@ class MyOrderTitle extends State<OrderTitle>{
           width: 270,
           margin: EdgeInsets.fromLTRB(0, 5, 0, 15),
           child: TextField(
+              controller: new TextEditingController(text: oldLabel),
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.loyalty, color: Colors.grey),
               ),
@@ -228,6 +286,7 @@ class MyOrderTitle extends State<OrderTitle>{
                     setState(() {
                       label = newLabel;
                     });
+                    newAlarmInfo.label = newLabel;
                     Navigator.of(context).pop(newLabel);
                   },
                   child: Text(
@@ -244,8 +303,8 @@ class MyOrderTitle extends State<OrderTitle>{
 
   }
 
-  void audioSetting(context) {
-    String newAudio = "";
+  void audioSetting(context, String oldAudio) {
+    String newAudio = oldAudio;
 
     EasyDialog(
         fogOpacity: 0.12,
@@ -261,14 +320,8 @@ class MyOrderTitle extends State<OrderTitle>{
           height: 240,
           child: SingleChildScrollView(
             child: RadioButtonGroup(
-                labels: <String>[
-                  "Audio 1",
-                  "Audio 2",
-                  "Audio 3",
-                  "Audio 4",
-                  "Audio 5",
-                  "二狗汪汪叫",
-                ],
+                picked: oldAudio,
+                labels: audios,
                 onSelected: (String selected) => {newAudio = selected}
             ),
           ),
@@ -297,6 +350,7 @@ class MyOrderTitle extends State<OrderTitle>{
                     setState(() {
                       label = newAudio;
                     });
+                    newAlarmInfo.audio = newAudio;
                     Navigator.of(context).pop(newAudio);
                   },
                   child: Text(
@@ -312,9 +366,9 @@ class MyOrderTitle extends State<OrderTitle>{
     ).show(context);
   }
 
-  void repeatSetting(context){
-    String newRepeat = "";
-    List<String> selects = [];
+  void repeatSetting(context, String oldRepeat){
+    String newRepeat = oldRepeat;
+    List<String> selects = chineseToEnglish(regenerateRepeat(oldRepeat));
 
     EasyDialog(
         fogOpacity: 0.12,
@@ -366,10 +420,10 @@ class MyOrderTitle extends State<OrderTitle>{
                     width: 90,
                     child: FlatButton(
                       onPressed: () {
-                        selects.forEach((element) => newRepeat += element + " ");
                         setState(() {
-                          label = newRepeat;
+                          label = generateRepeat(englishToChinese(selects));
                         });
+                        newAlarmInfo.repeat = englishToChinese(selects);
                         Navigator.of(context).pop(newRepeat);
                       },
                       child: Text(
@@ -385,8 +439,8 @@ class MyOrderTitle extends State<OrderTitle>{
     ).show(context);
   }
 
-  void vibrationSetting(context){
-    int vibrationOn = 1;
+  void vibrationSetting(context, String oldSwitch){
+    int vibrationOn = oldSwitch == "是"? 1:0;
 
     EasyDialog(
       fogOpacity: 0.12,
@@ -402,12 +456,13 @@ class MyOrderTitle extends State<OrderTitle>{
           child: ToggleSwitch(
             minWidth: 90.0,
             cornerRadius: 20.0,
-            activeBgColor: Colors.blue,
+            activeBgColors: [Colors.blue,Colors.red],
             activeFgColor: Colors.white,
             inactiveBgColor: Colors.grey,
             inactiveFgColor: Colors.white,
             labels: ['ON', 'OFF'],
             icons: [Icons.check, Icons.clear],
+            initialLabelIndex: 1-vibrationOn,
             onToggle: (index) {
               vibrationOn = (1 - index) ;
             },
@@ -441,6 +496,7 @@ class MyOrderTitle extends State<OrderTitle>{
                     else setState(() {
                       label = "否";
                     });
+                    newAlarmInfo.vibration = vibrationOn == 1;
                     Navigator.of(context).pop(vibrationOn);
                   },
                   child: Text(
@@ -456,16 +512,8 @@ class MyOrderTitle extends State<OrderTitle>{
     ).show(context);
   }
 
-  void missionSetting(context){
-    int missionSelected = 0;
-
-    List<MissionItem> missionList = [
-      MissionItem("算术题","assets/image/math.png","闹钟响起时会出现一道数学题，填写正确答案之后就能关闭闹钟。"),
-      MissionItem("唱歌","assets/image/music.png","闹钟响起时需要对着麦克风唱歌，跟唱15秒之后就能关闭闹钟。"),
-      MissionItem("小游戏","assets/image/game.png","闹钟响起时需要玩连连看、消消乐等小游戏，获得足够的积分之后就能关闭闹钟。"),
-      MissionItem("指定物品拍照","assets/image/camera.png","闹钟响起后，需要拍一张指定物品的照片并上传，识别正确后就能关闭闹钟。"),
-      MissionItem("随机任务","assets/image/random.png","闹钟任务会从任务库中随机指定，完成对应任务之后即可关闭闹钟。"),
-    ];
+  void missionSetting(context, String oldMission){
+    int missionSelected = findMission(oldMission);
 
     EasyDialog(
       fogOpacity: 0.12,
@@ -481,6 +529,7 @@ class MyOrderTitle extends State<OrderTitle>{
           width: 330,
           height: 360,
           child:Swiper(
+            index: missionSelected,
             itemBuilder: (BuildContext context, int index) {
               return MissionCard(
                 title: missionList[index].title,
@@ -521,6 +570,7 @@ class MyOrderTitle extends State<OrderTitle>{
                     setState(() {
                       label = missionList[missionSelected].title;
                     });
+                    newAlarmInfo.mission = label;
                     Navigator.of(context).pop(missionSelected);
                   },
                   child: Text(
@@ -619,5 +669,67 @@ class MissionItem{
     this.image = image;
     this.description = description;
   }
+}
+
+String generateRepeat(List<String> repeat){
+  String repeatStr = "";
+  if(repeat.length == 7){
+    repeatStr = "每天";
+  }else {
+    repeat.forEach((element) {
+      repeatStr += element + " ";
+    });
+  }
+  return repeatStr;
+}
+
+List<String> regenerateRepeat(String repeat){
+  List<String> repeatList = new List<String>();
+  if(repeat == "每天"){
+    repeatList = ["周一","周二","周三","周四","周五","周六","周日"];
+  } else {
+    repeatList = repeat.split(" ");
+  }
+  return repeatList;
+}
+
+List<String> englishToChinese(List<String> repeat){
+  List<String> repeatCN = new List<String>();
+  repeat.forEach((element) {
+    switch(element){
+      case "Monday": repeatCN.add("周一");break;
+      case "Tuesday": repeatCN.add("周二");break;
+      case "Wednesday": repeatCN.add("周三");break;
+      case "Thursday": repeatCN.add("周四");break;
+      case "Friday": repeatCN.add("周五");break;
+      case "Saturday": repeatCN.add("周六");break;
+      case "Sunday": repeatCN.add("周日");break;
+    }
+  });
+  return repeatCN;
+}
+
+List<String> chineseToEnglish(List<String> repeat){
+  List<String> repeatEN = new List<String>();
+  repeat.forEach((element) {
+    switch(element){
+      case "周一": repeatEN.add("Monday");break;
+      case "周二": repeatEN.add("Tuesday");break;
+      case "周三": repeatEN.add("Wednesday");break;
+      case "周四": repeatEN.add("Thursday");break;
+      case "周五": repeatEN.add("Friday");break;
+      case "周六": repeatEN.add("Saturday");break;
+      case "周日": repeatEN.add("Sunday");break;
+    }
+  });
+  return repeatEN;
+}
+
+int findMission(String mission){
+  int idx = 0;
+  missionList.forEach((element) {
+    if(element.title.compareTo(mission) == 0) idx = missionList.indexOf(element);
+  });
+  return idx;
 }
 

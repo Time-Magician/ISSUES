@@ -44,6 +44,8 @@ dependencies:
   toggle_switch: ^0.1.8
   flutter_swiper: ^1.1.6
   vibrate: ^0.0.4
+  circular_profile_avatar:
+  slide_countdown_clock:
 
 dev_dependencies:
   flutter_test:

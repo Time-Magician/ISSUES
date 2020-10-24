@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 
 class StudyRoomWidget extends StatefulWidget{
   @override
@@ -43,8 +44,8 @@ class MyStudyRoom extends State<StudyRoom>{
         children: <Widget>[
           Container(
             child: SizedBox(
-                height: 180,
-                width: 360,
+                height: ScreenUtil().setHeight(320),
+                width: ScreenUtil().setWidth(640),
                 child: RaisedButton(
                   textTheme: ButtonTextTheme.accent,
                   color: const Color(0xFF33539E),
@@ -52,7 +53,7 @@ class MyStudyRoom extends State<StudyRoom>{
                   splashColor: Colors.deepOrangeAccent,
                   colorBrightness: Brightness.dark,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8)
+                    borderRadius: BorderRadius.circular(ScreenUtil().setWidth(16))
                   ),
                   onPressed: () {
                     //TODO
@@ -63,22 +64,22 @@ class MyStudyRoom extends State<StudyRoom>{
                     children: <Widget>[
                       Icon(
                         Icons.business,
-                        size: 64,
+                        size: ScreenUtil().setWidth(128),
                         color: Colors.white,
                       ),
                       Text(
                         '公 共 自 习 室',
-                        style: TextStyle(color: Colors.white, fontSize: 42),
+                        style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(72)),
                       ),
                     ],
                   )
                 )),
           ),
           Container(
-            margin: EdgeInsets.fromLTRB(0, 40, 0, 0),
+            margin: EdgeInsets.fromLTRB(0, ScreenUtil().setHeight(80), 0, 0),
             child: SizedBox(
-                height: 180,
-                width: 360,
+                height: ScreenUtil().setHeight(320),
+                width: ScreenUtil().setWidth(640),
                 child: RaisedButton(
                     textTheme: ButtonTextTheme.accent,
                     color: const Color(0xFF26A65B),
@@ -86,7 +87,7 @@ class MyStudyRoom extends State<StudyRoom>{
                     splashColor: Colors.deepOrangeAccent,
                     colorBrightness: Brightness.dark,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)
+                        borderRadius: BorderRadius.circular(ScreenUtil().setWidth(16))
                     ),
                     onPressed: () {
                       //TODO
@@ -97,12 +98,12 @@ class MyStudyRoom extends State<StudyRoom>{
                       children: <Widget>[
                         Icon(
                           Icons.people,
-                          size: 64,
+                          size: ScreenUtil().setWidth(128),
                           color: Colors.white,
                         ),
                         Text(
                           '小 组 学 习 室',
-                          style: TextStyle(color: Colors.white, fontSize: 42),
+                          style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(72)),
                         ),
                       ],
                     )

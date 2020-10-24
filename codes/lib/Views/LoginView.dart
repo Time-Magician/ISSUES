@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:demo5/Utils/UIdata.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 
 class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: 720, height: 1280, allowFontScaling: true);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(

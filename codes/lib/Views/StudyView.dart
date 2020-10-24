@@ -1,15 +1,24 @@
+import 'dart:typed_data';
+
 import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_circular_slider/flutter_circular_slider.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:slide_countdown_clock/slide_countdown_clock.dart';
 import '../Class/StudyInfo.dart';
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 StudyInfo studyInfo = new StudyInfo(new Frog("陈二狗", 15, 78, false, "", "氢化大学"), false);
+AudioCache audioPlayer;
+AudioPlayer advancedPlayer1 = new AudioPlayer();
+AudioCache audioCache1= new AudioCache(prefix: "audios/",fixedPlayer: advancedPlayer1);
 
 class StudyView extends StatefulWidget {
+
   @override
   createState() => new MyStudyView();
 }
@@ -39,7 +48,6 @@ class MyStudyView extends State<StudyView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
   }
 
   @override
@@ -207,7 +215,6 @@ class MyTimerBlock extends State<TimerBlock>{
   @override
   void initState() {
     // TODO: implement initState
-
     super.initState();
   }
 
@@ -225,6 +232,16 @@ class MyTimerBlock extends State<TimerBlock>{
       return this.hourLeft.toString();
   }
 
+  // void play() async {
+  //   int result = await audioPlayer.play("assets/audios/audio1.mp3");
+  //   if (result == 1) {
+  //     // success
+  //     print('play success');
+  //   } else {
+  //     print('play failed');
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     totalMinute = widget.totalTime;
@@ -239,7 +256,6 @@ class MyTimerBlock extends State<TimerBlock>{
             width: 300,
             alignment: Alignment.center,
             child: SlideCountdownClock(
-
               duration: Duration(minutes: totalMinute),
               slideDirection: SlideDirection.Up,
               separator: ":",
@@ -247,6 +263,7 @@ class MyTimerBlock extends State<TimerBlock>{
                   fontSize: 48, fontFamily: "Miriam"
               ),
               shouldShowDays: false,
+              // onDone: play,
             ),
           ) :Container(
             width: 300,
@@ -290,6 +307,23 @@ class BtnBlock extends StatefulWidget{
 
 class MyBtnBlock extends State<BtnBlock>{
 
+
+  void pause() {
+    audioCache1.clear('audio3.mp3');
+    advancedPlayer1.release();
+  }
+
+  void play() {
+    audioCache1.play('audio3.mp3');
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    audioCache1.load('audio3.mp3');
+  }
+
   void endStudy(){
     EasyDialog(
       fogOpacity: 0.12,
@@ -325,6 +359,7 @@ class MyBtnBlock extends State<BtnBlock>{
                 width: 90,
                 child: FlatButton(
                   onPressed: () {
+                    pause();
                     widget.onPress();
                     Navigator.of(context).pop();
                   },
@@ -365,9 +400,10 @@ class MyBtnBlock extends State<BtnBlock>{
             highlightColor: Colors.deepPurpleAccent,
             splashColor: Colors.deepOrangeAccent,
             colorBrightness: Brightness.dark,
-            onPressed: () => {
+            onPressed: () {
               //TODO
-              widget.onPress()
+              play();
+              widget.onPress();
             },
             child: Text(
               '开 始 学 习',

@@ -16,20 +16,19 @@ class NameSettingView extends StatelessWidget{
       ),
       body: Column(
           children:<Widget>[
-            TextField(
+            Container(
+              child: TextField(
                 controller: ctrl,
                 enabled: false,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.only(left: 25,top:20),
-                  suffixIcon: IconButton(
-                    icon: Icon(Icons.clear),
-                    onPressed: ()=>ctrl.clear(),
-                  ),
                   helperText: '你的姓名在你注册时已经与账号绑定，无法再进行修改',
                   border: OutlineInputBorder(
                     borderSide:BorderSide(width: 10,color: Colors.white), borderRadius:BorderRadius.circular(10)
                   )
                 ),
+              ),
+              padding: EdgeInsets.only(top:10,left: 10,right: 10),
             ),
             Text('你的姓名在你注册时已经与账号绑定，无法再进行修改')
           ]

@@ -22,7 +22,7 @@ class UserDetailView extends StatelessWidget{
                       value: userState.email,
                       router: 'EmailSetting'),
                   _DetailItem(
-                      item: '密码', value: userState.passWord, router: 'PasswordSetting'),
+                      item: '密码', value: '********', router: 'PasswordSetting'),
                 ]
               )
           )

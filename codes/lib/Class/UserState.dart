@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 class UserState with ChangeNotifier{
   String userName='陈二狗';
   String name='陈零蛋';
-  String passWord='****';
+  String passWord='thisispassword';
   String email='2891@sjtu.edu.cn';
   String gender='男性';
   bool isLogin=false;

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gradient_colors/flutter_gradient_colors.dart';
+import '../Class/StudyInfo.dart';
+
+List<StudyInfo> studyInfo = [
+  StudyInfo(new Frog("陈大狗", 15, 100, true, "2020/06/22", "氢化大学"), false),
+];
 
 class DiplomasWidget extends StatefulWidget{
   @override
@@ -18,15 +22,18 @@ class MyDiplomasView extends State<DiplomasWidget>{
             title: Text('荣誉室'),
         ),
         body:ListView.builder(
-            itemCount: 10,
+            itemCount: studyInfo.length,
             itemBuilder: (BuildContext context,int index) {
-            return new Diploma();
+            return new Diploma(index: index);
         },
       ));
   }
 }
 
 class Diploma extends StatefulWidget{
+  final index;
+  const Diploma({Key key, this.index}): super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -102,7 +109,7 @@ class MyDiploma extends State<Diploma>{
                                       child: Row(
                                         children: <Widget>[
                                           Text(
-                                            "陈二狗",
+                                            studyInfo[widget.index].frog.name,
                                             style: TextStyle(color: Colors.black, fontSize: 28, fontFamily: "KeShi",  decoration: TextDecoration.underline,),
                                             textAlign: TextAlign.left,
                                           ),
@@ -126,7 +133,7 @@ class MyDiploma extends State<Diploma>{
                                   Container(
                                     width: 220,
                                     child: Text(
-                                      "于 2020/09/30",
+                                      "于 "+studyInfo[widget.index].frog.graduateDate,
                                       style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: "KeShi"),
                                       textAlign: TextAlign.right,
                                     ) ,
@@ -134,7 +141,7 @@ class MyDiploma extends State<Diploma>{
                                   Container(
                                     width: 220,
                                     child: Text(
-                                      "毕业于 氢化大学",
+                                      "毕业于 "+studyInfo[widget.index].frog.school,
                                       style: TextStyle(color: Colors.black, fontSize: 20, fontFamily: "KeShi"),
                                       textAlign: TextAlign.right,
                                     ),

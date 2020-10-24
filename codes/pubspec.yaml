@@ -38,6 +38,7 @@ dependencies:
   day_picker: ^1.0.1
   toggle_switch: ^0.1.8
   flutter_swiper: ^1.1.6
+  vibrate: ^0.0.4
 
 dev_dependencies:
   flutter_test:

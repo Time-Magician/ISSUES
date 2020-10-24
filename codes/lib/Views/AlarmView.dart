@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../Class/AlarmInfo.dart';
 import 'package:easy_dialog/easy_dialog.dart';
 
+
 List<AlarmInfo> _alarmList = [
   AlarmInfo("起床", ["周一","周二","周三","周四","周五"],TimeOfDay(hour: 6, minute: 30),"算术题","二狗汪汪叫",true,true),
   AlarmInfo("班级会议", ["周三"],TimeOfDay(hour: 21, minute: 30),"随机任务","Audio 3",true,false),
@@ -10,8 +11,10 @@ List<AlarmInfo> _alarmList = [
   AlarmInfo("起床", ["周一","周二"],TimeOfDay(hour: 8, minute: 30),"算术题","二狗汪汪叫",true,false)
 ];
 
-class AlarmView extends StatefulWidget {
 
+
+
+class AlarmView extends StatefulWidget {
   @override
   createState() => new AlarmList();
 }
@@ -35,6 +38,7 @@ class AlarmList extends State<AlarmView> {
   }
 
   void deleteAlarm(){
+    print("delete");
     this.setState(() {
 
     });
@@ -58,9 +62,9 @@ class AlarmList extends State<AlarmView> {
         backgroundColor: const Color(0xFF75CCE8),
         body: ListView.builder(
           itemCount: _alarmList.length,
-          itemBuilder: (BuildContext context,int index) {
-            return new AlarmWidget(alarmIndex: index, callbackFunc: deleteAlarm,);
-          },
+          itemBuilder: (BuildContext context,int index) =>
+            AlarmWidget(alarmIndex: index, callbackFunc: deleteAlarm,)
+          ,
         ),
 
     );
@@ -83,13 +87,14 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
   AlarmInfo alarmInfo;
   double deleteButtonWidth;
   bool refreshFlag = false;
+  double horizontalMove = 0;
 
   @override
   void initState() {
     // TODO: implement initState
 
     super.initState();
-    alarmInfo = _alarmList[widget.alarmIndex];
+
     deleteButtonWidth = 0;
   }
 
@@ -135,7 +140,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     _alarmList[widget.alarmIndex] = alarmInfo;
   }
 
-  void deleteAlarm(int index){
+  void deleteAlarm(){
     EasyDialog(
       fogOpacity: 0.12,
       width: 330,
@@ -157,6 +162,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
                 width: 90,
                 child: FlatButton(
                   onPressed: () {
+                    zoomAlarm();
                     Navigator.of(context).pop();
                   },
                   child: Text(
@@ -170,8 +176,11 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
                 width: 90,
                 child: FlatButton(
                   onPressed: () {
-                    _alarmList.removeAt(index);
+                    _alarmList.removeAt(widget.alarmIndex);
                     widget.callbackFunc();
+                    this.setState(() {
+                    });
+                    zoomAlarm();
                     Navigator.of(context).pop();
                   },
                   child: Text(
@@ -189,21 +198,30 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
 
   void zoomAlarm(){
     if(!isAnimated){
-      setState(() {
-        isAnimated = true;
-        deleteButtonWidth = 40;
-      });
+      zoomInAlarm();
     } else {
-      setState(() {
-        isAnimated = false;
-        deleteButtonWidth = 0;
-      });
+      zoomOutAlarm();
     }
+  }
+
+  void zoomInAlarm(){
+    setState(() {
+      isAnimated = true;
+      deleteButtonWidth = 40;
+    });
+  }
+
+  void zoomOutAlarm(){
+    setState(() {
+      isAnimated = false;
+      deleteButtonWidth = 0;
+    });
   }
 
   @override
   Widget build(BuildContext context){
     repeat = "";
+    alarmInfo = _alarmList[widget.alarmIndex];
 
     if(alarmInfo.repeat.length == 7){
       repeat = "每天";
@@ -221,6 +239,18 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
         onLongPress: (() => {
           zoomAlarm()
         }),
+        onHorizontalDragUpdate: ((DragUpdateDetails details) {
+          // print(details.globalPosition);
+          horizontalMove += details.delta.dx;
+          if(horizontalMove > 50 && !isAnimated){
+            zoomInAlarm();
+            horizontalMove = 0;
+          } else if(horizontalMove < -50){
+            zoomOutAlarm();
+            horizontalMove = 0;
+          }
+          return;
+        }),
         child: Container(
           width: 400,
           margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
@@ -237,7 +267,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
                   color: Colors.red,
                   iconSize: 28,
                   onPressed: () => {
-                    deleteAlarm(widget.alarmIndex)
+                    deleteAlarm()
                   },
                 ),
               ),

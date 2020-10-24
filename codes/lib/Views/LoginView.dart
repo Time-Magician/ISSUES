@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:demo5/Utils/uidata.dart';
+import 'package:demo5/Utils/UIdata.dart';
 
-class LoginTwoPage extends StatelessWidget {
+class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

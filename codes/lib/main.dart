@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
         "PasswordSetting":(context)=>PasswordSettingView(),
         "GenderSetting":(context)=>GenderSettingView(),
         "/":(context) => LoginTwoPage(),
+
       }
     );
   }

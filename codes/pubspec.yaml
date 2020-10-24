@@ -28,7 +28,6 @@ dependencies:
   font_awesome_flutter:
 
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   smart_select: ^4.3.2
@@ -44,6 +43,7 @@ dependencies:
   day_picker: ^1.0.1
   toggle_switch: ^0.1.8
   flutter_swiper: ^1.1.6
+  vibrate: ^0.0.4
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +51,9 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
+
+
 
 # The following section is specific to Flutter.
 flutter:

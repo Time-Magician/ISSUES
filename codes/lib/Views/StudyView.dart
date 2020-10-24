@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_circular_slider/flutter_circular_slider.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
+import 'package:vibrate/vibrate.dart';
+
+void zhendong() async{
+  bool canVibrate = await Vibrate.canVibrate;
+  print(canVibrate);
+  Vibrate.vibrate();
+}
+
 
 class StudyView extends StatefulWidget {
   @override
@@ -218,7 +226,7 @@ Widget btnBlock(){
           splashColor: Colors.deepOrangeAccent,
           colorBrightness: Brightness.dark,
           onPressed: () {
-            //TODO
+            zhendong();//TODO
           },
           child: Text(
             '开 始 学 习',

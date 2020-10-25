@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import '../Class/AlarmInfo.dart';
 import 'package:easy_dialog/easy_dialog.dart';
 
@@ -10,9 +12,6 @@ List<AlarmInfo> _alarmList = [
   AlarmInfo("起床", ["周一","周二"],TimeOfDay(hour: 7, minute: 30),"算术题","Audio 1",true,false),
   AlarmInfo("起床", ["周一","周二"],TimeOfDay(hour: 8, minute: 30),"算术题","二狗汪汪叫",true,false)
 ];
-
-
-
 
 class AlarmView extends StatefulWidget {
   @override
@@ -143,15 +142,16 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
   void deleteAlarm(){
     EasyDialog(
       fogOpacity: 0.12,
-      width: 330,
-      height: 140,
+      width: ScreenUtil().setWidth(660),
+      height: ScreenUtil().setHeight(280),
       closeButton: false,
       title: Text(
         "删除闹钟",
-        style: TextStyle(fontSize: 20),
+        style: TextStyle(fontSize: ScreenUtil().setSp(40)),
       ),
       description: Text(
-        "您确定要删除闹钟吗？"
+        "您确定要删除闹钟吗？",
+        style: TextStyle(fontSize: ScreenUtil().setSp(32)),
       ),
       contentList: [
         Row(
@@ -159,7 +159,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Container(
-                width: 90,
+                width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
                     zoomAlarm();
@@ -173,7 +173,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
                 ),
               ),
               Container(
-                width: 90,
+                width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
                     _alarmList.removeAt(widget.alarmIndex);
@@ -207,7 +207,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
   void zoomInAlarm(){
     setState(() {
       isAnimated = true;
-      deleteButtonWidth = 40;
+      deleteButtonWidth = ScreenUtil().setWidth(80);
     });
   }
 
@@ -241,7 +241,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
         }),
         onHorizontalDragUpdate: ((DragUpdateDetails details) {
           // print(details.globalPosition);
-          horizontalMove += details.delta.dx;
+          horizontalMove += ScreenUtil().setWidth(details.delta.dx);
           if(horizontalMove > 50 && !isAnimated){
             zoomInAlarm();
             horizontalMove = 0;
@@ -252,20 +252,21 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
           return;
         }),
         child: Container(
-          width: 400,
-          margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
+          width: ScreenUtil().setWidth(690),
+          height: ScreenUtil().setHeight(320),
+          margin: EdgeInsets.fromLTRB(ScreenUtil().setWidth(15), ScreenUtil().setHeight(10), ScreenUtil().setWidth(15), 0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               AnimatedContainer(
                 duration: Duration(milliseconds: 200),
                 width: deleteButtonWidth,
-                height: 100,
+                height: ScreenUtil().setHeight(320),
                 margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: IconButton(
                   icon: Icon(Icons.alarm_off),
                   color: Colors.red,
-                  iconSize: 28,
+                  iconSize: ScreenUtil().setWidth(50),
                   onPressed: () => {
                     deleteAlarm()
                   },
@@ -274,53 +275,61 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
               AnimatedContainer(
                 margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                 duration: Duration(milliseconds: 200),
-                width: isAnimated?350:390,
+                width: isAnimated?ScreenUtil().setWidth(610):ScreenUtil().setWidth(690),
+                height: ScreenUtil().setHeight(320),
                 child: Card(
-                  margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                  margin: EdgeInsets.fromLTRB(0, ScreenUtil().setHeight(10), 0, ScreenUtil().setHeight(10)),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
                       AnimatedContainer(
                         duration: Duration(milliseconds: 200),
-                        width: isAnimated?340:380,
+                        width: isAnimated?ScreenUtil().setWidth(570):ScreenUtil().setWidth(650),
+                        height: ScreenUtil().setHeight(60),
+                        margin: EdgeInsets.fromLTRB(ScreenUtil().setWidth(20), ScreenUtil().setHeight(10),ScreenUtil().setWidth(20), 0),
                         child: Text(
                           alarmInfo.label,
                           textAlign: TextAlign.left,
                           maxLines:1,
                           overflow:TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 24.0,
+                          style: TextStyle(
+                            fontSize: ScreenUtil().setWidth(40.0),
                             color: Colors.black45,
                           ),
                         ),
-                        margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
                       ),
                       AnimatedContainer(
                         duration: Duration(milliseconds: 200),
-                        width: isAnimated?340:380,
+                        width: isAnimated?ScreenUtil().setWidth(610):ScreenUtil().setWidth(690),
+                        height: ScreenUtil().setHeight(150),
                         child: Row(
                             mainAxisSize: MainAxisSize.max,
                             children: <Widget>[
                               AnimatedContainer(
                                 duration: Duration(milliseconds: 200),
-                                width: isAnimated?256:296,
+                                width: isAnimated?ScreenUtil().setWidth(442):ScreenUtil().setWidth(522),
+                                height: ScreenUtil().setHeight(120),
+                                margin: EdgeInsets.fromLTRB(ScreenUtil().setWidth(30), ScreenUtil().setHeight(15), ScreenUtil().setWidth(10), ScreenUtil().setHeight(15)),
+                                alignment: Alignment.centerLeft,
                                 child: new Text(
                                   timeToString(alarmInfo.time),
-                                  style: const TextStyle(fontSize: 46.0, fontFamily: 'Miriam'),
+                                  style: TextStyle(fontSize: ScreenUtil().setSp(84.0), fontFamily: 'Miriam'),
                                 ),
-                                margin: EdgeInsets.fromLTRB(15, 7.5, 5, 7.5),
                               ),
                               AnimatedContainer(
                                 duration: Duration(milliseconds: 200),
                                 child: new Switch(value: alarmInfo.isOpen, onChanged: _switchAlarm),
-                                width: 64,
+                                width: ScreenUtil().setWidth(128),
+                                height: ScreenUtil().setHeight(150),
                               )
                             ]
                         ),
                       ),
                       AnimatedContainer(
                         duration: Duration(milliseconds: 200),
-                        width: isAnimated?340:380,
+                        width: isAnimated?ScreenUtil().setWidth(610):ScreenUtil().setWidth(690),
+                        height: ScreenUtil().setHeight(60),
+                        margin: EdgeInsets.fromLTRB(ScreenUtil().setWidth(20), 0, ScreenUtil().setWidth(20), ScreenUtil().setHeight(20)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -328,29 +337,27 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
                             Container(
                                 child: Text(
                                   repeat,
-                                  style: const TextStyle(
-                                    fontSize: 16.0,
+                                  style: TextStyle(
+                                    fontSize: ScreenUtil().setSp(32.0),
                                     color: Colors.cyan,
                                   ),
                                 )
                             ),
                             VerticalDivider(
-                              color: Colors.black45,
-                              width: 20,
+                              color: Colors.black54,
+                              width: ScreenUtil().setWidth(20),
                             ),
                             Container(
                                 child: Text(
                                   alarmInfo.mission,
-                                  style: const TextStyle(
-                                    fontSize: 16.0,
+                                  style: TextStyle(
+                                    fontSize: ScreenUtil().setSp(32.0),
                                     color: Colors.cyan,
                                   ),
                                 )
                             ),
                           ],
                         ),
-                        height: 30,
-                        margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
                       ),
                     ],
                   ),

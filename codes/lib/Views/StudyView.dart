@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_circular_slider/flutter_circular_slider.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:slide_countdown_clock/slide_countdown_clock.dart';
 import '../Class/StudyInfo.dart';
 import 'package:audioplayers/audio_cache.dart';
@@ -18,6 +17,8 @@ AudioPlayer advancedPlayer1 = new AudioPlayer();
 AudioCache audioCache1= new AudioCache(prefix: "audios/",fixedPlayer: advancedPlayer1);
 
 class StudyView extends StatefulWidget {
+  final blockNavi;
+  const StudyView({Key key, this.blockNavi}) : super(key: key);
 
   @override
   createState() => new MyStudyView();
@@ -42,6 +43,7 @@ class MyStudyView extends State<StudyView> {
     this.setState(() {
 
     });
+    widget.blockNavi();
   }
 
   @override
@@ -70,24 +72,24 @@ class MyStudyView extends State<StudyView> {
           children: <Widget>[
             Container(
                 alignment: Alignment.center,
-                width: 360,
-                height: 60,
+                width: ScreenUtil().setWidth(700),
+                height: ScreenUtil().setWidth(160),
                 child: ProgressBlock()
             ),
             Container(
-                width: 720,
-                height: 320,
+                width: ScreenUtil().setWidth(720),
+                height: ScreenUtil().setWidth(720),
                 child: FrogBlock(updateTime:  (end) => _updateTime(end))
             ),
             Container(
-                width: 720,
-                height: 84,
+                width: ScreenUtil().setWidth(720),
+                height: ScreenUtil().setWidth(168),
                 child: TimerBlock(totalTime: this.totalTime)
             ),
             Container(
-                width: 280,
-                height: 60,
-                child: BtnBlock(onPress: () => _startEndStudy(),)
+                width: ScreenUtil().setWidth(560),
+                height: ScreenUtil().setWidth(120),
+                child: BtnBlock(onPress: () => _startEndStudy())
             ),
           ]
       ),
@@ -109,21 +111,21 @@ class MyProgressBlock extends State<ProgressBlock>{
         child: Row(
             children: <Widget>[
               Container(
-                  width: 160,
+                  width: ScreenUtil().setWidth(280),
                   child:Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         studyInfo.frog.name+" Lv "+level[studyInfo.frog.level],
-                        style: const TextStyle(
-                          fontSize: 18.0,
+                        style: TextStyle(
+                          fontSize: ScreenUtil().setSp(32.0),
                           color: Colors.black,
                         ),
                       ),
                       Text(
                         studyInfo.frog.level<=12?"正在备考 "+studyInfo.frog.school:"正在修读 "+studyInfo.frog.school,
-                        style: const TextStyle(
-                          fontSize: 16.0,
+                        style: TextStyle(
+                          fontSize: ScreenUtil().setSp(28.0),
                           color: Colors.black,
                         ),
                       )
@@ -131,8 +133,8 @@ class MyProgressBlock extends State<ProgressBlock>{
                   )
               ),
               Container(
-                  width: 200,
-                  height: 20,
+                  width: ScreenUtil().setWidth(380),
+                  height: ScreenUtil().setWidth(36),
                   child: FAProgressBar(
                     backgroundColor: Colors.white,
                     currentValue: studyInfo.frog.exp,
@@ -169,19 +171,24 @@ class MyFrogBlock extends State<FrogBlock>{
             backgroundColor: const Color(0xFF75CCE8),
             body: Center(
               child: Container(
-                  child: studyInfo.isStudying? CircularProfileAvatar(
-                    '',
-                    child: Image.asset(
-                      'assets/image/frog2.png',
-                    ), //sets image path, it should be a URL string. default value is empty string, if path is empty it will display only initials
-                    radius: 144, // sets radius, default 50.0
-                    backgroundColor: Color(0xFF75CCE8), // sets background color, default Colors.white
-                    borderWidth: 12,  // sets border, default 0.0// sets initials text, set your own style, default Text('')
-                    borderColor: Color.fromRGBO(255, 255, 255, 1.0), // sets border color, default Colors.white// sets elevation (shadow of the profile picture), default value is 0.0//sets foreground colour, it works if showInitialTextAbovePicture = true , default Colors.transparent// allow widget to cache image against provided url// sets on tap// setting it true will show initials text above profile picture, default false
+                  width: ScreenUtil().setWidth(640),
+                  height: ScreenUtil().setWidth(640),
+                  child: studyInfo.isStudying? Container(
+                      padding: EdgeInsets.fromLTRB(ScreenUtil().setWidth(12), ScreenUtil().setWidth(12), ScreenUtil().setWidth(12), ScreenUtil().setWidth(12)),
+                      child: CircularProfileAvatar(
+                        '',
+                        child: Image.asset(
+                          'assets/image/frog2.png',
+                        ), //sets image path, it should be a URL string. default value is empty string, if path is empty it will display only initials
+                        radius: ScreenUtil().setWidth(300), // sets radius, default 50.0
+                        backgroundColor: Color(0xFF75CCE8), // sets background color, default Colors.white
+                        borderWidth: ScreenUtil().setWidth(25),  // sets border, default 0.0// sets initials text, set your own style, default Text('')
+                        borderColor: Color.fromRGBO(255, 255, 255, 1.0), // sets border color, default Colors.white// sets elevation (shadow of the profile picture), default value is 0.0//sets foreground colour, it works if showInitialTextAbovePicture = true , default Colors.transparent// allow widget to cache image against provided url// sets on tap// setting it true will show initials text above profile picture, default false
+                      )
                   ) :SingleCircularSlider(
                     120, 0,
-                    height: 300.0,
-                    width: 300.0,
+                    height: ScreenUtil().setWidth(600.0),
+                    width: ScreenUtil().setWidth(600.0),
                     handlerColor: Color.fromRGBO(255, 255, 255, 1.0),
                     baseColor: Color.fromRGBO(255, 255, 255, 0.3),
                     selectionColor: Color.fromRGBO(255, 255, 255, 0.5),
@@ -232,16 +239,6 @@ class MyTimerBlock extends State<TimerBlock>{
       return this.hourLeft.toString();
   }
 
-  // void play() async {
-  //   int result = await audioPlayer.play("assets/audios/audio1.mp3");
-  //   if (result == 1) {
-  //     // success
-  //     print('play success');
-  //   } else {
-  //     print('play failed');
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     totalMinute = widget.totalTime;
@@ -250,42 +247,42 @@ class MyTimerBlock extends State<TimerBlock>{
 
     return Center(
       child: Container(
-          height: 64,
+          height: ScreenUtil().setWidth(140),
           child: studyInfo.isStudying?
           Container(
-            width: 300,
+            width: ScreenUtil().setWidth(600),
             alignment: Alignment.center,
             child: SlideCountdownClock(
               duration: Duration(minutes: totalMinute),
               slideDirection: SlideDirection.Up,
               separator: ":",
               textStyle: TextStyle(
-                  fontSize: 48, fontFamily: "Miriam"
+                  fontSize: ScreenUtil().setSp(96), fontFamily: "Miriam"
               ),
               shouldShowDays: false,
               // onDone: play,
             ),
           ) :Container(
-            width: 300,
+            width: ScreenUtil().setWidth(600),
             alignment: Alignment.center,
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Text(
                   getHour(),
-                  style: TextStyle(color: Colors.black, fontSize: 48, fontFamily: "Miriam"),
+                  style: TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(96), fontFamily: "Miriam"),
                 ),
-                SizedBox(width: 3),
-                Text(":",style: TextStyle(color: Colors.black, fontSize: 48, fontFamily: "Miriam")),
-                SizedBox(width: 3),
+                SizedBox(width: ScreenUtil().setWidth(6)),
+                Text(":",style: TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(96), fontFamily: "Miriam")),
+                SizedBox(width: ScreenUtil().setWidth(6)),
                 Text(
                   getMinute(),
-                  style: TextStyle(color: Colors.black, fontSize: 48, fontFamily: "Miriam"),
+                  style: TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(96), fontFamily: "Miriam"),
                 ),
-                SizedBox(width: 3),
-                Text(":",style: TextStyle(color: Colors.black, fontSize: 48, fontFamily: "Miriam")),
-                SizedBox(width: 3),
-                Text("00",style: TextStyle(color: Colors.black, fontSize: 48, fontFamily: "Miriam"))
+                SizedBox(width: ScreenUtil().setWidth(6)),
+                Text(":",style: TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(96), fontFamily: "Miriam")),
+                SizedBox(width: ScreenUtil().setWidth(6)),
+                Text("00",style: TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(96), fontFamily: "Miriam"))
               ],
             ),
           )
@@ -327,12 +324,12 @@ class MyBtnBlock extends State<BtnBlock>{
   void endStudy(){
     EasyDialog(
       fogOpacity: 0.12,
-      width: 330,
-      height: 160,
+      width: ScreenUtil().setWidth(640),
+      height: ScreenUtil().setWidth(320),
       closeButton: false,
       title: Text(
         "终止学习",
-        style: TextStyle(fontSize: 20),
+        style: TextStyle(fontSize: ScreenUtil().setSp(40)),
       ),
       description: Text(
           "您确定要终止学习吗？您将不会得到任何经验值。"
@@ -343,7 +340,7 @@ class MyBtnBlock extends State<BtnBlock>{
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Container(
-                width: 90,
+                width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -356,12 +353,12 @@ class MyBtnBlock extends State<BtnBlock>{
                 ),
               ),
               Container(
-                width: 90,
+                width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
                     pause();
-                    widget.onPress();
                     Navigator.of(context).pop();
+                    widget.onPress();
                   },
                   child: Text(
                     "确认",
@@ -381,8 +378,6 @@ class MyBtnBlock extends State<BtnBlock>{
     // TODO: implement build
     return
       SizedBox(
-          height: 48,
-          width: 50,
           child: studyInfo.isStudying? RaisedButton(
             textTheme: ButtonTextTheme.accent,
             color: Colors.deepOrangeAccent,
@@ -392,7 +387,7 @@ class MyBtnBlock extends State<BtnBlock>{
             onPressed: endStudy,
             child: Text(
               '终 止 学 习',
-              style: TextStyle(color: Colors.white, fontSize: 28),
+              style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(56)),
             ),
           ) : RaisedButton(
             textTheme: ButtonTextTheme.accent,
@@ -407,7 +402,7 @@ class MyBtnBlock extends State<BtnBlock>{
             },
             child: Text(
               '开 始 学 习',
-              style: TextStyle(color: Colors.white, fontSize: 28),
+              style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(56)),
             ),
           ));
   }

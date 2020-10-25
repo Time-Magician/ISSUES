@@ -457,13 +457,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.8"
-  vibrate:
-    dependency: "direct main"
+  win32:
+    dependency: transitive
     description:
-      name: vibrate
+      name: win32
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.0.4"
+    version: "1.7.3"
+  xdg_directories:
+    dependency: transitive
+    description:
+      name: xdg_directories
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.1.0"
 sdks:
   dart: ">=2.9.0 <3.0.0"
   flutter: ">=1.20.0 <2.0.0"

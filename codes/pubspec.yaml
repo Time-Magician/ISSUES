@@ -48,7 +48,6 @@ dependencies:
   audioplayers: ^0.13.1
   path_provider: ^1.6.21
   flutter_screenutil: ^1.0.2
-  vibrate: ^0.0.4
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 var itemValuePair=new Map.from({"用户名":"陈二狗","姓名":"陈零蛋","性别":"男","电子邮箱":"haha@sjtu.edu.cn","密码":"******"});
 
 class UserDetailView extends StatelessWidget{
@@ -36,7 +37,7 @@ class _DetailItem extends StatelessWidget{
         decoration: BoxDecoration(
             color: Colors.white,
             border:
-            Border(bottom: BorderSide(width: 1, color: Colors.black12))),
+            Border(bottom: BorderSide(width: ScreenUtil().setWidth(2), color: Colors.black12))),
         child: GestureDetector(
           onTap: (() => {Navigator.pushNamed(context, router)}),
           child: ListTile(

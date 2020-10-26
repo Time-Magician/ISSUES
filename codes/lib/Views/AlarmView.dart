@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Class/AlarmInfo.dart';
 import 'package:easy_dialog/easy_dialog.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 List<AlarmInfo> _alarmList = [
   AlarmInfo("起床", ["周一","周二","周三","周四","周五"],TimeOfDay(hour: 6, minute: 30),"算术题","二狗汪汪叫",true,true),
@@ -10,8 +10,6 @@ List<AlarmInfo> _alarmList = [
   AlarmInfo("起床", ["周一","周二"],TimeOfDay(hour: 7, minute: 30),"算术题","Audio 1",true,false),
   AlarmInfo("起床", ["周一","周二"],TimeOfDay(hour: 8, minute: 30),"算术题","二狗汪汪叫",true,false)
 ];
-
-
 
 
 class AlarmView extends StatefulWidget {

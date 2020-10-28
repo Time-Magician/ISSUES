@@ -13,12 +13,20 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   final _bottomNavigationColor = Colors.indigo;
   int _currentIndex = 0;
   List<Widget> pages = List();
+  bool isStudying = false;
+
+  startEndStudy(){
+    setState(() {
+      isStudying = !isStudying;
+    });
+    print(isStudying);
+  }
 
   @override
   void initState() {
     pages
       ..add(AlarmView())
-      ..add(StudyView())
+      ..add(StudyView(blockNavi: () => startEndStudy()))
       ..add(UserView())
       ..add(StudyRoomWidget());
 
@@ -70,9 +78,10 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
         ],
         currentIndex: _currentIndex,
         onTap: (int index) {
-          setState(() {
-            _currentIndex = index;
-          });
+          if(!isStudying)
+            setState(() {
+              _currentIndex = index;
+            });
         },
         type: BottomNavigationBarType.shifting,
       ),

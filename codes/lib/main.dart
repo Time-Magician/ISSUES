@@ -49,7 +49,11 @@ class MyApp extends StatelessWidget {
         "GenderSetting":(context)=>GenderSettingView(),
         "/":(context) => LoginView(),
 
+
       }
     );
   }
 }
+
+
+  

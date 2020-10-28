@@ -10,12 +10,18 @@ import 'package:slide_countdown_clock/slide_countdown_clock.dart';
 import '../Class/StudyInfo.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:vibrate/vibrate.dart';
 
 StudyInfo studyInfo = new StudyInfo(new Frog("陈二狗", 15, 78, false, "", "氢化大学"), false);
 AudioCache audioPlayer;
 AudioPlayer advancedPlayer1 = new AudioPlayer();
 AudioCache audioCache1= new AudioCache(prefix: "audios/",fixedPlayer: advancedPlayer1);
 
+void vibrates() async{
+  bool canVibrate = await Vibrate.canVibrate;
+  print(canVibrate);
+  Vibrate.vibrate();
+}
 class StudyView extends StatefulWidget {
   final blockNavi;
   const StudyView({Key key, this.blockNavi}) : super(key: key);
@@ -397,6 +403,7 @@ class MyBtnBlock extends State<BtnBlock>{
             colorBrightness: Brightness.dark,
             onPressed: () {
               //TODO
+              vibrates();
               play();
               widget.onPress();
             },

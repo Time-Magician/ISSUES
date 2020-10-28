@@ -1,5 +1,8 @@
+import 'package:demo5/Class/UserState.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+
 var itemValuePair=new Map.from({"用户名":"陈二狗","姓名":"陈零蛋","性别":"男","电子邮箱":"haha@sjtu.edu.cn","密码":"******"});
 
 class UserDetailView extends StatelessWidget{
@@ -10,16 +13,21 @@ class UserDetailView extends StatelessWidget{
         title: Text('个人中心'),
       ),
       body:
-      ListView(
-        children: <Widget>[
-          _DetailItem(item:'用户名',value:'陈二狗',router:'UserNameSetting'),
-          _DetailItem(item:'姓名',value:'陈零蛋',router:'NameSetting'),
-          _DetailItem(item:'性别',value:'男',router:'GenderSetting'),
-          _DetailItem(item:'电子邮箱',value:'haha@sjtu.edu.cn',router:'EmailSetting'),
-          _DetailItem(item:'密码',value:'******',router:'PasswordSetting')
-        ],
-      )
-
+          Consumer<UserState>(
+            builder:(context,userState,child)=>
+              ListView(
+                children: <Widget>[
+                  _DetailItem(item: '用户名', value: userState.userName, router: 'UserNameSetting'),
+                  _DetailItem(item: '姓名', value: userState.name, router: 'NameSetting'),
+                  _DetailItem(item: '性别', value: userState.gender, router: 'GenderSetting'),
+                  _DetailItem(item: '电子邮箱',
+                      value: userState.email,
+                      router: 'EmailSetting'),
+                  _DetailItem(
+                      item: '密码', value: '********', router: 'PasswordSetting'),
+                ]
+              )
+          )
     );
   }
 

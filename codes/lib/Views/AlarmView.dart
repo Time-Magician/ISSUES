@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import '../Class/AlarmInfo.dart';
 import 'package:easy_dialog/easy_dialog.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
 
 List<AlarmInfo> _alarmList = [
   AlarmInfo("起床", ["周一","周二","周三","周四","周五"],TimeOfDay(hour: 6, minute: 30),"算术题","二狗汪汪叫",true,true),

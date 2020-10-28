@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:easy_dialog/easy_dialog.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:day_picker/day_picker.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import '../Class/AlarmInfo.dart';
+import '../Utils/Adapt.dart';
 
 const List<String> audios = [
 "Audio 1",
@@ -50,7 +52,7 @@ class AlarmSetting extends State<AlarmSettingWidget>{
   @override
   Widget build(BuildContext context) {
     AlarmInfo alarmInfo = ModalRoute.of(context).settings.arguments;
-
+    Adapt.onepx();
 
     newAlarmInfo = new AlarmInfo(
       alarmInfo.label,
@@ -72,7 +74,7 @@ class AlarmSetting extends State<AlarmSettingWidget>{
           new MaterialButton(
             child: Text(
               "保存",
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(36)),
             ),
             onPressed: (() => {
               Navigator.of(context).pop(newAlarmInfo)
@@ -156,12 +158,12 @@ class MySettings extends State<Settings>{
                         )
                       }),
                       child: Container(
-                          height: 100,
-                          margin: EdgeInsets.fromLTRB(0, 50, 0, 50),
+                          height: ScreenUtil().setHeight(180),
+                          margin: EdgeInsets.fromLTRB(0, ScreenUtil().setWidth(100), 0, ScreenUtil().setWidth(100)),
                           child:Text(
                             timeToString(_time),
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.black, fontSize: 80, fontFamily: "Miriam"),
+                            style: TextStyle(color: Colors.black, fontSize: ScreenUtil().setSp(140), fontFamily: "Miriam"),
                           )
                       )
                   ),
@@ -240,17 +242,17 @@ class MyOrderTitle extends State<OrderTitle>{
 
     EasyDialog(
       fogOpacity: 0.12,
-      width: 330,
-      height: 190,
+      width: ScreenUtil().setWidth(600),
+      height: ScreenUtil().setWidth(380),
       closeButton: false,
       title: Text(
         "标签",
-        style: TextStyle(fontSize: 20),
+        style: TextStyle(fontSize: ScreenUtil().setSp(40)),
       ),
       contentList: [
         Container(
-          width: 270,
-          margin: EdgeInsets.fromLTRB(0, 5, 0, 15),
+          width: ScreenUtil().setWidth(540),
+          margin: EdgeInsets.fromLTRB(0, ScreenUtil().setWidth(10), 0, ScreenUtil().setWidth(30)),
           child: TextField(
               controller: new TextEditingController(text: oldLabel),
               decoration: InputDecoration(
@@ -267,7 +269,7 @@ class MyOrderTitle extends State<OrderTitle>{
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Container(
-                width: 90,
+                width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
                     Navigator.of(context).pop(newLabel);
@@ -280,7 +282,7 @@ class MyOrderTitle extends State<OrderTitle>{
                 ),
               ),
               Container(
-                width: 90,
+                width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
                     setState(() {
@@ -308,19 +310,18 @@ class MyOrderTitle extends State<OrderTitle>{
 
     EasyDialog(
         fogOpacity: 0.12,
-        width: 330,
-        height: 360,
+        width: ScreenUtil().setWidth(600),
+        height: ScreenUtil().setWidth(720),
         closeButton: false,
         title: Text(
           "铃声",
-          style: TextStyle(fontSize: 20),
+          style: TextStyle(fontSize: ScreenUtil().setSp(40)),
       ),
       contentList: [
         Container(
-          height: 240,
+          height: ScreenUtil().setWidth(480),
           child: SingleChildScrollView(
             child: RadioButtonGroup(
-                picked: oldAudio,
                 labels: audios,
                 onSelected: (String selected) => {newAudio = selected}
             ),
@@ -331,7 +332,7 @@ class MyOrderTitle extends State<OrderTitle>{
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Container(
-                width: 90,
+                width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
                     Navigator.of(context).pop(newAudio);
@@ -344,7 +345,7 @@ class MyOrderTitle extends State<OrderTitle>{
                 ),
               ),
               Container(
-                width: 90,
+                width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
                     setState(() {
@@ -372,20 +373,22 @@ class MyOrderTitle extends State<OrderTitle>{
 
     EasyDialog(
         fogOpacity: 0.12,
-        width: 350,
-        height: 180,
+        width: ScreenUtil().setWidth(660),
+        height: ScreenUtil().setWidth(360),
+        contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
         closeButton: false,
         title: Text(
           "重复",
-           style: TextStyle(fontSize: 20),
+           style: TextStyle(fontSize: ScreenUtil().setSp(40)),
         ),
         contentList: [
             Container(
+              width: ScreenUtil().setWidth(640),
               child: SelectWeekDays(
                 padding: 0,
                 border: true,
                 boxDecoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.0),
+                  borderRadius: BorderRadius.circular(ScreenUtil().setWidth(60.0)),
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     colors: [const Color(0xFF57BDBF), const Color(0xFF2F9DE2)],
@@ -403,7 +406,7 @@ class MyOrderTitle extends State<OrderTitle>{
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   Container(
-                      width: 90,
+                      width: ScreenUtil().setWidth(180),
                       child: FlatButton(
                         onPressed: () {
 
@@ -417,7 +420,7 @@ class MyOrderTitle extends State<OrderTitle>{
                       ),
                   ),
                   Container(
-                    width: 90,
+                    width: ScreenUtil().setWidth(180),
                     child: FlatButton(
                       onPressed: () {
                         setState(() {
@@ -444,18 +447,18 @@ class MyOrderTitle extends State<OrderTitle>{
 
     EasyDialog(
       fogOpacity: 0.12,
-      width: 330,
-      height: 160,
+      width: ScreenUtil().setWidth(600),
+      height: ScreenUtil().setWidth(320),
       closeButton: false,
       title: Text(
         "振动",
-        style: TextStyle(fontSize: 20),
+        style: TextStyle(fontSize: ScreenUtil().setSp(40)),
       ),
       contentList: [
         Container(
           child: ToggleSwitch(
-            minWidth: 90.0,
-            cornerRadius: 20.0,
+            minWidth: ScreenUtil().setWidth(180.0),
+            cornerRadius: ScreenUtil().setWidth(40.0),
             activeBgColors: [Colors.blue,Colors.red],
             activeFgColor: Colors.white,
             inactiveBgColor: Colors.grey,
@@ -473,7 +476,7 @@ class MyOrderTitle extends State<OrderTitle>{
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Container(
-                width: 90,
+                width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
 
@@ -487,7 +490,7 @@ class MyOrderTitle extends State<OrderTitle>{
                 ),
               ),
               Container(
-                width: 90,
+                width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
                     if(vibrationOn == 1) setState(() {
@@ -517,17 +520,17 @@ class MyOrderTitle extends State<OrderTitle>{
 
     EasyDialog(
       fogOpacity: 0.12,
-      width: 330,
-      height: 480,
+      width: ScreenUtil().setWidth(600),
+      height: ScreenUtil().setWidth(980),
       closeButton: false,
       title: Text(
         "任务",
-        style: TextStyle(fontSize: 20),
+        style: TextStyle(fontSize: ScreenUtil().setSp(40)),
       ),
       contentList: [
         Container(
-          width: 330,
-          height: 360,
+          width: ScreenUtil().setWidth(600),
+          height: ScreenUtil().setWidth(720),
           child:Swiper(
             index: missionSelected,
             itemBuilder: (BuildContext context, int index) {
@@ -550,7 +553,7 @@ class MyOrderTitle extends State<OrderTitle>{
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Container(
-                width: 90,
+                width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
 
@@ -564,7 +567,7 @@ class MyOrderTitle extends State<OrderTitle>{
                 ),
               ),
               Container(
-                width: 90,
+                width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
                     setState(() {
@@ -609,46 +612,46 @@ class MyMissionCard extends State<MissionCard>{
 
     // TODO: implement build
     return Container(
-      margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+      margin: EdgeInsets.fromLTRB(0, 0, 0, ScreenUtil().setWidth(32)),
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(ScreenUtil().setWidth(16.0)),
           boxShadow: [
             BoxShadow(
                 color: Colors.black12,
-                offset: Offset(0.0, 5.0), //阴影xy轴偏移量
-                blurRadius: 10.0, //阴影模糊程度
-                spreadRadius: 1.0 //阴影扩散程度
+                offset: Offset(0.0, ScreenUtil().setWidth(10.0)), //阴影xy轴偏移量
+                blurRadius: ScreenUtil().setWidth(20.0), //阴影模糊程度
+                spreadRadius: ScreenUtil().setWidth(2.0) //阴影扩散程度
             )
           ],
       ),
       child: Column(
         children: <Widget>[
           Container(
-            width: 240,
-            height: 200,
+            width: ScreenUtil().setWidth(400),
+            height: ScreenUtil().setHeight(360),
             child: Image.asset(
               widget.image,
               fit: BoxFit.fill,
             ),
           ),
           Container(
-            width: 200,
-            margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
-            height: 40,
+            width: ScreenUtil().setWidth(400),
+            margin: EdgeInsets.fromLTRB(0, ScreenUtil().setWidth(5), 0, ScreenUtil().setWidth(5)),
+            height: ScreenUtil().setWidth(80),
             alignment: Alignment.center,
             child: Text(
               widget.title,
-              style: TextStyle(fontSize: 28),
+              style: TextStyle(fontSize: ScreenUtil().setSp(56)),
             ),
           ),
           Container(
-            width: 200,
-            height: 80,
+            width: ScreenUtil().setWidth(400),
+            height: ScreenUtil().setWidth(160),
             alignment: Alignment.center,
             child: Text(
               widget.description,
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: ScreenUtil().setSp(28)),
               textAlign: TextAlign.center,
             ),
           )

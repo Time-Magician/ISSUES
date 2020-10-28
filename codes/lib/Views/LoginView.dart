@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:demo5/Utils/UIdata.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 
 class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, width: 720, height: 1280, allowFontScaling: true);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -22,16 +24,16 @@ class LoginView extends StatelessWidget {
   loginHeader() => Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
-      Image.asset("assets/image/Froglogo.png", width: 100,),
+      Image.asset("assets/image/Froglogo.png", width: ScreenUtil().setWidth(200),),
       SizedBox(
-        height: 30.0,
+        height: ScreenUtil().setHeight(60.0),
       ),
       Text(
         "Welcome to ISSUES",
         style: TextStyle(fontWeight: FontWeight.w700, color: Colors.green),
       ),
       SizedBox(
-        height: 5.0,
+        height: ScreenUtil().setHeight(10.0),
       ),
       Text(
         "Sign in to continue",
@@ -46,7 +48,7 @@ class LoginView extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Container(
-          padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 30.0),
+          padding: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(32.0), horizontal: ScreenUtil().setWidth(60.0)),
           child: TextField(
             maxLines: 1,
             decoration: InputDecoration(
@@ -57,13 +59,13 @@ class LoginView extends StatelessWidget {
               focusedBorder: OutlineInputBorder(
                  borderSide: BorderSide(
                    color: Colors.green, //边框颜色为绿色
-                   width: 5, //宽度为5
+                   width: ScreenUtil().setWidth(10), //宽度为5
                  ))
             ),
           ),
         ),
         Container(
-          padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 30.0),
+          padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: ScreenUtil().setHeight(60.0)),
           child: TextField(
             maxLines: 1,
             obscureText: true,
@@ -75,19 +77,19 @@ class LoginView extends StatelessWidget {
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.green, //边框颜色为绿色
-                      width: 5, //宽度为5
+                      width: ScreenUtil().setWidth(10), //宽度为5
                     ))
             ),
           ),
         ),
         SizedBox(
-          height: 30.0,
+          height: ScreenUtil().setHeight(60.0),
         ),
         Container(
-          padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 30.0),
+          padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: ScreenUtil().setHeight(60.0)),
           width: double.infinity,
           child: RaisedButton(
-            padding: EdgeInsets.all(12.0),
+            padding: EdgeInsets.all(ScreenUtil().setWidth(24.0)),
             shape: StadiumBorder(),
             child: Text(
               "登录",
@@ -100,7 +102,7 @@ class LoginView extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 5.0,
+          height: ScreenUtil().setWidth(10.0),
         ),
         Text(
           "SIGN UP FOR AN ACCOUNT",

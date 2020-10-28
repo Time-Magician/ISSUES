@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 
 class UserView extends StatelessWidget {
   @override
@@ -26,22 +27,22 @@ class UserView extends StatelessWidget {
 
 Widget _topHeader() {
   return Container(
-    padding: EdgeInsets.all(20.0),
+    padding: EdgeInsets.all(ScreenUtil().setWidth(40.0)),
     color: Colors.blueAccent,
     child: Column(
       children: <Widget>[
         Container(
-          margin: EdgeInsets.only(top: 20.0),
+          margin: EdgeInsets.only(top: ScreenUtil().setHeight(40.0)),
           child: ClipOval(
             //圆形头像
             child: Image.network(
               'https://pic2.zhimg.com/v2-639b49f2f6578eabddc458b84eb3c6a1.jpg',
-              width: 80.0,
+              width: ScreenUtil().setWidth(160.0),
             ),
           ),
         ),
         Container(
-          margin: EdgeInsets.only(top: 10.0),
+          margin: EdgeInsets.only(top: ScreenUtil().setHeight(20.0)),
           child: Text("Chen Ergou", style: TextStyle(color: Colors.white)),
         )
       ],
@@ -64,7 +65,7 @@ class OrderTitle extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.white,
             border:
-                Border(bottom: BorderSide(width: 1, color: Colors.black12))),
+                Border(bottom: BorderSide(width: ScreenUtil().setWidth(2), color: Colors.black12))),
         child: GestureDetector(
           onTap: (() => {Navigator.pushNamed(context, router)}),
           child: ListTile(

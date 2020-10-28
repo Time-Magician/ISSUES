@@ -76,10 +76,10 @@ class MyStudyView extends State<StudyView> {
                 height: ScreenUtil().setWidth(160),
                 child: ProgressBlock()
             ),
-            Container(
-                width: ScreenUtil().setWidth(720),
-                height: ScreenUtil().setWidth(720),
-                child: FrogBlock(updateTime:  (end) => _updateTime(end))
+            Expanded(
+              child: Container(
+                  child: FrogBlock(updateTime:  (end) => _updateTime(end))
+              ),
             ),
             Container(
                 width: ScreenUtil().setWidth(720),
@@ -89,6 +89,7 @@ class MyStudyView extends State<StudyView> {
             Container(
                 width: ScreenUtil().setWidth(560),
                 height: ScreenUtil().setWidth(120),
+                margin: EdgeInsets.fromLTRB(0, 0, 0, ScreenUtil().setWidth(20)),
                 child: BtnBlock(onPress: () => _startEndStudy())
             ),
           ]
@@ -171,21 +172,23 @@ class MyFrogBlock extends State<FrogBlock>{
             backgroundColor: const Color(0xFF75CCE8),
             body: Center(
               child: Container(
-                  width: ScreenUtil().setWidth(640),
-                  height: ScreenUtil().setWidth(640),
-                  child: studyInfo.isStudying? Container(
+                  child: studyInfo.isStudying?
+                  Container(
                       padding: EdgeInsets.fromLTRB(ScreenUtil().setWidth(12), ScreenUtil().setWidth(12), ScreenUtil().setWidth(12), ScreenUtil().setWidth(12)),
-                      child: CircularProfileAvatar(
-                        '',
-                        child: Image.asset(
-                          'assets/image/frog2.png',
-                        ), //sets image path, it should be a URL string. default value is empty string, if path is empty it will display only initials
-                        radius: ScreenUtil().setWidth(300), // sets radius, default 50.0
-                        backgroundColor: Color(0xFF75CCE8), // sets background color, default Colors.white
-                        borderWidth: ScreenUtil().setWidth(25),  // sets border, default 0.0// sets initials text, set your own style, default Text('')
-                        borderColor: Color.fromRGBO(255, 255, 255, 1.0), // sets border color, default Colors.white// sets elevation (shadow of the profile picture), default value is 0.0//sets foreground colour, it works if showInitialTextAbovePicture = true , default Colors.transparent// allow widget to cache image against provided url// sets on tap// setting it true will show initials text above profile picture, default false
-                      )
-                  ) :SingleCircularSlider(
+                      child: LayoutBuilder(
+                        builder: (context, constrains){
+                            return new CircularProfileAvatar(
+                              '',
+                              child: Image.asset(
+                                'assets/image/frog2.png',
+                              ), //sets image path, it should be a URL string. default value is empty string, if path is empty it will display only initials
+                              radius: ScreenUtil().setWidth(constrains.maxHeight < constrains.maxWidth? constrains.maxHeight-25:constrains.maxWidth-25), // sets radius, default 50.0
+                              backgroundColor: Color(0xFF75CCE8), // sets background color, default Colors.white
+                              borderWidth: ScreenUtil().setWidth(25),  // sets border, default 0.0// sets initials text, set your own style, default Text('')
+                              borderColor: Color.fromRGBO(255, 255, 255, 1.0), // sets border color, default Colors.white// sets elevation (shadow of the profile picture), default value is 0.0//sets foreground colour, it works if showInitialTextAbovePicture = true , default Colors.transparent// allow widget to cache image against provided url// sets on tap// setting it true will show initials text above profile picture, default false
+                            );
+                        })
+                  ) : SingleCircularSlider(
                     120, 0,
                     height: ScreenUtil().setWidth(600.0),
                     width: ScreenUtil().setWidth(600.0),

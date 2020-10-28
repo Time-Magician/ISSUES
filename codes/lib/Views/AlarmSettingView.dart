@@ -119,7 +119,7 @@ class MySettings extends State<Settings>{
     int minute = time.minute;
     String hourS;
     String minuteS;
-    
+
     if(hour < 10)
       hourS = "0"+hour.toString();
     else
@@ -131,10 +131,6 @@ class MySettings extends State<Settings>{
       minuteS = minute.toString();
     
     return hourS + ":" + minuteS;
-  }
-
-  void setLabel(String newLabel){
-    print("sss");
   }
 
   @override
@@ -627,12 +623,14 @@ class MyMissionCard extends State<MissionCard>{
       ),
       child: Column(
         children: <Widget>[
-          Container(
-            width: ScreenUtil().setWidth(400),
-            height: ScreenUtil().setHeight(360),
-            child: Image.asset(
-              widget.image,
-              fit: BoxFit.fill,
+          Expanded(
+            child: Container(
+              width: ScreenUtil().setWidth(400),
+              height: ScreenUtil().setHeight(360),
+              child: Image.asset(
+                widget.image,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
           Container(

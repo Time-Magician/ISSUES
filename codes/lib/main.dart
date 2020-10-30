@@ -16,13 +16,25 @@ import 'Views/DetailSettingView/NameSettingView.dart';
 import 'Views/DetailSettingView/EmailSettingView.dart';
 import 'Views/DetailSettingView/PasswordSettingView.dart';
 import 'Class/UserState.dart';
+import 'Views/AppSettingView.dart';
+import 'Class/SettingInfo.dart';
+import 'package:flutter_settings_screens/flutter_settings_screens.dart' as flutterSettingsScreens;
 
-void main() {
+void main() async{
+  await flutterSettingsScreens.Settings.init();
   runApp(
-      ChangeNotifierProvider(
-        create: (context) => UserState(),
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_)=>UserState()),
+          ChangeNotifierProvider(create: (_)=>SettingInfo()),
+        ],
         child: new MyApp(),
       )
+
+      // ChangeNotifierProvider(
+      //   create: (context) => UserState(),
+      //   child: new MyApp(),
+      // )
 
   );
 }
@@ -47,6 +59,7 @@ class MyApp extends StatelessWidget {
         "EmailSetting":(context)=>EmailSettingView(),
         "PasswordSetting":(context)=>PasswordSettingView(),
         "GenderSetting":(context)=>GenderSettingView(),
+        "AppSetting":(context)=>AppSettingView(),
         "/":(context) => LoginView(),
 
 
@@ -56,4 +69,4 @@ class MyApp extends StatelessWidget {
 }
 
 
-  
+

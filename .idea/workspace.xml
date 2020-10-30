@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f86244-f240-47d7-a9e3-4ea038048e2b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/codes/lib/Class/SettingInfo.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/lib/Views/AppSettingView.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/lib/Class/UserState.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/Class/UserState.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/EmailSettingView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/EmailSettingView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/NameSettingView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/NameSettingView.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/PasswordSettingView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/PasswordSettingView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/lib/Views/UserDetailView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/Views/UserDetailView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/lib/Views/UserView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/Views/UserView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codes/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/codes/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codes/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/codes/pubspec.yaml" afterDir="false" />
     </list>
@@ -18,6 +18,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3a_XL_API_28" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -57,6 +64,11 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\28240\Documents\GitRepo\ISSUES\codes\android" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
@@ -90,7 +102,11 @@
       <workItem from="1602934659126" duration="7000" />
       <workItem from="1603017755409" duration="4552000" />
       <workItem from="1603431619671" duration="8369000" />
-      <workItem from="1603440022955" duration="27807000" />
+      <workItem from="1603440022955" duration="30783000" />
+      <workItem from="1603865480494" duration="2047000" />
+      <workItem from="1603959581830" duration="2000" />
+      <workItem from="1603975702153" duration="15000" />
+      <workItem from="1604037963288" duration="15515000" />
     </task>
     <servers />
   </component>
@@ -130,29 +146,29 @@
     </state>
     <state x="491" y="46" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1601988118844" />
     <state x="491" y="49" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1603281762848" />
-    <state width="618" height="163" key="GridCell.Tab.0.bottom" timestamp="1603532303035">
+    <state width="618" height="163" key="GridCell.Tab.0.bottom" timestamp="1604048598207">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="618" height="151" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602061068315" />
-    <state width="618" height="163" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1603532303035" />
+    <state width="618" height="163" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1604048598207" />
     <state width="1877" height="163" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1601273726558" />
-    <state width="618" height="163" key="GridCell.Tab.0.center" timestamp="1603532303035">
+    <state width="618" height="163" key="GridCell.Tab.0.center" timestamp="1604048598207">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="618" height="151" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1602061068315" />
-    <state width="618" height="163" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1603532303035" />
+    <state width="618" height="163" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1604048598207" />
     <state width="1877" height="163" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1601273726558" />
-    <state width="618" height="163" key="GridCell.Tab.0.left" timestamp="1603532303035">
+    <state width="618" height="163" key="GridCell.Tab.0.left" timestamp="1604048598207">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="618" height="151" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1602061068315" />
-    <state width="618" height="163" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1603532303035" />
+    <state width="618" height="163" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1604048598207" />
     <state width="1877" height="163" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1601273726558" />
-    <state width="618" height="163" key="GridCell.Tab.0.right" timestamp="1603532303035">
+    <state width="618" height="163" key="GridCell.Tab.0.right" timestamp="1604048598207">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="618" height="151" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1602061068315" />
-    <state width="618" height="163" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1603532303035" />
+    <state width="618" height="163" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1604048598207" />
     <state width="1877" height="163" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1601273726558" />
     <state x="142" y="0" width="996" height="712" key="SettingsEditor" timestamp="1603435539369">
       <screen x="0" y="0" width="1280" height="720" />

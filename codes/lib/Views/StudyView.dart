@@ -312,7 +312,7 @@ class BtnBlock extends StatefulWidget{
 }
 
 class MyBtnBlock extends State<BtnBlock>{
-
+  static const platform = const MethodChannel('Lock.plugin');
 
   void pause() {
     audioCache1.clear('audio3.mp3');
@@ -328,6 +328,31 @@ class MyBtnBlock extends State<BtnBlock>{
     // TODO: implement initState
     super.initState();
     audioCache1.load('audio3.mp3');
+  }
+
+  Future<Null> startLockService() async {
+    try {
+      final result = await platform.invokeMethod("startStudy");
+      // batteryLevel = 'Battery level at $result % .';
+    } on PlatformException catch (e) {
+      print('${e.message}');
+    }
+
+  }
+
+  Future<Null> endLockService() async {
+    try {
+      final result = await platform.invokeMethod("stopStudy");
+      // batteryLevel = 'Battery level at $result % .';
+    } on PlatformException catch (e) {
+      print('${e.message}');
+    }
+
+  }
+
+  void startStudy(){
+    play();
+    startLockService();
   }
 
   void endStudy(){
@@ -366,6 +391,7 @@ class MyBtnBlock extends State<BtnBlock>{
                 child: FlatButton(
                   onPressed: () {
                     pause();
+                    endLockService();
                     Navigator.of(context).pop();
                     widget.onPress();
                   },
@@ -406,7 +432,8 @@ class MyBtnBlock extends State<BtnBlock>{
             colorBrightness: Brightness.dark,
             onPressed: () {
               //TODO
-              vibrates();
+              startStudy();
+              //vibrates();
               play();
               widget.onPress();
             },

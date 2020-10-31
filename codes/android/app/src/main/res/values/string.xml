@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string name="btnText">知道了</string>
+        <string name="alertText1">你的青蛙现在正在学习</string>
+        <string name="alertText2">不要玩手机分心啦</string>
+</resources>

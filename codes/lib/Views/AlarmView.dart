@@ -225,7 +225,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
 
   void startAlarm(int hour,int minute) async{
     if(Platform.isAndroid) {
-      var methodChannel = MethodChannel("com.example.demo5");
+      var methodChannel = MethodChannel("Channel");
       String data = await methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute});
       print("data: $data");
     }

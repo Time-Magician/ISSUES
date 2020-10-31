@@ -312,7 +312,7 @@ class BtnBlock extends StatefulWidget{
 }
 
 class MyBtnBlock extends State<BtnBlock>{
-  static const platform = const MethodChannel('Lock.plugin');
+  static const platform = const MethodChannel('Channel');
 
   void pause() {
     audioCache1.clear('audio3.mp3');

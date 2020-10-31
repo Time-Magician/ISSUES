@@ -1,6 +1,9 @@
 package com.example.demo5;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -17,6 +20,9 @@ import android.os.Build.VERSION_CODES;
 
 import com.example.demo5.ProcessLock.ProcessMonitorService;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+
 public class MainActivity extends FlutterActivity {
     private Intent serviceIntent;
     private Intent alarmIntent;
@@ -24,7 +30,7 @@ public class MainActivity extends FlutterActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String CHANNEL1 = "Lock.plugin";
+        String CHANNEL1 = "Channel";
         Intent intent = new Intent(MainActivity.this, ProcessMonitorService.class);
         serviceIntent = new Intent(MainActivity.this, MyService.class);
         alarmIntent = new Intent(MainActivity.this,AlarmActivity.class);
@@ -59,17 +65,6 @@ public class MainActivity extends FlutterActivity {
         stopService(serviceIntent);
     }
 
-    private void startService() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(serviceIntent);
-        } else {
-            startService(serviceIntent);
-        }
-    }
-
-    private  void startActivity(){
-        startActivity(alarmIntent);
-    }
 
     private void alarm(int hour,int minute) {
         // 获取系统的闹钟服务

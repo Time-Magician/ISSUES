@@ -46,38 +46,39 @@ class MyStudyRoom extends State<StudyRoom>{
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-            child: SizedBox(
-                height: ScreenUtil().setHeight(320),
-                width: ScreenUtil().setWidth(640),
-                child: RaisedButton(
-                  textTheme: ButtonTextTheme.accent,
-                  color: const Color(0xFF33539E),
-                  highlightColor: Colors.deepPurpleAccent,
-                  splashColor: Colors.deepOrangeAccent,
-                  colorBrightness: Brightness.dark,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(ScreenUtil().setWidth(16))
-                  ),
-                  onPressed: () {
-                    //TODO
-                    startService();
-                  },
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        Icons.business,
-                        size: ScreenUtil().setWidth(128),
-                        color: Colors.white,
+
+              child: SizedBox(
+                  height: ScreenUtil().setHeight(320),
+                  width: ScreenUtil().setWidth(640),
+                  child: RaisedButton(
+                      textTheme: ButtonTextTheme.accent,
+                      color: const Color(0xFF33539E),
+                      highlightColor: Colors.deepPurpleAccent,
+                      splashColor: Colors.deepOrangeAccent,
+                      colorBrightness: Brightness.dark,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(ScreenUtil().setWidth(16))
                       ),
-                      Text(
-                        '公 共 自 习 室',
-                        style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(72)),
-                      ),
-                    ],
-                  ),
-                )),
+                      onPressed: () {
+                        //TODO
+                        Navigator.pushNamed(context, "Camera");
+                      },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            Icons.business,
+                            size: ScreenUtil().setWidth(128),
+                            color: Colors.white,
+                          ),
+                          Text(
+                            '公 共 自 习 室',
+                            style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(72)),
+                          ),
+                        ],
+                      )
+                  )),
           ),
           Container(
             margin: EdgeInsets.fromLTRB(0, ScreenUtil().setHeight(80), 0, 0),
@@ -95,6 +96,7 @@ class MyStudyRoom extends State<StudyRoom>{
                     ),
                     onPressed: () {
                       //TODO
+                      Navigator.pushNamed(context, "Test");
                     },
                     child: Column(
                       mainAxisSize: MainAxisSize.max,

@@ -14,6 +14,7 @@ import 'Views/DetailSettingView/UserNameSettingView.dart';
 import 'Views/DetailSettingView/NameSettingView.dart';
 import 'Views/DetailSettingView/EmailSettingView.dart';
 import 'Views/DetailSettingView/PasswordSettingView.dart';
+import 'Views/Missions/Camera.dart';
 
 void main() => runApp(new MyApp());
 
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         "EmailSetting":(context)=>EmailSettingView(),
         "PasswordSetting":(context)=>PasswordSettingView(),
         "GenderSetting":(context)=>GenderSettingView(),
+        "Camera":(context)=>Camera(),
         "/":(context) => LoginView(),
 
       }

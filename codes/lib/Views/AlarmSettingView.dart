@@ -112,6 +112,7 @@ class MySettings extends State<Settings>{
     setState(() {
       _time = newTime;
     });
+    newAlarmInfo.time = newTime;
   }
 
   String timeToString(TimeOfDay time){

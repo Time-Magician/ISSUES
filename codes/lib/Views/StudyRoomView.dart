@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'dart:io';
+import 'dart:async';
+import 'package:flutter/services.dart';
 
 class StudyRoomWidget extends StatefulWidget{
   @override
@@ -57,6 +60,7 @@ class MyStudyRoom extends State<StudyRoom>{
                   ),
                   onPressed: () {
                     //TODO
+                    startService();
                   },
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -72,7 +76,7 @@ class MyStudyRoom extends State<StudyRoom>{
                         style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(72)),
                       ),
                     ],
-                  )
+                  ),
                 )),
           ),
           Container(
@@ -113,6 +117,12 @@ class MyStudyRoom extends State<StudyRoom>{
       ),
     );
   }
-
+  void startService() async{
+    if(Platform.isAndroid) {
+      var methodChannel = MethodChannel("com.example.demo5");
+      String data = await methodChannel.invokeMethod("startService");
+      print("data: $data");
+    }
+  }
 }
 

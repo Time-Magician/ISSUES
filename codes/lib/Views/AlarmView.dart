@@ -99,14 +99,14 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
   }
 
   void _switchAlarm(isOpen){
-    // bool isOpen = this.alarmInfo.isOpen? false : true;
+    bool isOpen = this.alarmInfo.isOpen? false : true;
     alarmInfo.isOpen = isOpen;
     _alarmList[widget.alarmIndex].isOpen = isOpen;
     setState(() {
     });
     int hour= _alarmList[widget.alarmIndex].time.hour;
     int minute=_alarmList[widget.alarmIndex].time.minute;
-    startAlarm(hour,minute);
+    setAlarm(hour,minute,isOpen);
   }
 
   String timeToString(TimeOfDay time){
@@ -223,11 +223,16 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     });
   }
 
-  void startAlarm(int hour,int minute) async{
+  void setAlarm(int hour,int minute,bool isOpen) async{
     if(Platform.isAndroid) {
       var methodChannel = MethodChannel("Channel");
+      if(isOpen){
       String data = await methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute});
       print("data: $data");
+      }else{
+        String data = await methodChannel.invokeMethod("cancelAlarm",{"hour":hour,"minute":minute});
+        print("data: $data");
+      }
     }
   }
 

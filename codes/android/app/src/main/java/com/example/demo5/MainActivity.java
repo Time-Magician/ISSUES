@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -17,6 +18,7 @@ import io.flutter.plugin.common.MethodChannel.Result;
 import android.content.Intent;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.util.Log;
 
 import com.example.demo5.ProcessLock.ProcessMonitorService;
 
@@ -53,6 +55,11 @@ public class MainActivity extends FlutterActivity {
                     int minute = call.argument("minute");
                     alarm(hour,minute);
                 }
+                else if(call.method.equals("cancelAlarm")){
+                    int hour =call.argument("hour");
+                    int minute = call.argument("minute");
+                    cancelalarm(hour,minute);
+                }
               else {
                     result.notImplemented();
                 }
@@ -70,9 +77,11 @@ public class MainActivity extends FlutterActivity {
         // 获取系统的闹钟服务
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         // 触发闹钟的时间（毫秒）
-//        long triggerTime = System.currentTimeMillis() + 10000;
         Intent intent = new Intent(this, RepeatingAlarm.class);
         intent.setAction("com.gcc.alarm");
+        String uri="content://calendar/calendar_alerts/"+String.valueOf(hour)+":"+String.valueOf(minute);
+        intent.setData(Uri.parse(uri));
+
         PendingIntent op = PendingIntent.getBroadcast(this, 0, intent, 0);
         // 启动一次只会执行一次的闹钟
         Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT+8"));
@@ -85,5 +94,18 @@ public class MainActivity extends FlutterActivity {
         am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis()-3000, op);
         // 指定时间重复执行闹钟
         // am.setRepeating(AlarmManager.RTC,triggerTime,2000,op);
+    }
+
+    private void cancelalarm(int hour,int minute){
+        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        // 触发闹钟的时间（毫秒）
+//        long triggerTime = System.currentTimeMillis() + 10000;
+        Intent intent = new Intent(this, RepeatingAlarm.class);
+        intent.setAction("com.gcc.alarm");
+        String uri="content://calendar/calendar_alerts/"+String.valueOf(hour)+":"+String.valueOf(minute);
+        intent.setData(Uri.parse(uri));
+        PendingIntent op = PendingIntent.getBroadcast(this, 0, intent, 0);
+        // 启动一次只会执行一次的闹钟
+        am.cancel(op);
     }
 }

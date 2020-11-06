@@ -13,9 +13,9 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:vibrate/vibrate.dart';
 
 StudyInfo studyInfo = new StudyInfo(new Frog("陈二狗", 15, 78, false, "", "氢化大学"), false);
-AudioCache audioPlayer;
-AudioPlayer advancedPlayer1 = new AudioPlayer();
-AudioCache audioCache1= new AudioCache(prefix: "audios/",fixedPlayer: advancedPlayer1);
+// AudioCache audioPlayer;
+// AudioPlayer advancedPlayer1 = new AudioPlayer();
+// AudioCache audioCache1= new AudioCache(prefix: "audios/",fixedPlayer: advancedPlayer1);
 
 void vibrates() async{
   bool canVibrate = await Vibrate.canVibrate;
@@ -314,20 +314,20 @@ class BtnBlock extends StatefulWidget{
 class MyBtnBlock extends State<BtnBlock>{
   static const platform = const MethodChannel('Lock.plugin');
 
-  void pause() {
-    audioCache1.clear('audio3.mp3');
-    advancedPlayer1.release();
-  }
-
-  void play() {
-    audioCache1.play('audio3.mp3');
-  }
+  // void pause() {
+  //   audioCache1.clear('audio3.mp3');
+  //   advancedPlayer1.release();
+  // }
+  //
+  // void play() {
+  //   audioCache1.play('audio3.mp3');
+  // }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    audioCache1.load('audio3.mp3');
+    // audioCache1.load('audio3.mp3');
   }
 
   Future<Null> startLockService() async {
@@ -351,7 +351,6 @@ class MyBtnBlock extends State<BtnBlock>{
   }
 
   void startStudy(){
-    play();
     startLockService();
   }
 
@@ -390,7 +389,6 @@ class MyBtnBlock extends State<BtnBlock>{
                 width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
-                    pause();
                     endLockService();
                     Navigator.of(context).pop();
                     widget.onPress();

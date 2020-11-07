@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import '../Class/AlarmInfo.dart';
 import 'package:easy_dialog/easy_dialog.dart';
+import 'dart:io';
+import 'package:flutter/services.dart';
 
 
 List<AlarmInfo> _alarmList = [
@@ -24,7 +26,6 @@ class AlarmList extends State<AlarmView> {
   void addAlarm() async {
     final result = await Navigator.pushNamed(context,"AlarmSetting",arguments:
       AlarmInfo("闹钟", ["周一"], TimeOfDay.now(), "算术题", "二狗汪汪叫", true, true),
-
     );
 
     if(result.runtimeType != AlarmInfo) return;
@@ -103,6 +104,9 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     _alarmList[widget.alarmIndex].isOpen = isOpen;
     setState(() {
     });
+    int hour= _alarmList[widget.alarmIndex].time.hour;
+    int minute=_alarmList[widget.alarmIndex].time.minute;
+    startAlarm(hour,minute);
   }
 
   String timeToString(TimeOfDay time){
@@ -136,6 +140,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     this.setState(() {
       alarmInfo = newAlarmInfo;
     });
+    print(newAlarmInfo.repeat);
     _alarmList[widget.alarmIndex] = alarmInfo;
   }
 
@@ -216,6 +221,14 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
       isAnimated = false;
       deleteButtonWidth = 0;
     });
+  }
+
+  void startAlarm(int hour,int minute) async{
+    if(Platform.isAndroid) {
+      var methodChannel = MethodChannel("Channel");
+      String data = await methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute});
+      print("data: $data");
+    }
   }
 
   @override

@@ -33,8 +33,8 @@ public class MainActivity extends FlutterActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String CHANNEL1 = "Channel";
-        Intent intent = new Intent(MainActivity.this, ProcessMonitorService.class);
-        serviceIntent = new Intent(MainActivity.this, MyService.class);
+
+        serviceIntent = new Intent(MainActivity.this, ProcessMonitorService.class);
         alarmIntent = new Intent(MainActivity.this,AlarmActivity.class);
         new MethodChannel(getFlutterEngine().getDartExecutor().getBinaryMessenger(), CHANNEL1).setMethodCallHandler(new MethodCallHandler() {
             @Override
@@ -42,13 +42,13 @@ public class MainActivity extends FlutterActivity {
                 if (call.method.equals("startStudy")) {
 
                     if(VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                        MainActivity.this.startForegroundService(intent);
+                        MainActivity.this.startForegroundService(serviceIntent);
                     else
-                        MainActivity.this.startService(intent);
+                        MainActivity.this.startService(serviceIntent);
                     result.success("success");
                 } else if (call.method.equals("stopStudy")) {
 //                    Intent intent = new Intent(MainActivity.this, ProcessMonitorService.class);
-                    MainActivity.this.stopService(intent);
+                    MainActivity.this.stopService(serviceIntent);
                     result.success("success");
                 } else if(call.method.equals("startAlarm")){
                     int hour = call.argument("hour");

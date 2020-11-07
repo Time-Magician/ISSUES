@@ -30,7 +30,7 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
     compileSdkVersion 28
-
+    ndkVersion "21.1.6352462"
     lintOptions {
         disable 'InvalidPackage'
     }

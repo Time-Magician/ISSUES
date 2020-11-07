@@ -1,43 +1,26 @@
 import 'package:demo5/Views/LoginView.dart';
-import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
+import 'index.dart';
 import 'package:provider/provider.dart';
-import 'Views/AlarmSettingView.dart';
-import 'Views/BottomNavigatorView.dart';
-import 'Views/UserDetailView.dart';
-import 'Views/DiplomasView.dart';
-import 'Views/FriendsView.dart';
-import 'Views/FriendsView.dart';
-import 'Views/StudyView.dart';
-import 'Views/StudyRoomView.dart';
-import 'Views/DetailSettingView/GenderSetting.dart';
-import 'Views/DetailSettingView/UserNameSettingView.dart';
-import 'Views/DetailSettingView/NameSettingView.dart';
-import 'Views/DetailSettingView/EmailSettingView.dart';
-import 'Views/DetailSettingView/PasswordSettingView.dart';
+import 'Views/index.dart';
+import 'Views/DetailSettingView/index.dart';
 import 'Views/Missions/Camera.dart';
-import 'Class/UserState.dart';
-import 'Views/AppSettingView.dart';
-import 'Class/SettingInfo.dart';
+import 'states/index.dart';
+import 'common/SettingInfo.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart'
     as flutterSettingsScreens;
 
 void main() async {
   await flutterSettingsScreens.Settings.init();
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (_) => UserState()),
-      ChangeNotifierProvider(create: (_) => SettingInfo()),
-    ],
-    child: new MyApp(),
-  )
+  Global.init().then((e)=>
+      runApp(MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => UserModel()),
+          ChangeNotifierProvider(create: (_) => SettingsModel()),
+        ],
+        child: new MyApp(),
+      ))
+  );
 
-      // ChangeNotifierProvider(
-      //   create: (context) => UserState(),
-      //   child: new MyApp(),
-      // )
-
-      );
 }
 
 class MyApp extends StatelessWidget {

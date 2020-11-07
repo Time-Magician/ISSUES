@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
+import 'package:demo5/states/index.dart';
 
 class PasswordSettingView extends StatefulWidget{
   _PasswordSettingViewState createState() => _PasswordSettingViewState();

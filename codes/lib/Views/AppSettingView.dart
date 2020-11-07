@@ -1,6 +1,6 @@
+import 'package:demo5/index.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_select/smart_select.dart';
-import 'package:demo5/Class/SettingInfo.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 
@@ -10,22 +10,33 @@ class AppSettingView extends StatefulWidget{
 }
 
 class _AppSettingViewState extends State<AppSettingView>{
+  void initState(){
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    var _settingInfo = context.watch<SettingInfo>();
-    _settingInfo.init();
+    var settingModel = context.watch<SettingsModel>();
     return SettingsScreen(
         title: '应用设置',
         children: <Widget>[
-          StudyModelSoundSetting(settingInfo: _settingInfo),
-          TaskSetting(settingInfo:_settingInfo)
+          StudyModelSoundSetting(soundSettingValue: settingModel.soundSetting),
+          TaskSetting(taskSettingValue:settingModel.taskSetting)
       ],
     );
   }
 }
-class TaskSetting extends StatelessWidget{
-  final settingInfo;
-  TaskSetting({this.settingInfo}):super();
+
+class TaskSetting extends StatefulWidget{
+  final taskSettingValue;
+  TaskSetting({Key key,this.taskSettingValue}):super(key:key);
+  @override
+  State<StatefulWidget> createState() {
+    return new _TaskSettingState();
+  }
+
+}
+class _TaskSettingState extends State<TaskSetting>{
   List<S2Choice<String>> taskOptions=[
     S2Choice<String>(value:'math',title:'算术题'),
     S2Choice<String>(value:'sing',title:'唱歌'),
@@ -34,15 +45,16 @@ class TaskSetting extends StatelessWidget{
   ];
   @override
   Widget build(BuildContext context) {
+    var settingModel = context.watch<SettingsModel>();
     return SmartSelect<String>.multiple(
         title:'任务设置',
-        value: settingInfo.taskSetting,
+        value: widget.taskSettingValue,
         choiceConfig:S2ChoiceConfig(
           type:S2ChoiceType.chips
         ),
         modalType: S2ModalType.bottomSheet,
         onChange: (state){
-          settingInfo.setTask(state.value);
+          settingModel.taskSetting=state.value;
         },
         choiceItems:taskOptions,
     );
@@ -50,8 +62,8 @@ class TaskSetting extends StatelessWidget{
 
 }
 class StudyModelSoundSetting extends StatefulWidget{
-  final settingInfo;
-  StudyModelSoundSetting({Key key,this.settingInfo}):super(key:key);
+  final soundSettingValue;
+  StudyModelSoundSetting({Key key,this.soundSettingValue}):super(key:key);
   @override
   createState()=> new _StudyModelSoundSettingState();
 }
@@ -66,13 +78,14 @@ class _StudyModelSoundSettingState extends State<StudyModelSoundSetting>{
     S2Choice<soundSettingOption>(value:soundSettingOption.systemPreferences,title:'系统预设'),
   ];
   Widget build(BuildContext context){
+    var settingModel = context.watch<SettingsModel>();
     return SmartSelect<soundSettingOption>.single(
         title:'铃声模式',
         choiceItems:soundSettingOptions,
         modalType: S2ModalType.bottomSheet,
-        value: widget.settingInfo.soundSetting,
+        value: widget.soundSettingValue,
         onChange: (state) {
-          widget.settingInfo.setSound(state.value);
+          settingModel.soundSetting=state.value;
       },
     );
   }

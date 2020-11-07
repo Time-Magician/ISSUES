@@ -1,4 +1,4 @@
-import 'package:demo5/Class/UserState.dart';
+import 'package:demo5/states/index.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -6,8 +6,8 @@ class UserNameSettingView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    var userState=context.watch<UserState>();
-    TextEditingController ctrl = new TextEditingController(text:userState.userName);
+    var userModel=context.watch<UserModel>();
+    TextEditingController ctrl = new TextEditingController(text:userModel.userName);
 
     return Scaffold(
       appBar:AppBar(
@@ -17,7 +17,7 @@ class UserNameSettingView extends StatelessWidget{
             child: Text('保存'),
             textColor: Colors.white,
             onPressed:(){
-              userState.setUserName(ctrl.text);
+              userModel.userName = ctrl.text;
               Navigator.pop(context);
             },
           )

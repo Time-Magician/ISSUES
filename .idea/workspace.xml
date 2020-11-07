@@ -2,12 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4f86244-f240-47d7-a9e3-4ea038048e2b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/codes/lib/Class/SettingInfo.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codes/lib/Views/AppSettingView.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/jsons/profile.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/jsons/settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/jsons/user.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/index.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/lib/Views/index.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/lib/common/global.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/lib/index.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/lib/models/Profile.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/lib/models/Profile.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/lib/models/Settings.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/lib/models/Settings.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/lib/models/User.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/lib/models/User.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/lib/models/index.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/lib/states/ProfileChangeNotifier.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codes/lib/states/index.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/codes/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/lib/Class/SettingInfo.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/common/SettingInfo.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/lib/Class/UserState.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/lib/Views/AppSettingView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/Views/AppSettingView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/EmailSettingView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/EmailSettingView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/GenderSetting.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/GenderSetting.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/NameSettingView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/NameSettingView.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/PasswordSettingView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/PasswordSettingView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codes/lib/Views/UserView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/Views/UserView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/UserNameSettingView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/Views/DetailSettingView/UserNameSettingView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codes/lib/Views/UserDetailView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/Views/UserDetailView.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codes/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codes/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codes/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/codes/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codes/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/codes/pubspec.yaml" afterDir="false" />
@@ -60,23 +82,29 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="project.structure.last.edited" value="Facets" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.55287355" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
     <property name="show.migrate.to.gradle.popup" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\28240\Documents\GitRepo\ISSUES\codes\lib\common" />
       <recent name="C:\Users\28240\Documents\GitRepo\ISSUES\codes\android" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -87,6 +115,9 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\28240\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="b4f86244-f240-47d7-a9e3-4ea038048e2b" name="Default Changelist" comment="" />
@@ -107,6 +138,10 @@
       <workItem from="1603959581830" duration="2000" />
       <workItem from="1603975702153" duration="15000" />
       <workItem from="1604037963288" duration="15515000" />
+      <workItem from="1604727273054" duration="184000" />
+      <workItem from="1604727494152" duration="51000" />
+      <workItem from="1604727564644" duration="6871000" />
+      <workItem from="1604734712380" duration="11053000" />
     </task>
     <servers />
   </component>
@@ -125,10 +160,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1601971231456" />
-    <state x="358" y="161" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603521531594">
+    <state x="358" y="161" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604735763992">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="358" y="161" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.720@0.0.1280.720" timestamp="1603521531594" />
+    <state x="358" y="161" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.720@0.0.1280.720" timestamp="1604735763992" />
     <state x="371" y="129" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1601106046146">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -137,48 +172,52 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="321" y="75" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1280.680@0.0.1280.680" timestamp="1602061053607" />
-    <state x="371" y="107" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603438759437">
+    <state x="371" y="107" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1604738599837">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="371" y="107" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720@0.0.1280.720" timestamp="1603438759437" />
+    <state x="371" y="107" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720@0.0.1280.720" timestamp="1604738599837" />
     <state x="491" y="49" key="FileChooserDialogImpl" timestamp="1603281762848">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="491" y="46" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1601988118844" />
     <state x="491" y="49" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1603281762848" />
-    <state width="618" height="163" key="GridCell.Tab.0.bottom" timestamp="1604048598207">
+    <state width="616" height="134" key="GridCell.Tab.0.bottom" timestamp="1604745481489">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="618" height="151" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602061068315" />
-    <state width="618" height="163" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1604048598207" />
+    <state width="616" height="134" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1604745481489" />
     <state width="1877" height="163" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1601273726558" />
-    <state width="618" height="163" key="GridCell.Tab.0.center" timestamp="1604048598207">
+    <state width="616" height="134" key="GridCell.Tab.0.center" timestamp="1604745481489">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="618" height="151" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1602061068315" />
-    <state width="618" height="163" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1604048598207" />
+    <state width="616" height="134" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1604745481489" />
     <state width="1877" height="163" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1601273726558" />
-    <state width="618" height="163" key="GridCell.Tab.0.left" timestamp="1604048598207">
+    <state width="616" height="134" key="GridCell.Tab.0.left" timestamp="1604745481489">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="618" height="151" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1602061068315" />
-    <state width="618" height="163" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1604048598207" />
+    <state width="616" height="134" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1604745481489" />
     <state width="1877" height="163" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1601273726558" />
-    <state width="618" height="163" key="GridCell.Tab.0.right" timestamp="1604048598207">
+    <state width="616" height="134" key="GridCell.Tab.0.right" timestamp="1604745481489">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state width="618" height="151" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1602061068315" />
-    <state width="618" height="163" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1604048598207" />
+    <state width="616" height="134" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1604745481489" />
     <state width="1877" height="163" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1601273726558" />
-    <state x="142" y="0" width="996" height="712" key="SettingsEditor" timestamp="1603435539369">
+    <state x="132" y="8" width="996" height="712" key="SettingsEditor" timestamp="1604736185700">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1601106163774" />
-    <state x="142" y="0" width="996" height="712" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1603435539369" />
+    <state x="132" y="8" width="996" height="712" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1604736185700" />
     <state x="28" y="1" key="new project wizard" timestamp="1601107993416">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="28" y="1" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1601107993416" />
+    <state x="297" y="161" key="run.anything.popup" timestamp="1604734566661">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="297" y="161" key="run.anything.popup/0.0.1280.720@0.0.1280.720" timestamp="1604734566661" />
     <state x="433" y="219" key="scopes" timestamp="1603290747861">
       <screen x="0" y="0" width="1280" height="720" />
     </state>

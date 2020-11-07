@@ -2,6 +2,20 @@
   <library name="Dart Packages" type="DartPackagesLibraryType">
     <properties>
       <option name="packageNameToDirsMap">
+        <entry key="analyzer">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/analyzer-0.36.4/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="args">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/args-1.6.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="asn1lib">
           <value>
             <list>
@@ -37,6 +51,62 @@
             </list>
           </value>
         </entry>
+        <entry key="build">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/build-1.2.2/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="build_config">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_config-0.4.2/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="build_daemon">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_daemon-2.1.4/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="build_resolvers">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_resolvers-1.2.1/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="build_runner">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_runner-1.9.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="build_runner_core">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_runner_core-5.1.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="built_collection">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/built_collection-4.3.2/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="built_value">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/built_value-7.1.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="cached_network_image">
           <value>
             <list>
@@ -58,6 +128,13 @@
             </list>
           </value>
         </entry>
+        <entry key="checked_yaml">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/checked_yaml-1.0.2/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="circular_profile_avatar">
           <value>
             <list>
@@ -69,6 +146,13 @@
           <value>
             <list>
               <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/clock-1.0.1/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="code_builder">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/code_builder-3.5.0/lib" />
             </list>
           </value>
         </entry>
@@ -93,10 +177,24 @@
             </list>
           </value>
         </entry>
+        <entry key="csslib">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/csslib-0.16.2/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="cupertino_icons">
           <value>
             <list>
               <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/cupertino_icons-1.0.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="dart_style">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/dart_style-1.2.9/lib" />
             </list>
           </value>
         </entry>
@@ -146,6 +244,13 @@
           <value>
             <list>
               <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/file-5.2.1/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="fixnum">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/fixnum-0.10.11/lib" />
             </list>
           </value>
         </entry>
@@ -205,6 +310,13 @@
             </list>
           </value>
         </entry>
+        <entry key="flutter_plugin_android_lifecycle">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_plugin_android_lifecycle-1.0.11/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="flutter_screenutil">
           <value>
             <list>
@@ -254,10 +366,38 @@
             </list>
           </value>
         </entry>
+        <entry key="front_end">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/front_end-0.1.19/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="glob">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/glob-1.2.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="graphs">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/graphs-0.2.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="grouped_buttons">
           <value>
             <list>
               <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/grouped_buttons-1.0.4/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="html">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/html-0.14.0+4/lib" />
             </list>
           </value>
         </entry>
@@ -268,10 +408,31 @@
             </list>
           </value>
         </entry>
+        <entry key="http_multi_server">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/http_multi_server-2.2.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="http_parser">
           <value>
             <list>
               <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/http_parser-3.1.4/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="image_picker">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/image_picker-0.6.7+12/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="image_picker_platform_interface">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/image_picker_platform_interface-1.1.1/lib" />
             </list>
           </value>
         </entry>
@@ -282,10 +443,38 @@
             </list>
           </value>
         </entry>
+        <entry key="io">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/io-0.3.4/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="js">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/js-0.6.2/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="json_annotation">
           <value>
             <list>
-              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/json_annotation-3.0.1/lib" />
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/json_annotation-2.3.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="json_serializable">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/json_serializable-2.3.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="kernel">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/kernel-0.3.19/lib" />
             </list>
           </value>
         </entry>
@@ -310,6 +499,13 @@
             </list>
           </value>
         </entry>
+        <entry key="mime">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/mime-0.9.7/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="nested">
           <value>
             <list>
@@ -317,10 +513,38 @@
             </list>
           </value>
         </entry>
+        <entry key="node_interop">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/node_interop-1.2.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="node_io">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/node_io-1.1.1/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="octo_image">
           <value>
             <list>
               <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/octo_image-0.3.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="package_config">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/package_config-1.9.3/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="package_resolver">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/package_resolver-1.0.10/lib" />
             </list>
           </value>
         </entry>
@@ -408,6 +632,13 @@
             </list>
           </value>
         </entry>
+        <entry key="pool">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/pool-1.4.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="process">
           <value>
             <list>
@@ -419,6 +650,27 @@
           <value>
             <list>
               <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/provider-4.3.2+2/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="pub_semver">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/pub_semver-1.4.4/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="pubspec_parse">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/pubspec_parse-0.1.5/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="quiver">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/quiver-2.1.5/lib" />
             </list>
           </value>
         </entry>
@@ -478,6 +730,20 @@
             </list>
           </value>
         </entry>
+        <entry key="shelf">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/shelf-0.7.9/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="shelf_web_socket">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/shelf_web_socket-0.2.3/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="sky_engine">
           <value>
             <list>
@@ -496,6 +762,13 @@
           <value>
             <list>
               <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/smart_select-4.3.2/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="source_gen">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/source_gen-0.9.4+4/lib" />
             </list>
           </value>
         </entry>
@@ -534,6 +807,13 @@
             </list>
           </value>
         </entry>
+        <entry key="stream_transform">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/stream_transform-1.2.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="string_scanner">
           <value>
             <list>
@@ -559,6 +839,13 @@
           <value>
             <list>
               <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/test_api-0.2.17/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="timing">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/timing-0.1.1+2/lib" />
             </list>
           </value>
         </entry>
@@ -618,6 +905,20 @@
             </list>
           </value>
         </entry>
+        <entry key="watcher">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/watcher-0.9.7+15/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="web_socket_channel">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/web_socket_channel-1.1.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="win32">
           <value>
             <list>
@@ -632,23 +933,44 @@
             </list>
           </value>
         </entry>
+        <entry key="yaml">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/yaml-2.2.1/lib" />
+            </list>
+          </value>
+        </entry>
       </option>
     </properties>
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/analyzer-0.36.4/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/args-1.6.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/asn1lib-0.6.5/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/async-2.4.2/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/audioplayers-0.13.7/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/basic_utils-2.6.3/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/boolean_selector-2.0.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/build-1.2.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_config-0.4.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_daemon-2.1.4/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_resolvers-1.2.1/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_runner-1.9.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/build_runner_core-5.1.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/built_collection-4.3.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/built_value-7.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/cached_network_image-2.3.3/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/characters-1.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/charcode-1.1.3/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/checked_yaml-1.0.2/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/circular_profile_avatar-1.0.7/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/clock-1.0.1/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/code_builder-3.5.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/collection-1.14.13/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/convert-2.1.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/crypto-2.1.5/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/csslib-0.16.2/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/cupertino_icons-1.0.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/dart_style-1.2.9/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/day_night_time_picker-0.3.0+2/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/day_picker-1.0.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/easy_dialog-1.0.5/lib" />
@@ -656,6 +978,7 @@
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/fake_async-1.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/ffi-0.1.3/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/file-5.2.1/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/fixnum-0.10.11/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_animation_progress_bar-1.0.6/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_blurhash-0.5.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_cache_manager-2.0.0/lib" />
@@ -663,21 +986,38 @@
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_gradient_colors-1.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_material_color_picker-1.0.5/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_page_indicator-0.0.3/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_plugin_android_lifecycle-1.0.11/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_screenutil-1.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_settings_screens-0.2.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_slidable-0.5.7/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_swiper-1.1.6/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/font_awesome_flutter-8.10.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/front_end-0.1.19/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/glob-1.2.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/graphs-0.2.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/grouped_buttons-1.0.4/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/html-0.14.0+4/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/http-0.12.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/http_multi_server-2.2.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/http_parser-3.1.4/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/image_picker-0.6.7+12/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/image_picker_platform_interface-1.1.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/intl-0.16.1/lib" />
-      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/json_annotation-3.0.1/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/io-0.3.4/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/js-0.6.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/json_annotation-2.3.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/json_serializable-2.3.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/kernel-0.3.19/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/logging-0.11.4/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/matcher-0.12.8/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/meta-1.1.8/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/mime-0.9.7/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/nested-0.0.4/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/node_interop-1.2.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/node_io-1.1.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/octo_image-0.3.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/package_config-1.9.3/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/package_resolver-1.0.10/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/path-1.7.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/path_provider-1.6.22/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/path_provider_linux-0.0.1+2/lib" />
@@ -690,8 +1030,12 @@
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/platform-2.2.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/plugin_platform_interface-1.0.3/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/pointycastle-1.0.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/pool-1.4.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/process-3.0.13/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/provider-4.3.2+2/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/pub_semver-1.4.4/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/pubspec_parse-0.1.5/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/quiver-2.1.5/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/random_string-2.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/rxdart-0.24.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/shared_preferences-0.5.12+2/lib" />
@@ -700,17 +1044,22 @@
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/shared_preferences_platform_interface-1.0.4/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/shared_preferences_web-0.1.2+7/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/shared_preferences_windows-0.0.1+1/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/shelf-0.7.9/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/shelf_web_socket-0.2.3/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/slide_countdown_clock-1.0.3/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/smart_select-4.3.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/source_gen-0.9.4+4/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/source_span-1.7.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/sqflite-1.3.1+2/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/sqflite_common-1.0.2+1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/stack_trace-1.9.5/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/stream_channel-2.0.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/stream_transform-1.2.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/string_scanner-1.0.5/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/synchronized-2.2.0+2/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/term_glyph-1.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/test_api-0.2.17/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/timing-0.1.1+2/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/toggle_switch-0.1.8/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/transformer_page_view-0.1.6/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/typed_data-1.2.0/lib" />
@@ -719,8 +1068,11 @@
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/vector_math-2.0.8/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/vibrate-0.0.4/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/vin_decoder-0.1.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/watcher-0.9.7+15/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/web_socket_channel-1.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/win32-1.7.3/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/xdg_directories-0.1.0/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/yaml-2.2.1/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/bin/cache/pkg/sky_engine/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/packages/flutter/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../WebDev/flutter_windows_1.20.4-stable/flutter/packages/flutter_test/lib" />

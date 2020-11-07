@@ -56,8 +56,10 @@ dependencies:
   path_provider: ^1.6.22
   vibrate: ^0.0.4
 dev_dependencies:
+  build_runner: ^1.9.0
   flutter_test:
     sdk: flutter
+  json_serializable: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -97,6 +99,9 @@ flutter:
     - assets/audios/audio1.mp3
     - assets/audios/audio2.mp3
     - assets/audios/audio3.mp3
+    - jsons/profile.json
+    - jsons/settings.json
+    - jsons/user.json
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

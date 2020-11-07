@@ -7,11 +7,12 @@ enum soundSettingOption{
 
 class SettingInfo with ChangeNotifier{
     SharedPreferences storage;
-    soundSettingOption soundSetting=soundSettingOption.systemPreferences;
-    List<String> taskSetting=['photo','math','sing','game'];
-    void init()async{
+    soundSettingOption soundSetting;
+    List<String> taskSetting;
+    Future<void> init()async{
       storage = await SharedPreferences.getInstance();
-      soundSetting = soundSettingOption.values[storage.getInt('soundSetting')];
+      int index = storage.getInt('soundSetting');
+      soundSetting = (index == null ?soundSettingOption.systemPreferences: soundSettingOption.values[index]);
       taskSetting = storage.getStringList('taskSetting');
     }
     void setSound(soundSettingOption _soundSetting){
@@ -23,5 +24,6 @@ class SettingInfo with ChangeNotifier{
     void setTask(List<String> _taskSetting){
       this.taskSetting=_taskSetting;
       storage.setStringList('taskSetting', _taskSetting);
+      notifyListeners();
     }
 }

@@ -1,4 +1,4 @@
-import 'package:demo5/Class/UserState.dart';
+import 'package:demo5/states/index.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -6,8 +6,8 @@ class NameSettingView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
-    var userState = context.watch<UserState>();
-    TextEditingController ctrl = new TextEditingController(text:userState.name);
+    var userModel = context.watch<UserModel>();
+    TextEditingController ctrl = new TextEditingController(text:userModel.name);
 
     // TODO: implement build
     return Scaffold(

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
@@ -24,6 +25,7 @@ public class AlarmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_alarm);
         mp = new MediaPlayer();
+
         AssetFileDescriptor file = getResources().openRawResourceFd(R.raw.audio1);
         try {
             mp.setDataSource(file.getFileDescriptor(), file.getStartOffset(),
@@ -101,7 +103,6 @@ public class AlarmActivity extends AppCompatActivity {
         // 获取系统的闹钟服务
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         // 触发闹钟的时间（毫秒）
-        long triggerTime = System.currentTimeMillis() + 10000;
         Intent intent = new Intent(this, RepeatingAlarm.class);
         intent.setAction("com.gcc.alarm");
         PendingIntent op = PendingIntent.getBroadcast(this, 0, intent, 0);
@@ -110,7 +111,7 @@ public class AlarmActivity extends AppCompatActivity {
         c.setTimeInMillis(System.currentTimeMillis());
         c.set(Calendar.HOUR, 17);
         c.set(Calendar.MINUTE, 10);
-        am.set(AlarmManager.RTC, c.getTimeInMillis(), op);
+        am.set(AlarmManager.RTC, c.getTimeInMillis()-3000, op);
         // 指定时间重复执行闹钟
         // am.setRepeating(AlarmManager.RTC,triggerTime,2000,op);
     }

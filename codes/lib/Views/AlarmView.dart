@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 
 
 List<AlarmInfo> _alarmList = [
-  AlarmInfo("起床", ["周一","周二","周三","周四","周五"],TimeOfDay(hour: 6, minute: 30),"算术题","二狗汪汪叫",true,true),
+  AlarmInfo("起床", ["周一","周二","周三","周四","周五"],TimeOfDay(hour: 6, minute: 30),"算术题","二狗汪汪叫",true,false),
   AlarmInfo("班级会议", ["周三"],TimeOfDay(hour: 21, minute: 30),"随机任务","Audio 3",true,false),
   AlarmInfo("高数作业DDL", ["周日"],TimeOfDay(hour: 23, minute: 30),"小游戏","Audio 2",true,false),
   AlarmInfo("起床", ["周一","周二"],TimeOfDay(hour: 7, minute: 30),"算术题","Audio 1",true,false),

@@ -1,6 +1,5 @@
 package com.example.demo5;
 
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -23,10 +22,10 @@ import android.util.Log;
 import com.example.demo5.ProcessLock.ProcessMonitorService;
 
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.TimeZone;
 
 public class MainActivity extends FlutterActivity {
-    private Intent serviceIntent;
     private Intent alarmIntent;
     private MethodChannel methodChannel;
 
@@ -34,7 +33,6 @@ public class MainActivity extends FlutterActivity {
         super.onCreate(savedInstanceState);
         String CHANNEL1 = "Channel";
         Intent intent = new Intent(MainActivity.this, ProcessMonitorService.class);
-        serviceIntent = new Intent(MainActivity.this, MyService.class);
         alarmIntent = new Intent(MainActivity.this,AlarmActivity.class);
         new MethodChannel(getFlutterEngine().getDartExecutor().getBinaryMessenger(), CHANNEL1).setMethodCallHandler(new MethodCallHandler() {
             @Override
@@ -69,7 +67,6 @@ public class MainActivity extends FlutterActivity {
   @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopService(serviceIntent);
     }
 
 
@@ -91,7 +88,7 @@ public class MainActivity extends FlutterActivity {
         c.set(Calendar.MINUTE, minute);
         c.set(Calendar.SECOND,0);
 
-        am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis()-3000, op);
+        am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis()-30000, op);
         // 指定时间重复执行闹钟
         // am.setRepeating(AlarmManager.RTC,triggerTime,2000,op);
     }
@@ -99,7 +96,6 @@ public class MainActivity extends FlutterActivity {
     private void cancelalarm(int hour,int minute){
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         // 触发闹钟的时间（毫秒）
-//        long triggerTime = System.currentTimeMillis() + 10000;
         Intent intent = new Intent(this, RepeatingAlarm.class);
         intent.setAction("com.gcc.alarm");
         String uri="content://calendar/calendar_alerts/"+String.valueOf(hour)+":"+String.valueOf(minute);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_select/smart_select.dart';
 import 'package:provider/provider.dart';
-import 'package:demo5/Class/UserState.dart';
+import 'package:demo5/states/index.dart';
 
 class GenderSettingView extends StatefulWidget{
   @override
@@ -18,7 +18,7 @@ class _GenderSettingViewState extends State<GenderSettingView>{
 
   @override
   Widget build(BuildContext context) {
-    var userState = context.watch<UserState>();
+    var userModel = context.watch<UserModel>();
     return Scaffold(
       appBar:AppBar(
         title: Text('修改性别'),
@@ -27,13 +27,13 @@ class _GenderSettingViewState extends State<GenderSettingView>{
             child: Text('保存'),
             textColor: Colors.white,
             onPressed:(){
-              userState.setGender(genderValue);
+              userModel.gender = genderValue;
               Navigator.pop(context);
             },
           )
         ],
       ),
-      body: GenderSelect(callback:(val)=>onChange(val),value:userState.gender)
+      body: GenderSelect(callback:(val)=>onChange(val),value:userModel.gender)
     );
   }
 }

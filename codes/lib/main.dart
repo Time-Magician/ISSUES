@@ -1,61 +1,51 @@
 import 'package:demo5/Views/LoginView.dart';
-import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
+import 'index.dart';
 import 'package:provider/provider.dart';
-import 'Views/AlarmSettingView.dart';
-import 'Views/BottomNavigatorView.dart';
-import 'Views/UserDetailView.dart';
-import 'Views/DiplomasView.dart';
-import 'Views/FriendsView.dart';
-import 'Views/FriendsView.dart';
-import 'Views/StudyView.dart';
-import 'Views/StudyRoomView.dart';
-import 'Views/DetailSettingView/GenderSetting.dart';
-import 'Views/DetailSettingView/UserNameSettingView.dart';
-import 'Views/DetailSettingView/NameSettingView.dart';
-import 'Views/DetailSettingView/EmailSettingView.dart';
-import 'Views/DetailSettingView/PasswordSettingView.dart';
+import 'Views/index.dart';
+import 'Views/DetailSettingView/index.dart';
 import 'Views/Missions/Camera.dart';
-import 'Class/UserState.dart';
+import 'states/index.dart';
+import 'common/SettingInfo.dart';
+import 'package:flutter_settings_screens/flutter_settings_screens.dart'
+    as flutterSettingsScreens;
 
-void main() {
-  runApp(
-      ChangeNotifierProvider(
-        create: (context) => UserState(),
+void main() async {
+  await flutterSettingsScreens.Settings.init();
+  Global.init().then((e)=>
+      runApp(MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => UserModel()),
+          ChangeNotifierProvider(create: (_) => SettingsModel()),
+        ],
         child: new MyApp(),
-      )
-
+      ))
   );
+
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: '闹钟',
-      theme: new ThemeData(
-        primaryColor: Colors.indigo,
-      ),
-      routes:{
-        "StudyRoom":(context) => StudyRoomWidget(),
-        "Diplomas":(context) => DiplomasWidget(),
-        "AlarmSetting":(context) => AlarmSettingWidget(),
-        "HomePage":(context) => BottomNavigationWidget(),
-        "UserDetail":(context) => UserDetailView(),
-        "FriendPage":(context)=>FriendsView(),
-        "UserNameSetting":(context)=>UserNameSettingView(),
-        "NameSetting":(context)=>NameSettingView(),
-        "EmailSetting":(context)=>EmailSettingView(),
-        "PasswordSetting":(context)=>PasswordSettingView(),
-        "GenderSetting":(context)=>GenderSettingView(),
-        "Camera":(context)=>Camera(),
-        "/":(context) => LoginView(),
-
-
-      }
-    );
+        title: '闹钟',
+        theme: new ThemeData(
+          primaryColor: Colors.indigo,
+        ),
+        routes: {
+          "StudyRoom": (context) => StudyRoomWidget(),
+          "Diplomas": (context) => DiplomasWidget(),
+          "AlarmSetting": (context) => AlarmSettingWidget(),
+          "HomePage": (context) => BottomNavigationWidget(),
+          "UserDetail": (context) => UserDetailView(),
+          "FriendPage": (context) => FriendsView(),
+          "UserNameSetting": (context) => UserNameSettingView(),
+          "NameSetting": (context) => NameSettingView(),
+          "EmailSetting": (context) => EmailSettingView(),
+          "PasswordSetting": (context) => PasswordSettingView(),
+          "GenderSetting": (context) => GenderSettingView(),
+          "AppSetting": (context) => AppSettingView(),
+          "Camera": (context) => Camera(),
+          "/": (context) => LoginView(),
+        });
   }
 }
-
-
-  

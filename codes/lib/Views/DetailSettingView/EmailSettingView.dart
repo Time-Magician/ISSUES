@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:demo5/Class/UserState.dart';
+import 'package:demo5/states/index.dart';
 import 'package:provider/provider.dart';
 import 'package:validators/validators.dart';
 
@@ -8,8 +8,8 @@ class EmailSettingView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
-    var userState = context.watch<UserState>();
-    TextEditingController ctrl = new TextEditingController(text: userState.email);
+    var userModel = context.watch<UserModel>();
+    TextEditingController ctrl = new TextEditingController(text: userModel.email);
     String emailValidator(String val){
       if(isNull(val))
         return '你的邮箱地址不能为空';
@@ -27,7 +27,7 @@ class EmailSettingView extends StatelessWidget{
             textColor: Colors.white,
             onPressed:(){
               if(_fieldKey.currentState.validate()){
-                userState.setEmail(ctrl.text);
+                userModel.email = ctrl.text;
                 Navigator.pop(context);
               }
             },

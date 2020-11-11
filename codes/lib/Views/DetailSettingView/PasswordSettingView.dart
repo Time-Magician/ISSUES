@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
+import 'package:demo5/states/index.dart';
 
 class PasswordSettingView extends StatefulWidget{
   _PasswordSettingViewState createState() => _PasswordSettingViewState();
@@ -13,8 +14,8 @@ class _PasswordSettingViewState extends State<PasswordSettingView>{
   bool oldPwdVisible=false;
   bool newPwdVisible=false;
   bool newPwdCfmVisible=false;
-
   final _formKey=GlobalKey<FormState>();
+
   String newPwdValidator(String val){
     if(!isLength(val, 6,20)&&!isNull(val))
       return "你的密码长度应该在6-20位之间";

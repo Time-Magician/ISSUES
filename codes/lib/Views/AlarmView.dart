@@ -8,12 +8,12 @@ import 'package:flutter/services.dart';
 
 
 List<AlarmInfo> _alarmList = [
-  AlarmInfo("起床", ["周一","周二","周三","周四","周五"],TimeOfDay(hour: 6, minute: 30),"算术题","二狗汪汪叫",true,true),
+  AlarmInfo("起床", ["周一","周二","周三","周四","周五"],TimeOfDay(hour: 6, minute: 30),"算术题","Audio 1",true,false),
   AlarmInfo("班级会议", ["周三"],TimeOfDay(hour: 21, minute: 30),"随机任务","Audio 3",true,false),
-  AlarmInfo("高数作业DDL", ["周日"],TimeOfDay(hour: 23, minute: 30),"小游戏","Audio 2",true,false),
-  AlarmInfo("起床", ["周一","周二"],TimeOfDay(hour: 7, minute: 30),"算术题","Audio 1",true,false),
-  AlarmInfo("起床", ["周一","周二"],TimeOfDay(hour: 8, minute: 30),"算术题","二狗汪汪叫",true,false)
+  AlarmInfo("高数作业DDL", ["周日"],TimeOfDay(hour: 23, minute: 30),"小游戏","Audio 2",true,false)
 ];
+var methodChannel = MethodChannel("Channel");
+
 
 class AlarmView extends StatefulWidget {
   @override
@@ -23,9 +23,21 @@ class AlarmView extends StatefulWidget {
 class AlarmList extends State<AlarmView> {
   int alarmCount;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // ignore: missing_return
+    methodChannel.setMethodCallHandler((call) {
+      if(call.method == "test")
+        print(call.arguments);
+        Navigator.pushNamed(context, "Diplomas");
+    });
+  }
+
   void addAlarm() async {
     final result = await Navigator.pushNamed(context,"AlarmSetting",arguments:
-      AlarmInfo("闹钟", ["周一"], TimeOfDay.now(), "算术题", "二狗汪汪叫", true, true),
+      AlarmInfo("闹钟", ["周一"], TimeOfDay.now(), "算术题", "Audio 2", true, false),
     );
 
     if(result.runtimeType != AlarmInfo) return;
@@ -106,7 +118,8 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     });
     int hour= _alarmList[widget.alarmIndex].time.hour;
     int minute=_alarmList[widget.alarmIndex].time.minute;
-    setAlarm(hour,minute,isOpen);
+    String musicName=_alarmList[widget.alarmIndex].audio;
+    setAlarm(hour,minute,isOpen,musicName);
   }
 
   String timeToString(TimeOfDay time){
@@ -223,14 +236,16 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     });
   }
 
-  void setAlarm(int hour,int minute,bool isOpen) async{
+  void setAlarm(int hour,int minute,bool isOpen,String musicName) async{
     if(Platform.isAndroid) {
-      var methodChannel = MethodChannel("Channel");
+
+      // ignore: missing_return
+
       if(isOpen){
-      String data = await methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute});
+      String data = await methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute,"musicName":musicName});
       print("data: $data");
       }else{
-        String data = await methodChannel.invokeMethod("cancelAlarm",{"hour":hour,"minute":minute});
+        String data = await methodChannel.invokeMethod("cancelAlarm",{"hour":hour,"minute":minute,"musicName":musicName});
         print("data: $data");
       }
     }

@@ -1,6 +1,5 @@
 package com.example.demo5;
 
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -17,30 +16,28 @@ import io.flutter.plugin.common.MethodChannel.Result;
 
 import android.content.Intent;
 import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
-import android.util.Log;
-
 import com.example.demo5.ProcessLock.ProcessMonitorService;
 
 import java.util.Calendar;
 import java.util.TimeZone;
 
-public class MainActivity extends FlutterActivity {
-    private Intent serviceIntent;
-    private Intent alarmIntent;
+public class MainActivity extends FlutterActivity{
     private MethodChannel methodChannel;
+    public static MainActivity instance = null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        instance = this;
         String CHANNEL1 = "Channel";
 
-        serviceIntent = new Intent(MainActivity.this, ProcessMonitorService.class);
-        alarmIntent = new Intent(MainActivity.this,AlarmActivity.class);
-        new MethodChannel(getFlutterEngine().getDartExecutor().getBinaryMessenger(), CHANNEL1).setMethodCallHandler(new MethodCallHandler() {
+        Intent intent = new Intent(MainActivity.this, ProcessMonitorService.class);
+        methodChannel = new MethodChannel(getFlutterEngine().getDartExecutor().getBinaryMessenger(), CHANNEL1);
+        methodChannel.setMethodCallHandler(new MethodCallHandler() {
             @Override
             public void onMethodCall(MethodCall call, Result result) {
                 if (call.method.equals("startStudy")) {
-
                     if(VERSION.SDK_INT >= Build.VERSION_CODES.O)
                         MainActivity.this.startForegroundService(serviceIntent);
                     else
@@ -53,27 +50,31 @@ public class MainActivity extends FlutterActivity {
                 } else if(call.method.equals("startAlarm")){
                     int hour = call.argument("hour");
                     int minute = call.argument("minute");
-                    alarm(hour,minute);
-                }
-                else if(call.method.equals("cancelAlarm")){
+                    String musicName=call.argument("musicName");
+                    alarm(hour,minute,musicName);
+                } else if(call.method.equals("cancelAlarm")){
                     int hour =call.argument("hour");
                     int minute = call.argument("minute");
-                    cancelalarm(hour,minute);
+                    cancelAlarm(hour,minute);
                 }
-              else {
+                else {
                     result.notImplemented();
                 }
             }
         });
     }
-  @Override
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopService(serviceIntent);
     }
 
 
-    private void alarm(int hour,int minute) {
+    public void music(String musicName){
+        methodChannel.invokeMethod("test",musicName);
+    }
+
+    private void alarm(int hour,int minute,String musicName) {
         // 获取系统的闹钟服务
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         // 触发闹钟的时间（毫秒）
@@ -81,31 +82,35 @@ public class MainActivity extends FlutterActivity {
         intent.setAction("com.gcc.alarm");
         String uri="content://calendar/calendar_alerts/"+String.valueOf(hour)+":"+String.valueOf(minute);
         intent.setData(Uri.parse(uri));
+        intent.putExtra("musicName",musicName);
 
         PendingIntent op = PendingIntent.getBroadcast(this, 0, intent, 0);
-        // 启动一次只会执行一次的闹钟
+
         Calendar c = Calendar.getInstance(TimeZone.getTimeZone("GMT+8"));
         c.setTimeInMillis(System.currentTimeMillis());
-
         c.set(Calendar.HOUR_OF_DAY, hour);
         c.set(Calendar.MINUTE, minute);
         c.set(Calendar.SECOND,0);
 
-        am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis()-3000, op);
-        // 指定时间重复执行闹钟
-        // am.setRepeating(AlarmManager.RTC,triggerTime,2000,op);
+        if(System.currentTimeMillis()>c.getTimeInMillis()){
+            am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis()+86400000, op);
+        }
+        else{
+            am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), op);
+        }
+        System.out.println("Set Alarm:"+String.valueOf(hour)+":"+String.valueOf(minute));
     }
 
-    private void cancelalarm(int hour,int minute){
+    private void cancelAlarm(int hour,int minute){
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        // 触发闹钟的时间（毫秒）
-//        long triggerTime = System.currentTimeMillis() + 10000;
         Intent intent = new Intent(this, RepeatingAlarm.class);
         intent.setAction("com.gcc.alarm");
         String uri="content://calendar/calendar_alerts/"+String.valueOf(hour)+":"+String.valueOf(minute);
         intent.setData(Uri.parse(uri));
+
         PendingIntent op = PendingIntent.getBroadcast(this, 0, intent, 0);
-        // 启动一次只会执行一次的闹钟
+
         am.cancel(op);
+        System.out.println("Cancel Alarm:"+String.valueOf(hour)+":"+String.valueOf(minute));
     }
 }

@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import '../Class/AlarmInfo.dart';
 import 'package:easy_dialog/easy_dialog.dart';
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
+import '../common/global.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 
@@ -12,7 +15,10 @@ List<AlarmInfo> _alarmList = [
   AlarmInfo("班级会议", ["周三"],TimeOfDay(hour: 21, minute: 30),"随机任务","Audio 3",true,false),
   AlarmInfo("高数作业DDL", ["周日"],TimeOfDay(hour: 23, minute: 30),"小游戏","Audio 2",true,false)
 ];
-var methodChannel = MethodChannel("Channel");
+
+AudioCache audioPlayer;
+AudioPlayer advancedPlayer1 = new AudioPlayer();
+AudioCache audioCache1= new AudioCache(prefix: "audios/",fixedPlayer: advancedPlayer1);
 
 
 class AlarmView extends StatefulWidget {
@@ -27,11 +33,13 @@ class AlarmList extends State<AlarmView> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    audioCache1.load('audio3.mp3');
     // ignore: missing_return
-    methodChannel.setMethodCallHandler((call) {
+    Global.methodChannel.setMethodCallHandler((call) {
       if(call.method == "test")
         print(call.arguments);
-        Navigator.pushNamed(context, "Diplomas");
+        audioCache1.play('audio3.mp3');
+        Navigator.pushNamed(context, "Calculator");
     });
   }
 
@@ -242,10 +250,10 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
       // ignore: missing_return
 
       if(isOpen){
-      String data = await methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute,"musicName":musicName});
+      String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute,"musicName":musicName});
       print("data: $data");
       }else{
-        String data = await methodChannel.invokeMethod("cancelAlarm",{"hour":hour,"minute":minute,"musicName":musicName});
+        String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":hour,"minute":minute,"musicName":musicName});
         print("data: $data");
       }
     }

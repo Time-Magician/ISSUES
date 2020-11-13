@@ -8,6 +8,7 @@ import 'package:demo5/models/Profile.dart';
 class Global {
   static SharedPreferences _prefs;
   static Profile profile;
+  static var methodChannel;
 
   static Future init() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +34,7 @@ class Global {
         profile.settings = Settings.fromJson(tmp);
       });
     }
+    methodChannel = MethodChannel("Channel");
   }
   static saveProfile() =>
       _prefs.setString("profile", jsonEncode(profile.toJson()));

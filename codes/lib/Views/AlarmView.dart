@@ -16,10 +16,6 @@ List<AlarmInfo> _alarmList = [
   AlarmInfo("高数作业DDL", ["周日"],TimeOfDay(hour: 23, minute: 30),"小游戏","Audio 2",true,false)
 ];
 
-AudioCache audioPlayer;
-AudioPlayer advancedPlayer1 = new AudioPlayer();
-AudioCache audioCache1= new AudioCache(prefix: "audios/",fixedPlayer: advancedPlayer1);
-
 
 class AlarmView extends StatefulWidget {
   @override
@@ -33,12 +29,12 @@ class AlarmList extends State<AlarmView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    audioCache1.load('audio3.mp3');
+    Global.audioCache1.load('audio3.mp3');
     // ignore: missing_return
     Global.methodChannel.setMethodCallHandler((call) {
       if(call.method == "test")
         print(call.arguments);
-        audioCache1.play('audio3.mp3');
+        Global.audioCache1.play('audio3.mp3');
         Navigator.pushNamed(context, "Calculator");
     });
   }

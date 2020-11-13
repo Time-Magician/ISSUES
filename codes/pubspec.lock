@@ -667,6 +667,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.5"
+  quiz_view:
+    dependency: "direct main"
+    description:
+      name: quiz_view
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.3"
   random_string:
     dependency: transitive
     description:

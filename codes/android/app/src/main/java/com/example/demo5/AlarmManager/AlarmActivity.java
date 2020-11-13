@@ -1,7 +1,6 @@
-package com.example.demo5;
+package com.example.demo5.AlarmManager;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -11,6 +10,9 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+
+import com.example.demo5.MainActivity;
+import com.example.demo5.R;
 
 import java.util.Calendar;
 
@@ -25,7 +27,8 @@ public class AlarmActivity extends FlutterActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_alarm);
-//        MainActivity.instance.testFun();
+        String musicName=this.getIntent().getStringExtra("musicName");
+        MainActivity.instance.music(musicName);
         finish();
 //        mp = new MediaPlayer();
 //        String musicName=this.getIntent().getStringExtra("musicName")+".mp3";

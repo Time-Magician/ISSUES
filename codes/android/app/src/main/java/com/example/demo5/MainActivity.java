@@ -16,12 +16,15 @@ import io.flutter.plugin.common.MethodChannel.Result;
 
 import android.content.Intent;
 import android.os.Build.VERSION;
+
+import com.example.demo5.AlarmManager.RepeatingAlarm;
 import com.example.demo5.ProcessLock.ProcessMonitorService;
 
 import java.util.Calendar;
 import java.util.TimeZone;
 
 public class MainActivity extends FlutterActivity{
+    private Intent serviceIntent;
     private MethodChannel methodChannel;
     public static MainActivity instance = null;
 
@@ -31,6 +34,7 @@ public class MainActivity extends FlutterActivity{
 
         instance = this;
         String CHANNEL1 = "Channel";
+        serviceIntent = new Intent(MainActivity.this, ProcessMonitorService.class);
 
         Intent intent = new Intent(MainActivity.this, ProcessMonitorService.class);
         methodChannel = new MethodChannel(getFlutterEngine().getDartExecutor().getBinaryMessenger(), CHANNEL1);

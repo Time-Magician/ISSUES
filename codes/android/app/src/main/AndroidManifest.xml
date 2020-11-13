@@ -61,11 +61,14 @@
         </activity>
         <activity
             android:name="com.example.demo5.ProcessLock.LockActivity"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />
+        <activity android:name="com.example.demo5.ProcessLock.PermissionActivity"
+            android:launchMode="singleTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            />
         <service
             android:name="com.example.demo5.ProcessLock.ProcessMonitorService"
-            android:stopWithTask="true"
-            ></service>
+            android:stopWithTask="true" />
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
 

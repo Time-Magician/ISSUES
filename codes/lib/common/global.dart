@@ -3,12 +3,16 @@ import 'package:demo5/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:demo5/models/Profile.dart';
 
 class Global {
   static SharedPreferences _prefs;
   static Profile profile;
   static var methodChannel;
+  static AudioPlayer advancedPlayer1 = new AudioPlayer();
+  static AudioCache audioCache1= new AudioCache(prefix: "audios/",fixedPlayer: advancedPlayer1);
 
   static Future init() async {
     WidgetsFlutterBinding.ensureInitialized();

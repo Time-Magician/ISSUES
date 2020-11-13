@@ -11,6 +11,7 @@ import '../Class/StudyInfo.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:vibrate/vibrate.dart';
+import '../common/global.dart';
 
 StudyInfo studyInfo = new StudyInfo(new Frog("陈二狗", 15, 78, false, "", "氢化大学"), false);
 // AudioCache audioPlayer;
@@ -56,6 +57,13 @@ class MyStudyView extends State<StudyView> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    // ignore: missing_return
+    Global.methodChannel.setMethodCallHandler((call) {
+      if(call.method == "test")
+        print(call.arguments);
+      audioCache1.play('audio1.mp3');
+      Navigator.pushNamed(context, "Diplomas");
+    });
   }
 
   @override

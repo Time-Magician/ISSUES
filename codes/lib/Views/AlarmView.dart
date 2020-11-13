@@ -3,17 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import '../Class/AlarmInfo.dart';
 import 'package:easy_dialog/easy_dialog.dart';
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
+import '../common/global.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 
 
 List<AlarmInfo> _alarmList = [
-  AlarmInfo("起床", ["周一","周二","周三","周四","周五"],TimeOfDay(hour: 6, minute: 30),"算术题","二狗汪汪叫",true,true),
+  AlarmInfo("起床", ["周一","周二","周三","周四","周五"],TimeOfDay(hour: 6, minute: 30),"算术题","Audio 1",true,false),
   AlarmInfo("班级会议", ["周三"],TimeOfDay(hour: 21, minute: 30),"随机任务","Audio 3",true,false),
-  AlarmInfo("高数作业DDL", ["周日"],TimeOfDay(hour: 23, minute: 30),"小游戏","Audio 2",true,false),
-  AlarmInfo("起床", ["周一","周二"],TimeOfDay(hour: 7, minute: 30),"算术题","Audio 1",true,false),
-  AlarmInfo("起床", ["周一","周二"],TimeOfDay(hour: 8, minute: 30),"算术题","二狗汪汪叫",true,false)
+  AlarmInfo("高数作业DDL", ["周日"],TimeOfDay(hour: 23, minute: 30),"小游戏","Audio 2",true,false)
 ];
+
+AudioCache audioPlayer;
+AudioPlayer advancedPlayer1 = new AudioPlayer();
+AudioCache audioCache1= new AudioCache(prefix: "audios/",fixedPlayer: advancedPlayer1);
+
 
 class AlarmView extends StatefulWidget {
   @override
@@ -23,9 +29,23 @@ class AlarmView extends StatefulWidget {
 class AlarmList extends State<AlarmView> {
   int alarmCount;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    audioCache1.load('audio3.mp3');
+    // ignore: missing_return
+    Global.methodChannel.setMethodCallHandler((call) {
+      if(call.method == "test")
+        print(call.arguments);
+        audioCache1.play('audio3.mp3');
+        Navigator.pushNamed(context, "Calculator");
+    });
+  }
+
   void addAlarm() async {
     final result = await Navigator.pushNamed(context,"AlarmSetting",arguments:
-      AlarmInfo("闹钟", ["周一"], TimeOfDay.now(), "算术题", "二狗汪汪叫", true, true),
+      AlarmInfo("闹钟", ["周一"], TimeOfDay.now(), "算术题", "Audio 2", true, false),
     );
 
     if(result.runtimeType != AlarmInfo) return;
@@ -106,7 +126,8 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     });
     int hour= _alarmList[widget.alarmIndex].time.hour;
     int minute=_alarmList[widget.alarmIndex].time.minute;
-    setAlarm(hour,minute,isOpen);
+    String musicName=_alarmList[widget.alarmIndex].audio;
+    setAlarm(hour,minute,isOpen,musicName);
   }
 
   String timeToString(TimeOfDay time){
@@ -223,14 +244,16 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     });
   }
 
-  void setAlarm(int hour,int minute,bool isOpen) async{
+  void setAlarm(int hour,int minute,bool isOpen,String musicName) async{
     if(Platform.isAndroid) {
-      var methodChannel = MethodChannel("Channel");
+
+      // ignore: missing_return
+
       if(isOpen){
-      String data = await methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute});
+      String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute,"musicName":musicName});
       print("data: $data");
       }else{
-        String data = await methodChannel.invokeMethod("cancelAlarm",{"hour":hour,"minute":minute});
+        String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":hour,"minute":minute,"musicName":musicName});
         print("data: $data");
       }
     }

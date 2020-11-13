@@ -6,7 +6,6 @@ import 'Views/DetailSettingView/index.dart';
 import 'Views/Missions/Camera.dart';
 import 'Views/Missions/Calculator.dart';
 import 'states/index.dart';
-import 'common/SettingInfo.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart'
     as flutterSettingsScreens;
 

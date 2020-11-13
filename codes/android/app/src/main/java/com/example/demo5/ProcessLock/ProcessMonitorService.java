@@ -1,8 +1,8 @@
 package com.example.demo5.ProcessLock;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -15,18 +15,17 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.provider.Settings;
-//import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.demo5.MainActivity;
 import com.example.demo5.R;
@@ -35,8 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import java.util.concurrent.locks.*;
-
 
 public class ProcessMonitorService extends Service {
 
@@ -146,8 +143,6 @@ public class ProcessMonitorService extends Service {
                 String packageName = packageInfo.packageName;
                 System.out.println("MainActivity.getAppList, packageInfo=" + packageName);
                 forbidApps.add(packageName);
-            } else {
-                // 系统应用
             }
         }
     }
@@ -159,6 +154,14 @@ public class ProcessMonitorService extends Service {
     public void goToAndroidSettings(){
         //打开--com.android.settings
         Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    public void goToAndroidSettings2(){
+        //打开--com.android.settings
+        Uri packageURI = Uri.parse("package:" + "com.example.demo5");
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,packageURI);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
@@ -184,9 +187,13 @@ public class ProcessMonitorService extends Service {
 
             //5.1以上，如果不打开此设置，queryUsageStats获取到的是size为0的list
 //            if(isFirst||(!isNoSwitch())||appList.size() == 0 || appList == null){
+
             if((!isNoSwitch())&&isFirst){
                 isFirst = false;
-                goToAndroidSettings();
+//                goToAndroidSettings();
+                Intent intent = new Intent(getApplicationContext(),PermissionActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }else{
                 SortedMap<Long, UsageStats> mySortedMap = new TreeMap<Long, UsageStats>();
                 for (UsageStats usageStats : appList) {
@@ -235,5 +242,11 @@ public class ProcessMonitorService extends Service {
         }
         return true;
     }
+
+    private boolean haveNotification(){
+        NotificationManagerCompat manager = NotificationManagerCompat.from(this);
+        return manager.areNotificationsEnabled();
+    }
+
 
 }

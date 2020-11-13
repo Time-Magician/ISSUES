@@ -885,7 +885,7 @@ packages:
   vector_math:
     dependency: transitive
     description:
-      name: validators
+      name: vector_math
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.8"
@@ -899,7 +899,7 @@ packages:
   vin_decoder:
     dependency: transitive
     description:
-      name: vector_math
+      name: vin_decoder
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.1.2"

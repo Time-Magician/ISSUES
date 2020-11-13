@@ -323,19 +323,19 @@ class MyBtnBlock extends State<BtnBlock>{
   static const platform = const MethodChannel('Channel');
 
   void pause() {
-    audioCache1.clear('audio3.mp3');
-    advancedPlayer1.release();
+    // audioCache1.clear('audio3.mp3');
+    // advancedPlayer1.release();
   }
 
   void play() {
-    audioCache1.play('audio3.mp3');
+    // audioCache1.play('audio3.mp3');
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    audioCache1.load('audio3.mp3');
+    // audioCache1.load('audio3.mp3');
   }
 
   Future<Null> startLockService() async {
@@ -359,7 +359,6 @@ class MyBtnBlock extends State<BtnBlock>{
   }
 
   void startStudy(){
-    play();
     startLockService();
   }
 
@@ -441,7 +440,6 @@ class MyBtnBlock extends State<BtnBlock>{
             onPressed: () {
               //TODO
               startStudy();
-              //vibrates();
               play();
               widget.onPress();
             },

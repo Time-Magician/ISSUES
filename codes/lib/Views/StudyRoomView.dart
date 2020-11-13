@@ -37,6 +37,13 @@ class StudyRoom extends StatefulWidget{
 }
 
 class MyStudyRoom extends State<StudyRoom>{
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

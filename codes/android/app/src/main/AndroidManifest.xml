@@ -12,23 +12,18 @@
         android:name="io.flutter.app.FlutterApplication"
         android:icon="@mipmap/ic_launcher"
         android:label="demo5">
-        <activity android:name=".AlarmActivity"
+        <activity android:name=".AlarmManager.AlarmActivity"
             android:theme="@style/Theme.AppCompat.Dialog">
         </activity>
 
         <receiver
-            android:name=".RepeatingAlarm"
+            android:name=".AlarmManager.RepeatingAlarm"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.gcc.alarm" />
             </intent-filter>
         </receiver>
-
-        <service
-            android:name=".MyService"
-            android:enabled="true"
-            android:exported="true" />
 
         <activity
             android:name=".MainActivity"

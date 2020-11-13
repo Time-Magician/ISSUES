@@ -14,9 +14,9 @@ import 'package:vibrate/vibrate.dart';
 import '../common/global.dart';
 
 StudyInfo studyInfo = new StudyInfo(new Frog("陈二狗", 15, 78, false, "", "氢化大学"), false);
-// AudioCache audioPlayer;
-// AudioPlayer advancedPlayer1 = new AudioPlayer();
-// AudioCache audioCache1= new AudioCache(prefix: "audios/",fixedPlayer: advancedPlayer1);
+AudioCache audioPlayer;
+AudioPlayer advancedPlayer1 = new AudioPlayer();
+AudioCache audioCache1= new AudioCache(prefix: "audios/",fixedPlayer: advancedPlayer1);
 
 void vibrates() async{
   bool canVibrate = await Vibrate.canVibrate;

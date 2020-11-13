@@ -13,9 +13,6 @@ const List<String> audios = [
 "Audio 1",
 "Audio 2",
 "Audio 3",
-"Audio 4",
-"Audio 5",
-"二狗汪汪叫",
 ];
 
 List<MissionItem> missionList = [
@@ -112,6 +109,7 @@ class MySettings extends State<Settings>{
     setState(() {
       _time = newTime;
     });
+    newAlarmInfo.time = newTime;
   }
 
   String timeToString(TimeOfDay time){

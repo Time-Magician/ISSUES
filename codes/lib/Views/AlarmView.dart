@@ -3,15 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import '../Class/AlarmInfo.dart';
 import 'package:easy_dialog/easy_dialog.dart';
+import 'dart:io';
+import 'package:flutter/services.dart';
 
 
 List<AlarmInfo> _alarmList = [
-  AlarmInfo("起床", ["周一","周二","周三","周四","周五"],TimeOfDay(hour: 6, minute: 30),"算术题","二狗汪汪叫",true,true),
+  AlarmInfo("起床", ["周一","周二","周三","周四","周五"],TimeOfDay(hour: 6, minute: 30),"算术题","Audio 1",true,false),
   AlarmInfo("班级会议", ["周三"],TimeOfDay(hour: 21, minute: 30),"随机任务","Audio 3",true,false),
-  AlarmInfo("高数作业DDL", ["周日"],TimeOfDay(hour: 23, minute: 30),"小游戏","Audio 2",true,false),
-  AlarmInfo("起床", ["周一","周二"],TimeOfDay(hour: 7, minute: 30),"算术题","Audio 1",true,false),
-  AlarmInfo("起床", ["周一","周二"],TimeOfDay(hour: 8, minute: 30),"算术题","二狗汪汪叫",true,false)
+  AlarmInfo("高数作业DDL", ["周日"],TimeOfDay(hour: 23, minute: 30),"小游戏","Audio 2",true,false)
 ];
+var methodChannel = MethodChannel("Channel");
+
 
 class AlarmView extends StatefulWidget {
   @override
@@ -21,10 +23,21 @@ class AlarmView extends StatefulWidget {
 class AlarmList extends State<AlarmView> {
   int alarmCount;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // ignore: missing_return
+    methodChannel.setMethodCallHandler((call) {
+      if(call.method == "test")
+        print(call.arguments);
+        Navigator.pushNamed(context, "Diplomas");
+    });
+  }
+
   void addAlarm() async {
     final result = await Navigator.pushNamed(context,"AlarmSetting",arguments:
-      AlarmInfo("闹钟", ["周一"], TimeOfDay.now(), "算术题", "二狗汪汪叫", true, true),
-
+      AlarmInfo("闹钟", ["周一"], TimeOfDay.now(), "算术题", "Audio 2", true, false),
     );
 
     if(result.runtimeType != AlarmInfo) return;
@@ -98,11 +111,15 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
   }
 
   void _switchAlarm(isOpen){
-    // bool isOpen = this.alarmInfo.isOpen? false : true;
+    bool isOpen = this.alarmInfo.isOpen? false : true;
     alarmInfo.isOpen = isOpen;
     _alarmList[widget.alarmIndex].isOpen = isOpen;
     setState(() {
     });
+    int hour= _alarmList[widget.alarmIndex].time.hour;
+    int minute=_alarmList[widget.alarmIndex].time.minute;
+    String musicName=_alarmList[widget.alarmIndex].audio;
+    setAlarm(hour,minute,isOpen,musicName);
   }
 
   String timeToString(TimeOfDay time){
@@ -136,6 +153,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     this.setState(() {
       alarmInfo = newAlarmInfo;
     });
+    print(newAlarmInfo.repeat);
     _alarmList[widget.alarmIndex] = alarmInfo;
   }
 
@@ -216,6 +234,21 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
       isAnimated = false;
       deleteButtonWidth = 0;
     });
+  }
+
+  void setAlarm(int hour,int minute,bool isOpen,String musicName) async{
+    if(Platform.isAndroid) {
+
+      // ignore: missing_return
+
+      if(isOpen){
+      String data = await methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute,"musicName":musicName});
+      print("data: $data");
+      }else{
+        String data = await methodChannel.invokeMethod("cancelAlarm",{"hour":hour,"minute":minute,"musicName":musicName});
+        print("data: $data");
+      }
+    }
   }
 
   @override

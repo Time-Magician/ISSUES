@@ -10,19 +10,14 @@ import 'package:slide_countdown_clock/slide_countdown_clock.dart';
 import '../Class/StudyInfo.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:vibrate/vibrate.dart';
 import '../common/global.dart';
 
 StudyInfo studyInfo = new StudyInfo(new Frog("陈二狗", 15, 78, false, "", "氢化大学"), false);
 AudioCache audioPlayer;
 AudioPlayer advancedPlayer1 = new AudioPlayer();
 AudioCache audioCache1= new AudioCache(prefix: "audios/",fixedPlayer: advancedPlayer1);
+MethodChannel platform = const MethodChannel('Channel');
 
-void vibrates() async{
-  bool canVibrate = await Vibrate.canVibrate;
-  print(canVibrate);
-  Vibrate.vibrate();
-}
 class StudyView extends StatefulWidget {
   final blockNavi;
   const StudyView({Key key, this.blockNavi}) : super(key: key);
@@ -98,7 +93,7 @@ class MyStudyView extends State<StudyView> {
             Container(
                 width: ScreenUtil().setWidth(720),
                 height: ScreenUtil().setWidth(168),
-                child: TimerBlock(totalTime: this.totalTime)
+                child: TimerBlock(totalTime: this.totalTime, onDone: () => _startEndStudy())
             ),
             Container(
                 width: ScreenUtil().setWidth(560),
@@ -225,7 +220,8 @@ class MyFrogBlock extends State<FrogBlock>{
 
 class TimerBlock extends StatefulWidget{
   final int totalTime;
-  const TimerBlock({Key key, this.totalTime}) : super(key: key);
+  final onDone;
+  const TimerBlock({Key key, this.totalTime, this.onDone}) : super(key: key);
 
   @override
   createState() => new MyTimerBlock();
@@ -256,6 +252,11 @@ class MyTimerBlock extends State<TimerBlock>{
       return this.hourLeft.toString();
   }
 
+  void onDone(){
+    endLockService();
+    widget.onDone();
+  }
+
   @override
   Widget build(BuildContext context) {
     totalMinute = widget.totalTime;
@@ -277,7 +278,7 @@ class MyTimerBlock extends State<TimerBlock>{
                   fontSize: ScreenUtil().setSp(96), fontFamily: "Miriam"
               ),
               shouldShowDays: false,
-              // onDone: play,
+              onDone: onDone,
             ),
           ) :Container(
             width: ScreenUtil().setWidth(600),
@@ -320,46 +321,12 @@ class BtnBlock extends StatefulWidget{
 }
 
 class MyBtnBlock extends State<BtnBlock>{
-  static const platform = const MethodChannel('Channel');
-
-  void pause() {
-    // audioCache1.clear('audio3.mp3');
-    // advancedPlayer1.release();
-  }
-
-  void play() {
-    // audioCache1.play('audio3.mp3');
-  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     // audioCache1.load('audio3.mp3');
-  }
-
-  Future<Null> startLockService() async {
-    try {
-      final result = await platform.invokeMethod("startStudy");
-      // batteryLevel = 'Battery level at $result % .';
-    } on PlatformException catch (e) {
-      print('${e.message}');
-    }
-
-  }
-
-  Future<Null> endLockService() async {
-    try {
-      final result = await platform.invokeMethod("stopStudy");
-      // batteryLevel = 'Battery level at $result % .';
-    } on PlatformException catch (e) {
-      print('${e.message}');
-    }
-
-  }
-
-  void startStudy(){
-    startLockService();
   }
 
   void endStudy(){
@@ -397,7 +364,6 @@ class MyBtnBlock extends State<BtnBlock>{
                 width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
-                    pause();
                     endLockService();
                     Navigator.of(context).pop();
                     widget.onPress();
@@ -439,8 +405,7 @@ class MyBtnBlock extends State<BtnBlock>{
             colorBrightness: Brightness.dark,
             onPressed: () {
               //TODO
-              startStudy();
-              play();
+              startLockService();
               widget.onPress();
             },
             child: Text(
@@ -449,6 +414,26 @@ class MyBtnBlock extends State<BtnBlock>{
             ),
           ));
   }
+}
+
+Future<Null> startLockService() async {
+  try {
+    final result = await platform.invokeMethod("startStudy");
+    // batteryLevel = 'Battery level at $result % .';
+  } on PlatformException catch (e) {
+    print('${e.message}');
+  }
+
+}
+
+Future<Null> endLockService() async {
+  try {
+    final result = await platform.invokeMethod("stopStudy");
+    // batteryLevel = 'Battery level at $result % .';
+  } on PlatformException catch (e) {
+    print('${e.message}');
+  }
+
 }
 
 

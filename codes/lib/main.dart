@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'Views/index.dart';
 import 'Views/DetailSettingView/index.dart';
 import 'Views/Missions/Camera.dart';
-import 'Views/Missions/Calculator.dart';
+import 'Views/Missions/Arithmetic.dart';
 import 'states/index.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart'
     as flutterSettingsScreens;
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           "GenderSetting": (context) => GenderSettingView(),
           "AppSetting": (context) => AppSettingView(),
           "Camera": (context) => Camera(),
-          "Calculator":(context)=>Calculator(),
+          "Arithmetic":(context)=>Arithmetic(),
           "/": (context) => LoginView(),
         });
   }

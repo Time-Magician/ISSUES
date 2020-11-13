@@ -54,7 +54,6 @@ dependencies:
   flutter_screenutil: ^1.0.2
   image_picker: ^0.6.7+12
   path_provider: ^1.6.22
-  vibrate: ^0.0.4
   quiz_view: ^1.0.3
 
 dev_dependencies:
@@ -98,6 +97,7 @@ flutter:
     - assets/image/game.png
     - assets/image/camera.png
     - assets/image/random.png
+    - assets/image/arithmetic.png
     - assets/audios/audio1.mp3
     - assets/audios/audio2.mp3
     - assets/audios/audio3.mp3

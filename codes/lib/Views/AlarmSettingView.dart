@@ -10,9 +10,11 @@ import '../Class/AlarmInfo.dart';
 import '../Utils/Adapt.dart';
 
 const List<String> audios = [
-"Audio 1",
-"Audio 2",
-"Audio 3",
+  "audio1",
+  "audio2",
+  "audio3",
+  "audio4",
+  "audio5"
 ];
 
 List<MissionItem> missionList = [
@@ -21,6 +23,7 @@ List<MissionItem> missionList = [
   MissionItem("小游戏","assets/image/game.png","闹钟响起时需要玩连连看、消消乐等小游戏，获得足够的积分之后就能关闭闹钟。"),
   MissionItem("指定物品拍照","assets/image/camera.png","闹钟响起后，需要拍一张指定物品的照片并上传，识别正确后就能关闭闹钟。"),
   MissionItem("随机任务","assets/image/random.png","闹钟任务会从任务库中随机指定，完成对应任务之后即可关闭闹钟。"),
+  MissionItem("摇晃手机","assets/image/shake.png","闹钟响起后需要连续不断快速摇晃手机，达到一定次数后即可关闭闹钟。"),
 ];
 
 AlarmInfo newAlarmInfo;
@@ -534,7 +537,7 @@ class MyOrderTitle extends State<OrderTitle>{
                 description: missionList[index].description,
               );
             },
-            itemCount: 5,
+            itemCount: 6,
             viewportFraction: 0.8,
             scale: 0.9,
             onIndexChanged: (index){

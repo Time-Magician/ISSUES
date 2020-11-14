@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'dart:math';
+import '../../common/global.dart';
 
 
 class Arithmetic extends StatefulWidget{
@@ -16,6 +17,13 @@ class Arithmetic extends StatefulWidget{
 
 class MyArithmetic extends State<Arithmetic>{
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Global.audioCache1.loop('audio5.mp3');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color(0xFF75CCE8),
@@ -25,7 +33,7 @@ class MyArithmetic extends State<Arithmetic>{
           children: [
             Container(
               width: ScreenUtil().setWidth(720),
-              height: ScreenUtil().setWidth(240),
+              height: ScreenUtil().setWidth(280),
               child: Information(),
             ),
             Container(
@@ -77,12 +85,12 @@ class MyInformation extends State<Information>{
               children: [
                 Text(
                   dateTime.month.toString()+"月"+dateTime.day.toString()+"日",
-                  style: TextStyle(fontSize: 25),
+                  style: TextStyle(fontSize: ScreenUtil().setSp(48)),
                   textAlign: TextAlign.left,
                 ),
                 Text(
-                  dateTime.hour.toString()+" : "+dateTime.minute.toString(),
-                  style: TextStyle(fontSize: 40, fontFamily: "Miriam"),
+                  dateTime.hour.toString()+" : "+(dateTime.minute<10?"0"+dateTime.minute.toString():dateTime.minute.toString()),
+                  style: TextStyle(fontSize: ScreenUtil().setSp(70), fontFamily: "Miriam"),
                   textAlign: TextAlign.left,
                 )
               ],
@@ -105,7 +113,7 @@ class MyInformation extends State<Information>{
                       ),
                       Text(
                         "TIPS",
-                        style: TextStyle(fontSize: 16, fontFamily: "Miriam"),
+                        style: TextStyle(fontSize: ScreenUtil().setSp(30), fontFamily: "Miriam"),
                         textAlign: TextAlign.left,
                       ),
                     ],
@@ -115,7 +123,7 @@ class MyInformation extends State<Information>{
                   width: ScreenUtil().setWidth(320),
                   child: Text(
                     "小青蛙正在上数学课，帮助它们计算出正确的答案吧！",
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: ScreenUtil().setSp(27)),
                     textAlign: TextAlign.left,
                   ),
                 ),
@@ -149,7 +157,7 @@ class MyQuestion extends State<Question>{
       EasyDialog(
         fogOpacity: 0.12,
         width: ScreenUtil().setWidth(600),
-        height: ScreenUtil().setWidth(300),
+        height: ScreenUtil().setWidth(360),
         closeButton: false,
         title: Text(
           "好样的！",
@@ -168,6 +176,7 @@ class MyQuestion extends State<Question>{
                   width: ScreenUtil().setWidth(180),
                   child: FlatButton(
                     onPressed: () {
+                      Global.advancedPlayer1.release();
                       Navigator.pushReplacementNamed(context, "HomePage");
                     },
                     child: Text(
@@ -199,21 +208,21 @@ class MyQuestion extends State<Question>{
             children: [
               Text(
                 x1.toString()+" + ",
-                style: TextStyle(fontSize: 36, fontFamily: "Miriam"),
+                style: TextStyle(fontSize: ScreenUtil().setSp(70), fontFamily: "Miriam"),
               )     ,
               Text(
                 x2.toString()+" + ",
-                style: TextStyle(fontSize: 36, fontFamily: "Miriam"),
+                style: TextStyle(fontSize: ScreenUtil().setSp(70), fontFamily: "Miriam"),
               ),
               Text(
                 x3.toString()+" = ",
-                style: TextStyle(fontSize: 36, fontFamily: "Miriam"),
+                style: TextStyle(fontSize: ScreenUtil().setSp(70), fontFamily: "Miriam"),
               ),
               Container(
-                width: ScreenUtil().setWidth(100),
+                width: ScreenUtil().setWidth(130),
                 child: TextField(
                   keyboardType: TextInputType.number,
-                  style: TextStyle(fontSize: 36, fontFamily: "Miriam"),
+                  style: TextStyle(fontSize: ScreenUtil().setSp(70), fontFamily: "Miriam"),
                   onChanged: (value) => checkAnswer(value),
                 ),
               )

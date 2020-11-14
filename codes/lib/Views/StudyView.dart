@@ -56,8 +56,7 @@ class MyStudyView extends State<StudyView> {
     Global.methodChannel.setMethodCallHandler((call) {
       if(call.method == "test")
         print(call.arguments);
-      audioCache1.play('audio1.mp3');
-      Navigator.pushNamed(context, "Diplomas");
+      Navigator.pushNamed(context, "Arithmetic");
     });
   }
 

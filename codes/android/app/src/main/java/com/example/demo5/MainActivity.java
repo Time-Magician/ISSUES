@@ -16,9 +16,11 @@ import io.flutter.plugin.common.MethodChannel.Result;
 
 import android.content.Intent;
 import android.os.Build.VERSION;
+import android.widget.Toast;
 
 import com.example.demo5.AlarmManager.RepeatingAlarm;
 import com.example.demo5.ProcessLock.ProcessMonitorService;
+import com.example.demo5.ShakeSensor.SensorManagerHelper;
 
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -31,7 +33,7 @@ public class MainActivity extends FlutterActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        SensorManagerHelper sensorHelper = new SensorManagerHelper(this);
         instance = this;
         String CHANNEL1 = "Channel";
         serviceIntent = new Intent(MainActivity.this, ProcessMonitorService.class);
@@ -60,6 +62,15 @@ public class MainActivity extends FlutterActivity{
                     int hour =call.argument("hour");
                     int minute = call.argument("minute");
                     cancelAlarm(hour,minute);
+                } else if(call.method.equals("shakeListen")){
+                    sensorHelper.start();
+                    sensorHelper.setOnShakeListener(() -> {
+                        // TODO Auto-generated method stub
+//                        System.out.println("shake");
+                        shake();
+                    });
+                } else if(call.method.equals("stopShakeListen")){
+                    sensorHelper.stop();
                 }
                 else {
                     result.notImplemented();
@@ -73,6 +84,7 @@ public class MainActivity extends FlutterActivity{
         super.onDestroy();
     }
 
+    public void shake() { methodChannel.invokeMethod("shake",1); }
 
     public void music(String musicName){
         methodChannel.invokeMethod("test",musicName);

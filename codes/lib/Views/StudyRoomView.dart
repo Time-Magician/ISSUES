@@ -103,7 +103,7 @@ class MyStudyRoom extends State<StudyRoom>{
                     ),
                     onPressed: () {
                       //TODO
-                      Navigator.pushNamed(context, "Arithmetic");
+                      Navigator.pushNamed(context, "TakePhoto");
                     },
                     child: Column(
                       mainAxisSize: MainAxisSize.max,

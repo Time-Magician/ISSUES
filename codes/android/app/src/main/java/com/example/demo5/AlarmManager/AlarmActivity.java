@@ -84,9 +84,9 @@ public class AlarmActivity extends FlutterActivity {
         options.put("baike_num", "5");
 
         // 参数为本地路径
-        byte[] file = readFile("test.jpg");
-        JSONObject res = client.advancedGeneral(file, options);
-        System.out.println(res.toString(2));
+//        byte[] file = readFile("test.jpg");
+//        JSONObject res = client.advancedGeneral(file, options);
+//        System.out.println(res.toString(2));
     }
 
 //    public void alarmOialog() {

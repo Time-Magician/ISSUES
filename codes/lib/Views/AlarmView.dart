@@ -3,17 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import '../Class/AlarmInfo.dart';
 import 'package:easy_dialog/easy_dialog.dart';
-import 'package:audioplayers/audio_cache.dart';
-import 'package:audioplayers/audioplayers.dart';
 import '../common/global.dart';
 import 'dart:io';
-import 'package:flutter/services.dart';
 
 
 List<AlarmInfo> _alarmList = [
-  AlarmInfo("起床", ["周一","周二","周三","周四","周五"],TimeOfDay(hour: 6, minute: 30),"算术题","Audio 1",true,false),
-  AlarmInfo("班级会议", ["周三"],TimeOfDay(hour: 21, minute: 30),"随机任务","Audio 3",true,false),
-  AlarmInfo("高数作业DDL", ["周日"],TimeOfDay(hour: 23, minute: 30),"小游戏","Audio 2",true,false)
+  AlarmInfo("起床", ["周一","周二","周三","周四","周五"],TimeOfDay(hour: 6, minute: 30),"算术题","audio1",true,false),
+  AlarmInfo("班级会议", ["周三"],TimeOfDay(hour: 21, minute: 30),"随机任务","audio3",true,false),
+  AlarmInfo("高数作业DDL", ["周日"],TimeOfDay(hour: 23, minute: 30),"小游戏","audio5",true,false)
 ];
 
 
@@ -34,8 +31,7 @@ class AlarmList extends State<AlarmView> {
     Global.methodChannel.setMethodCallHandler((call) {
       if(call.method == "test")
         print(call.arguments);
-        Global.audioCache1.play('audio3.mp3');
-        Navigator.pushNamed(context, "Calculator");
+        Navigator.pushNamed(context, "Game");
     });
   }
 

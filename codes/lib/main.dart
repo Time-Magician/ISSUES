@@ -1,4 +1,7 @@
 import 'package:demo5/Views/LoginView.dart';
+import 'package:demo5/Views/Missions/TakePhoto.dart';
+import 'Views/Missions/Game.dart';
+import 'Views/Missions/Shake.dart';
 import 'index.dart';
 import 'package:provider/provider.dart';
 import 'Views/index.dart';
@@ -46,6 +49,9 @@ class MyApp extends StatelessWidget {
           "AppSetting": (context) => AppSettingView(),
           "Camera": (context) => Camera(),
           "Arithmetic":(context)=>Arithmetic(),
+          "Game":(context)=>Game(),
+          "Shake":(context)=>Shake(),
+          "TakePhoto":(context)=>TakePhoto(),
           "/": (context) => LoginView(),
         });
   }

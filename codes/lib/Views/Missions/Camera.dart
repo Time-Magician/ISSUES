@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../common/global.dart';
 
 class Camera extends StatelessWidget {
   @override
@@ -29,7 +30,9 @@ class _MyCamera extends State<MyCamera> {
 
     setState(() {
       if (pickedFile != null) {
-        _image = File(pickedFile.path);
+        String path=pickedFile.path;
+        _image = File(path);
+        imageClassify(path);
       } else {
         print('No image selected.');
       }
@@ -54,4 +57,11 @@ class _MyCamera extends State<MyCamera> {
       ),
     );
   }
+  void imageClassify(String path) async{
+    if(Platform.isAndroid) {
+      List<dynamic> data = await Global.methodChannel.invokeMethod("imageClassify",{"image":path});
+      print("data: $data");
+    }
+  }
 }
+

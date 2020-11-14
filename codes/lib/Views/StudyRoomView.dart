@@ -10,7 +10,6 @@ class StudyRoomWidget extends StatefulWidget{
     // TODO: implement createState
     return MyStudyRoomWidget();
   }
-
 }
 
 class MyStudyRoomWidget extends State<StudyRoomWidget>{
@@ -125,13 +124,6 @@ class MyStudyRoom extends State<StudyRoom>{
         ],
       ),
     );
-  }
-  void startService() async{
-    if(Platform.isAndroid) {
-      var methodChannel = MethodChannel("com.example.demo5");
-      String data = await methodChannel.invokeMethod("startService");
-      print("data: $data");
-    }
   }
 }
 

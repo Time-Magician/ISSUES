@@ -16,7 +16,6 @@ public class RepeatingAlarm extends BroadcastReceiver {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("musicName",musicName);
             context.startActivity(intent);
-//            MainActivity.instance.music(musicName);
         }
     }
 }

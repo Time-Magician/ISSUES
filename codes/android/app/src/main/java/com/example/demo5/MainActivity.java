@@ -16,11 +16,13 @@ import io.flutter.plugin.common.MethodChannel.Result;
 
 import android.content.Intent;
 import android.os.Build.VERSION;
+import android.widget.Toast;
 
 import com.baidu.aip.imageclassify.AipImageClassify;
 import com.example.demo5.AlarmManager.AlarmActivity;
 import com.example.demo5.AlarmManager.RepeatingAlarm;
 import com.example.demo5.ProcessLock.ProcessMonitorService;
+import com.example.demo5.ShakeSensor.SensorManagerHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +51,8 @@ public class MainActivity extends FlutterActivity{
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SensorManagerHelper sensorHelper = new SensorManagerHelper(this);
         instance = this;
         String CHANNEL1 = "Channel";
         serviceIntent = new Intent(MainActivity.this, ProcessMonitorService.class);
@@ -128,6 +132,16 @@ public class MainActivity extends FlutterActivity{
                         }
                         result.success(keyword);
                         break;
+                    case "shakeListen":
+                        sensorHelper.start();
+                        sensorHelper.setOnShakeListener(() -> {
+                            // TODO Auto-generated method stub
+                            shake();
+                        });
+                        break;
+                    case "stopShakeListen":
+                        sensorHelper.stop();
+                        break;
                     default:
                         result.notImplemented();
                         break;
@@ -141,6 +155,7 @@ public class MainActivity extends FlutterActivity{
         super.onDestroy();
     }
 
+    public void shake() { methodChannel.invokeMethod("shake",1); }
     private byte[] InputStreamToByte(InputStream is) throws IOException, IOException {
         ByteArrayOutputStream bytestream = new ByteArrayOutputStream();
         int ch;

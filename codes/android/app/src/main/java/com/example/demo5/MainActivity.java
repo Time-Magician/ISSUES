@@ -123,8 +123,6 @@ public class MainActivity extends FlutterActivity{
                                     for (int i = 0; i < imageResult.length(); i++) {
                                         keyword.add((String) imageResult.getJSONObject(i).get("keyword"));
                                     }
-                                    flag[0] = true;
-
                                     Message msg = new Message();
                                     msg.obj = keyword;
                                     uiHandler.sendMessage(msg);

@@ -29,12 +29,10 @@ class AlarmList extends State<AlarmView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Global.audioCache1.load('audio3.mp3');
     // ignore: missing_return
     Global.methodChannel.setMethodCallHandler((call) {
       if(call.method == "test")
         print(call.arguments);
-        Global.audioCache1.play('audio3.mp3');
         Navigator.pushNamed(context, "Calculator");
     });
   }

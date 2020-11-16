@@ -18,7 +18,6 @@ import android.content.Intent;
 import android.os.Build.VERSION;
 
 import com.baidu.aip.imageclassify.AipImageClassify;
-import com.example.demo5.AlarmManager.AlarmActivity;
 import com.example.demo5.AlarmManager.RepeatingAlarm;
 import com.example.demo5.ProcessLock.ProcessMonitorService;
 
@@ -36,16 +35,11 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
-import java.util.concurrent.CountDownLatch;
 
 public class MainActivity extends FlutterActivity{
     private Intent serviceIntent;
     private MethodChannel methodChannel;
     public static MainActivity instance = null;
-    public static final String APP_ID = "22907417";
-    public static final String API_KEY = "zU2tRIF1FaHD8gxy3QTPY7Qw";
-    public static final String SECRET_KEY = "rIpRruQPpWPnTkxZnqsi1XnN9a4qltc9";
-    AipImageClassify client = new AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,9 +79,14 @@ public class MainActivity extends FlutterActivity{
                     case "imageClassify":
                         String path = call.argument("image");
                         List<String> keyword = new ArrayList<>();
+                        final Boolean[] flag = {false};
                         Thread thread= new Thread(new Runnable() {
                             @Override
                             public void run() {
+                                String APP_ID = "22907417";
+                                String API_KEY = "zU2tRIF1FaHD8gxy3QTPY7Qw";
+                                String SECRET_KEY = "rIpRruQPpWPnTkxZnqsi1XnN9a4qltc9";
+                                AipImageClassify client = new AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
                                 HashMap<String, String> options = new HashMap<String, String>();
                                 options.put("top_num", "3");
                                 options.put("filter_threshold", "0.7");
@@ -113,6 +112,7 @@ public class MainActivity extends FlutterActivity{
                                     for (int i = 0; i < imageResult.length(); i++) {
                                         keyword.add((String) imageResult.getJSONObject(i).get("keyword"));
                                     }
+                                    flag[0] = true;
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -120,11 +120,12 @@ public class MainActivity extends FlutterActivity{
                             }
                         });
                         thread.start();
-                        System.out.println(keyword);
-                        try {
-                            thread.join();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+//                        try {
+//                            thread.join();
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+                        while (!flag[0]){
                         }
                         result.success(keyword);
                         break;

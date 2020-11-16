@@ -27,31 +27,36 @@ class MyArithmetic extends State<Arithmetic>{
     return Scaffold(
         backgroundColor: const Color(0xFF75CCE8),
         resizeToAvoidBottomPadding: false,
-        body:Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: ScreenUtil().setWidth(720),
-              height: ScreenUtil().setWidth(280),
-              child: Information(),
-            ),
-            Container(
-              width: ScreenUtil().setWidth(720),
-              height: ScreenUtil().setWidth(240),
-              child: Question(),
-            ),
-            Expanded(
-              child: Container(
+        body:WillPopScope(
+          onWillPop: () async{
+            return false;
+          },
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
                 width: ScreenUtil().setWidth(720),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage("assets/image/arithmetic.png"),
-                    fit: BoxFit.contain,
+                height: ScreenUtil().setWidth(280),
+                child: Information(),
+              ),
+              Container(
+                width: ScreenUtil().setWidth(720),
+                height: ScreenUtil().setWidth(240),
+                child: Question(),
+              ),
+              Expanded(
+                child: Container(
+                  width: ScreenUtil().setWidth(720),
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/image/arithmetic.png"),
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         )
     );
   }

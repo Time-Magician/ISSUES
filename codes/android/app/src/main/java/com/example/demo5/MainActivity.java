@@ -1,5 +1,6 @@
 package com.example.demo5;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -91,7 +92,7 @@ public class MainActivity extends FlutterActivity{
                     case "imageClassify":
                         String path = call.argument("image");
                         List<String> keyword = new ArrayList<>();
-                        Handler uiHandler = new Handler() {
+                        @SuppressLint("HandlerLeak") Handler uiHandler = new Handler() {
                             @Override
                             public void handleMessage(Message msg) {
                                 result.success(msg.obj);
@@ -106,6 +107,7 @@ public class MainActivity extends FlutterActivity{
                                 options.put("baike_num", "5");
 
                                 assert path != null;
+
                                 FileInputStream inStream = null;
                                 try {
                                     inStream = new FileInputStream(path);
@@ -136,14 +138,8 @@ public class MainActivity extends FlutterActivity{
                             }
 
                         }).start();
-//                        thread.start();
-                        System.out.println(keyword);
-//                        try {
-//                            thread.join();
-//                        } catch (InterruptedException e) {
-//                            e.printStackTrace();
-//                        }
 
+                        System.out.println(keyword);
                         break;
                     case "shakeListen":
                         sensorHelper.start();

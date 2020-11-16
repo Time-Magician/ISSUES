@@ -39,8 +39,8 @@ Widget _topHeader() {
           margin: EdgeInsets.only(top: ScreenUtil().setHeight(40.0)),
           child: ClipOval(
             //圆形头像
-            child: Image.network(
-              'https://pic2.zhimg.com/v2-639b49f2f6578eabddc458b84eb3c6a1.jpg',
+            child: Image.asset(
+              'assets/image/cat.jpg',
               width: ScreenUtil().setWidth(160.0),
             ),
           ),

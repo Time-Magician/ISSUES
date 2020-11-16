@@ -10,9 +10,9 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_frog"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:label="demo5">
+        android:label="ISSUES">
         <activity android:name=".AlarmManager.AlarmActivity"
             android:theme="@style/Theme.AppCompat.Dialog">
         </activity>

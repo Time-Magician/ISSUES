@@ -188,7 +188,14 @@ class MyFrogBlock extends State<FrogBlock>{
                             return new CircularProfileAvatar(
                               '',
                               child: Image.asset(
-                                'assets/image/frog2.png',
+                                  studyInfo.frog.level < 7?
+                                  'assets/image/frogStudy1.png' :(
+                                      studyInfo.frog.level < 10?
+                                      'assets/image/frogStudy2.png':(
+                                          studyInfo.frog.level < 13?
+                                          'assets/image/frogStudy3.png':
+                                          'assets/image/frogStudy4.png'
+                                      )),
                               ), //sets image path, it should be a URL string. default value is empty string, if path is empty it will display only initials
                               radius: ScreenUtil().setWidth(constrains.maxHeight < constrains.maxWidth? constrains.maxHeight-25:constrains.maxWidth-25), // sets radius, default 50.0
                               backgroundColor: Color(0xFF75CCE8), // sets background color, default Colors.white
@@ -206,7 +213,14 @@ class MyFrogBlock extends State<FrogBlock>{
                     onSelectionChange:  _updateLabels,
                     child: ClipOval( //圆形头像
                       child: Image.asset(
-                        'assets/image/frog2.png',
+                        studyInfo.frog.level < 7?
+                        'assets/image/frogPlay1.png' :(
+                            studyInfo.frog.level < 10?
+                            'assets/image/frogPlay2.png':(
+                                studyInfo.frog.level < 13?
+                                'assets/image/frogPlay3.png':
+                                'assets/image/frogPlay4.png'
+                            )),
                       ),
                     ),
                   )

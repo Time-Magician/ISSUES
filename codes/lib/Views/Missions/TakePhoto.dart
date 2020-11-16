@@ -1,8 +1,13 @@
 import 'dart:io';
-
+import 'dart:math';
 import 'package:demo5/index.dart';
+import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
+
+List<String> targetList = ["杯子","书","水龙头","灯","鞋","牙刷","笔","扫把","垃圾桶","插座"];
 
 class TakePhoto extends StatefulWidget{
   @override
@@ -132,6 +137,9 @@ class MyPhotoMission extends State<PhotoMission>{
   File _image;
   final picker = ImagePicker();
   bool haveTaken = false;
+  String path;
+  String target;
+  bool correctFlag = false;
 
   Future takePhoto() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
@@ -140,10 +148,166 @@ class MyPhotoMission extends State<PhotoMission>{
       if (pickedFile != null) {
         haveTaken = true;
         _image = File(pickedFile.path);
+        path = pickedFile.path;
       } else {
         print('No image selected.');
       }
     });
+  }
+
+  void imageClassify(String path) async {
+    if(path.isEmpty){
+      emptyAlert();
+      return;
+    }
+    if(Platform.isAndroid) {
+      List<dynamic> data = await Global.methodChannel.invokeMethod("imageClassify",{"image":path});
+      print(data);
+      checkAccuracy(data);
+    }
+  }
+
+  void checkAccuracy(List<dynamic> data){
+    data.forEach((element)  {
+      if(element.contains(target)){
+        setState(() {
+          correctFlag = true;
+        });
+      }
+    });
+    if(correctFlag)
+      success();
+    else
+      failed();
+  }
+
+  void emptyAlert(){
+    EasyDialog(
+      fogOpacity: 0.12,
+      width: ScreenUtil().setWidth(600),
+      height: ScreenUtil().setWidth(360),
+      closeButton: false,
+      title: Text(
+        "照片呢？",
+        style: TextStyle(fontSize: ScreenUtil().setSp(40)),
+      ),
+      description: Text(
+        "你还没有拍照片哦！快去找找对应的物品把它拍下来吧！",
+        style: TextStyle(fontSize: ScreenUtil().setSp(30)),
+      ),
+      contentList: [
+        Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                width: ScreenUtil().setWidth(180),
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "确认",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+              )
+            ]
+        )
+      ],
+    ).show(context);
+  }
+
+  void success(){
+    EasyDialog(
+      fogOpacity: 0.12,
+      width: ScreenUtil().setWidth(600),
+      height: ScreenUtil().setWidth(360),
+      closeButton: false,
+      title: Text(
+        "好样的！",
+        style: TextStyle(fontSize: ScreenUtil().setSp(40)),
+      ),
+      description: Text(
+        "你已经成功地拍到了要求的物品，赶紧起床吧！",
+        style: TextStyle(fontSize: ScreenUtil().setSp(30)),
+      ),
+      contentList: [
+        Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                width: ScreenUtil().setWidth(180),
+                child: FlatButton(
+                  onPressed: () {
+                    Global.advancedPlayer1.release();
+                    Navigator.pushReplacementNamed(context, "HomePage");
+                  },
+                  child: Text(
+                    "确认",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+              )
+            ]
+        )
+      ],
+    ).show(context);
+  }
+
+  void failed(){
+    EasyDialog(
+      fogOpacity: 0.12,
+      width: ScreenUtil().setWidth(600),
+      height: ScreenUtil().setWidth(360),
+      closeButton: false,
+      title: Text(
+        "出错啦！",
+        style: TextStyle(fontSize: ScreenUtil().setSp(40)),
+      ),
+      description: Text(
+        "你拍到的物品似乎不符合要求哦！重新试试吧！",
+        style: TextStyle(fontSize: ScreenUtil().setSp(30)),
+      ),
+      contentList: [
+        Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                width: ScreenUtil().setWidth(180),
+                child: FlatButton(
+                  onPressed: () {
+                    setState(() {
+                      _image = null;
+                      haveTaken = false;
+                      path = "";
+                    });
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "再拍一次",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+              )
+            ]
+        )
+      ],
+    ).show(context);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Global.audioCache1.loop("audio5.mp3");
+    target = targetList[(new Random()).nextInt(10)];
+    path = "";
   }
 
   @override
@@ -158,7 +322,7 @@ class MyPhotoMission extends State<PhotoMission>{
           style: TextStyle(fontSize: ScreenUtil().setSp(48)),
         ),
         Text(
-          "陈二狗",
+          target,
           style: TextStyle(fontSize: ScreenUtil().setSp(70)),
         ),
         Row(
@@ -219,22 +383,32 @@ class MyPhotoMission extends State<PhotoMission>{
               height: ScreenUtil().setWidth(240),
               child: Center(
                 child: Container(
-                  width: ScreenUtil().setWidth(200),
-                  height: ScreenUtil().setWidth(120),
-                  child: RaisedButton(
-                    textTheme: ButtonTextTheme.accent,
-                    color: const Color(0xFF33539E),
-                    highlightColor: Colors.deepPurpleAccent,
-                    splashColor: Colors.deepOrangeAccent,
-                    colorBrightness: Brightness.dark,
-                    onPressed: () {
-                      //TODO
-
-                    },
+                  child: ArgonButton(
+                    width: ScreenUtil().setWidth(200),
+                    height: ScreenUtil().setWidth(120),
+                    borderRadius: 5.0,
+                    color: Color(0xFF7866FE),
                     child: Text(
-                      '提交',
-                      style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(36)),
+                      "提 交",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700
+                      ),
                     ),
+                    loader: Container(
+                      padding: EdgeInsets.all(10),
+                      child: SpinKitRing(
+                        color: Colors.white,
+                        // size: loaderWidth ,
+                      ),
+                    ),
+                    onTap:(startLoading, stopLoading, btnState){
+                      if (btnState == ButtonState.Idle) {
+                        startLoading();
+                        imageClassify(path);
+                      }
+                    },
                   ),
                 ),
               )

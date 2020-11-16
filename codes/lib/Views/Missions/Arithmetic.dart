@@ -20,7 +20,6 @@ class MyArithmetic extends State<Arithmetic>{
   void initState() {
     // TODO: implement initState
     super.initState();
-    Global.audioCache1.loop('audio5.mp3');
   }
 
   @override

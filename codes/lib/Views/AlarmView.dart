@@ -31,13 +31,24 @@ class AlarmList extends State<AlarmView> {
     Global.methodChannel.setMethodCallHandler((call) {
       if(call.method == "test")
         print(call.arguments);
-        Navigator.pushNamed(context, "Game");
+        String _index = call.arguments;
+        int index = int.parse(_index);
+        String mission = _alarmList[index].mission;
+        Global.audioCache1.loop(_alarmList[index].audio+".mp3");
+        switch(mission){
+          case "算术题": Navigator.pushNamed(context, "Arithmetic");break;
+          case "小游戏": Navigator.pushNamed(context, "Game");break;
+          case "指定物品拍照": Navigator.pushNamed(context, "TakePhoto");break;
+          case "摇晃手机": Navigator.pushNamed(context, "Shake");break;
+          case "随机任务": Navigator.pushNamed(context, "Game");break;
+          default: break;
+        }
     });
   }
 
   void addAlarm() async {
     final result = await Navigator.pushNamed(context,"AlarmSetting",arguments:
-      AlarmInfo("闹钟", ["周一"], TimeOfDay.now(), "算术题", "Audio 2", true, false),
+      {"index":_alarmList.length, "alarmInfo":AlarmInfo("闹钟", [], TimeOfDay.now(), "算术题", "audio1", true, false)},
     );
 
     if(result.runtimeType != AlarmInfo) return;
@@ -114,12 +125,14 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     bool isOpen = this.alarmInfo.isOpen? false : true;
     alarmInfo.isOpen = isOpen;
     _alarmList[widget.alarmIndex].isOpen = isOpen;
+
     setState(() {
     });
-    int hour= _alarmList[widget.alarmIndex].time.hour;
-    int minute=_alarmList[widget.alarmIndex].time.minute;
-    String musicName=_alarmList[widget.alarmIndex].audio;
-    setAlarm(hour,minute,isOpen,musicName);
+    int hour = _alarmList[widget.alarmIndex].time.hour;
+    int minute = _alarmList[widget.alarmIndex].time.minute;
+    int alarmIndex = widget.alarmIndex;
+
+    setAlarm(hour, minute, isOpen, alarmIndex);
   }
 
   String timeToString(TimeOfDay time){
@@ -144,7 +157,10 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
   void editAlarm() async {
     final result = await Navigator.pushNamed(
         context,"AlarmSetting",
-        arguments: _alarmList[widget.alarmIndex]
+        arguments: {
+          "index":widget.alarmIndex,
+          "alarmInfo":_alarmList[widget.alarmIndex]
+        }
     );
 
     if(result.runtimeType != AlarmInfo) return;
@@ -155,6 +171,12 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     });
     print(newAlarmInfo.repeat);
     _alarmList[widget.alarmIndex] = alarmInfo;
+  }
+
+  void cancelAlarm(int index)async{
+    TimeOfDay time = _alarmList[index].time;
+    String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":index.toString()});
+    print("data: $data");
   }
 
   void deleteAlarm(){
@@ -194,6 +216,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
                 width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
+                    if(_alarmList[widget.alarmIndex].isOpen) cancelAlarm(widget.alarmIndex);
                     _alarmList.removeAt(widget.alarmIndex);
                     widget.callbackFunc();
                     this.setState(() {
@@ -236,16 +259,16 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     });
   }
 
-  void setAlarm(int hour,int minute,bool isOpen,String musicName) async{
+  void setAlarm(int hour,int minute,bool isOpen,int alarmIndex) async{
     if(Platform.isAndroid) {
 
       // ignore: missing_return
 
       if(isOpen){
-      String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute,"musicName":musicName});
+      String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute,"alarmIndex":alarmIndex.toString()});
       print("data: $data");
       }else{
-        String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":hour,"minute":minute,"musicName":musicName});
+        String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":hour,"minute":minute,"alarmIndex":alarmIndex.toString()});
         print("data: $data");
       }
     }

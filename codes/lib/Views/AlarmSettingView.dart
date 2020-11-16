@@ -8,6 +8,7 @@ import 'package:toggle_switch/toggle_switch.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import '../Class/AlarmInfo.dart';
 import '../Utils/Adapt.dart';
+import '../common/global.dart';
 
 const List<String> audios = [
   "audio1",
@@ -51,7 +52,9 @@ class AlarmSetting extends State<AlarmSettingWidget>{
 
   @override
   Widget build(BuildContext context) {
-    AlarmInfo alarmInfo = ModalRoute.of(context).settings.arguments;
+    dynamic arguments = ModalRoute.of(context).settings.arguments;
+    AlarmInfo alarmInfo = arguments["alarmInfo"];
+    int alarmIndex = arguments["index"];
     Adapt.onepx();
 
     newAlarmInfo = new AlarmInfo(
@@ -61,8 +64,32 @@ class AlarmSetting extends State<AlarmSettingWidget>{
       alarmInfo.mission,
       alarmInfo.audio,
       alarmInfo.vibration,
-      alarmInfo.isOpen
+      true,
     );
+
+    void cancelAlarm(AlarmInfo alarmInfo) async {
+      TimeOfDay time = alarmInfo.time;
+      String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmIndex.toString()});
+      print("data: $data");
+    }
+
+    void saveAlarm() async {
+      TimeOfDay time = newAlarmInfo.time;
+      String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmIndex.toString()});
+      print("data: $data");
+    }
+
+    void saveSettings(){
+      if(alarmInfo.isOpen){
+        cancelAlarm(alarmInfo);
+        saveAlarm();
+      }else{
+        saveAlarm();
+      }
+      Navigator.of(context).pop(newAlarmInfo);
+    }
+
+
 
     return Scaffold(
       appBar: AppBar(
@@ -77,7 +104,7 @@ class AlarmSetting extends State<AlarmSettingWidget>{
               style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(36)),
             ),
             onPressed: (() => {
-              Navigator.of(context).pop(newAlarmInfo)
+              saveSettings()
             }),
           ),
         ],
@@ -365,7 +392,7 @@ class MyOrderTitle extends State<OrderTitle>{
   }
 
   void repeatSetting(context, String oldRepeat){
-    String newRepeat = oldRepeat;
+    String newRepeat = "";
     List<String> selects = chineseToEnglish(regenerateRepeat(oldRepeat));
 
     EasyDialog(
@@ -675,9 +702,11 @@ class MissionItem{
 
 String generateRepeat(List<String> repeat){
   String repeatStr = "";
-  if(repeat.length == 7){
+  if(repeat.isEmpty){
+    repeatStr = "从不";
+  } else if(repeat.length == 7){
     repeatStr = "每天";
-  }else {
+  } else {
     repeat.forEach((element) {
       repeatStr += element + " ";
     });

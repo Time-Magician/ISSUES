@@ -58,7 +58,6 @@ class MyGame extends State<Game>{
     super.initState();
     randomizeList(animals);
     randomizeList(trees);
-    Global.audioCache1.loop("audio5.mp3");
   }
 
   @override
@@ -473,7 +472,7 @@ class MyLittleGame extends State<LittleGame>{
           ),
           Container(
             width: ScreenUtil().setWidth(720),
-            height: ScreenUtil().setWidth(160),
+            height: ScreenUtil().setWidth(80),
           )
         ],
       );

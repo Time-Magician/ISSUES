@@ -6,6 +6,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Message;
+import android.os.Handler;
 
 import io.flutter.embedding.android.FlutterActivity;
 import io.flutter.plugin.common.MethodCall;
@@ -76,8 +78,8 @@ public class MainActivity extends FlutterActivity{
                     case "startAlarm": {
                         int hour = call.argument("hour");
                         int minute = call.argument("minute");
-                        String musicName = call.argument("musicName");
-                        alarm(hour, minute, musicName);
+                        String alarmIndex = call.argument("alarmIndex");
+                        alarm(hour, minute, alarmIndex);
                         break;
                     }
                     case "cancelAlarm": {
@@ -89,7 +91,13 @@ public class MainActivity extends FlutterActivity{
                     case "imageClassify":
                         String path = call.argument("image");
                         List<String> keyword = new ArrayList<>();
-                        Thread thread= new Thread(new Runnable() {
+                        Handler uiHandler = new Handler() {
+                            @Override
+                            public void handleMessage(Message msg) {
+                                result.success(msg.obj);
+                            }
+                        };
+                        new Thread(new Runnable() {
                             @Override
                             public void run() {
                                 HashMap<String, String> options = new HashMap<String, String>();
@@ -118,19 +126,24 @@ public class MainActivity extends FlutterActivity{
                                         keyword.add((String) imageResult.getJSONObject(i).get("keyword"));
                                     }
 
+                                    Message msg = new Message();
+                                    msg.obj = keyword;
+                                    uiHandler.sendMessage(msg);
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }
-                        });
-                        thread.start();
+
+                        }).start();
+//                        thread.start();
                         System.out.println(keyword);
-                        try {
-                            thread.join();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        result.success(keyword);
+//                        try {
+//                            thread.join();
+//                        } catch (InterruptedException e) {
+//                            e.printStackTrace();
+//                        }
+
                         break;
                     case "shakeListen":
                         sensorHelper.start();
@@ -168,11 +181,11 @@ public class MainActivity extends FlutterActivity{
     }
 
 
-    public void music(String musicName){
-        methodChannel.invokeMethod("test",musicName);
+    public void music(String alarmIndex){
+        methodChannel.invokeMethod("test",alarmIndex);
     }
 
-    private void alarm(int hour,int minute,String musicName) {
+    private void alarm(int hour, int minute, String alarmIndex) {
         // 获取系统的闹钟服务
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         // 触发闹钟的时间（毫秒）
@@ -180,7 +193,7 @@ public class MainActivity extends FlutterActivity{
         intent.setAction("com.gcc.alarm");
         String uri="content://calendar/calendar_alerts/"+String.valueOf(hour)+":"+String.valueOf(minute);
         intent.setData(Uri.parse(uri));
-        intent.putExtra("musicName",musicName);
+        intent.putExtra("alarmIndex", alarmIndex);
 
         PendingIntent op = PendingIntent.getBroadcast(this, 0, intent, 0);
 

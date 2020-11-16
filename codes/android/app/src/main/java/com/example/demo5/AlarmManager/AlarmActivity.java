@@ -13,8 +13,9 @@ public class AlarmActivity extends FlutterActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aty_alarm);
-        String musicName=this.getIntent().getStringExtra("musicName");
-        MainActivity.instance.music(musicName);
+        String alarmIndex = this.getIntent().getStringExtra("alarmIndex");
+        System.out.println("#########"+alarmIndex);
+        MainActivity.instance.music(alarmIndex);
         finish();
     }
 

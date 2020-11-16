@@ -472,7 +472,7 @@ class MyLittleGame extends State<LittleGame>{
           ),
           Container(
             width: ScreenUtil().setWidth(720),
-            height: ScreenUtil().setWidth(160),
+            height: ScreenUtil().setWidth(80),
           )
         ],
       );

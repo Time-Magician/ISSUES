@@ -52,8 +52,9 @@ class AlarmSetting extends State<AlarmSettingWidget>{
 
   @override
   Widget build(BuildContext context) {
-    AlarmInfo alarmInfo = ModalRoute.of(context).settings.arguments;
-    int alarmIndex =
+    dynamic arguments = ModalRoute.of(context).settings.arguments;
+    AlarmInfo alarmInfo = arguments["alarmInfo"];
+    int alarmIndex = arguments["index"];
     Adapt.onepx();
 
     newAlarmInfo = new AlarmInfo(
@@ -72,16 +73,18 @@ class AlarmSetting extends State<AlarmSettingWidget>{
       print("data: $data");
     }
 
-    void saveAlarm(AlarmInfo alarmInfo) async {
-      
+    void saveAlarm() async {
+      TimeOfDay time = newAlarmInfo.time;
+      String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmIndex.toString()});
+      print("data: $data");
     }
 
     void saveSettings(){
       if(alarmInfo.isOpen){
         cancelAlarm(alarmInfo);
-        saveAlarm(newAlarmInfo);
+        saveAlarm();
       }else{
-        saveAlarm(newAlarmInfo);
+        saveAlarm();
       }
       Navigator.of(context).pop(newAlarmInfo);
     }
@@ -389,7 +392,7 @@ class MyOrderTitle extends State<OrderTitle>{
   }
 
   void repeatSetting(context, String oldRepeat){
-    String newRepeat = oldRepeat;
+    String newRepeat = "";
     List<String> selects = chineseToEnglish(regenerateRepeat(oldRepeat));
 
     EasyDialog(
@@ -699,9 +702,11 @@ class MissionItem{
 
 String generateRepeat(List<String> repeat){
   String repeatStr = "";
-  if(repeat.length == 7){
+  if(repeat.isEmpty){
+    repeatStr = "从不";
+  } else if(repeat.length == 7){
     repeatStr = "每天";
-  }else {
+  } else {
     repeat.forEach((element) {
       repeatStr += element + " ";
     });

@@ -48,7 +48,7 @@ class AlarmList extends State<AlarmView> {
 
   void addAlarm() async {
     final result = await Navigator.pushNamed(context,"AlarmSetting",arguments:
-      AlarmInfo("闹钟", ["周一"], TimeOfDay.now(), "算术题", "Audio 2", true, false),
+      {"index":_alarmList.length, "alarmInfo":AlarmInfo("闹钟", [], TimeOfDay.now(), "算术题", "audio1", true, false)},
     );
 
     if(result.runtimeType != AlarmInfo) return;
@@ -157,7 +157,10 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
   void editAlarm() async {
     final result = await Navigator.pushNamed(
         context,"AlarmSetting",
-        arguments: _alarmList[widget.alarmIndex]
+        arguments: {
+          "index":widget.alarmIndex,
+          "alarmInfo":_alarmList[widget.alarmIndex]
+        }
     );
 
     if(result.runtimeType != AlarmInfo) return;
@@ -168,6 +171,12 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     });
     print(newAlarmInfo.repeat);
     _alarmList[widget.alarmIndex] = alarmInfo;
+  }
+
+  void cancelAlarm(int index)async{
+    TimeOfDay time = _alarmList[index].time;
+    String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":index.toString()});
+    print("data: $data");
   }
 
   void deleteAlarm(){
@@ -207,6 +216,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
                 width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
+                    if(_alarmList[widget.alarmIndex].isOpen) cancelAlarm(widget.alarmIndex);
                     _alarmList.removeAt(widget.alarmIndex);
                     widget.callbackFunc();
                     this.setState(() {

@@ -155,6 +155,12 @@ class MyPhotoMission extends State<PhotoMission>{
     });
   }
 
+  void freshTarget(){
+    setState(() {
+      target = targetList[(new Random()).nextInt(10)];
+    });
+  }
+
   void imageClassify(String path, Function stopLoading) async {
     if(path.isEmpty){
       emptyAlert();
@@ -321,15 +327,34 @@ class MyPhotoMission extends State<PhotoMission>{
           "请找到",
           style: TextStyle(fontSize: ScreenUtil().setSp(48)),
         ),
-        Text(
-          target,
-          style: TextStyle(fontSize: ScreenUtil().setSp(70)),
+        Center(
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: ScreenUtil().setWidth(100),
+              ),
+              Text(
+                target,
+                style: TextStyle(fontSize: ScreenUtil().setSp(70)),
+              ),
+              Container(
+                width: ScreenUtil().setWidth(100),
+                child: IconButton(
+                  icon: Icon(Icons.loop),
+                  onPressed: () => freshTarget(),
+                  color: Colors.white,
+                  iconSize: ScreenUtil().setSp(56),
+                ),
+              )
+            ],
+          ),
         ),
         Row(
           children: [
             Container(
               width: ScreenUtil().setWidth(240),
-              height: ScreenUtil().setWidth(640),
+              height: ScreenUtil().setWidth(600),
               child: Image.asset("assets/image/animalsLeft.png"),
             ),
             Column(
@@ -370,7 +395,7 @@ class MyPhotoMission extends State<PhotoMission>{
             ),
             Container(
               width: ScreenUtil().setWidth(240),
-              height: ScreenUtil().setWidth(640),
+              height: ScreenUtil().setWidth(600),
               child: Image.asset("assets/image/animalsRight.png"),
             )
           ],
@@ -380,7 +405,7 @@ class MyPhotoMission extends State<PhotoMission>{
           height: ScreenUtil().setWidth(100),
           child: Container(
               width: ScreenUtil().setWidth(240),
-              height: ScreenUtil().setWidth(240),
+              height: ScreenUtil().setWidth(100),
               child: Center(
                 child: Container(
                   child: ArgonButton(
@@ -413,7 +438,11 @@ class MyPhotoMission extends State<PhotoMission>{
                 ),
               )
           ),
-        )
+        ),
+        // Container(
+        //   width: ScreenUtil().setWidth(720),
+        //   height: ScreenUtil().setWidth(20),
+        // )
       ],
     );
   }

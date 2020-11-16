@@ -155,7 +155,7 @@ class MyPhotoMission extends State<PhotoMission>{
     });
   }
 
-  void imageClassify(String path) async {
+  void imageClassify(String path, Function stopLoading) async {
     if(path.isEmpty){
       emptyAlert();
       return;
@@ -163,6 +163,7 @@ class MyPhotoMission extends State<PhotoMission>{
     if(Platform.isAndroid) {
       List<dynamic> data = await Global.methodChannel.invokeMethod("imageClassify",{"image":path});
       print(data);
+      stopLoading();
       checkAccuracy(data);
     }
   }
@@ -305,7 +306,6 @@ class MyPhotoMission extends State<PhotoMission>{
   void initState() {
     // TODO: implement initState
     super.initState();
-    Global.audioCache1.loop("audio5.mp3");
     target = targetList[(new Random()).nextInt(10)];
     path = "";
   }
@@ -406,7 +406,7 @@ class MyPhotoMission extends State<PhotoMission>{
                     onTap:(startLoading, stopLoading, btnState){
                       if (btnState == ButtonState.Idle) {
                         startLoading();
-                        imageClassify(path);
+                        imageClassify(path, stopLoading);
                       }
                     },
                   ),

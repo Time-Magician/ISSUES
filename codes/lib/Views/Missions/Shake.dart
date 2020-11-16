@@ -141,7 +141,6 @@ class MyShakeMission extends State<ShakeMission>{
     // TODO: implement initState
     super.initState();
     progress = 0;
-    Global.audioCache1.loop("audio5.mp3");
     startShakeListener();
     Global.methodChannel.setMethodCallHandler((call) {
       if(call.method == "shake")

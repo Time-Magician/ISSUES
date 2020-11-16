@@ -8,6 +8,7 @@ import 'package:toggle_switch/toggle_switch.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import '../Class/AlarmInfo.dart';
 import '../Utils/Adapt.dart';
+import '../common/global.dart';
 
 const List<String> audios = [
   "audio1",
@@ -52,6 +53,7 @@ class AlarmSetting extends State<AlarmSettingWidget>{
   @override
   Widget build(BuildContext context) {
     AlarmInfo alarmInfo = ModalRoute.of(context).settings.arguments;
+    int alarmIndex =
     Adapt.onepx();
 
     newAlarmInfo = new AlarmInfo(
@@ -61,8 +63,30 @@ class AlarmSetting extends State<AlarmSettingWidget>{
       alarmInfo.mission,
       alarmInfo.audio,
       alarmInfo.vibration,
-      alarmInfo.isOpen
+      true,
     );
+
+    void cancelAlarm(AlarmInfo alarmInfo) async {
+      TimeOfDay time = alarmInfo.time;
+      String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmIndex.toString()});
+      print("data: $data");
+    }
+
+    void saveAlarm(AlarmInfo alarmInfo) async {
+      
+    }
+
+    void saveSettings(){
+      if(alarmInfo.isOpen){
+        cancelAlarm(alarmInfo);
+        saveAlarm(newAlarmInfo);
+      }else{
+        saveAlarm(newAlarmInfo);
+      }
+      Navigator.of(context).pop(newAlarmInfo);
+    }
+
+
 
     return Scaffold(
       appBar: AppBar(
@@ -77,7 +101,7 @@ class AlarmSetting extends State<AlarmSettingWidget>{
               style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(36)),
             ),
             onPressed: (() => {
-              Navigator.of(context).pop(newAlarmInfo)
+              saveSettings()
             }),
           ),
         ],

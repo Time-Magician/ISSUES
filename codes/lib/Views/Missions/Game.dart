@@ -58,7 +58,6 @@ class MyGame extends State<Game>{
     super.initState();
     randomizeList(animals);
     randomizeList(trees);
-    Global.audioCache1.loop("audio5.mp3");
   }
 
   @override

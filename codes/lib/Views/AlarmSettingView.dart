@@ -8,11 +8,14 @@ import 'package:toggle_switch/toggle_switch.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import '../Class/AlarmInfo.dart';
 import '../Utils/Adapt.dart';
+import '../common/global.dart';
 
 const List<String> audios = [
-"Audio 1",
-"Audio 2",
-"Audio 3",
+  "audio1",
+  "audio2",
+  "audio3",
+  "audio4",
+  "audio5"
 ];
 
 List<MissionItem> missionList = [
@@ -21,6 +24,7 @@ List<MissionItem> missionList = [
   MissionItem("小游戏","assets/image/game.png","闹钟响起时需要玩连连看、消消乐等小游戏，获得足够的积分之后就能关闭闹钟。"),
   MissionItem("指定物品拍照","assets/image/camera.png","闹钟响起后，需要拍一张指定物品的照片并上传，识别正确后就能关闭闹钟。"),
   MissionItem("随机任务","assets/image/random.png","闹钟任务会从任务库中随机指定，完成对应任务之后即可关闭闹钟。"),
+  MissionItem("摇晃手机","assets/image/shake.png","闹钟响起后需要连续不断快速摇晃手机，达到一定次数后即可关闭闹钟。"),
 ];
 
 AlarmInfo newAlarmInfo;
@@ -48,7 +52,9 @@ class AlarmSetting extends State<AlarmSettingWidget>{
 
   @override
   Widget build(BuildContext context) {
-    AlarmInfo alarmInfo = ModalRoute.of(context).settings.arguments;
+    dynamic arguments = ModalRoute.of(context).settings.arguments;
+    AlarmInfo alarmInfo = arguments["alarmInfo"];
+    int alarmIndex = arguments["index"];
     Adapt.onepx();
 
     newAlarmInfo = new AlarmInfo(
@@ -58,8 +64,32 @@ class AlarmSetting extends State<AlarmSettingWidget>{
       alarmInfo.mission,
       alarmInfo.audio,
       alarmInfo.vibration,
-      alarmInfo.isOpen
+      true,
     );
+
+    void cancelAlarm(AlarmInfo alarmInfo) async {
+      TimeOfDay time = alarmInfo.time;
+      String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmIndex.toString()});
+      print("data: $data");
+    }
+
+    void saveAlarm() async {
+      TimeOfDay time = newAlarmInfo.time;
+      String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmIndex.toString()});
+      print("data: $data");
+    }
+
+    void saveSettings(){
+      if(alarmInfo.isOpen){
+        cancelAlarm(alarmInfo);
+        saveAlarm();
+      }else{
+        saveAlarm();
+      }
+      Navigator.of(context).pop(newAlarmInfo);
+    }
+
+
 
     return Scaffold(
       appBar: AppBar(
@@ -74,7 +104,7 @@ class AlarmSetting extends State<AlarmSettingWidget>{
               style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(36)),
             ),
             onPressed: (() => {
-              Navigator.of(context).pop(newAlarmInfo)
+              saveSettings()
             }),
           ),
         ],
@@ -362,7 +392,7 @@ class MyOrderTitle extends State<OrderTitle>{
   }
 
   void repeatSetting(context, String oldRepeat){
-    String newRepeat = oldRepeat;
+    String newRepeat = "";
     List<String> selects = chineseToEnglish(regenerateRepeat(oldRepeat));
 
     EasyDialog(
@@ -534,7 +564,7 @@ class MyOrderTitle extends State<OrderTitle>{
                 description: missionList[index].description,
               );
             },
-            itemCount: 5,
+            itemCount: 6,
             viewportFraction: 0.8,
             scale: 0.9,
             onIndexChanged: (index){
@@ -672,9 +702,11 @@ class MissionItem{
 
 String generateRepeat(List<String> repeat){
   String repeatStr = "";
-  if(repeat.length == 7){
+  if(repeat.isEmpty){
+    repeatStr = "从不";
+  } else if(repeat.length == 7){
     repeatStr = "每天";
-  }else {
+  } else {
     repeat.forEach((element) {
       repeatStr += element + " ";
     });

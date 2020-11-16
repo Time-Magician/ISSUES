@@ -6,6 +6,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Message;
+import android.os.Handler;
 
 import io.flutter.embedding.android.FlutterActivity;
 import io.flutter.plugin.common.MethodCall;
@@ -16,10 +18,12 @@ import io.flutter.plugin.common.MethodChannel.Result;
 
 import android.content.Intent;
 import android.os.Build.VERSION;
+import android.widget.Toast;
 
 import com.baidu.aip.imageclassify.AipImageClassify;
 import com.example.demo5.AlarmManager.RepeatingAlarm;
 import com.example.demo5.ProcessLock.ProcessMonitorService;
+import com.example.demo5.ShakeSensor.SensorManagerHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,6 +47,8 @@ public class MainActivity extends FlutterActivity{
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SensorManagerHelper sensorHelper = new SensorManagerHelper(this);
         instance = this;
         String CHANNEL1 = "Channel";
         serviceIntent = new Intent(MainActivity.this, ProcessMonitorService.class);
@@ -66,8 +72,8 @@ public class MainActivity extends FlutterActivity{
                     case "startAlarm": {
                         int hour = call.argument("hour");
                         int minute = call.argument("minute");
-                        String musicName = call.argument("musicName");
-                        alarm(hour, minute, musicName);
+                        String alarmIndex = call.argument("alarmIndex");
+                        alarm(hour, minute, alarmIndex);
                         break;
                     }
                     case "cancelAlarm": {
@@ -79,8 +85,13 @@ public class MainActivity extends FlutterActivity{
                     case "imageClassify":
                         String path = call.argument("image");
                         List<String> keyword = new ArrayList<>();
-                        final Boolean[] flag = {false};
-                        Thread thread= new Thread(new Runnable() {
+                        Handler uiHandler = new Handler() {
+                            @Override
+                            public void handleMessage(Message msg) {
+                                result.success(msg.obj);
+                            }
+                        };
+                        new Thread(new Runnable() {
                             @Override
                             public void run() {
                                 String APP_ID = "22907417";
@@ -114,20 +125,34 @@ public class MainActivity extends FlutterActivity{
                                     }
                                     flag[0] = true;
 
+                                    Message msg = new Message();
+                                    msg.obj = keyword;
+                                    uiHandler.sendMessage(msg);
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }
-                        });
-                        thread.start();
+
+                        }).start();
+//                        thread.start();
+                        System.out.println(keyword);
 //                        try {
 //                            thread.join();
 //                        } catch (InterruptedException e) {
 //                            e.printStackTrace();
 //                        }
-                        while (!flag[0]){
-                        }
-                        result.success(keyword);
+
+                        break;
+                    case "shakeListen":
+                        sensorHelper.start();
+                        sensorHelper.setOnShakeListener(() -> {
+                            // TODO Auto-generated method stub
+                            shake();
+                        });
+                        break;
+                    case "stopShakeListen":
+                        sensorHelper.stop();
                         break;
                     default:
                         result.notImplemented();
@@ -142,6 +167,7 @@ public class MainActivity extends FlutterActivity{
         super.onDestroy();
     }
 
+    public void shake() { methodChannel.invokeMethod("shake",1); }
     private byte[] InputStreamToByte(InputStream is) throws IOException, IOException {
         ByteArrayOutputStream bytestream = new ByteArrayOutputStream();
         int ch;
@@ -154,11 +180,11 @@ public class MainActivity extends FlutterActivity{
     }
 
 
-    public void music(String musicName){
-        methodChannel.invokeMethod("test",musicName);
+    public void music(String alarmIndex){
+        methodChannel.invokeMethod("test",alarmIndex);
     }
 
-    private void alarm(int hour,int minute,String musicName) {
+    private void alarm(int hour, int minute, String alarmIndex) {
         // 获取系统的闹钟服务
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         // 触发闹钟的时间（毫秒）
@@ -166,7 +192,7 @@ public class MainActivity extends FlutterActivity{
         intent.setAction("com.gcc.alarm");
         String uri="content://calendar/calendar_alerts/"+String.valueOf(hour)+":"+String.valueOf(minute);
         intent.setData(Uri.parse(uri));
-        intent.putExtra("musicName",musicName);
+        intent.putExtra("alarmIndex", alarmIndex);
 
         PendingIntent op = PendingIntent.getBroadcast(this, 0, intent, 0);
 

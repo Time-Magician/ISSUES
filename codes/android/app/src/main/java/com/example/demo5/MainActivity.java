@@ -21,7 +21,6 @@ import android.os.Build.VERSION;
 import android.widget.Toast;
 
 import com.baidu.aip.imageclassify.AipImageClassify;
-import com.example.demo5.AlarmManager.AlarmActivity;
 import com.example.demo5.AlarmManager.RepeatingAlarm;
 import com.example.demo5.ProcessLock.ProcessMonitorService;
 import com.example.demo5.ShakeSensor.SensorManagerHelper;
@@ -40,16 +39,11 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TimeZone;
-import java.util.concurrent.CountDownLatch;
 
 public class MainActivity extends FlutterActivity{
     private Intent serviceIntent;
     private MethodChannel methodChannel;
     public static MainActivity instance = null;
-    public static final String APP_ID = "22907417";
-    public static final String API_KEY = "zU2tRIF1FaHD8gxy3QTPY7Qw";
-    public static final String SECRET_KEY = "rIpRruQPpWPnTkxZnqsi1XnN9a4qltc9";
-    AipImageClassify client = new AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +94,10 @@ public class MainActivity extends FlutterActivity{
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
+                                String APP_ID = "22907417";
+                                String API_KEY = "zU2tRIF1FaHD8gxy3QTPY7Qw";
+                                String SECRET_KEY = "rIpRruQPpWPnTkxZnqsi1XnN9a4qltc9";
+                                AipImageClassify client = new AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
                                 HashMap<String, String> options = new HashMap<String, String>();
                                 options.put("top_num", "3");
                                 options.put("filter_threshold", "0.7");
@@ -125,7 +123,6 @@ public class MainActivity extends FlutterActivity{
                                     for (int i = 0; i < imageResult.length(); i++) {
                                         keyword.add((String) imageResult.getJSONObject(i).get("keyword"));
                                     }
-
                                     Message msg = new Message();
                                     msg.obj = keyword;
                                     uiHandler.sendMessage(msg);

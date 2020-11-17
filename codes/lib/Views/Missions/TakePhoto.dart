@@ -26,22 +26,27 @@ class MyTakePhoto extends State<TakePhoto>{
     return Scaffold(
         backgroundColor: const Color(0xFF75CCE8),
         resizeToAvoidBottomPadding: false,
-        body:Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: ScreenUtil().setWidth(720),
-              height: ScreenUtil().setWidth(280),
-              child: Information(),
-            ),
-            Expanded(
-              child: Container(
+        body:WillPopScope(
+          onWillPop: () async{
+            return false;
+          },
+          child:Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
                 width: ScreenUtil().setWidth(720),
-                child: PhotoMission(),
-              ),)
-          ],
+                height: ScreenUtil().setWidth(280),
+                child: Information(),
+              ),
+              Expanded(
+                child: Container(
+                  width: ScreenUtil().setWidth(720),
+                  child: PhotoMission(),
+                ),)
+            ],
+          )
         )
-    );;
+    );
   }
 
 }
@@ -163,6 +168,7 @@ class MyPhotoMission extends State<PhotoMission>{
 
   void imageClassify(String path, Function stopLoading) async {
     if(path.isEmpty){
+      stopLoading();
       emptyAlert();
       return;
     }

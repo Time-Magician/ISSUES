@@ -90,7 +90,7 @@ class MyDiploma extends State<Diploma>{
                                   ),
                                   child: ClipRect(//圆形头像
                                     child: Image.asset(
-                                      "assets/image/frog3.png",
+                                      "assets/image/frogGraduate.png",
                                       width: ScreenUtil().setWidth(160.0),
                                     ),
                                   ),

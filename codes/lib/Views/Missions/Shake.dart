@@ -25,20 +25,25 @@ class MyShake extends State<Shake>{
     return Scaffold(
         backgroundColor: const Color(0xFF75CCE8),
         resizeToAvoidBottomPadding: false,
-        body:Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              width: ScreenUtil().setWidth(720),
-              height: ScreenUtil().setWidth(280),
-              child: Information(),
-            ),
-            Expanded(
-              child: Container(
+        body:WillPopScope(
+          onWillPop: () async{
+            return false;
+          },
+          child:Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
                 width: ScreenUtil().setWidth(720),
-                child: ShakeMission(),
-              ),)
-          ],
+                height: ScreenUtil().setWidth(280),
+                child: Information(),
+              ),
+              Expanded(
+                child: Container(
+                  width: ScreenUtil().setWidth(720),
+                  child: ShakeMission(),
+                ),)
+            ],
+          )
         )
     );
   }

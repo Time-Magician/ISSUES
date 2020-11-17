@@ -91,6 +91,7 @@ flutter:
     - assets/image/frog.png
     - assets/image/frog2.png
     - assets/image/frog3.png
+    - assets/image/cat.jpg
     - assets/image/logo.png
     - assets/image/Froglogo.png
     - assets/image/day37-calculator.png
@@ -120,6 +121,15 @@ flutter:
     - assets/image/animalsLeft.png
     - assets/image/animalsRight.png
     - assets/image/photoBorder.png
+    - assets/image/frogPlay1.png
+    - assets/image/frogPlay2.png
+    - assets/image/frogPlay3.png
+    - assets/image/frogPlay4.png
+    - assets/image/frogStudy1.png
+    - assets/image/frogStudy2.png
+    - assets/image/frogStudy3.png
+    - assets/image/frogStudy4.png
+    - assets/image/frogGraduate.png
     - assets/audios/audio1.mp3
     - assets/audios/audio2.mp3
     - assets/audios/audio3.mp3

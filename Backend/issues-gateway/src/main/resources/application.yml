@@ -1,0 +1,40 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: issues-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 启用自动根据服务ID生成路由
+          lower-case-service-id: true # 设置路由的路径为小写的服务ID
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user-service/**
+          filters:
+            - StripPrefix=1
+        - id: issues-auth
+          uri: lb://issues-auth
+          predicates:
+            - Path=/issues-auth/**
+          filters:
+            - StripPrefix=1
+        - id: alarm-service
+          uri: lb://alarm-service
+          predicates:
+            - Path=/alarm-service/**
+          filters:
+            - StripPrefix=1
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:3000/eureka
+
+

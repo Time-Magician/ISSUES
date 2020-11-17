@@ -6,7 +6,6 @@ import 'index.dart';
 import 'package:provider/provider.dart';
 import 'Views/index.dart';
 import 'Views/DetailSettingView/index.dart';
-import 'Views/Missions/Camera.dart';
 import 'Views/Missions/Arithmetic.dart';
 import 'states/index.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart'
@@ -47,7 +46,6 @@ class MyApp extends StatelessWidget {
           "PasswordSetting": (context) => PasswordSettingView(),
           "GenderSetting": (context) => GenderSettingView(),
           "AppSetting": (context) => AppSettingView(),
-          "Camera": (context) => Camera(),
           "Arithmetic":(context)=>Arithmetic(),
           "Game":(context)=>Game(),
           "Shake":(context)=>Shake(),

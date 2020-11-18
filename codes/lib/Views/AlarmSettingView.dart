@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:easy_dialog/easy_dialog.dart';
@@ -8,10 +6,9 @@ import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:day_picker/day_picker.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-// import '../Class/AlarmInfo.dart';
+import '../Class/AlarmInfo.dart';
 import '../Utils/Adapt.dart';
 import '../common/global.dart';
-import 'package:demo5/models/index.dart';
 
 const List<String> audios = [
   "audio1",
@@ -51,32 +48,16 @@ class AlarmSetting extends State<AlarmSettingWidget>{
     // TODO: implement initState
     super.initState();
     // alarmInfo = ModalRoute.of(context).settings.arguments;
-    Global.methodChannel.setMethodCallHandler((call) {
-      if(call.method == "test")
-        print(call.arguments);
-      String _id = call.arguments;
-      int id = int.parse(_id);
-      int index = Global.alarmList.indexWhere((element) => element.alarmId == id);
-      String mission = Global.alarmList[index].mission;
-      Global.audioCache1.loop(Global.alarmList[index].audio+".mp3");
-      switch(mission){
-        case "算术题": Navigator.pushNamed(context, "Arithmetic");break;
-        case "小游戏": Navigator.pushNamed(context, "Game");break;
-        case "指定物品拍照": Navigator.pushNamed(context, "TakePhoto");break;
-        case "摇晃手机": Navigator.pushNamed(context, "Shake");break;
-        case "随机任务": Navigator.pushNamed(context, Global.missionRouteList[(new Random()).nextInt(4)]);break;
-        default: break;
-      }
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    AlarmInfo alarmInfo = ModalRoute.of(context).settings.arguments;
+    dynamic arguments = ModalRoute.of(context).settings.arguments;
+    AlarmInfo alarmInfo = arguments["alarmInfo"];
+    int alarmIndex = arguments["index"];
     Adapt.onepx();
 
     newAlarmInfo = new AlarmInfo(
-      alarmInfo.alarmId,
       alarmInfo.label,
       alarmInfo.repeat,
       alarmInfo.time,
@@ -88,13 +69,22 @@ class AlarmSetting extends State<AlarmSettingWidget>{
 
     void cancelAlarm(AlarmInfo alarmInfo) async {
       TimeOfDay time = alarmInfo.time;
-      String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":""});
+      String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmIndex.toString()});
+      print("data: $data");
+    }
+
+    void saveAlarm() async {
+      TimeOfDay time = newAlarmInfo.time;
+      String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmIndex.toString()});
       print("data: $data");
     }
 
     void saveSettings(){
       if(alarmInfo.isOpen){
         cancelAlarm(alarmInfo);
+        saveAlarm();
+      }else{
+        saveAlarm();
       }
       Navigator.of(context).pop(newAlarmInfo);
     }
@@ -357,10 +347,7 @@ class MyOrderTitle extends State<OrderTitle>{
           child: SingleChildScrollView(
             child: RadioButtonGroup(
                 labels: audios,
-                onSelected: (String selected){
-                  newAudio = selected;
-                  Global.audioCache1.play(selected+".mp3");
-                }
+                onSelected: (String selected) => {newAudio = selected}
             ),
           ),
         ),
@@ -372,7 +359,6 @@ class MyOrderTitle extends State<OrderTitle>{
                 width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
-                    Global.advancedPlayer1.release();
                     Navigator.of(context).pop(newAudio);
                   },
                   child: Text(
@@ -386,7 +372,6 @@ class MyOrderTitle extends State<OrderTitle>{
                 width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
-                    Global.advancedPlayer1.release();
                     setState(() {
                       label = newAudio;
                     });

@@ -12,7 +12,7 @@ class ProfileChangeNotifier extends ChangeNotifier {
 
 class UserModel extends ProfileChangeNotifier {
   User get user => _profile.user;
-  String get userName => _profile.user.username;
+  String get userName => _profile.user.userName;
   String get name => _profile.user.name;
   String get email  => _profile.user.email;
   String get gender => _profile.user.gender;
@@ -26,7 +26,7 @@ class UserModel extends ProfileChangeNotifier {
       notifyListeners();
   }
   set userName(String userName){
-    _profile.user.username = userName;
+    _profile.user.userName = userName;
     notifyListeners();
   }
   set email (String email){

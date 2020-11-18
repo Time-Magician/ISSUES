@@ -1,13 +1,9 @@
-import 'dart:math';
-
-import 'package:demo5/common/global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import '../Class/StudyInfo.dart';
-import 'package:demo5/models/Frog.dart';
 
 List<StudyInfo> studyInfo = [
-  StudyInfo(Frog(1, "陈大狗", 15, 100, true, "2020/06/22", "氢化大学"), false),
+  StudyInfo(new Frog("陈大狗", 15, 100, true, "2020/06/22", "氢化大学"), false),
 ];
 
 class DiplomasWidget extends StatefulWidget{
@@ -19,29 +15,6 @@ class DiplomasWidget extends StatefulWidget{
 }
 
 class MyDiplomasView extends State<DiplomasWidget>{
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    Global.methodChannel.setMethodCallHandler((call) {
-      if(call.method == "test")
-        print(call.arguments);
-      String _id = call.arguments;
-      int id = int.parse(_id);
-      int index = Global.alarmList.indexWhere((element) => element.alarmId == id);
-      String mission = Global.alarmList[index].mission;
-      Global.audioCache1.loop(Global.alarmList[index].audio+".mp3");
-      switch(mission){
-        case "算术题": Navigator.pushNamed(context, "Arithmetic");break;
-        case "小游戏": Navigator.pushNamed(context, "Game");break;
-        case "指定物品拍照": Navigator.pushNamed(context, "TakePhoto");break;
-        case "摇晃手机": Navigator.pushNamed(context, "Shake");break;
-        case "随机任务": Navigator.pushNamed(context, Global.missionRouteList[(new Random()).nextInt(4)]);break;
-        default: break;
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

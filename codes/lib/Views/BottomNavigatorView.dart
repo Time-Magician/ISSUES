@@ -1,7 +1,3 @@
-import 'dart:math';
-
-import 'package:demo5/common/global.dart';
-
 import 'StudyRoomView.dart';
 import 'package:flutter/material.dart';
 import 'AlarmView.dart';

@@ -198,7 +198,7 @@ class MyShakeMission extends State<ShakeMission>{
                 child: FlatButton(
                   onPressed: () {
                     Global.advancedPlayer1.release();
-                    Navigator.pushNamedAndRemoveUntil(context, "HomePage",(Route route) =>false);
+                    Navigator.pushReplacementNamed(context, "HomePage");
                   },
                   child: Text(
                     "确认",

@@ -1,30 +1,19 @@
-import 'dart:convert';
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
-// import '../Class/AlarmInfo.dart';
+import '../Class/AlarmInfo.dart';
 import 'package:easy_dialog/easy_dialog.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../common/global.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:demo5/models/index.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'package:dio/dio.dart';
 
 
-
-List<AlarmInfo> _alarmList = Global.alarmList;
-
-// List<AlarmInfoStorage> _alarmStoredList = [
-//   toStorage(_alarmList[0]),
-//   toStorage(_alarmList[1]),
-//   toStorage(_alarmList[2]),
-// ];
-
-
+List<AlarmInfo> _alarmList = [
+  AlarmInfo("起床", ["周一","周二","周三","周四","周五"],TimeOfDay(hour: 6, minute: 30),"算术题","audio1",true,false),
+  AlarmInfo("班级会议", ["周三"],TimeOfDay(hour: 21, minute: 30),"随机任务","audio3",true,false),
+  AlarmInfo("高数作业DDL", ["周日"],TimeOfDay(hour: 23, minute: 30),"小游戏","audio5",true,false)
+];
 
 
 class AlarmView extends StatefulWidget {
@@ -35,7 +24,6 @@ class AlarmView extends StatefulWidget {
 class AlarmList extends State<AlarmView> {
   int alarmCount;
 
-
   @override
   void initState() {
     // TODO: implement initState
@@ -44,47 +32,50 @@ class AlarmList extends State<AlarmView> {
     Global.methodChannel.setMethodCallHandler((call) {
       if(call.method == "test")
         print(call.arguments);
-      String _id = call.arguments;
-      int id = int.parse(_id);
-      int index = Global.alarmList.indexWhere((element) => element.alarmId == id);
-      String mission = Global.alarmList[index].mission;
-      Global.audioCache1.loop(Global.alarmList[index].audio+".mp3");
-      switch(mission){
-        case "算术题": Navigator.pushNamed(context, "Arithmetic");break;
-        case "小游戏": Navigator.pushNamed(context, "Game");break;
-        case "指定物品拍照": Navigator.pushNamed(context, "TakePhoto");break;
-        case "摇晃手机": Navigator.pushNamed(context, "Shake");break;
-        case "随机任务": Navigator.pushNamed(context, Global.missionRouteList[(new Random()).nextInt(4)]);break;
-        default: break;
-      }
+        String _index = call.arguments;
+        int index = int.parse(_index);
+        String mission = _alarmList[index].mission;
+        Global.audioCache1.loop(_alarmList[index].audio+".mp3");
+        switch(mission){
+          case "算术题": Navigator.pushNamed(context, "Arithmetic");break;
+          case "小游戏": Navigator.pushNamed(context, "Game");break;
+          case "指定物品拍照": Navigator.pushNamed(context, "TakePhoto");break;
+          case "摇晃手机": Navigator.pushNamed(context, "Shake");break;
+          case "随机任务": Navigator.pushNamed(context, "Game");break;
+          default: break;
+        }
     });
   }
 
   void addAlarm() async {
     final result = await Navigator.pushNamed(context,"AlarmSetting",arguments:
-      AlarmInfo(null ,"闹钟", [], TimeOfDay.now(), "算术题", "audio1", true, false),
+      {"index":_alarmList.length, "alarmInfo":AlarmInfo("闹钟", [], TimeOfDay.now(), "算术题", "audio1", true, false)},
     );
 
     if(result.runtimeType != AlarmInfo) return;
 
     AlarmInfo newAlarmInfo = result as AlarmInfo;
-
-    var id = await Global.db.insert("alarms", newAlarmInfo.toJson());
-    print("add alarm: $id");
-    newAlarmInfo.alarmId = id;
     _alarmList.add(newAlarmInfo);
-
     setState(() {
 
     });
+    // var client = http.Client();
+    // try {
+    //   var uriResponse = await client.post('http://localhost:9000/alarm-service/alarm/createAlarm',
+    //       body: {'user_id': 1, 'alarm_id': 1,'label':'debug','repeat':'hello','time':'23:23:00','mission':'小游戏','audio':'audio1'});
+    //   print(await client.get(uriResponse));
+    // } finally {
+    //   client.close();
+    // }
     postRequestTest();
-
-    TimeOfDay time = newAlarmInfo.time;
-    String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":id.toString()});
-    print("data: $data");
-
   }
 
+  void deleteAlarm(){
+    print("delete");
+    this.setState(() {
+
+    });
+  }
 
   void postRequestTest() async {
     Dio dio = new Dio();
@@ -104,11 +95,7 @@ class AlarmList extends State<AlarmView> {
     return Scaffold(
         appBar: AppBar(
             automaticallyImplyLeading: false,
-          centerTitle: true,
-          title: Text(
-            "ISSUES",
-            style: TextStyle(fontSize: ScreenUtil().setSp(60.0), fontFamily: 'Knewave'),
-          ),
+          title: Text('闹钟'),
           actions: <Widget>[
             new IconButton(
                 icon: new Icon(Icons.add_alarm),
@@ -165,9 +152,9 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     });
     int hour = _alarmList[widget.alarmIndex].time.hour;
     int minute = _alarmList[widget.alarmIndex].time.minute;
-    int id = _alarmList[widget.alarmIndex].alarmId;
+    int alarmIndex = widget.alarmIndex;
 
-    setAlarm(hour, minute, isOpen, id);
+    setAlarm(hour, minute, isOpen, alarmIndex);
   }
 
   String timeToString(TimeOfDay time){
@@ -192,7 +179,10 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
   void editAlarm() async {
     final result = await Navigator.pushNamed(
         context,"AlarmSetting",
-        arguments:_alarmList[widget.alarmIndex]
+        arguments: {
+          "index":widget.alarmIndex,
+          "alarmInfo":_alarmList[widget.alarmIndex]
+        }
     );
 
     if(result.runtimeType != AlarmInfo) return;
@@ -201,23 +191,13 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     this.setState(() {
       alarmInfo = newAlarmInfo;
     });
-
-    _alarmList[widget.alarmIndex] = newAlarmInfo;
-    int alarmId = newAlarmInfo.alarmId;
-    await Global.db.update("alarms", newAlarmInfo.toJson(), where: "alarmId = ?", whereArgs: [alarmId]);
-    print("update alarm: $alarmId");
-
-    if(newAlarmInfo.isOpen){
-      TimeOfDay time = newAlarmInfo.time;
-      String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmId.toString()});
-      print("data: $data");
-    }
+    print(newAlarmInfo.repeat);
+    _alarmList[widget.alarmIndex] = alarmInfo;
   }
 
   void cancelAlarm(int index)async{
     TimeOfDay time = _alarmList[index].time;
-    int id = _alarmList[index].alarmId;
-    String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":id.toString()});
+    String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":index.toString()});
     print("data: $data");
   }
 
@@ -259,9 +239,8 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
                 child: FlatButton(
                   onPressed: () {
                     if(_alarmList[widget.alarmIndex].isOpen) cancelAlarm(widget.alarmIndex);
-                    int id = _alarmList[widget.alarmIndex].alarmId;
                     _alarmList.removeAt(widget.alarmIndex);
-                    widget.callbackFunc(id);
+                    widget.callbackFunc();
                     this.setState(() {
                     });
                     zoomAlarm();
@@ -302,16 +281,16 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     });
   }
 
-  void setAlarm(int hour,int minute,bool isOpen,int id) async{
+  void setAlarm(int hour,int minute,bool isOpen,int alarmIndex) async{
     if(Platform.isAndroid) {
 
       // ignore: missing_return
 
       if(isOpen){
-      String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute,"alarmIndex":id.toString()});
+      String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute,"alarmIndex":alarmIndex.toString()});
       print("data: $data");
       }else{
-        String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":hour,"minute":minute,"alarmIndex":id.toString()});
+        String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":hour,"minute":minute,"alarmIndex":alarmIndex.toString()});
         print("data: $data");
       }
     }
@@ -322,11 +301,9 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     repeat = "";
     alarmInfo = _alarmList[widget.alarmIndex];
 
-    if(alarmInfo.repeat.isEmpty){
-      repeat = "从不";
-    } else if(alarmInfo.repeat.length == 7){
+    if(alarmInfo.repeat.length == 7){
       repeat = "每天";
-    } else {
+    }else {
       alarmInfo.repeat.forEach((element) {
         repeat += element + " ";
       });

@@ -19,7 +19,7 @@ class UserDetailView extends StatelessWidget{
               return
                 ListView(
                   children: <Widget>[
-                    _DetailItem(item: '用户名', value: user.username, router: 'UserNameSetting'),
+                    _DetailItem(item: '用户名', value: user.userName, router: 'UserNameSetting'),
                     _DetailItem(item: '姓名', value: user.name, router: 'NameSetting'),
                     _DetailItem(item: '性别', value: user.gender, router: 'GenderSetting'),
                     _DetailItem(item: '电子邮箱',

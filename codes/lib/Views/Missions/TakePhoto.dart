@@ -114,7 +114,7 @@ class MyInformation extends State<Information>{
                 Container(
                   width: ScreenUtil().setWidth(320),
                   child: Text(
-                    "小青蛙老是丢三落四，快来帮它找找指定的物品，拍张照吧！",
+                    "小青蛙和同学们要拍合照啦，快帮帮它们找到要求出镜的物品吧！",
                     style: TextStyle(fontSize: ScreenUtil().setSp(27)),
                     textAlign: TextAlign.left,
                   ),
@@ -256,7 +256,7 @@ class MyPhotoMission extends State<PhotoMission>{
                 child: FlatButton(
                   onPressed: () {
                     Global.advancedPlayer1.release();
-                    Navigator.pushNamedAndRemoveUntil(context, "HomePage",(Route route) =>false);
+                    Navigator.pushReplacementNamed(context, "HomePage");
                   },
                   child: Text(
                     "确认",
@@ -361,7 +361,7 @@ class MyPhotoMission extends State<PhotoMission>{
             Container(
               width: ScreenUtil().setWidth(240),
               height: ScreenUtil().setWidth(600),
-              child: Image.asset("assets/image/takePhotoLeft.png"),
+              child: Image.asset("assets/image/animalsLeft.png"),
             ),
             Column(
               children: [
@@ -402,7 +402,7 @@ class MyPhotoMission extends State<PhotoMission>{
             Container(
               width: ScreenUtil().setWidth(240),
               height: ScreenUtil().setWidth(600),
-              child: Image.asset("assets/image/takePhotoRight.png"),
+              child: Image.asset("assets/image/animalsRight.png"),
             )
           ],
         ),

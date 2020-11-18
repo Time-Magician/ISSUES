@@ -59,14 +59,7 @@ class AlarmList extends State<AlarmView> {
     setState(() {
 
     });
-    // var client = http.Client();
-    // try {
-    //   var uriResponse = await client.post('http://localhost:9000/alarm-service/alarm/createAlarm',
-    //       body: {'user_id': 1, 'alarm_id': 1,'label':'debug','repeat':'hello','time':'23:23:00','mission':'小游戏','audio':'audio1'});
-    //   print(await client.get(uriResponse));
-    // } finally {
-    //   client.close();
-    // }
+
     postRequestTest();
   }
 

@@ -23,7 +23,11 @@ class MyStudyRoomWidget extends State<StudyRoomWidget>{
       backgroundColor: const Color(0xFF75CCE8),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('自习室'),
+        centerTitle: true,
+        title: Text(
+          "ISSUES",
+          style: TextStyle(fontSize: ScreenUtil().setSp(60.0), fontFamily: 'Knewave'),
+        ),
       ),
       body: StudyRoom(),
     );

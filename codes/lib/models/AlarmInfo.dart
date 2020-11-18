@@ -36,8 +36,8 @@ class AlarmInfo {
   }
   static List<String> jsonToRepeat(String repeat) =>
       repeat.split(" ");
-  static bool intToBool(int vibration) =>
-      vibration==1?true:false;
-  static int boolToInt(bool vibration) =>
-      vibration?1:0;
+  static bool intToBool(int i) =>
+      i==1?true:false;
+  static int boolToInt(bool b) =>
+      b?1:0;
 }

@@ -4,9 +4,10 @@ import 'package:demo5/common/global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import '../Class/StudyInfo.dart';
+import 'package:demo5/models/Frog.dart';
 
 List<StudyInfo> studyInfo = [
-  StudyInfo(new Frog("陈大狗", 15, 100, true, "2020/06/22", "氢化大学"), false),
+  StudyInfo(Frog(1, "陈大狗", 15, 100, true, "2020/06/22", "氢化大学"), false),
 ];
 
 class DiplomasWidget extends StatefulWidget{

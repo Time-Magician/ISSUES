@@ -11,6 +11,7 @@ import 'package:sqflite/sqflite.dart';
 class Global {
   static SharedPreferences _prefs;
   static Profile profile;
+  static Frog frog;
   static Database db;
   static var methodChannel;
   static AudioPlayer advancedPlayer1 = new AudioPlayer();
@@ -31,9 +32,11 @@ class Global {
     WidgetsFlutterBinding.ensureInitialized();
     _prefs = await SharedPreferences.getInstance();
     var _profile = _prefs.getString("profile");
+    var _frog = _prefs.getString("frog");
     if (_profile != null) {
       try {
         profile = Profile.fromJson(jsonDecode(_profile));
+        frog = Frog.fromJson(jsonDecode(_frog));
       } catch (e) {
         print(e);
       }
@@ -50,6 +53,10 @@ class Global {
         Map<String,dynamic> tmp = jsonDecode(value);
         profile.settings = Settings.fromJson(tmp);
       });
+      rootBundle.loadString('jsons/frog.json').then((String value){
+        Map<String,dynamic> tmp = jsonDecode(value);
+        frog = Frog.fromJson(tmp);
+      });
     }
     methodChannel = MethodChannel("Channel");
 
@@ -57,6 +64,9 @@ class Global {
   }
   static saveProfile() =>
       _prefs.setString("profile", jsonEncode(profile.toJson()));
+
+  static saveFrog() =>
+      _prefs.setString("frog", jsonEncode(frog.toJson()));
 
   static void initDB() async {
     var databasesPath = await getDatabasesPath();

@@ -28,7 +28,11 @@ class UserView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('个人中心'),
+          centerTitle: true,
+          title: Text(
+            "ISSUES",
+            style: TextStyle(fontSize: ScreenUtil().setSp(60.0), fontFamily: 'Knewave'),
+          ),
       ),
       body: ListView(
         children: <Widget>[

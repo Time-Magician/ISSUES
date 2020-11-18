@@ -88,6 +88,9 @@ flutter:
     - family: KeShi
       fonts:
         - asset: assets/fonts/KeShi.ttf
+    - family: Knewave
+      fonts:
+        - asset: assets/fonts/Knewave-Regular.ttf
   assets:
     - assets/image/frog.png
     - assets/image/frog2.png
@@ -132,6 +135,7 @@ flutter:
     - assets/image/frogStudy3.png
     - assets/image/frogStudy4.png
     - assets/image/frogGraduate.png
+    - assets/image/banner.png
     - assets/audios/audio1.mp3
     - assets/audios/audio2.mp3
     - assets/audios/audio3.mp3
@@ -140,6 +144,7 @@ flutter:
     - jsons/profile.json
     - jsons/settings.json
     - jsons/user.json
+    - jsons/frog.json
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

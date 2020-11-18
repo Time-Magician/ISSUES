@@ -96,7 +96,11 @@ class AlarmList extends State<AlarmView> {
     return Scaffold(
         appBar: AppBar(
             automaticallyImplyLeading: false,
-          title: Text('闹钟'),
+          centerTitle: true,
+          title: Text(
+            "ISSUES",
+            style: TextStyle(fontSize: ScreenUtil().setSp(60.0), fontFamily: 'Knewave'),
+          ),
           actions: <Widget>[
             new IconButton(
                 icon: new Icon(Icons.add_alarm),

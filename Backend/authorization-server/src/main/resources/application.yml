@@ -1,0 +1,34 @@
+eureka:
+    client:
+        service-url:
+            defaultZone: http://localhost:3000/eureka
+    instance:
+        prefer-ip-address: true
+redis:
+    pool:
+        maxActive: 600
+        maxIdle: 300
+        maxWait: 3000
+server:
+    port: 8080
+spring:
+    application:
+        name: issues-auth
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: root
+        tomcat:
+            max-active: 20
+        url: jdbc:mysql://localhost:3306/issues?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&autoReconnect=true&failOverReadOnly=false
+        username: root
+    jpa:
+        database: mysql
+        properties:
+            hibernate:
+                hbm2ddl:
+                    auto: update
+        show-sql: true
+    redis:
+        database: 0
+        host: 127.0.0.1
+        port: 6379

@@ -4,7 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ef04adf-f56b-4b2a-9eea-75d40e226843" name="Default Changelist" comment="" />
+    <list default="true" id="7ef04adf-f56b-4b2a-9eea-75d40e226843" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../codes/assets/fonts/Knewave-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../codes/assets/image/banner.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../codes/assets/image/takePhotoLeft.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../codes/assets/image/takePhotoRight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../codes/jsons/alarmInfo.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../codes/jsons/frog.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../codes/lib/models/AlarmInfo.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../codes/lib/models/AlarmInfo.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../codes/lib/models/Frog.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../codes/lib/models/Frog.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/assets/image/day37-calculator.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/jsons/user.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/jsons/user.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/Class/AlarmInfo.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/Class/AlarmInfo.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/Class/StudyInfo.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/Class/StudyInfo.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/Views/AlarmSettingView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/Views/AlarmSettingView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/Views/AlarmView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/Views/AlarmView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/Views/BottomNavigatorView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/Views/BottomNavigatorView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/Views/DiplomasView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/Views/DiplomasView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/Views/LoginView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/Views/LoginView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/Views/Missions/Arithmetic.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/Views/Missions/Arithmetic.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/Views/Missions/Game.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/Views/Missions/Game.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/Views/Missions/Shake.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/Views/Missions/Shake.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/Views/Missions/TakePhoto.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/Views/Missions/TakePhoto.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/Views/StudyRoomView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/Views/StudyRoomView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/Views/StudyView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/Views/StudyView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/Views/UserDetailView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/Views/UserDetailView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/Views/UserView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/Views/UserView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/common/global.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/common/global.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/models/User.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/models/User.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/models/User.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/models/User.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/models/index.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/models/index.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/lib/states/ProfileChangeNotifier.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/lib/states/ProfileChangeNotifier.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../codes/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../codes/pubspec.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

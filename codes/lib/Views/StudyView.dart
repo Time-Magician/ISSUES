@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +13,10 @@ import '../Class/StudyInfo.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../common/global.dart';
+import 'package:demo5/index.dart';
 
-StudyInfo studyInfo = new StudyInfo(new Frog("陈二狗", 15, 78, false, "", "氢化大学"), false);
+Frog frog = Global.frog;
+StudyInfo studyInfo = new StudyInfo(frog, false);
 AudioCache audioPlayer;
 AudioPlayer advancedPlayer1 = new AudioPlayer();
 AudioCache audioCache1= new AudioCache(prefix: "audios/",fixedPlayer: advancedPlayer1);
@@ -56,7 +60,19 @@ class MyStudyView extends State<StudyView> {
     Global.methodChannel.setMethodCallHandler((call) {
       if(call.method == "test")
         print(call.arguments);
-      Navigator.pushNamed(context, "Arithmetic");
+      String _id = call.arguments;
+      int id = int.parse(_id);
+      int index = Global.alarmList.indexWhere((element) => element.alarmId == id);
+      String mission = Global.alarmList[index].mission;
+      Global.audioCache1.loop(Global.alarmList[index].audio+".mp3");
+      switch(mission){
+        case "算术题": Navigator.pushNamed(context, "Arithmetic");break;
+        case "小游戏": Navigator.pushNamed(context, "Game");break;
+        case "指定物品拍照": Navigator.pushNamed(context, "TakePhoto");break;
+        case "摇晃手机": Navigator.pushNamed(context, "Shake");break;
+        case "随机任务": Navigator.pushNamed(context, Global.missionRouteList[(new Random()).nextInt(4)]);break;
+        default: break;
+      }
     });
   }
 
@@ -66,7 +82,11 @@ class MyStudyView extends State<StudyView> {
       backgroundColor: const Color(0xFF75CCE8),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('学习哇'),
+          centerTitle: true,
+          title: Text(
+            "ISSUES",
+            style: TextStyle(fontSize: ScreenUtil().setSp(60.0), fontFamily: 'Knewave'),
+          ),
         actions: <Widget>[
           new IconButton(
             icon: new Icon(Icons.school),
@@ -125,14 +145,14 @@ class MyProgressBlock extends State<ProgressBlock>{
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        studyInfo.frog.name+" Lv "+level[studyInfo.frog.level],
+                        frog.name+" Lv "+level[frog.level],
                         style: TextStyle(
                           fontSize: ScreenUtil().setSp(32.0),
                           color: Colors.black,
                         ),
                       ),
                       Text(
-                        studyInfo.frog.level<=12?"正在备考 "+studyInfo.frog.school:"正在修读 "+studyInfo.frog.school,
+                        frog.level<=12?"正在备考 "+frog.school:"正在修读 "+frog.school,
                         style: TextStyle(
                           fontSize: ScreenUtil().setSp(28.0),
                           color: Colors.black,
@@ -146,7 +166,7 @@ class MyProgressBlock extends State<ProgressBlock>{
                   height: ScreenUtil().setWidth(36),
                   child: FAProgressBar(
                     backgroundColor: Colors.white,
-                    currentValue: studyInfo.frog.exp,
+                    currentValue: frog.exp,
                     maxValue: 100,
                     changeColorValue: 60,
                     displayText: '%',
@@ -188,11 +208,11 @@ class MyFrogBlock extends State<FrogBlock>{
                             return new CircularProfileAvatar(
                               '',
                               child: Image.asset(
-                                  studyInfo.frog.level < 7?
+                                  frog.level < 7?
                                   'assets/image/frogStudy1.png' :(
-                                      studyInfo.frog.level < 10?
+                                      frog.level < 10?
                                       'assets/image/frogStudy2.png':(
-                                          studyInfo.frog.level < 13?
+                                          frog.level < 13?
                                           'assets/image/frogStudy3.png':
                                           'assets/image/frogStudy4.png'
                                       )),
@@ -213,11 +233,11 @@ class MyFrogBlock extends State<FrogBlock>{
                     onSelectionChange:  _updateLabels,
                     child: ClipOval( //圆形头像
                       child: Image.asset(
-                        studyInfo.frog.level < 7?
+                        frog.level < 7?
                         'assets/image/frogPlay1.png' :(
-                            studyInfo.frog.level < 10?
+                            frog.level < 10?
                             'assets/image/frogPlay2.png':(
-                                studyInfo.frog.level < 13?
+                                frog.level < 13?
                                 'assets/image/frogPlay3.png':
                                 'assets/image/frogPlay4.png'
                             )),
@@ -266,6 +286,58 @@ class MyTimerBlock extends State<TimerBlock>{
   }
 
   void onDone(){
+    if(frog.level < 17){
+      int exp = totalMinute ~/ 3;
+      frog.exp += exp;
+      if(frog.exp >= 100) {
+        frog.exp -= 100;
+        frog.level += 1;
+        if(frog.level == 17){
+          frog.exp = 100;
+          frog.isGraduated = true;
+        }
+      }
+      Global.frog.exp = frog.exp;
+      Global.frog.level = frog.level;
+      Global.frog.isGraduated = frog.isGraduated;
+      Global.saveFrog();
+    }
+
+    EasyDialog(
+      fogOpacity: 0.12,
+      width: ScreenUtil().setWidth(640),
+      height: ScreenUtil().setWidth(320),
+      closeButton: false,
+      title: Text(
+        "完成学习",
+        style: TextStyle(fontSize: ScreenUtil().setSp(40)),
+      ),
+      description: Text(
+          "你的小青蛙已经成功完成了 120 分钟的学习！",
+        style: TextStyle(fontSize: ScreenUtil().setSp(28)),
+      ),
+      contentList: [
+        Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                width: ScreenUtil().setWidth(180),
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "确认",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+              )
+            ]
+        )
+      ],
+    ).show(context);
     endLockService();
     widget.onDone();
   }

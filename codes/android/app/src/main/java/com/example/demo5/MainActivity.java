@@ -45,6 +45,10 @@ public class MainActivity extends FlutterActivity{
     private Intent serviceIntent;
     private MethodChannel methodChannel;
     public static MainActivity instance = null;
+    public static final String APP_ID = "22907417";
+    public static final String API_KEY = "zU2tRIF1FaHD8gxy3QTPY7Qw";
+    public static final String SECRET_KEY = "rIpRruQPpWPnTkxZnqsi1XnN9a4qltc9";
+    AipImageClassify client = new AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,10 +99,6 @@ public class MainActivity extends FlutterActivity{
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                String APP_ID = "22907417";
-                                String API_KEY = "zU2tRIF1FaHD8gxy3QTPY7Qw";
-                                String SECRET_KEY = "rIpRruQPpWPnTkxZnqsi1XnN9a4qltc9";
-                                AipImageClassify client = new AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
                                 HashMap<String, String> options = new HashMap<String, String>();
                                 options.put("top_num", "3");
                                 options.put("filter_threshold", "0.7");

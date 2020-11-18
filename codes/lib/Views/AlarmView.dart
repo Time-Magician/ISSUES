@@ -77,13 +77,17 @@ class AlarmList extends State<AlarmView> {
     setState(() {
 
     });
-    
-    postRequestTest();
 
     TimeOfDay time = newAlarmInfo.time;
     String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":id.toString()});
     print("data: $data");
 
+  }
+
+  void deleteAlarm() async{
+    setState(() {
+
+    });
   }
 
 

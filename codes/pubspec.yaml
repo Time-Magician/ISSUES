@@ -57,6 +57,7 @@ dependencies:
   quiz_view: ^1.0.3
   argon_buttons_flutter: ^1.0.6
   flutter_spinkit: ^4.1.2+1
+  sqflite: ^1.3.1
 
 
 dev_dependencies:
@@ -88,6 +89,9 @@ flutter:
     - family: KeShi
       fonts:
         - asset: assets/fonts/KeShi.ttf
+    - family: Knewave
+      fonts:
+        - asset: assets/fonts/Knewave-Regular.ttf
   assets:
     - assets/image/frog.png
     - assets/image/frog2.png
@@ -95,7 +99,6 @@ flutter:
     - assets/image/cat.jpg
     - assets/image/logo.png
     - assets/image/Froglogo.png
-    - assets/image/day37-calculator.png
     - assets/image/math.png
     - assets/image/music.png
     - assets/image/game.png
@@ -121,6 +124,8 @@ flutter:
     - assets/image/frogChiRight.png
     - assets/image/animalsLeft.png
     - assets/image/animalsRight.png
+    - assets/image/takePhotoLeft.png
+    - assets/image/takePhotoRight.png
     - assets/image/photoBorder.png
     - assets/image/frogPlay1.png
     - assets/image/frogPlay2.png
@@ -131,6 +136,7 @@ flutter:
     - assets/image/frogStudy3.png
     - assets/image/frogStudy4.png
     - assets/image/frogGraduate.png
+    - assets/image/banner.png
     - assets/audios/audio1.mp3
     - assets/audios/audio2.mp3
     - assets/audios/audio3.mp3
@@ -139,6 +145,7 @@ flutter:
     - jsons/profile.json
     - jsons/settings.json
     - jsons/user.json
+    - jsons/frog.json
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

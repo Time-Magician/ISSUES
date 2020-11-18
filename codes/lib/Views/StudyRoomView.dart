@@ -91,7 +91,7 @@ class MyStudyRoom extends State<StudyRoom>{
                       ),
                       onPressed: () {
                         //TODO
-                        Navigator.pushNamed(context, "Camera");
+                        Navigator.pushNamed(context, "Game");
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.max,

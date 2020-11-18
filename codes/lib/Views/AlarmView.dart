@@ -6,6 +6,7 @@ import 'package:easy_dialog/easy_dialog.dart';
 import '../common/global.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
+import 'package:dio/dio.dart';
 
 
 List<AlarmInfo> _alarmList = [
@@ -58,6 +59,15 @@ class AlarmList extends State<AlarmView> {
     setState(() {
 
     });
+    // var client = http.Client();
+    // try {
+    //   var uriResponse = await client.post('http://localhost:9000/alarm-service/alarm/createAlarm',
+    //       body: {'user_id': 1, 'alarm_id': 1,'label':'debug','repeat':'hello','time':'23:23:00','mission':'小游戏','audio':'audio1'});
+    //   print(await client.get(uriResponse));
+    // } finally {
+    //   client.close();
+    // }
+    postRequestTest();
   }
 
   void deleteAlarm(){
@@ -66,7 +76,19 @@ class AlarmList extends State<AlarmView> {
 
     });
   }
-  
+
+  void postRequestTest() async {
+    Dio dio = new Dio();
+    FormData formData = FormData.fromMap({'user_id': 3, 'alarm_id': 1,'label':'debug','repeat':'hello','time':'23:23:00','mission':'小游戏','audio':'audio1'});
+    String url ="http://10.0.2.2:9000/alarm-service/alarm/createAlarm";
+    Response response = await dio
+        .post(url, data: formData);
+    var result = response.data.toString();
+    print(result);
+    setState(() {});
+  }
+
+
   @override
   Widget build(BuildContext context){
 

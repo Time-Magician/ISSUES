@@ -181,7 +181,7 @@ class MyQuestion extends State<Question>{
                   child: FlatButton(
                     onPressed: () {
                       Global.advancedPlayer1.release();
-                      Navigator.pushReplacementNamed(context, "HomePage");
+                      Navigator.pushNamedAndRemoveUntil(context, "HomePage",(Route route) =>false);
                     },
                     child: Text(
                       "确认",

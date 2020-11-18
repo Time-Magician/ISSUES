@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:demo5/Utils/UIdata.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 
 class LoginView extends StatelessWidget {

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +58,19 @@ class MyStudyView extends State<StudyView> {
     Global.methodChannel.setMethodCallHandler((call) {
       if(call.method == "test")
         print(call.arguments);
-      Navigator.pushNamed(context, "Arithmetic");
+      String _id = call.arguments;
+      int id = int.parse(_id);
+      int index = Global.alarmList.indexWhere((element) => element.alarmId == id);
+      String mission = Global.alarmList[index].mission;
+      Global.audioCache1.loop(Global.alarmList[index].audio+".mp3");
+      switch(mission){
+        case "算术题": Navigator.pushNamed(context, "Arithmetic");break;
+        case "小游戏": Navigator.pushNamed(context, "Game");break;
+        case "指定物品拍照": Navigator.pushNamed(context, "TakePhoto");break;
+        case "摇晃手机": Navigator.pushNamed(context, "Shake");break;
+        case "随机任务": Navigator.pushNamed(context, Global.missionRouteList[(new Random()).nextInt(4)]);break;
+        default: break;
+      }
     });
   }
 

@@ -12,19 +12,11 @@ import 'package:sqflite/sqflite.dart';
 import 'package:demo5/models/index.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
+import 'package:dio/dio.dart';
 
 
 
 List<AlarmInfo> _alarmList = Global.alarmList;
-
-// List<AlarmInfoStorage> _alarmStoredList = [
-//   toStorage(_alarmList[0]),
-//   toStorage(_alarmList[1]),
-//   toStorage(_alarmList[2]),
-// ];
-
-
-
 
 class AlarmView extends StatefulWidget {
   @override
@@ -41,8 +33,9 @@ class AlarmList extends State<AlarmView> {
     super.initState();
     // ignore: missing_return
     Global.methodChannel.setMethodCallHandler((call) {
-      if(call.method == "test")
-        print(call.arguments);
+      if(call.method != "test")
+         return;
+      print(call.arguments);
       String _id = call.arguments;
       int id = int.parse(_id);
       int index = Global.alarmList.indexWhere((element) => element.alarmId == id);
@@ -78,8 +71,18 @@ class AlarmList extends State<AlarmView> {
     });
 
     TimeOfDay time = newAlarmInfo.time;
-    String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":id.toString()});
-    print("data: $data");
+    Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":id.toString()});
+
+
+    int userId=1;
+    int alarmId = newAlarmInfo.alarmId;
+    String label = newAlarmInfo.label;
+    String repeat = AlarmInfo.repeatToJson(newAlarmInfo.repeat);
+    String mission = newAlarmInfo.mission;
+    String audio = newAlarmInfo.audio;
+    String _time = AlarmInfo.timeToJson(time)+":00";
+
+    postRequestCreateAlarm(userId, alarmId, label, repeat, _time, mission, audio);
 
   }
 
@@ -87,10 +90,34 @@ class AlarmList extends State<AlarmView> {
     print("delete alarm: $alarmId");
     Global.db.delete("alarms", where: "alarmId = ?", whereArgs: [alarmId]);
     this.setState(() {
-
     });
+    int userId=1;
+    deleteRequestDeleteAlarm(alarmId, userId);
   }
-  
+
+  void deleteRequestDeleteAlarm(int alarmId, int userId) async{
+    Dio dio = new Dio();
+    FormData formData = FormData.fromMap({'user_id': userId, 'alarm_id': alarmId});
+    String url ="http://10.0.2.2:9000/alarm-service/alarm/deleteAlarm";
+    Response response = await dio
+        .delete(url, data: formData);
+    var result = response.data.toString();
+    print(result);
+    setState(() {});
+  }
+
+  void postRequestCreateAlarm(int userId,int alarmId,String label,String repeat,String time,String mission ,String audio) async {
+    Dio dio = new Dio();
+    FormData formData = FormData.fromMap({'user_id': userId, 'alarm_id': alarmId, 'label': label, 'repeat': repeat, 'time': time, 'mission': mission, 'audio': audio});
+    String url ="http://10.0.2.2:9000/alarm-service/alarm/createAlarm";
+    Response response = await dio
+        .post(url, data: formData);
+    var result = response.data.toString();
+    print(result);
+    setState(() {});
+  }
+
+
   @override
   Widget build(BuildContext context){
 
@@ -149,18 +176,23 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     deleteButtonWidth = 0;
   }
 
-  void _switchAlarm(isOpen){
+  void _switchAlarm(isOpen) async{
     bool isOpen = this.alarmInfo.isOpen? false : true;
     alarmInfo.isOpen = isOpen;
     _alarmList[widget.alarmIndex].isOpen = isOpen;
 
     setState(() {
     });
+
+    int alarmId = _alarmList[widget.alarmIndex].alarmId;
+    await Global.db.update("alarms", _alarmList[widget.alarmIndex].toJson(), where: "alarmId = ?", whereArgs: [alarmId]);
+    print("update alarm: $alarmId");
+
     int hour = _alarmList[widget.alarmIndex].time.hour;
     int minute = _alarmList[widget.alarmIndex].time.minute;
     int id = _alarmList[widget.alarmIndex].alarmId;
 
-    setAlarm(hour, minute, isOpen, id);
+    switchAlarm(hour, minute, isOpen, id);
   }
 
   String timeToString(TimeOfDay time){
@@ -202,16 +234,37 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
 
     if(newAlarmInfo.isOpen){
       TimeOfDay time = newAlarmInfo.time;
-      String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmId.toString()});
-      print("data: $data");
+      Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmId.toString()});
     }
+
+    int userId=1;
+    int _alarmId = newAlarmInfo.alarmId;
+    String label = newAlarmInfo.label;
+    String repeat = AlarmInfo.repeatToJson(newAlarmInfo.repeat);
+    String mission = newAlarmInfo.mission;
+    String audio = newAlarmInfo.audio;
+    String _time = AlarmInfo.timeToJson(newAlarmInfo.time)+":00";
+
+    putRequestUpdateAlarm(userId, alarmId, label, repeat, _time, mission, audio);
+  }
+
+  void putRequestUpdateAlarm(int userId,int alarmId,String label,String repeat,String time,String mission ,String audio) async {
+    Dio dio = new Dio();
+    print("dio");
+    FormData formData = FormData.fromMap({'user_id': userId, 'alarm_id': alarmId, 'label': label, 'repeat': repeat, 'time': time, 'mission': mission, 'audio': audio});
+    String url ="http://10.0.2.2:9000/alarm-service/alarm/updateAlarm";
+    Response response = await dio
+        .put(url, data: formData);
+    var result = response.data.toString();
+    print(result);
+    setState(() {});
   }
 
   void cancelAlarm(int index)async{
     TimeOfDay time = _alarmList[index].time;
     int id = _alarmList[index].alarmId;
-    String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":id.toString()});
-    print("data: $data");
+    Global.methodChannel.invokeMethod("cancelAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":id.toString()});
+
   }
 
   void deleteAlarm(){
@@ -295,7 +348,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     });
   }
 
-  void setAlarm(int hour,int minute,bool isOpen,int id) async{
+  void switchAlarm(int hour,int minute,bool isOpen,int id) async{
     if(Platform.isAndroid) {
 
       // ignore: missing_return
@@ -314,8 +367,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
   Widget build(BuildContext context){
     repeat = "";
     alarmInfo = _alarmList[widget.alarmIndex];
-
-    if(alarmInfo.repeat.isEmpty){
+    if(alarmInfo.repeat.isEmpty || alarmInfo.repeat[0] == ""){
       repeat = "从不";
     } else if(alarmInfo.repeat.length == 7){
       repeat = "每天";

@@ -24,8 +24,9 @@ class MyDiplomasView extends State<DiplomasWidget>{
     // TODO: implement initState
     super.initState();
     Global.methodChannel.setMethodCallHandler((call) {
-      if(call.method == "test")
-        print(call.arguments);
+      if(call.method != "test")
+        return;
+      print(call.arguments);
       String _id = call.arguments;
       int id = int.parse(_id);
       int index = Global.alarmList.indexWhere((element) => element.alarmId == id);

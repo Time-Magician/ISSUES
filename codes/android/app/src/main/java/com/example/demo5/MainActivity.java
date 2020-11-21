@@ -77,8 +77,9 @@ public class MainActivity extends FlutterActivity{
                     case "startAlarm": {
                         int hour = call.argument("hour");
                         int minute = call.argument("minute");
+                        int timeSpan = call.argument("timeSpan");
                         String alarmIndex = call.argument("alarmIndex");
-                        alarm(hour, minute, alarmIndex);
+                        alarm(hour, minute, alarmIndex,timeSpan);
                         break;
                     }
                     case "cancelAlarm": {
@@ -178,7 +179,7 @@ public class MainActivity extends FlutterActivity{
         methodChannel.invokeMethod("test",alarmIndex);
     }
 
-    private void alarm(int hour, int minute, String alarmIndex) {
+    private void alarm(int hour, int minute, String alarmIndex,int timeSpan) {
         // 获取系统的闹钟服务
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         // 触发闹钟的时间（毫秒）
@@ -196,13 +197,9 @@ public class MainActivity extends FlutterActivity{
         c.set(Calendar.MINUTE, minute);
         c.set(Calendar.SECOND,0);
 
-        if(System.currentTimeMillis()>c.getTimeInMillis()){
-            am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis()+86400000, op);
-        }
-        else{
-            am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), op);
-        }
-        System.out.println("Set Alarm:"+String.valueOf(hour)+":"+String.valueOf(minute));
+        am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis()+86400000*timeSpan, op);
+
+        System.out.println("Set Alarm:"+String.valueOf(hour)+":"+String.valueOf(minute)+" after "+String.valueOf(timeSpan)+" day");
     }
 
     private void cancelAlarm(int hour,int minute){

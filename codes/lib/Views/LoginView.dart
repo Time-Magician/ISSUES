@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../Class/AlarmInfo.dart';
+import '../common/global.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 
 class LoginView extends StatelessWidget {
@@ -96,6 +99,7 @@ class LoginView extends StatelessWidget {
             ),
             color: Colors.green,
             onPressed: () {
+              initAlarmList();
               Navigator.pushNamed(context,"HomePage");
             },
           ),
@@ -110,4 +114,17 @@ class LoginView extends StatelessWidget {
       ],
     ),
   );
+
+  void initAlarmList() async {
+    Dio dio = new Dio();
+    String url ="http://10.0.2.2:9000/alarm-service/alarm/getAlarmList/"+"1";
+    Response response = await dio.get(url);
+    List<dynamic> maps= response.data;
+    // maps.forEach((element) {
+    //   print(element);
+    //   AlarmInfo alarmInfo = AlarmInfo.fromJson(element);
+    //   Global.webAlarmList.add(alarmInfo);
+    // });
+    print(maps);
+  }
 }

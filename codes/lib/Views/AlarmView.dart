@@ -40,6 +40,24 @@ class AlarmList extends State<AlarmView> {
       int id = int.parse(_id);
       int index = Global.alarmList.indexWhere((element) => element.alarmId == id);
       String mission = Global.alarmList[index].mission;
+
+      int hour = Global.alarmList[index].time.hour;
+      int minute = Global.alarmList[index].time.minute;
+      List<String> repeat= Global.alarmList[index].repeat;
+
+      if(repeat.isEmpty || repeat[0]==''){
+        Global.alarmList[index].isOpen=!Global.alarmList[index].isOpen;
+      }
+      else {
+        int timeSpan = Global.nextAlarmTime(hour, minute, repeat);
+        Global.methodChannel.invokeMethod("startAlarm", {
+          "hour": hour,
+          "minute": minute,
+          "alarmIndex": id.toString(),
+          "timeSpan": timeSpan
+        });
+      }
+
       Global.audioCache1.loop(Global.alarmList[index].audio+".mp3");
       switch(mission){
         case "算术题": Navigator.pushNamed(context, "Arithmetic");break;
@@ -58,52 +76,28 @@ class AlarmList extends State<AlarmView> {
     );
 
     if(result.runtimeType != AlarmInfo) return;
-
     AlarmInfo newAlarmInfo = result as AlarmInfo;
 
     var id = await Global.db.insert("alarms", newAlarmInfo.toJson());
     print("add alarm: $id");
     newAlarmInfo.alarmId = id;
     _alarmList.add(newAlarmInfo);
-
     setState(() {
-
     });
-
     TimeOfDay time = newAlarmInfo.time;
-    Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":id.toString()});
+    int timeSpan = Global.nextAlarmTime(time.hour, time.minute, newAlarmInfo.repeat);
+    Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":id.toString(),"timeSpan":timeSpan});
 
+    // int userId=1;
+    // int alarmId = newAlarmInfo.alarmId;
+    // String label = newAlarmInfo.label;
+    // String repeat = AlarmInfo.repeatToJson(newAlarmInfo.repeat);
+    // String mission = newAlarmInfo.mission;
+    // String audio = newAlarmInfo.audio;
+    // String _time = AlarmInfo.timeToJson(time)+":00";
 
-    int userId=1;
-    int alarmId = newAlarmInfo.alarmId;
-    String label = newAlarmInfo.label;
-    String repeat = AlarmInfo.repeatToJson(newAlarmInfo.repeat);
-    String mission = newAlarmInfo.mission;
-    String audio = newAlarmInfo.audio;
-    String _time = AlarmInfo.timeToJson(time)+":00";
+    // postRequestCreateAlarm(userId, alarmId, label, repeat, _time, mission, audio);
 
-    postRequestCreateAlarm(userId, alarmId, label, repeat, _time, mission, audio);
-
-  }
-
-  void deleteAlarm(int alarmId){
-    print("delete alarm: $alarmId");
-    Global.db.delete("alarms", where: "alarmId = ?", whereArgs: [alarmId]);
-    this.setState(() {
-    });
-    int userId=1;
-    deleteRequestDeleteAlarm(alarmId, userId);
-  }
-
-  void deleteRequestDeleteAlarm(int alarmId, int userId) async{
-    Dio dio = new Dio();
-    FormData formData = FormData.fromMap({'user_id': userId, 'alarm_id': alarmId});
-    String url ="http://10.0.2.2:9000/alarm-service/alarm/deleteAlarm";
-    Response response = await dio
-        .delete(url, data: formData);
-    var result = response.data.toString();
-    print(result);
-    setState(() {});
   }
 
   void postRequestCreateAlarm(int userId,int alarmId,String label,String repeat,String time,String mission ,String audio) async {
@@ -117,6 +111,25 @@ class AlarmList extends State<AlarmView> {
     setState(() {});
   }
 
+  void deleteAlarm(int alarmId){
+    print("delete alarm: $alarmId");
+    Global.db.delete("alarms", where: "alarmId = ?", whereArgs: [alarmId]);
+    this.setState(() {
+    });
+    int userId=1;
+    // deleteRequestDeleteAlarm(alarmId, userId);
+  }
+
+  void deleteRequestDeleteAlarm(int alarmId, int userId) async{
+    Dio dio = new Dio();
+    FormData formData = FormData.fromMap({'user_id': userId, 'alarm_id': alarmId});
+    String url ="http://10.0.2.2:9000/alarm-service/alarm/deleteAlarm";
+    Response response = await dio
+        .delete(url, data: formData);
+    var result = response.data.toString();
+    print(result);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context){
@@ -191,8 +204,11 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     int hour = _alarmList[widget.alarmIndex].time.hour;
     int minute = _alarmList[widget.alarmIndex].time.minute;
     int id = _alarmList[widget.alarmIndex].alarmId;
+    List<String> repeat = _alarmList[widget.alarmIndex].repeat;
 
-    switchAlarm(hour, minute, isOpen, id);
+    int timeSpan = Global.nextAlarmTime(hour, minute, repeat);
+
+    switchAlarm(hour, minute, isOpen, id, timeSpan);
   }
 
   String timeToString(TimeOfDay time){
@@ -234,7 +250,8 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
 
     if(newAlarmInfo.isOpen){
       TimeOfDay time = newAlarmInfo.time;
-      Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmId.toString()});
+      int timeSpan = Global.nextAlarmTime(time.hour, time.minute, newAlarmInfo.repeat);
+      Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmId.toString(),"timeSpan":timeSpan});
     }
 
     int userId=1;
@@ -245,7 +262,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     String audio = newAlarmInfo.audio;
     String _time = AlarmInfo.timeToJson(newAlarmInfo.time)+":00";
 
-    putRequestUpdateAlarm(userId, alarmId, label, repeat, _time, mission, audio);
+    // putRequestUpdateAlarm(userId, alarmId, label, repeat, _time, mission, audio);
   }
 
   void putRequestUpdateAlarm(int userId,int alarmId,String label,String repeat,String time,String mission ,String audio) async {
@@ -348,13 +365,12 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     });
   }
 
-  void switchAlarm(int hour,int minute,bool isOpen,int id) async{
+  void switchAlarm(int hour,int minute,bool isOpen,int id,int timeSpan) async{
     if(Platform.isAndroid) {
-
       // ignore: missing_return
-
       if(isOpen){
-      String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute,"alarmIndex":id.toString()});
+
+      String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":hour,"minute":minute,"alarmIndex":id.toString(),"timeSpan":timeSpan});
       print("data: $data");
       }else{
         String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":hour,"minute":minute,"alarmIndex":id.toString()});

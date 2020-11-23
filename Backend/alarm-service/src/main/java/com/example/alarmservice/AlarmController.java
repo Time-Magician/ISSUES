@@ -19,26 +19,30 @@ public class AlarmController {
     }
 
     @PostMapping("/createAlarm")
-    String createAlarm(@RequestParam(name = "userId")int userId,
+    String createAlarm(@RequestParam(name="alarm_id")int alarmId,
+                       @RequestParam(name = "user_id")int userId,
                        @RequestParam(name = "label")String label,
                        @RequestParam(name = "mission")String mission,
                        @RequestParam(name = "audio") String audio,
-                       @RequestParam(name = "time") String time){
-
-        return alarmService.createAlarm(userId,mission,audio,label,CommonUtil.strToTime(time));
+                       @RequestParam(name = "time")String time,
+                       @RequestParam(name = "repeat")String repeat ){
+        return alarmService.createAlarm(alarmId,userId,mission,audio,label,repeat,CommonUtil.strToTime(time));
     }
 
-    @DeleteMapping("/deleteAlarm/{id}")
-    String deleteAlarm(@PathVariable int id){
-        return alarmService.deleteAlarm(id);
+    @DeleteMapping("/deleteAlarm")
+    String deleteAlarm(@RequestParam(name="alarm_id") int alarmId,
+                       @RequestParam(name="user_id") int userId){
+        return alarmService.deleteAlarm(alarmId,userId);
     }
 
     @PutMapping("/updateAlarm")
-    String updateAlarm(@RequestParam(name = "id")int id,
+    String updateAlarm(@RequestParam(name="alarm_id")int alarmId,
+                       @RequestParam(name = "user_id")int userId,
                        @RequestParam(name = "label")String label,
                        @RequestParam(name = "mission")String mission,
                        @RequestParam(name = "audio") String audio,
-                       @RequestParam(name = "time") String time){
-        return alarmService.updateAlarm(id,mission,audio,label,CommonUtil.strToTime(time));
+                       @RequestParam(name = "time")String time,
+                       @RequestParam(name = "repeat")String repeat){
+        return alarmService.updateAlarm(alarmId,userId,mission,audio,label,repeat,CommonUtil.strToTime(time));
     }
 }

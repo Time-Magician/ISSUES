@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,19 +12,16 @@ import 'package:slide_countdown_clock/slide_countdown_clock.dart';
 import '../Class/StudyInfo.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:vibrate/vibrate.dart';
 import '../common/global.dart';
+import 'package:demo5/index.dart';
 
-StudyInfo studyInfo = new StudyInfo(new Frog("陈二狗", 15, 78, false, "", "氢化大学"), false);
+Frog frog = Global.frog;
+StudyInfo studyInfo = new StudyInfo(frog, false);
 AudioCache audioPlayer;
 AudioPlayer advancedPlayer1 = new AudioPlayer();
 AudioCache audioCache1= new AudioCache(prefix: "audios/",fixedPlayer: advancedPlayer1);
+MethodChannel platform = const MethodChannel('Channel');
 
-void vibrates() async{
-  bool canVibrate = await Vibrate.canVibrate;
-  print(canVibrate);
-  Vibrate.vibrate();
-}
 class StudyView extends StatefulWidget {
   final blockNavi;
   const StudyView({Key key, this.blockNavi}) : super(key: key);
@@ -59,10 +58,38 @@ class MyStudyView extends State<StudyView> {
     super.initState();
     // ignore: missing_return
     Global.methodChannel.setMethodCallHandler((call) {
-      if(call.method == "test")
-        print(call.arguments);
-      audioCache1.play('audio1.mp3');
-      Navigator.pushNamed(context, "Diplomas");
+      if(call.method != "test")
+        return;
+      print(call.arguments);
+      String _id = call.arguments;
+      int id = int.parse(_id);
+      int index = Global.alarmList.indexWhere((element) => element.alarmId == id);
+      String mission = Global.alarmList[index].mission;
+      int hour = Global.alarmList[index].time.hour;
+      int minute = Global.alarmList[index].time.minute;
+      List<String> repeat= Global.alarmList[index].repeat;
+
+      if(repeat.isEmpty || repeat[0]==''){
+        Global.alarmList[index].isOpen=!Global.alarmList[index].isOpen;
+      }
+      else {
+        int timeSpan = Global.nextAlarmTime(hour, minute, repeat);
+        Global.methodChannel.invokeMethod("startAlarm", {
+          "hour": hour,
+          "minute": minute,
+          "alarmIndex": id.toString(),
+          "timeSpan": timeSpan
+        });
+      }
+      Global.audioCache1.loop(Global.alarmList[index].audio+".mp3");
+      switch(mission){
+        case "算术题": Navigator.pushNamed(context, "Arithmetic");break;
+        case "小游戏": Navigator.pushNamed(context, "Game");break;
+        case "指定物品拍照": Navigator.pushNamed(context, "TakePhoto");break;
+        case "摇晃手机": Navigator.pushNamed(context, "Shake");break;
+        case "随机任务": Navigator.pushNamed(context, Global.missionRouteList[(new Random()).nextInt(4)]);break;
+        default: break;
+      }
     });
   }
 
@@ -72,7 +99,11 @@ class MyStudyView extends State<StudyView> {
       backgroundColor: const Color(0xFF75CCE8),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('学习哇'),
+          centerTitle: true,
+          title: Text(
+            "ISSUES",
+            style: TextStyle(fontSize: ScreenUtil().setSp(60.0), fontFamily: 'Knewave'),
+          ),
         actions: <Widget>[
           new IconButton(
             icon: new Icon(Icons.school),
@@ -98,7 +129,7 @@ class MyStudyView extends State<StudyView> {
             Container(
                 width: ScreenUtil().setWidth(720),
                 height: ScreenUtil().setWidth(168),
-                child: TimerBlock(totalTime: this.totalTime)
+                child: TimerBlock(totalTime: this.totalTime, onDone: () => _startEndStudy())
             ),
             Container(
                 width: ScreenUtil().setWidth(560),
@@ -131,14 +162,14 @@ class MyProgressBlock extends State<ProgressBlock>{
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        studyInfo.frog.name+" Lv "+level[studyInfo.frog.level],
+                        frog.name+" Lv "+level[frog.level],
                         style: TextStyle(
                           fontSize: ScreenUtil().setSp(32.0),
                           color: Colors.black,
                         ),
                       ),
                       Text(
-                        studyInfo.frog.level<=12?"正在备考 "+studyInfo.frog.school:"正在修读 "+studyInfo.frog.school,
+                        frog.level<=12?"正在备考 "+frog.school:"正在修读 "+frog.school,
                         style: TextStyle(
                           fontSize: ScreenUtil().setSp(28.0),
                           color: Colors.black,
@@ -152,7 +183,7 @@ class MyProgressBlock extends State<ProgressBlock>{
                   height: ScreenUtil().setWidth(36),
                   child: FAProgressBar(
                     backgroundColor: Colors.white,
-                    currentValue: studyInfo.frog.exp,
+                    currentValue: frog.exp,
                     maxValue: 100,
                     changeColorValue: 60,
                     displayText: '%',
@@ -194,7 +225,14 @@ class MyFrogBlock extends State<FrogBlock>{
                             return new CircularProfileAvatar(
                               '',
                               child: Image.asset(
-                                'assets/image/frog2.png',
+                                  frog.level < 7?
+                                  'assets/image/frogStudy1.png' :(
+                                      frog.level < 10?
+                                      'assets/image/frogStudy2.png':(
+                                          frog.level < 13?
+                                          'assets/image/frogStudy3.png':
+                                          'assets/image/frogStudy4.png'
+                                      )),
                               ), //sets image path, it should be a URL string. default value is empty string, if path is empty it will display only initials
                               radius: ScreenUtil().setWidth(constrains.maxHeight < constrains.maxWidth? constrains.maxHeight-25:constrains.maxWidth-25), // sets radius, default 50.0
                               backgroundColor: Color(0xFF75CCE8), // sets background color, default Colors.white
@@ -212,7 +250,14 @@ class MyFrogBlock extends State<FrogBlock>{
                     onSelectionChange:  _updateLabels,
                     child: ClipOval( //圆形头像
                       child: Image.asset(
-                        'assets/image/frog2.png',
+                        frog.level < 7?
+                        'assets/image/frogPlay1.png' :(
+                            frog.level < 10?
+                            'assets/image/frogPlay2.png':(
+                                frog.level < 13?
+                                'assets/image/frogPlay3.png':
+                                'assets/image/frogPlay4.png'
+                            )),
                       ),
                     ),
                   )
@@ -225,7 +270,8 @@ class MyFrogBlock extends State<FrogBlock>{
 
 class TimerBlock extends StatefulWidget{
   final int totalTime;
-  const TimerBlock({Key key, this.totalTime}) : super(key: key);
+  final onDone;
+  const TimerBlock({Key key, this.totalTime, this.onDone}) : super(key: key);
 
   @override
   createState() => new MyTimerBlock();
@@ -256,6 +302,63 @@ class MyTimerBlock extends State<TimerBlock>{
       return this.hourLeft.toString();
   }
 
+  void onDone(){
+    if(frog.level < 17){
+      int exp = totalMinute ~/ 3;
+      frog.exp += exp;
+      if(frog.exp >= 100) {
+        frog.exp -= 100;
+        frog.level += 1;
+        if(frog.level == 17){
+          frog.exp = 100;
+          frog.isGraduated = true;
+        }
+      }
+      Global.frog.exp = frog.exp;
+      Global.frog.level = frog.level;
+      Global.frog.isGraduated = frog.isGraduated;
+      Global.saveFrog();
+    }
+
+    EasyDialog(
+      fogOpacity: 0.12,
+      width: ScreenUtil().setWidth(640),
+      height: ScreenUtil().setWidth(320),
+      closeButton: false,
+      title: Text(
+        "完成学习",
+        style: TextStyle(fontSize: ScreenUtil().setSp(40)),
+      ),
+      description: Text(
+          "你的小青蛙已经成功完成了 $totalMinute 分钟的学习！",
+        style: TextStyle(fontSize: ScreenUtil().setSp(28)),
+      ),
+      contentList: [
+        Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                width: ScreenUtil().setWidth(180),
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "确认",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+              )
+            ]
+        )
+      ],
+    ).show(context);
+    endLockService();
+    widget.onDone();
+  }
+
   @override
   Widget build(BuildContext context) {
     totalMinute = widget.totalTime;
@@ -277,7 +380,7 @@ class MyTimerBlock extends State<TimerBlock>{
                   fontSize: ScreenUtil().setSp(96), fontFamily: "Miriam"
               ),
               shouldShowDays: false,
-              // onDone: play,
+              onDone: onDone,
             ),
           ) :Container(
             width: ScreenUtil().setWidth(600),
@@ -320,46 +423,12 @@ class BtnBlock extends StatefulWidget{
 }
 
 class MyBtnBlock extends State<BtnBlock>{
-  static const platform = const MethodChannel('Channel');
-
-  void pause() {
-    // audioCache1.clear('audio3.mp3');
-    // advancedPlayer1.release();
-  }
-
-  void play() {
-    // audioCache1.play('audio3.mp3');
-  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     // audioCache1.load('audio3.mp3');
-  }
-
-  Future<Null> startLockService() async {
-    try {
-      final result = await platform.invokeMethod("startStudy");
-      // batteryLevel = 'Battery level at $result % .';
-    } on PlatformException catch (e) {
-      print('${e.message}');
-    }
-
-  }
-
-  Future<Null> endLockService() async {
-    try {
-      final result = await platform.invokeMethod("stopStudy");
-      // batteryLevel = 'Battery level at $result % .';
-    } on PlatformException catch (e) {
-      print('${e.message}');
-    }
-
-  }
-
-  void startStudy(){
-    startLockService();
   }
 
   void endStudy(){
@@ -397,7 +466,6 @@ class MyBtnBlock extends State<BtnBlock>{
                 width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
-                    pause();
                     endLockService();
                     Navigator.of(context).pop();
                     widget.onPress();
@@ -439,8 +507,7 @@ class MyBtnBlock extends State<BtnBlock>{
             colorBrightness: Brightness.dark,
             onPressed: () {
               //TODO
-              startStudy();
-              play();
+              startLockService();
               widget.onPress();
             },
             child: Text(
@@ -449,6 +516,26 @@ class MyBtnBlock extends State<BtnBlock>{
             ),
           ));
   }
+}
+
+Future<Null> startLockService() async {
+  try {
+    final result = await platform.invokeMethod("startStudy");
+    // batteryLevel = 'Battery level at $result % .';
+  } on PlatformException catch (e) {
+    print('${e.message}');
+  }
+
+}
+
+Future<Null> endLockService() async {
+  try {
+    final result = await platform.invokeMethod("stopStudy");
+    // batteryLevel = 'Battery level at $result % .';
+  } on PlatformException catch (e) {
+    print('${e.message}');
+  }
+
 }
 
 

@@ -1,15 +1,29 @@
 server:
   port: 9000
-
 spring:
   application:
     name: issues-gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # 获取JWT验签公钥请求路径
+          jwk-set-uri: 'http://localhost:8080/rsa/publicKey'
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true # 启用自动根据服务ID生成路由
           lower-case-service-id: true # 设置路由的路径为小写的服务ID
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "docs.spring.io"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
       routes:
         - id: user-service
           uri: lb://user-service
@@ -38,3 +52,9 @@ eureka:
       defaultZone: http://localhost:3000/eureka
 
 
+white-list:
+  urls:
+    - "/issues-auth/oauth/token"
+    - "/issues-auth/rsa/publicKey"
+    - "/user-service/login"
+    - "/user-service/register"

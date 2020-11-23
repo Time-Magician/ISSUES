@@ -24,12 +24,30 @@ class MyDiplomasView extends State<DiplomasWidget>{
     // TODO: implement initState
     super.initState();
     Global.methodChannel.setMethodCallHandler((call) {
-      if(call.method == "test")
-        print(call.arguments);
+      if(call.method != "test")
+        return;
+      print(call.arguments);
       String _id = call.arguments;
       int id = int.parse(_id);
       int index = Global.alarmList.indexWhere((element) => element.alarmId == id);
       String mission = Global.alarmList[index].mission;
+
+      int hour = Global.alarmList[index].time.hour;
+      int minute = Global.alarmList[index].time.minute;
+      List<String> repeat= Global.alarmList[index].repeat;
+
+      if(repeat.isEmpty || repeat[0]==''){
+        Global.alarmList[index].isOpen=!Global.alarmList[index].isOpen;
+      }
+      else {
+        int timeSpan = Global.nextAlarmTime(hour, minute, repeat);
+        Global.methodChannel.invokeMethod("startAlarm", {
+          "hour": hour,
+          "minute": minute,
+          "alarmIndex": id.toString(),
+          "timeSpan": timeSpan
+        });
+      }
       Global.audioCache1.loop(Global.alarmList[index].audio+".mp3");
       switch(mission){
         case "算术题": Navigator.pushNamed(context, "Arithmetic");break;

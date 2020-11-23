@@ -1,6 +1,8 @@
 import 'package:demo5/Views/LoginView.dart';
 import 'package:demo5/Views/Missions/TakePhoto.dart';
 import 'Views/Missions/Game.dart';
+import 'Views/Missions/Game2.dart';
+import 'Views/Missions/Game3.dart';
 import 'Views/Missions/Shake.dart';
 import 'index.dart';
 import 'package:provider/provider.dart';
@@ -48,6 +50,8 @@ class MyApp extends StatelessWidget {
           "AppSetting": (context) => AppSettingView(),
           "Arithmetic":(context)=>Arithmetic(),
           "Game":(context)=>Game(),
+          "Game2":(context)=>Game2(),
+          "Game3":(context)=>Game3(),
           "Shake":(context)=>Shake(),
           "TakePhoto":(context)=>TakePhoto(),
           "/": (context) => LoginView(),

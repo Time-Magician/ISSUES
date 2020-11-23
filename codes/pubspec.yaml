@@ -58,6 +58,7 @@ dependencies:
   argon_buttons_flutter: ^1.0.6
   flutter_spinkit: ^4.1.2+1
   sqflite: ^1.3.1
+  tcard: ^1.2.2
 
 
 dev_dependencies:
@@ -118,6 +119,20 @@ flutter:
     - assets/image/animal6.png
     - assets/image/animal7.png
     - assets/image/animal8.png
+    - assets/image/animal8.png
+    - assets/image/animal9.png
+    - assets/image/animal10.png
+    - assets/image/animal11.png
+    - assets/image/animal12.png
+    - assets/image/animal13.png
+    - assets/image/animal14.png
+    - assets/image/animal15.png
+    - assets/image/animal16.png
+    - assets/image/animal17.png
+    - assets/image/animal18.png
+    - assets/image/animal19.png
+    - assets/image/animal20.png
+    - assets/image/animal21.png
     - assets/image/bigTree.png
     - assets/image/frogChiLeft.png
     - assets/image/frogMa.png
@@ -137,6 +152,10 @@ flutter:
     - assets/image/frogStudy4.png
     - assets/image/frogGraduate.png
     - assets/image/banner.png
+    - assets/image/mice.png
+    - assets/image/package1.png
+    - assets/image/port.png
+    - assets/image/portCat.png
     - assets/audios/audio1.mp3
     - assets/audios/audio2.mp3
     - assets/audios/audio3.mp3

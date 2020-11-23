@@ -1,4 +1,4 @@
-package com.example.authorizationserver.Entity;
+package com.example.authorizationserver.UserAuth;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,11 +19,12 @@ public class UserAuth implements UserDetails {
     @Id
     @Column(name = "user_id")
     private int userId;
-    private String username;
-    private String password;
-    @Column(name = "type")
-    private int userType;
+    private String email;
     private String tel;
+    private String password;
+
+    @Column(name = "user_type")
+    private int userType;
 
     @Override
     public boolean isAccountNonExpired() {
@@ -48,7 +49,7 @@ public class UserAuth implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + (userType == 0? "ADMIN":"USER")));
+        authorities.add(new SimpleGrantedAuthority(userType == 0? "ADMIN":"USER"));
         return authorities;
     }
 
@@ -57,8 +58,14 @@ public class UserAuth implements UserDetails {
         return password;
     }
 
+
+    //getUsername具体的返回值不影响验证
     @Override
     public String getUsername() {
-        return username;
+        return tel;
+    }
+
+    public String getUserType(){
+        return userType == 0? "USER":"ADMIN";
     }
 }

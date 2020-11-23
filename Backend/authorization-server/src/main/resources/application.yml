@@ -4,11 +4,11 @@ eureka:
             defaultZone: http://localhost:3000/eureka
     instance:
         prefer-ip-address: true
-redis:
-    pool:
-        maxActive: 600
-        maxIdle: 300
-        maxWait: 3000
+#redis:
+#    pool:
+#        maxActive: 600
+#        maxIdle: 300
+#        maxWait: 3000
 server:
     port: 8080
 spring:
@@ -28,7 +28,7 @@ spring:
                 hbm2ddl:
                     auto: update
         show-sql: true
-    redis:
-        database: 0
-        host: 127.0.0.1
-        port: 6379
+#    redis:
+#        database: 0
+#        host: 127.0.0.1
+#        port: 6379

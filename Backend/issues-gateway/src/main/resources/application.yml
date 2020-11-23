@@ -1,9 +1,14 @@
 server:
   port: 9000
-
 spring:
   application:
     name: issues-gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # 获取JWT验签公钥请求路径
+          jwk-set-uri: 'http://localhost:8080/rsa/publicKey'
   cloud:
     gateway:
       discovery:
@@ -47,3 +52,9 @@ eureka:
       defaultZone: http://localhost:3000/eureka
 
 
+white-list:
+  urls:
+    - "/issues-auth/oauth/token"
+    - "/issues-auth/rsa/publicKey"
+    - "/user-service/login"
+    - "/user-service/register"

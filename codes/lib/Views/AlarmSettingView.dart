@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:easy_dialog/easy_dialog.dart';
@@ -6,13 +8,17 @@ import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:day_picker/day_picker.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import '../Class/AlarmInfo.dart';
+// import '../Class/AlarmInfo.dart';
 import '../Utils/Adapt.dart';
+import '../common/global.dart';
+import 'package:demo5/models/index.dart';
 
 const List<String> audios = [
-"Audio 1",
-"Audio 2",
-"Audio 3",
+  "audio1",
+  "audio2",
+  "audio3",
+  "audio4",
+  "audio5"
 ];
 
 List<MissionItem> missionList = [
@@ -21,6 +27,7 @@ List<MissionItem> missionList = [
   MissionItem("小游戏","assets/image/game.png","闹钟响起时需要玩连连看、消消乐等小游戏，获得足够的积分之后就能关闭闹钟。"),
   MissionItem("指定物品拍照","assets/image/camera.png","闹钟响起后，需要拍一张指定物品的照片并上传，识别正确后就能关闭闹钟。"),
   MissionItem("随机任务","assets/image/random.png","闹钟任务会从任务库中随机指定，完成对应任务之后即可关闭闹钟。"),
+  MissionItem("摇晃手机","assets/image/shake.png","闹钟响起后需要连续不断快速摇晃手机，达到一定次数后即可关闭闹钟。"),
 ];
 
 AlarmInfo newAlarmInfo;
@@ -43,7 +50,6 @@ class AlarmSetting extends State<AlarmSettingWidget>{
   void initState() {
     // TODO: implement initState
     super.initState();
-    // alarmInfo = ModalRoute.of(context).settings.arguments;
   }
 
   @override
@@ -52,14 +58,30 @@ class AlarmSetting extends State<AlarmSettingWidget>{
     Adapt.onepx();
 
     newAlarmInfo = new AlarmInfo(
+      alarmInfo.alarmId,
       alarmInfo.label,
       alarmInfo.repeat,
       alarmInfo.time,
       alarmInfo.mission,
       alarmInfo.audio,
       alarmInfo.vibration,
-      alarmInfo.isOpen
+      true,
     );
+
+    void cancelAlarm(AlarmInfo alarmInfo) async {
+      TimeOfDay time = alarmInfo.time;
+      String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":""});
+      print("data: $data");
+    }
+
+    void saveSettings(){
+      if(alarmInfo.isOpen){
+        cancelAlarm(alarmInfo);
+      }
+      Navigator.of(context).pop(newAlarmInfo);
+    }
+
+
 
     return Scaffold(
       appBar: AppBar(
@@ -74,7 +96,7 @@ class AlarmSetting extends State<AlarmSettingWidget>{
               style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(36)),
             ),
             onPressed: (() => {
-              Navigator.of(context).pop(newAlarmInfo)
+              saveSettings()
             }),
           ),
         ],
@@ -317,7 +339,10 @@ class MyOrderTitle extends State<OrderTitle>{
           child: SingleChildScrollView(
             child: RadioButtonGroup(
                 labels: audios,
-                onSelected: (String selected) => {newAudio = selected}
+                onSelected: (String selected){
+                  newAudio = selected;
+                  Global.audioCache1.play(selected+".mp3");
+                }
             ),
           ),
         ),
@@ -329,6 +354,7 @@ class MyOrderTitle extends State<OrderTitle>{
                 width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
+                    Global.advancedPlayer1.release();
                     Navigator.of(context).pop(newAudio);
                   },
                   child: Text(
@@ -342,6 +368,7 @@ class MyOrderTitle extends State<OrderTitle>{
                 width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
+                    Global.advancedPlayer1.release();
                     setState(() {
                       label = newAudio;
                     });
@@ -362,7 +389,7 @@ class MyOrderTitle extends State<OrderTitle>{
   }
 
   void repeatSetting(context, String oldRepeat){
-    String newRepeat = oldRepeat;
+    String newRepeat = "";
     List<String> selects = chineseToEnglish(regenerateRepeat(oldRepeat));
 
     EasyDialog(
@@ -534,7 +561,7 @@ class MyOrderTitle extends State<OrderTitle>{
                 description: missionList[index].description,
               );
             },
-            itemCount: 5,
+            itemCount: 6,
             viewportFraction: 0.8,
             scale: 0.9,
             onIndexChanged: (index){
@@ -672,9 +699,11 @@ class MissionItem{
 
 String generateRepeat(List<String> repeat){
   String repeatStr = "";
-  if(repeat.length == 7){
+  if(repeat.isEmpty){
+    repeatStr = "从不";
+  } else if(repeat.length == 7){
     repeatStr = "每天";
-  }else {
+  } else {
     repeat.forEach((element) {
       repeatStr += element + " ";
     });

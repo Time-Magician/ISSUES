@@ -1,10 +1,12 @@
 import 'package:demo5/Views/LoginView.dart';
+import 'package:demo5/Views/Missions/TakePhoto.dart';
+import 'Views/Missions/Game.dart';
+import 'Views/Missions/Shake.dart';
 import 'index.dart';
 import 'package:provider/provider.dart';
 import 'Views/index.dart';
 import 'Views/DetailSettingView/index.dart';
-import 'Views/Missions/Camera.dart';
-import 'Views/Missions/Calculator.dart';
+import 'Views/Missions/Arithmetic.dart';
 import 'states/index.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart'
     as flutterSettingsScreens;
@@ -44,8 +46,10 @@ class MyApp extends StatelessWidget {
           "PasswordSetting": (context) => PasswordSettingView(),
           "GenderSetting": (context) => GenderSettingView(),
           "AppSetting": (context) => AppSettingView(),
-          "Camera": (context) => Camera(),
-          "Calculator":(context)=>Calculator(),
+          "Arithmetic":(context)=>Arithmetic(),
+          "Game":(context)=>Game(),
+          "Shake":(context)=>Shake(),
+          "TakePhoto":(context)=>TakePhoto(),
           "/": (context) => LoginView(),
         });
   }

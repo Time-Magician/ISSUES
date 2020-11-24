@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AlarmService {
     List<Alarm> getAlarmList(int userId);
-    String deleteAlarm(int id);
-    String createAlarm(int userId, String mission, String audio, String label, Time time);
-    String updateAlarm(int id,String mission,String audio,String label,Time time);
+    String deleteAlarm(int alarmId,int userId);
+    String createAlarm(int alarmId,int userId, String mission,String audio,String label,String repeat,Time time);
+    String updateAlarm(int alarmId,int userId, String mission,String audio,String label,String repeat,Time time);
 }

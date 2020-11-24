@@ -17,17 +17,18 @@ public class AlarmServiceImpl implements AlarmService {
     }
 
     @Override
-    public String deleteAlarm(int id) {
-        return alarmDao.deleteAlarm(id);
+    public String deleteAlarm(int alarmId, int userId) {
+        return alarmDao.deleteAlarm(alarmId,userId);
     }
 
     @Override
-    public String createAlarm(int userId, String mission, String audio, String label, Time time) {
-        return alarmDao.createAlarm(userId,mission,audio,label,time);
+    public String createAlarm(int alarmId, int userId, String mission, String audio, String label, String repeat, Time time) {
+        return alarmDao.createAlarm(alarmId,userId,mission,audio,label,repeat,time);
     }
 
     @Override
-    public String updateAlarm(int id, String mission, String audio, String label, Time time) {
-        return alarmDao.updateAlarm(id,mission,audio,label,time);
+    public String updateAlarm(int alarmId, int userId, String mission, String audio, String label, String repeat, Time time) {
+        return alarmDao.updateAlarm(alarmId,userId,mission,audio,label,repeat,time);
     }
+
 }

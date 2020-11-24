@@ -6,6 +6,7 @@ public class Msg {
     private int status;
     private String msg;
     private Object data;
+    private Object extraInfo=null;
 
     Msg(MsgCode msg, Object data){
         this.status = msg.getStatus();
@@ -65,6 +66,14 @@ public class Msg {
 
     public void setData(Object data) {
         this.data = data;
+    }
+
+    public Object getExtraInfo() {
+        return extraInfo;
+    }
+
+    public void setExtraInfo(Object extraInfo) {
+        this.extraInfo = extraInfo;
     }
 
 }

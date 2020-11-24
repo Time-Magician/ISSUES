@@ -4,9 +4,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
+
+import java.io.IOException;
 
 
 @SpringBootApplication
@@ -14,7 +19,18 @@ import org.springframework.web.client.RestTemplate;
 public class UserServiceApplication {
     @Bean
     RestTemplate restTemplate(){
-        return new RestTemplate();
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
+        restTemplate.setErrorHandler(new DefaultResponseErrorHandler(){
+             @Override
+             public void handleError(ClientHttpResponse response) throws IOException {
+                 if (response.getRawStatusCode() != 401) {
+                     super.handleError(response);
+                 }
+             }
+            }
+        );
+        return restTemplate;
     }
     @Bean
     public PasswordEncoder passwordEncoder() {

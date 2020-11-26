@@ -140,7 +140,7 @@ class LittleGame extends StatefulWidget{
 }
 
 class MyLittleGame extends State<LittleGame>{
-  List<int> kind = [0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1];
+  List<int> kind = [0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1];
   List<Image> images = [
     Image.asset("assets/image/animal1.png"),
     Image.asset("assets/image/animal2.png"),
@@ -148,20 +148,15 @@ class MyLittleGame extends State<LittleGame>{
     Image.asset("assets/image/animal4.png"),
     Image.asset("assets/image/animal5.png"),
     Image.asset("assets/image/animal6.png"),
-    Image.asset("assets/image/animal7.png"),
     Image.asset("assets/image/animal8.png"),
     Image.asset("assets/image/animal9.png"),
     Image.asset("assets/image/animal10.png"),
     Image.asset("assets/image/animal11.png"),
-    Image.asset("assets/image/animal12.png"),
     Image.asset("assets/image/animal13.png"),
     Image.asset("assets/image/animal14.png"),
-    Image.asset("assets/image/animal15.png"),
     Image.asset("assets/image/animal17.png"),
-    Image.asset("assets/image/animal18.png"),
     Image.asset("assets/image/animal19.png"),
     Image.asset("assets/image/animal20.png"),
-    Image.asset("assets/image/animal21.png"),
   ];
   int target;
   bool flag = true;
@@ -177,10 +172,10 @@ class MyLittleGame extends State<LittleGame>{
   }
 
   void randomizeList(){
-    for(int i = 0; i < 20; i++){
+    for(int i = 0; i < 15; i++){
       var temp = images[i];
       var tempk = kind[i];
-      var randomIndex = (new Random()).nextInt(20);
+      var randomIndex = (new Random()).nextInt(15);
       images[i] = images[randomIndex];
       kind[i] = kind[randomIndex];
       images[randomIndex] = temp;
@@ -262,7 +257,7 @@ class MyLittleGame extends State<LittleGame>{
                   onPressed: () {
                     randomizeList();
                     _controller.reset();
-                    Navigator.pushNamedAndRemoveUntil(context, "HomePage",(Route route) =>false);
+                    Navigator.of(context).pop();
                   },
                   child: Text(
                     "确认",
@@ -306,23 +301,24 @@ class MyLittleGame extends State<LittleGame>{
         Row(
           children: [
             Container(
-              width: ScreenUtil().setWidth(150),
-              height: ScreenUtil().setWidth(600),
-              color: Colors.red,
-              child: Center(
-                child: Icon(
-                  Icons.cancel,
-                  color: Colors.white,
-                  size: ScreenUtil().setSp(80),
+                width: ScreenUtil().setWidth(120),
+                height: ScreenUtil().setWidth(600),
+                color: Colors.red,
+                child: Center(
+                  child: Icon(
+                    Icons.cancel,
+                    color: Colors.white,
+                    size: ScreenUtil().setSp(80),
+                  ),
                 ),
-              ),
             ),
             Container(
-              width: ScreenUtil().setWidth(420),
+              width: ScreenUtil().setWidth(480),
               height: ScreenUtil().setWidth(600),
               child: TCard(
                 controller: _controller,
                 cards: images,
+                size: Size(240, 600),
                 onForward: (index, info) {
                   print(index);
                   if (info.direction == SwipDirection.Right) {
@@ -334,7 +330,7 @@ class MyLittleGame extends State<LittleGame>{
             ),
             Container(
                 alignment: Alignment.centerLeft,
-                width: ScreenUtil().setWidth(150),
+                width: ScreenUtil().setWidth(120),
                 height: ScreenUtil().setWidth(600),
                 color: Colors.green,
                 child: Center(
@@ -344,9 +340,13 @@ class MyLittleGame extends State<LittleGame>{
                     size: ScreenUtil().setSp(80),
                   ),
                 )
-            ),
+            )
           ],
-        )
+        ),
+        Container(
+            width: ScreenUtil().setWidth(720),
+            height: ScreenUtil().setWidth(200),
+          ),
       ]);
   }
 

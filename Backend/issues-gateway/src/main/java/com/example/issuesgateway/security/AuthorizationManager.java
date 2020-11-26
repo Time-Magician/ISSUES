@@ -25,7 +25,6 @@ import java.util.*;
 @Slf4j
 public class AuthorizationManager implements ReactiveAuthorizationManager<AuthorizationContext> {
     private RedisTemplate redisTemplate;
-    private WhiteListConfig whiteListConfig;
 
     @Override
     public Mono<AuthorizationDecision> check(Mono<Authentication> mono, AuthorizationContext authorizationContext) {
@@ -50,15 +49,13 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
 
         // 4.请求路径匹配到的资源需要的角色权限集合authorities统计
         List<String> authorities = new ArrayList<>();
-//        while (iterator.hasNext()) {
-//            String pattern = (String) iterator.next();
-//            if (pathMatcher.match(pattern, path)) {
-//                authorities.addAll(Convert.toList(String.class, resourceRolesMap.get(pattern)));
-//            }
-//        }
-
         if(pathMatcher.match("/alarm-service/**",path)){
             authorities.add("ROLE_USER");
+            authorities.add("ROLE_ADMIN");
+        }
+        if(pathMatcher.match("/user-service/**",path)){
+            authorities.add("ROLE_USER");
+            authorities.add("ROLE_ADMIN");
         }
         Mono<AuthorizationDecision> authorizationDecisionMono = mono
                 .filter(Authentication::isAuthenticated)

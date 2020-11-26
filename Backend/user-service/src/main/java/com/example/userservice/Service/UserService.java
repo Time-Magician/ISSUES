@@ -1,6 +1,6 @@
 package com.example.userservice.Service;
 import com.example.userservice.Entity.User;
-import com.example.userservice.utils.msgUtils.Msg;
+import com.example.userservice.util.msgUtils.Msg;
 
 public interface UserService {
     User getUserById(int userId);

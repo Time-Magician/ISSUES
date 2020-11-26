@@ -1,16 +1,12 @@
 package com.example.userservice;
 
 import com.example.userservice.Entity.User;
-import com.example.userservice.Entity.UserAuth;
 import com.example.userservice.Service.UserService;
-import com.example.userservice.utils.msgUtils.Msg;
-import com.example.userservice.utils.msgUtils.MsgCode;
-import com.example.userservice.utils.msgUtils.MsgUtil;
+import com.example.userservice.util.msgUtils.Msg;
+import com.example.userservice.util.msgUtils.MsgCode;
+import com.example.userservice.util.msgUtils.MsgUtil;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.LinkedMultiValueMap;
@@ -19,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
-import java.util.HashMap;
 
 @Slf4j
 @RestController
@@ -34,8 +29,16 @@ public class UserController {
     RestTemplate restTemplate;
 
     @GetMapping("/getUser/{id}")
-    public User getUserById(@PathVariable(value = "id") int userId){
-        return userService.getUserById(userId);
+    public Msg getUserById(
+            HttpServletRequest request,
+            @PathVariable(value = "id") int userId){
+        String userType = request.getHeader("userType");
+        int requesterUserId = Integer.parseInt(request.getHeader("userId"));
+        if(userType != "ADMIN" && requesterUserId != userId){
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.PERMISSION_DENIED);
+        }
+
+        return MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.SUCCESS_MSG,userService.getUserById(userId));
     }
 
     @PostMapping("/register")

@@ -8,6 +8,7 @@ import com.example.userservice.Dao.UserDao;
 import com.example.userservice.util.msgUtils.Msg;
 import com.example.userservice.util.msgUtils.MsgCode;
 import com.example.userservice.util.msgUtils.MsgUtil;
+import com.example.userservice.util.msgUtils.SendSmsUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,5 +67,23 @@ public class UserServiceImpl implements UserService {
             return null;
         }
         return userDao.getUserById(userAuth.getUserId());
+    }
+
+    @Override
+    public Msg verify(String tel) {
+        User user = userDao.getUserByTel(tel);
+        if(user == null){
+            Boolean flag =  SendSmsUtil.sendSms(tel);
+            if(flag){
+               return  MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.MSG_SENT_SUCCESS_MSG);
+            }
+            else{
+                return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.VERIFY_TRY_AGAIN_MSG);
+            }
+        }
+        else{
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.TEL_DUPLICATE_MSG);
+        }
+
     }
 }

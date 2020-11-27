@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
         title: '闹钟',
+        initialRoute:Global.hasLogin?"HomePage":"Login",
         theme: new ThemeData(
           primaryColor: Colors.indigo,
         ),
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
           "Shake":(context)=>Shake(),
           "Blow":(context)=>Blow(),
           "TakePhoto":(context)=>TakePhoto(),
-          "/": (context) => LoginView(),
+          "Login": (context) => LoginView(),
         });
   }
 }

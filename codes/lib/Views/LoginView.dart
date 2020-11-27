@@ -105,10 +105,10 @@ class LoginView extends StatelessWidget {
               style: TextStyle(color: Colors.white),
             ),
             color: Colors.green,
-            onPressed: () {
+            onPressed: () async {
               // initAlarmList();
-              Login();
-              if(Global.hasLogin){
+              bool flag = await Login();
+              if(flag){
                Navigator.pushNamed(context,"HomePage");
               }
             },
@@ -126,19 +126,21 @@ class LoginView extends StatelessWidget {
   );
 
   // ignore: non_constant_identifier_names
-  void Login() async{
+  Future<bool> Login() async{
     print(user);
     print(password);
     Dio dio = new Dio();
 
     String url = "http://10.0.2.2:9000/user-service/login?credentials="+user+"&client_id=issuesApp&client_secret=sjtu&password="+password+"&grant_type=password";
-    print(url);
     Response response = await dio.get(url);
     print(response.data["status"]);
     if(response.data["status"] == 0){
       Global.saveHasLogin(true);
       Global.hasLogin = true;
+      return Global.hasLogin;
     }
+    else
+      return Global.hasLogin;
   }
 
   void initAlarmList() async {

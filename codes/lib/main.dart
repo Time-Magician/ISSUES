@@ -1,5 +1,6 @@
 import 'package:demo5/Views/LoginView.dart';
 import 'package:demo5/Views/Missions/TakePhoto.dart';
+import 'Views/Missions/Blow.dart';
 import 'Views/Missions/Game.dart';
 import 'Views/Missions/Game2.dart';
 import 'Views/Missions/Game3.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
           "Game2":(context)=>Game2(),
           "Game3":(context)=>Game3(),
           "Shake":(context)=>Shake(),
+          "Blow":(context)=>Blow(),
           "TakePhoto":(context)=>TakePhoto(),
           "/": (context) => LoginView(),
         });

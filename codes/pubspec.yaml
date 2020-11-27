@@ -158,6 +158,9 @@ flutter:
     - assets/image/package1.png
     - assets/image/port.png
     - assets/image/portCat.png
+    - assets/image/balloon.png
+    - assets/image/balloonAnimals.png
+    - assets/image/balloonTarget.png
     - assets/audios/audio1.mp3
     - assets/audios/audio2.mp3
     - assets/audios/audio3.mp3

@@ -5,6 +5,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 
 class LoginView extends StatelessWidget {
+  String user = "";
+  String password = "";
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 720, height: 1280, allowFontScaling: true);
@@ -62,8 +64,11 @@ class LoginView extends StatelessWidget {
                  borderSide: BorderSide(
                    color: Colors.green, //边框颜色为绿色
                    width: ScreenUtil().setWidth(10), //宽度为5
-                 ))
+                 )),
             ),
+            onSubmitted: (text){
+              user = text;
+              },
           ),
         ),
         Container(
@@ -82,6 +87,8 @@ class LoginView extends StatelessWidget {
                       width: ScreenUtil().setWidth(10), //宽度为5
                     ))
             ),
+            onSubmitted: (text){
+              password = text;},
           ),
         ),
         SizedBox(
@@ -99,8 +106,11 @@ class LoginView extends StatelessWidget {
             ),
             color: Colors.green,
             onPressed: () {
-              initAlarmList();
-              Navigator.pushNamed(context,"HomePage");
+              // initAlarmList();
+              Login();
+              if(Global.hasLogin){
+               Navigator.pushNamed(context,"HomePage");
+              }
             },
           ),
         ),
@@ -114,6 +124,22 @@ class LoginView extends StatelessWidget {
       ],
     ),
   );
+
+  // ignore: non_constant_identifier_names
+  void Login() async{
+    print(user);
+    print(password);
+    Dio dio = new Dio();
+
+    String url = "http://10.0.2.2:9000/user-service/login?credentials="+user+"&client_id=issuesApp&client_secret=sjtu&password="+password+"&grant_type=password";
+    print(url);
+    Response response = await dio.get(url);
+    print(response.data["status"]);
+    if(response.data["status"] == 0){
+      Global.saveHasLogin(true);
+      Global.hasLogin = true;
+    }
+  }
 
   void initAlarmList() async {
     Dio dio = new Dio();

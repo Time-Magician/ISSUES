@@ -7,6 +7,10 @@ eureka:
 server:
   port: 5000
 spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://localhost:8848
   application:
     name: alarm-service
   datasource:

@@ -5,8 +5,6 @@
     <file url="file://$PROJECT_DIR$/alarm-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/authorization-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/authorization-server/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eureka-server/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/eureka-server/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/issues-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/issues-gateway/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/src/main/java" charset="UTF-8" />

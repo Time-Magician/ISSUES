@@ -17,7 +17,6 @@
     <!-- 依赖的子模块   -->
     <modules>
         <module>issues-gateway</module>
-        <module>eureka-server</module>
         <module>authorization-server</module>
         <module>alarm-service</module>
         <module>user-service</module>

@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="user-service" />
         <module name="issues-gateway" />
-        <module name="eureka-server" />
         <module name="authorization-server" />
         <module name="alarm-service" />
       </profile>

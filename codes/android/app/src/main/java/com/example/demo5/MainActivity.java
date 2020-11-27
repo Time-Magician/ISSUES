@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,8 +22,12 @@ import android.content.Intent;
 import android.os.Build.VERSION;
 import android.widget.Toast;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.baidu.aip.imageclassify.AipImageClassify;
 import com.example.demo5.AlarmManager.RepeatingAlarm;
+import com.example.demo5.AudioSensor.AudioRecordManager;
 import com.example.demo5.ProcessLock.ProcessMonitorService;
 import com.example.demo5.ShakeSensor.SensorManagerHelper;
 
@@ -45,6 +50,12 @@ public class MainActivity extends FlutterActivity{
     private Intent serviceIntent;
     private MethodChannel methodChannel;
     public static MainActivity instance = null;
+    public static final String APP_ID = "22907417";
+    public static final String API_KEY = "zU2tRIF1FaHD8gxy3QTPY7Qw";
+    public static final String SECRET_KEY = "rIpRruQPpWPnTkxZnqsi1XnN9a4qltc9";
+    private AudioRecordManager audioRecordManger;      //调用话筒实现类
+    private static final int RECORD = 2;              //监听话筒
+    AipImageClassify client = new AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,8 +84,9 @@ public class MainActivity extends FlutterActivity{
                     case "startAlarm": {
                         int hour = call.argument("hour");
                         int minute = call.argument("minute");
+                        int timeSpan = call.argument("timeSpan");
                         String alarmIndex = call.argument("alarmIndex");
-                        alarm(hour, minute, alarmIndex);
+                        alarm(hour, minute, alarmIndex,timeSpan);
                         break;
                     }
                     case "cancelAlarm": {
@@ -95,10 +107,6 @@ public class MainActivity extends FlutterActivity{
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                String APP_ID = "22907417";
-                                String API_KEY = "zU2tRIF1FaHD8gxy3QTPY7Qw";
-                                String SECRET_KEY = "rIpRruQPpWPnTkxZnqsi1XnN9a4qltc9";
-                                AipImageClassify client = new AipImageClassify(APP_ID, API_KEY, SECRET_KEY);
                                 HashMap<String, String> options = new HashMap<String, String>();
                                 options.put("top_num", "3");
                                 options.put("filter_threshold", "0.7");
@@ -148,6 +156,33 @@ public class MainActivity extends FlutterActivity{
                     case "stopShakeListen":
                         sensorHelper.stop();
                         break;
+                    case "startAudioSensor":
+                        @SuppressLint("HandlerLeak") Handler audioHandler = new Handler() {
+                            @Override
+                            public void handleMessage(Message msg) {
+                                double volume = Double.parseDouble(msg.obj.toString());
+                                System.out.println(volume);
+                                if(volume >= 60)
+                                    highPitch();
+                            }
+                        };
+                        //实例化话筒实现类
+                        if(ContextCompat.checkSelfPermission(MainActivity.instance, android.Manifest.permission.RECORD_AUDIO)
+                                != PackageManager.PERMISSION_GRANTED){
+                            ActivityCompat.requestPermissions(MainActivity.instance,new String[]{
+                                    android.Manifest.permission.RECORD_AUDIO},1);
+                            while (ContextCompat.checkSelfPermission(MainActivity.instance, android.Manifest.permission.RECORD_AUDIO)
+                                    != PackageManager.PERMISSION_GRANTED);
+                            result.success("retry");
+                        } else {
+                            audioRecordManger = new AudioRecordManager(audioHandler,RECORD); //实例化话筒实现类
+                            audioRecordManger.getNoiseLevel();
+                        }
+                        //打开话筒监听声音
+                        break;
+                    case "stopAudioSensor":
+                        audioRecordManger.stopRecord();
+                        break;
                     default:
                         result.notImplemented();
                         break;
@@ -162,6 +197,9 @@ public class MainActivity extends FlutterActivity{
     }
 
     public void shake() { methodChannel.invokeMethod("shake",1); }
+
+    public void highPitch() { methodChannel.invokeMethod("highPitch",1); }
+
     private byte[] InputStreamToByte(InputStream is) throws IOException, IOException {
         ByteArrayOutputStream bytestream = new ByteArrayOutputStream();
         int ch;
@@ -178,7 +216,7 @@ public class MainActivity extends FlutterActivity{
         methodChannel.invokeMethod("test",alarmIndex);
     }
 
-    private void alarm(int hour, int minute, String alarmIndex) {
+    private void alarm(int hour, int minute, String alarmIndex,int timeSpan) {
         // 获取系统的闹钟服务
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         // 触发闹钟的时间（毫秒）
@@ -196,13 +234,9 @@ public class MainActivity extends FlutterActivity{
         c.set(Calendar.MINUTE, minute);
         c.set(Calendar.SECOND,0);
 
-        if(System.currentTimeMillis()>c.getTimeInMillis()){
-            am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis()+86400000, op);
-        }
-        else{
-            am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), op);
-        }
-        System.out.println("Set Alarm:"+String.valueOf(hour)+":"+String.valueOf(minute));
+        am.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis()+86400000*timeSpan, op);
+
+        System.out.println("Set Alarm:"+String.valueOf(hour)+":"+String.valueOf(minute)+" after "+String.valueOf(timeSpan)+" day");
     }
 
     private void cancelAlarm(int hour,int minute){

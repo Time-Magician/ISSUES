@@ -1,0 +1,29 @@
+#eureka:
+#    instance:
+#        prefer-ip-address: true
+#    client:
+#        serviceUrl:
+#            defaultZone: http://localhost:3000/eureka
+server:
+    port: 4000
+spring:
+    cloud:
+      nacos:
+        discovery:
+            server-addr: http://localhost:8848
+    application:
+        name: user-service
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: root
+        tomcat:
+            max-active: 20
+        url: jdbc:mysql://localhost:3306/issues?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&autoReconnect=true&failOverReadOnly=false
+        username: root
+    jpa:
+        database: mysql
+        properties:
+            hibernate:
+                hbm2ddl:
+                    auto: update
+        show-sql: true

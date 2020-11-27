@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:day_night_time_picker/day_night_time_picker.dart';
 import 'package:easy_dialog/easy_dialog.dart';
@@ -6,9 +8,10 @@ import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:day_picker/day_picker.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import '../Class/AlarmInfo.dart';
+// import '../Class/AlarmInfo.dart';
 import '../Utils/Adapt.dart';
 import '../common/global.dart';
+import 'package:demo5/models/index.dart';
 
 const List<String> audios = [
   "audio1",
@@ -47,17 +50,15 @@ class AlarmSetting extends State<AlarmSettingWidget>{
   void initState() {
     // TODO: implement initState
     super.initState();
-    // alarmInfo = ModalRoute.of(context).settings.arguments;
   }
 
   @override
   Widget build(BuildContext context) {
-    dynamic arguments = ModalRoute.of(context).settings.arguments;
-    AlarmInfo alarmInfo = arguments["alarmInfo"];
-    int alarmIndex = arguments["index"];
+    AlarmInfo alarmInfo = ModalRoute.of(context).settings.arguments;
     Adapt.onepx();
 
     newAlarmInfo = new AlarmInfo(
+      alarmInfo.alarmId,
       alarmInfo.label,
       alarmInfo.repeat,
       alarmInfo.time,
@@ -69,22 +70,13 @@ class AlarmSetting extends State<AlarmSettingWidget>{
 
     void cancelAlarm(AlarmInfo alarmInfo) async {
       TimeOfDay time = alarmInfo.time;
-      String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmIndex.toString()});
-      print("data: $data");
-    }
-
-    void saveAlarm() async {
-      TimeOfDay time = newAlarmInfo.time;
-      String data = await Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmIndex.toString()});
+      String data = await Global.methodChannel.invokeMethod("cancelAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":""});
       print("data: $data");
     }
 
     void saveSettings(){
       if(alarmInfo.isOpen){
         cancelAlarm(alarmInfo);
-        saveAlarm();
-      }else{
-        saveAlarm();
       }
       Navigator.of(context).pop(newAlarmInfo);
     }
@@ -347,7 +339,10 @@ class MyOrderTitle extends State<OrderTitle>{
           child: SingleChildScrollView(
             child: RadioButtonGroup(
                 labels: audios,
-                onSelected: (String selected) => {newAudio = selected}
+                onSelected: (String selected){
+                  newAudio = selected;
+                  Global.audioCache1.play(selected+".mp3");
+                }
             ),
           ),
         ),
@@ -359,6 +354,7 @@ class MyOrderTitle extends State<OrderTitle>{
                 width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
+                    Global.advancedPlayer1.release();
                     Navigator.of(context).pop(newAudio);
                   },
                   child: Text(
@@ -372,6 +368,7 @@ class MyOrderTitle extends State<OrderTitle>{
                 width: ScreenUtil().setWidth(180),
                 child: FlatButton(
                   onPressed: () {
+                    Global.advancedPlayer1.release();
                     setState(() {
                       label = newAudio;
                     });

@@ -1,12 +1,14 @@
 import 'package:demo5/Views/LoginView.dart';
 import 'package:demo5/Views/Missions/TakePhoto.dart';
+import 'Views/Missions/Blow.dart';
 import 'Views/Missions/Game.dart';
+import 'Views/Missions/Game2.dart';
+import 'Views/Missions/Game3.dart';
 import 'Views/Missions/Shake.dart';
 import 'index.dart';
 import 'package:provider/provider.dart';
 import 'Views/index.dart';
 import 'Views/DetailSettingView/index.dart';
-import 'Views/Missions/Camera.dart';
 import 'Views/Missions/Arithmetic.dart';
 import 'states/index.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart'
@@ -31,6 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
         title: '闹钟',
+        initialRoute:Global.hasLogin?"HomePage":"Login",
         theme: new ThemeData(
           primaryColor: Colors.indigo,
         ),
@@ -47,12 +50,14 @@ class MyApp extends StatelessWidget {
           "PasswordSetting": (context) => PasswordSettingView(),
           "GenderSetting": (context) => GenderSettingView(),
           "AppSetting": (context) => AppSettingView(),
-          "Camera": (context) => Camera(),
           "Arithmetic":(context)=>Arithmetic(),
           "Game":(context)=>Game(),
+          "Game2":(context)=>Game2(),
+          "Game3":(context)=>Game3(),
           "Shake":(context)=>Shake(),
+          "Blow":(context)=>Blow(),
           "TakePhoto":(context)=>TakePhoto(),
-          "/": (context) => LoginView(),
+          "Login": (context) => LoginView(),
         });
   }
 }

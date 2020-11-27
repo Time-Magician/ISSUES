@@ -107,9 +107,12 @@ class LoginView extends StatelessWidget {
         SizedBox(
           height: ScreenUtil().setWidth(10.0),
         ),
-        Text(
-          "SIGN UP FOR AN ACCOUNT",
-          style: TextStyle(color: Colors.grey),
+        GestureDetector(
+          onTap: () => Navigator.pushNamed(context, "SignUp"),
+          child: Text(
+              "立即注册",
+              style: TextStyle(color: Colors.grey),
+          ),
         ),
       ],
     ),

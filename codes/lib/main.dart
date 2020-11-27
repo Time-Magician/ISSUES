@@ -5,6 +5,7 @@ import 'Views/Missions/Game.dart';
 import 'Views/Missions/Game2.dart';
 import 'Views/Missions/Game3.dart';
 import 'Views/Missions/Shake.dart';
+import 'Views/SignUpView.dart';
 import 'index.dart';
 import 'package:provider/provider.dart';
 import 'Views/index.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
           "Shake":(context)=>Shake(),
           "Blow":(context)=>Blow(),
           "TakePhoto":(context)=>TakePhoto(),
+          "SignUp":(context)=>SignUpView(),
           "/": (context) => LoginView(),
         });
   }

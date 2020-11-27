@@ -4,9 +4,20 @@ import '../common/global.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
+
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyLoginView();
+  }
+}
+
+class MyLoginView extends State<LoginView>{
   String user = "";
   String password = "";
+
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 720, height: 1280, allowFontScaling: true);
@@ -61,14 +72,16 @@ class LoginView extends StatelessWidget {
               labelText: "用户名/手机号",
               labelStyle: TextStyle(color: Colors.green),
               focusedBorder: OutlineInputBorder(
-                 borderSide: BorderSide(
-                   color: Colors.green, //边框颜色为绿色
-                   width: ScreenUtil().setWidth(10), //宽度为5
-                 )),
+                  borderSide: BorderSide(
+                    color: Colors.green, //边框颜色为绿色
+                    width: ScreenUtil().setWidth(10), //宽度为5
+                  )),
             ),
             onSubmitted: (text){
-              user = text;
-              },
+              setState(() {
+                user = text;
+              });
+            },
           ),
         ),
         Container(
@@ -88,7 +101,10 @@ class LoginView extends StatelessWidget {
                     ))
             ),
             onSubmitted: (text){
-              password = text;},
+              setState(() {
+                password = text;
+              });
+            },
           ),
         ),
         SizedBox(
@@ -109,7 +125,7 @@ class LoginView extends StatelessWidget {
               // initAlarmList();
               bool flag = await Login();
               if(flag){
-               Navigator.pushNamed(context,"HomePage");
+                Navigator.pushNamed(context,"HomePage");
               }
             },
           ),
@@ -120,8 +136,8 @@ class LoginView extends StatelessWidget {
         GestureDetector(
           onTap: () => Navigator.pushNamed(context, "SignUp"),
           child: Text(
-              "立即注册",
-              style: TextStyle(color: Colors.grey),
+            "立即注册",
+            style: TextStyle(color: Colors.grey),
           ),
         ),
       ],
@@ -158,4 +174,6 @@ class LoginView extends StatelessWidget {
     // });
     print(maps);
   }
+
 }
+

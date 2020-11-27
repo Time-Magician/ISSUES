@@ -14,12 +14,12 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="alarm-service" target="11" />
-      <module name="authorization-server" target="11" />
-      <module name="Backend" target="11" />
+      <module name="alarm-service" target="1.8" />
+      <module name="authorization-server" target="1.8" />
+      <module name="Backend" target="1.8" />
       <module name="eureka-server" target="11" />
-      <module name="issues-gateway" target="11" />
-      <module name="user-service" target="11" />
+      <module name="issues-gateway" target="1.8" />
+      <module name="user-service" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

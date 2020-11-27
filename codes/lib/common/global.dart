@@ -12,6 +12,7 @@ class Global {
   static SharedPreferences _prefs;
   static Profile profile;
   static Frog frog;
+  static bool hasLogin;
   static Database db;
   static var methodChannel;
   static AudioPlayer advancedPlayer1 = new AudioPlayer();
@@ -30,6 +31,7 @@ class Global {
     _prefs = await SharedPreferences.getInstance();
     var _profile = _prefs.getString("profile");
     var _frog = _prefs.getString("frog");
+    bool _hasLogin = _prefs.getBool("hasLogin");
     if (_profile != null) {
       try {
         profile = Profile.fromJson(jsonDecode(_profile));
@@ -55,6 +57,12 @@ class Global {
         frog = Frog.fromJson(tmp);
       });
     }
+    if(_hasLogin == null){
+      hasLogin = false;
+    }
+    else{
+      hasLogin = _hasLogin;
+    }
     methodChannel = MethodChannel("Channel");
 
     initDB();
@@ -64,6 +72,10 @@ class Global {
 
   static saveFrog() =>
       _prefs.setString("frog", jsonEncode(frog.toJson()));
+
+  static saveHasLogin(bool flag){
+     _prefs.setBool("hasLogin", flag);
+  }
 
   static void initDB() async {
     var databasesPath = await getDatabasesPath();

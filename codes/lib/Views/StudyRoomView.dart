@@ -145,7 +145,10 @@ class MyStudyRoom extends State<StudyRoom>{
                     ),
                     onPressed: () {
                       //TODO
-                      Navigator.pushNamed(context, "Game3");
+                      // Navigator.pushNamed(context, "Game3");
+                      Global.saveHasLogin(false);
+                      Global.hasLogin = false;
+                      Navigator.pushNamed(context, "Login");
                     },
                     child: Column(
                       mainAxisSize: MainAxisSize.max,

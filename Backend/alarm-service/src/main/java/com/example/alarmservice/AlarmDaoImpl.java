@@ -1,6 +1,5 @@
 package com.example.alarmservice;
 
-import com.google.inject.internal.cglib.core.$Customizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;

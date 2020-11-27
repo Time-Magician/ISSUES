@@ -12,6 +12,10 @@ eureka:
 server:
     port: 8080
 spring:
+    cloud:
+      nacos:
+        discovery:
+            server-addr: http://localhost:8848
     application:
         name: issues-auth
     datasource:

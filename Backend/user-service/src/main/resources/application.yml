@@ -1,12 +1,16 @@
-eureka:
-    instance:
-        prefer-ip-address: true
-    client:
-        serviceUrl:
-            defaultZone: http://localhost:3000/eureka
+#eureka:
+#    instance:
+#        prefer-ip-address: true
+#    client:
+#        serviceUrl:
+#            defaultZone: http://localhost:3000/eureka
 server:
     port: 4000
 spring:
+    cloud:
+      nacos:
+        discovery:
+            server-addr: http://localhost:8848
     application:
         name: user-service
     datasource:

@@ -5,11 +5,10 @@ import com.example.userservice.Entity.UserAuth;
 import com.example.userservice.Service.UserService;
 import com.example.userservice.Entity.User;
 import com.example.userservice.Dao.UserDao;
-import com.example.userservice.utils.msgUtils.Msg;
-import com.example.userservice.utils.msgUtils.MsgCode;
-import com.example.userservice.utils.msgUtils.MsgUtil;
+import com.example.userservice.util.msgUtils.Msg;
+import com.example.userservice.util.msgUtils.MsgCode;
+import com.example.userservice.util.msgUtils.MsgUtil;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

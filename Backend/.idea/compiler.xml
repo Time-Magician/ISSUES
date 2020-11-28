@@ -2,7 +2,6 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -17,7 +16,6 @@
       <module name="alarm-service" target="1.8" />
       <module name="authorization-server" target="1.8" />
       <module name="Backend" target="1.8" />
-      <module name="eureka-server" target="11" />
       <module name="issues-gateway" target="1.8" />
       <module name="user-service" target="1.8" />
     </bytecodeTargetLevel>
@@ -26,7 +24,6 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="alarm-service" options="-parameters" />
       <module name="authorization-server" options="-parameters" />
-      <module name="eureka-server" options="-parameters" />
       <module name="issues-gateway" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>

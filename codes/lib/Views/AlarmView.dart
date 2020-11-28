@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:easy_dialog/easy_dialog.dart';
 import '../common/global.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:demo5/models/index.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
@@ -30,6 +29,7 @@ class AlarmList extends State<AlarmView> {
     // TODO: implement initState
     super.initState();
     // ignore: missing_return
+    _alarmList = Global.alarmList;
     Global.methodChannel.setMethodCallHandler((call) {
       if(call.method != "test")
          return;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Class/AlarmInfo.dart';
+import '../models/AlarmInfo.dart';
 import '../common/global.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_screenutil/screenutil.dart';
@@ -68,8 +68,8 @@ class MyLoginView extends State<LoginView>{
             maxLines: 1,
             decoration: InputDecoration(
               prefixIcon: Icon(Icons.perm_identity, color: Colors.green),
-              hintText: "Enter your username",
-              labelText: "用户名/手机号",
+              hintText: "请输入手机号",
+              labelText: "手机号",
               labelStyle: TextStyle(color: Colors.green),
               focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -77,7 +77,7 @@ class MyLoginView extends State<LoginView>{
                     width: ScreenUtil().setWidth(10), //宽度为5
                   )),
             ),
-            onSubmitted: (text){
+            onChanged: (text){
               setState(() {
                 user = text;
               });
@@ -91,7 +91,7 @@ class MyLoginView extends State<LoginView>{
             obscureText: true,
             decoration: InputDecoration(
                 prefixIcon: Icon(Icons.lock_outline, color: Colors.green),
-                hintText: "Enter your password",
+                hintText: "请输入密码",
                 labelText: "密码",
                 labelStyle: TextStyle(color: Colors.green),
                 focusedBorder: OutlineInputBorder(
@@ -100,7 +100,7 @@ class MyLoginView extends State<LoginView>{
                       width: ScreenUtil().setWidth(10), //宽度为5
                     ))
             ),
-            onSubmitted: (text){
+            onChanged: (text){
               setState(() {
                 password = text;
               });
@@ -152,27 +152,33 @@ class MyLoginView extends State<LoginView>{
 
     String url = "http://10.0.2.2:9000/user-service/login?credentials="+user+"&client_id=issuesApp&client_secret=sjtu&password="+password+"&grant_type=password";
     Response response = await dio.get(url);
-    print(response.data["status"]);
+    print(response.data["extraInfo"]["access_token"]);
     if(response.data["status"] == 0){
       Global.saveHasLogin(true);
+      Global.saveToken(response.data["extraInfo"]["access_token"]);
+      Global.token = response.data["extraInfo"]["access_token"];
       Global.hasLogin = true;
+      await initAlarmList();
       return Global.hasLogin;
     }
     else
       return Global.hasLogin;
   }
 
-  void initAlarmList() async {
+  Future<void> initAlarmList() async {
     Dio dio = new Dio();
-    String url ="http://10.0.2.2:9000/alarm-service/alarm/getAlarmList/"+"1";
+    dio.options.headers["authorization"] = "Bearer "+Global.token;
+    String url = "http://10.0.2.2:9000/alarm-service/alarm/getAlarmList/"+4.toString();
     Response response = await dio.get(url);
-    List<dynamic> maps= response.data;
-    // maps.forEach((element) {
-    //   print(element);
-    //   AlarmInfo alarmInfo = AlarmInfo.fromJson(element);
-    //   Global.webAlarmList.add(alarmInfo);
-    // });
-    print(maps);
+    Global.alarmList = [];
+    await Global.initDB();
+    response.data.forEach((element) {
+      AlarmInfo alarm = AlarmInfo.fromJson(element);
+      alarm.vibration = false;
+      alarm.isOpen = false;
+      Global.saveAlarm(alarm);
+      Global.alarmList.add(alarm);
+    });
   }
 
 }

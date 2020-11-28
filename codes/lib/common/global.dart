@@ -15,6 +15,7 @@ class Global {
   static Frog frog;
   static bool hasLogin;
   static String token;
+  static int userId;
   static Database db;
   static var methodChannel;
   static AudioPlayer advancedPlayer1 = new AudioPlayer();
@@ -34,6 +35,8 @@ class Global {
     var _profile = _prefs.getString("profile");
     var _frog = _prefs.getString("frog");
     bool _hasLogin = _prefs.getBool("hasLogin");
+    int _userId = _prefs.getInt("userId");
+    String _token = _prefs.getString("token");
     if (_profile != null) {
       try {
         profile = Profile.fromJson(jsonDecode(_profile));
@@ -65,6 +68,18 @@ class Global {
     else{
       hasLogin = _hasLogin;
     }
+    if(_userId != null){
+      userId = _userId;
+    }
+    else{
+      userId = null;
+    }
+    if(_token != null){
+      token = _token;
+    }
+    else{
+      token = null;
+    }
     methodChannel = MethodChannel("Channel");
 
     initDB();
@@ -85,6 +100,10 @@ class Global {
 
   static saveAlarm(AlarmInfo alarm){
     db.insert("alarms", alarm.toJson());
+  }
+
+  static saveUserId(int userId){
+    _prefs.setInt("userId", userId);
   }
 
   static Future<void> initDB() async {

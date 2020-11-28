@@ -4,7 +4,7 @@ import com.example.userservice.util.msgUtils.Msg;
 
 public interface UserService {
     User getUserById(int userId);
-    Msg addUser(String name, String username, String password, String tel, String email, String gender);
+    Msg register(String password, String tel,String verificationCode);
     User checkUser(String credentials,String password);
     Msg verify(String tel);
     Msg verifyEmail(String email);

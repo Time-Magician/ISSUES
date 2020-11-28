@@ -65,14 +65,11 @@ public class UserController {
     @PostMapping("/register")
     public Msg register(
             HttpServletRequest request,
-            @RequestParam(name = "name")String name,
-            @RequestParam(name = "username")String username,
-            @RequestParam(name = "password")String password,
             @RequestParam(name = "tel")String tel,
-            @RequestParam(name = "email")String email,
-            @RequestParam(name = "gender")String gender
+            @RequestParam(name = "password")String password,
+            @RequestParam(name = "verifyCode") String verificationCode
     ){
-        return userService.addUser(name,username,passwordEncoder.encode(password),tel,email,gender);
+        return userService.register(passwordEncoder.encode(password),tel,verificationCode);
     }
 
 

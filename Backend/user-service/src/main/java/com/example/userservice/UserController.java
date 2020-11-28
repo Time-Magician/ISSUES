@@ -48,6 +48,12 @@ public class UserController {
         return userService.verify(tel);
     }
 
+    @PostMapping("/testRedisCache")
+    public String testRedisCache(
+            @RequestParam(name = "tel") String tel
+    ){
+        return userService.testRedisCache(tel);
+    }
     @PostMapping("/register")
     public Msg register(
             HttpServletRequest request,

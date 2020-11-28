@@ -56,4 +56,4 @@ white-list:
     - "/user-service/verify"
     - "/user-service/login"
     - "/user-service/register"
-
+    - "/user-service/testRedisCache"

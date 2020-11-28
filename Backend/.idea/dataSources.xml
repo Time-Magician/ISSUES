@@ -1,11 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="issues@localhost" uuid="faa54fdb-628f-4172-8ecd-4953b4b725d2">
+    <data-source source="LOCAL" name="alarm-service/Hibernate" uuid="a3eb30d0-e82e-403c-a3ee-b9f655896c0e">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/issues</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/issues?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8&amp;autoReconnect=true&amp;failOverReadOnly=false</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="authorization-server/Hibernate" uuid="6893f36c-406f-4de6-b106-964640291fe5">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/issues?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8&amp;autoReconnect=true&amp;failOverReadOnly=false</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="user-service/Hibernate" uuid="17a503a6-823e-48f8-9ce8-4d2123dec28f">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/issues?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8&amp;autoReconnect=true&amp;failOverReadOnly=false</jdbc-url>
     </data-source>
   </component>
 </project>

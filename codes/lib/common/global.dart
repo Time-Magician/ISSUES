@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:demo5/Views/AlarmView.dart';
 import 'package:demo5/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -13,6 +14,7 @@ class Global {
   static Profile profile;
   static Frog frog;
   static bool hasLogin;
+  static String token;
   static Database db;
   static var methodChannel;
   static AudioPlayer advancedPlayer1 = new AudioPlayer();
@@ -77,7 +79,15 @@ class Global {
      _prefs.setBool("hasLogin", flag);
   }
 
-  static void initDB() async {
+  static saveToken(String token){
+    _prefs.setString("token", token);
+  }
+
+  static saveAlarm(AlarmInfo alarm){
+    db.insert("alarms", alarm.toJson());
+  }
+
+  static Future<void> initDB() async {
     var databasesPath = await getDatabasesPath();
     String path = databasesPath + 'local.db';
 
@@ -95,12 +105,25 @@ class Global {
             vibration BOOL,
             isOpen BOOL)
           ''');
+          print("create table alarm");
         });
 
     initList();
   }
+  
+  static void clearDB() async {
+    var databasesPath = await getDatabasesPath();
+    String path = databasesPath + 'local.db';
 
+    //根据数据库文件路径和数据库版本号创建数据库表
+    db.execute('''
+            DELETE FROM alarms WHERE alarmId > 0
+          ''');
+    print("drop table alarms");
+  }
+  
   static void initList() async {
+    print("initial list");
     List<Map<String, dynamic>> maps = await db.query("alarms");
     maps.forEach((element) {
       print(element);

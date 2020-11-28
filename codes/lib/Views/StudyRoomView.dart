@@ -148,6 +148,7 @@ class MyStudyRoom extends State<StudyRoom>{
                       // Navigator.pushNamed(context, "Game3");
                       Global.saveHasLogin(false);
                       Global.hasLogin = false;
+                      Global.clearDB();
                       Navigator.pushNamed(context, "Login");
                     },
                     child: Column(

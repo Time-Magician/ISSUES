@@ -7,4 +7,5 @@ public interface UserDao {
     User addUser(User user);
     User checkTelDuplicate(String tel);
     User checkEmailDuplicate(String email);
+    User getUserByTel(String tel);
 }

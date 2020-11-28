@@ -41,6 +41,19 @@ public class UserController {
         return MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.SUCCESS_MSG,userService.getUserById(userId));
     }
 
+    @PostMapping("/verify")
+    public Msg verify(
+            @RequestParam(name = "tel") String tel
+    ){
+        return userService.verify(tel);
+    }
+
+    @PostMapping("/testRedisCache")
+    public String testRedisCache(
+            @RequestParam(name = "tel") String tel
+    ){
+        return userService.testRedisCache(tel);
+    }
     @PostMapping("/register")
     public Msg register(
             HttpServletRequest request,
@@ -53,6 +66,8 @@ public class UserController {
     ){
         return userService.addUser(name,username,passwordEncoder.encode(password),tel,email,gender);
     }
+
+
 
     @GetMapping("/login")
     public Msg login(

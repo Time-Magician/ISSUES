@@ -1,5 +1,6 @@
 package com.example.userservice.ServiceImpl;
 
+import com.example.userservice.Dao.RedisDao;
 import com.example.userservice.Dao.UserAuthDao;
 import com.example.userservice.Entity.UserAuth;
 import com.example.userservice.Service.UserService;
@@ -10,6 +11,7 @@ import com.example.userservice.util.msgUtils.Msg;
 import com.example.userservice.util.msgUtils.MsgCode;
 import com.example.userservice.util.msgUtils.MsgUtil;
 import com.example.userservice.util.msgUtils.SendSmsUtil;
+import com.example.userservice.util.msgUtils.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -27,6 +29,7 @@ import javax.mail.internet.MimeMessage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
 @Slf4j
 @Service
@@ -36,6 +39,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserAuthDao userAuthDao;
+
+    @Autowired
+    RedisDao redisDao;
 
     @Override
     public User getUserById(int userId) {
@@ -88,8 +94,10 @@ public class UserServiceImpl implements UserService {
     public Msg verify(String tel) {
         User user = userDao.getUserByTel(tel);
         if(user == null){
-            Boolean flag =  SendSmsUtil.sendSms(tel);
+            String verificationCode = RandomUtil.RandomNumber();
+            Boolean flag =  SendSmsUtil.sendSms(tel,verificationCode);
             if(flag){
+               redisDao.setRedis(tel,verificationCode);
                return  MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.MSG_SENT_SUCCESS_MSG);
             }
             else{
@@ -108,5 +116,7 @@ public class UserServiceImpl implements UserService {
         String text = "验证码:"+MailUtil.getRandomString(6);
         MailUtil.sendMail(email,text,title);
         return MsgUtil.makeMsg(MsgUtil.SUCCESS,MsgUtil.SUCCESS_MSG);
+    public String testRedisCache(String tel) {
+        return redisDao.getRedis(tel);
     }
 }

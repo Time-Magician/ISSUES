@@ -8,4 +8,6 @@ public interface UserService {
     User checkUser(String credentials,String password);
     Msg verify(String tel);
     Msg verifyEmail(String email);
+
+    String testRedisCache(String tel);
 }

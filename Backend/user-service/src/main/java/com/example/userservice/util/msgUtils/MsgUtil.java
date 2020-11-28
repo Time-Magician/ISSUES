@@ -21,6 +21,7 @@ public class MsgUtil {
     public static final String TEL_DUPLICATE_MSG = "你的电话号码已被注册！";
     public static final String MSG_SENT_SUCCESS_MSG = "验证短信发送成功" ;
     public static final String VERIFY_TRY_AGAIN_MSG = "验证码发送出错了，请重试！";
+    public static final String VERIFY_ERROR_MSG = "验证码错误，请重试！";
 
 
 

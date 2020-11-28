@@ -49,28 +49,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Msg addUser(String name, String username, String password, String tel, String email, String gender) {
-        User newUser = new User();
-        newUser = userDao.checkEmailDuplicate(email);
-        if(newUser != null){
-            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.EMAIL_DUPLICATE_MSG);
-        }
-        newUser = userDao.checkTelDuplicate(tel);
-        if(newUser != null){
-            return MsgUtil.makeMsg(MsgUtil.ERROR,MsgUtil.TEL_DUPLICATE_MSG);
+    public Msg register(String password, String tel,String verificationCode) {
+        String targetVerificationCode = redisDao.getRedis(tel);
+        System.out.println(targetVerificationCode);
+        System.out.println(verificationCode);
+        if(!targetVerificationCode.equals(verificationCode)){
+            return  MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.VERIFY_ERROR_MSG);
         }
 
+        User newUser = new User();
+
         newUser = User.builder()
-                .name(name)
-                .username(username)
-                .email(email)
+                .name("anonymous")
+                .username(MailUtil.getRandomString(9))
+                .email(null)
                 .tel(tel)
-                .gender(gender)
+                .gender(null)
                 .build();
 
         UserAuth newUserAuth = UserAuth.builder()
                 .userId(newUser.getUserId())
-                .email(email)
+                .email(null)
                 .tel(tel)
                 .password(password)
                 .userType(0)

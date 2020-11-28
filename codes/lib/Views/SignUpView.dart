@@ -216,7 +216,10 @@ class MySignUpView extends State<SignUpView>{
             color: Colors.green,
             onPressed: () async {
               bool flag = await signUpNow();
-              if(flag) Navigator.pushNamed(context, "Login");
+              if(flag) {
+                timer.cancel();
+                Navigator.pushNamed(context, "Login");
+              }
             },
           ),
         ),
@@ -239,7 +242,8 @@ class MySignUpView extends State<SignUpView>{
     String url = "http://10.0.2.2:9000/user-service/register";
     Response response = await dio.post(url, queryParameters: form);
     print(response.data["status"]);
-    return false;
+
+    return response.data["status"];
   }
 
   void getVeriCode() async {

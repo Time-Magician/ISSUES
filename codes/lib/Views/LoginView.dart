@@ -156,19 +156,22 @@ class MyLoginView extends State<LoginView>{
     if(response.data["status"] == 0){
       Global.saveHasLogin(true);
       Global.saveToken(response.data["extraInfo"]["access_token"]);
+      Global.saveUserId(response.data["data"]["userId"]);
       Global.token = response.data["extraInfo"]["access_token"];
       Global.hasLogin = true;
-      await initAlarmList();
+      Global.userId = response.data["data"]["userId"];
+
+      await initAlarmList(response.data["data"]["userId"]);
       return Global.hasLogin;
     }
     else
       return Global.hasLogin;
   }
 
-  Future<void> initAlarmList() async {
+  Future<void> initAlarmList(int userId) async {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    String url = "http://10.0.2.2:9000/alarm-service/alarm/getAlarmList/"+4.toString();
+    String url = "http://10.0.2.2:9000/alarm-service/alarm/getAlarmList/"+userId.toString();
     Response response = await dio.get(url);
     Global.alarmList = [];
     await Global.initDB();

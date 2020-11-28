@@ -54,6 +54,7 @@ public class UserController {
     ){
         return userService.testRedisCache(tel);
     }
+
     @PostMapping("/register")
     public Msg register(
             HttpServletRequest request,

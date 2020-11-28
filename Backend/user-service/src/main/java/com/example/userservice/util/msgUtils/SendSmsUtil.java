@@ -14,11 +14,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Random;
 
 public class SendSmsUtil {
-    public static Boolean sendSms(String tel) {
+    public static Boolean sendSms(String tel ,String verificationCode) {
         DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI4G9pM8bq5fpppJ8abL4t", "ZPPBwfScC77YkNDLVO3BVj8nE4u7bk");
         IAcsClient client = new DefaultAcsClient(profile);
-
-        String VerificationCode = RandomNumber();
 
         CommonRequest request = new CommonRequest();
         request.setSysMethod(MethodType.POST);
@@ -29,7 +27,7 @@ public class SendSmsUtil {
         request.putQueryParameter("PhoneNumbers", tel);
         request.putQueryParameter("SignName", "一心APP");
         request.putQueryParameter("TemplateCode", "SMS_205881573");
-        request.putQueryParameter("TemplateParam", "{\"code\":"+VerificationCode+"}");
+        request.putQueryParameter("TemplateParam", "{\"code\":"+verificationCode+"}");
         try {
             CommonResponse response = client.getCommonResponse(request);
             String responseData  = response.getData();
@@ -46,12 +44,5 @@ public class SendSmsUtil {
             e.printStackTrace();
             return false;
         }
-    }
-
-    public static String RandomNumber(){
-        Integer max=999999,min=100000;
-        Integer ran = (int) (Math.random()*(max-min)+min);
-        System.out.println(ran.toString());
-        return ran.toString();
     }
 }

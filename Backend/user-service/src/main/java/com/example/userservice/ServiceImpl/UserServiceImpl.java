@@ -113,9 +113,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public Msg verifyEmail(String email) {
         String title = "[一心ISSUES]邮箱验证";
-        String text = "验证码:"+MailUtil.getRandomString(6);
-        MailUtil.sendMail(email,text,title);
-        return MsgUtil.makeMsg(MsgUtil.SUCCESS,MsgUtil.SUCCESS_MSG);
+        String verificationCode = MailUtil.getRandomString(6);
+        String text = "验证码:" + verificationCode+"\n有效期：5min";
+        if(MailUtil.sendMail(email, text, title)){
+            redisDao.setRedis(email,verificationCode);
+            return MsgUtil.makeMsg(MsgUtil.SUCCESS, MsgUtil.SUCCESS_MSG);
+        }
+        return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.VERIFY_TRY_AGAIN_MSG);
+    }
+
     public String testRedisCache(String tel) {
         return redisDao.getRedis(tel);
     }

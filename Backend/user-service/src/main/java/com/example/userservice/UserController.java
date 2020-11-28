@@ -51,8 +51,10 @@ public class UserController {
     @PostMapping("/verify/email")
     public Msg verifyEmail(
             @RequestParam(name = "email")String email
-    ){
+    ) {
         return userService.verifyEmail(email);
+    }
+
     @PostMapping("/testRedisCache")
     public String testRedisCache(
             @RequestParam(name = "tel") String tel

@@ -2,23 +2,21 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="alarm-service" />
+        <module name="authorization-server" />
         <module name="user-service" />
         <module name="issues-gateway" />
-        <module name="authorization-server" />
-        <module name="alarm-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="alarm-service" target="11" />
-      <module name="authorization-server" target="11" />
-      <module name="Backend" target="11" />
-      <module name="eureka-server" target="11" />
-      <module name="issues-gateway" target="11" />
+      <module name="alarm-service" target="1.8" />
+      <module name="authorization-server" target="1.8" />
+      <module name="issues-gateway" target="1.8" />
+      <module name="issues-parent" target="1.8" />
       <module name="user-service" target="11" />
     </bytecodeTargetLevel>
   </component>
@@ -26,7 +24,6 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="alarm-service" options="-parameters" />
       <module name="authorization-server" options="-parameters" />
-      <module name="eureka-server" options="-parameters" />
       <module name="issues-gateway" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>

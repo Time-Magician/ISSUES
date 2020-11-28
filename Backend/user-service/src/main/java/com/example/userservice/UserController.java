@@ -68,6 +68,7 @@ public class UserController {
         paramsMap.add("client_secret",clientSecret);
         paramsMap.add("grant_type","password");
         User user = userService.checkUser(credentials,password);
+        System.out.println(user);
         if(user == null)
             return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.LOGIN_USER_ERROR_MSG);
 

@@ -7,4 +7,5 @@ public interface UserService {
     Msg addUser(String name, String username, String password, String tel, String email, String gender);
     User checkUser(String credentials,String password);
     Msg verify(String tel);
+    Msg verifyEmail(String email);
 }

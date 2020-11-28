@@ -48,6 +48,12 @@ public class UserController {
         return userService.verify(tel);
     }
 
+    @PostMapping("/verify/email")
+    public Msg verifyEmail(
+            @RequestParam(name = "email")String email
+    ){
+        return userService.verifyEmail(email);
+    }
     @PostMapping("/register")
     public Msg register(
             HttpServletRequest request,

@@ -5,13 +5,28 @@ import com.example.userservice.Entity.UserAuth;
 import com.example.userservice.Service.UserService;
 import com.example.userservice.Entity.User;
 import com.example.userservice.Dao.UserDao;
+import com.example.userservice.util.emailUtil.MailUtil;
 import com.example.userservice.util.msgUtils.Msg;
 import com.example.userservice.util.msgUtils.MsgCode;
 import com.example.userservice.util.msgUtils.MsgUtil;
 import com.example.userservice.util.msgUtils.SendSmsUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 @Slf4j
 @Service
@@ -85,5 +100,13 @@ public class UserServiceImpl implements UserService {
             return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.TEL_DUPLICATE_MSG);
         }
 
+    }
+
+    @Override
+    public Msg verifyEmail(String email) {
+        String title = "[一心ISSUES]邮箱验证";
+        String text = "验证码:"+MailUtil.getRandomString(6);
+        MailUtil.sendMail(email,text,title);
+        return MsgUtil.makeMsg(MsgUtil.SUCCESS,MsgUtil.SUCCESS_MSG);
     }
 }

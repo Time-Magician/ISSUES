@@ -17,6 +17,12 @@ public class AlarmController {
         return alarmService.getAlarmList(userId);
     }
 
+    @PutMapping("/user/{userId}/alarms")
+    String uploadAlarmList(@PathVariable int userId,@RequestBody List<Alarm> alarmList){
+        alarmService.uploadAlarmList(userId,alarmList);
+        return "success";
+    }
+
     @PostMapping("/user/{user_id}/alarm/{alarm_id}")
     String createAlarm(@PathVariable(name = "alarm_id")int alarmId,
                        @PathVariable(name = "user_id")int userId,

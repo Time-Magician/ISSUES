@@ -58,6 +58,7 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
             authorities.add("ROLE_ADMIN");
         }
         if(pathMatcher.match("/study-service/**",path)){
+            log.info("study-service");
             authorities.add("ROLE_USER");
             authorities.add("ROLE_ADMIN");
         }

@@ -49,7 +49,7 @@ spring:
         - id: study-service
           uri: lb://study-service
           predicates:
-            - Path=/study-alarm/**
+            - Path=/study-service/**
           filters:
             - StripPrefix=1
 
@@ -60,6 +60,7 @@ white-list:
   urls:
     - "/issues-auth/oauth/token"
     - "/issues-auth/rsa/publicKey"
-    - "/user-service/verify"
+    - "/user-service/verify/tel"
     - "/user-service/login"
     - "/user-service/register"
+    - "/study-service/hello"

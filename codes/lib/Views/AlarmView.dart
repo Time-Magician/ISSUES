@@ -101,8 +101,8 @@ class AlarmList extends State<AlarmView> {
   void postRequestCreateAlarm(int userId,int alarmId,String label,String repeat,String time,String mission ,String audio) async {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    FormData formData = FormData.fromMap({'user_id': userId, 'alarm_id': alarmId, 'label': label, 'repeat': repeat, 'time': time, 'mission': mission, 'audio': audio});
-    String url ="http://10.0.2.2:9000/alarm-service/alarm/createAlarm";
+    FormData formData = FormData.fromMap({'label': label, 'repeat': repeat, 'time': time, 'mission': mission, 'audio': audio});
+    String url ="http://10.0.2.2:9000/alarm-service/user/"+userId.toString()+"/alarm/"+alarmId.toString();
     Response response = await dio
         .post(url, data: formData);
     var result = response.data.toString();
@@ -123,7 +123,7 @@ class AlarmList extends State<AlarmView> {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
     FormData formData = FormData.fromMap({'user_id': userId, 'alarm_id': alarmId});
-    String url ="http://10.0.2.2:9000/alarm-service/alarm/deleteAlarm";
+    String url ="http://10.0.2.2:9000/alarm-service/user/"+userId.toString()+"/alarm/"+alarmId.toString();
     Response response = await dio
         .delete(url, data: formData);
     var result = response.data.toString();
@@ -269,7 +269,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
     FormData formData = FormData.fromMap({'user_id': userId, 'alarm_id': alarmId, 'label': label, 'repeat': repeat, 'time': time, 'mission': mission, 'audio': audio});
-    String url ="http://10.0.2.2:9000/alarm-service/alarm/updateAlarm";
+    String url ="http://10.0.2.2:9000/alarm-service/user/"+userId.toString()+"/alarm/"+alarmId.toString();
     Response response = await dio
         .put(url, data: formData);
     var result = response.data.toString();

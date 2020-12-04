@@ -171,7 +171,7 @@ class MyLoginView extends State<LoginView>{
   Future<void> initAlarmList(int userId) async {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    String url = "http://10.0.2.2:9000/alarm-service/alarm/getAlarmList/"+userId.toString();
+    String url = "http://10.0.2.2:9000/alarm-service/user/"+userId.toString()+"/alarms";
     Response response = await dio.get(url);
     Global.alarmList = [];
     await Global.initDB();

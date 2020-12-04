@@ -22,8 +22,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="904a45ad-a0cc-447e-9093-076e0ca2935d" name="Default Changelist" comment="">
+    <list default="true" id="a3806908-4cb4-4f30-b635-aef09495edb5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alarm-service/src/main/java/com/example/alarmservice/AlarmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/alarm-service/src/main/java/com/example/alarmservice/AlarmController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +42,14 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="E:\jetbrains\TOOLBOX\apps\IDEA-U\ch-0\202.6948.69\plugins\maven\lib\maven3" />
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.3.3\plugins\maven\lib\maven3" />
       </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectId" id="1krZTBUgRajc6JPQUcJOwGaNEAr" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -58,12 +65,18 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -73,6 +86,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.UserServiceApplication">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AlarmServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="alarm-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.alarmservice.AlarmServiceApplication" />
@@ -102,30 +128,13 @@
       </method>
     </configuration>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-            </expand>
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="904a45ad-a0cc-447e-9093-076e0ca2935d" name="Default Changelist" comment="" />
+      <changelist id="a3806908-4cb4-4f30-b635-aef09495edb5" name="Default Changelist" comment="" />
       <created>1606460675770</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -137,30 +146,34 @@
       <workItem from="1606541767385" duration="224000" />
       <workItem from="1606542010604" duration="3085000" />
       <workItem from="1606560672471" duration="5866000" />
+      <workItem from="1607062969308" duration="2017000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="662" y="301" key="#Assign_Data_Sources" timestamp="1606544200864">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="662" y="301" key="#Assign_Data_Sources/0.0.1536.824@0.0.1536.824" timestamp="1606544200864" />
+    <state x="121" y="0" key="#Project_Structure" timestamp="1607062609774">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="121" y="0" key="#Project_Structure/0.0.1280.720@0.0.1280.720" timestamp="1607062609774" />
     <state x="361" y="70" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606542326868">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -173,41 +186,50 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="529" y="271" width="477" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1606569306193" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1606541755184">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="458" y="146" key="FileChooserDialogImpl" timestamp="1607062454917">
+      <screen x="0" y="0" width="1280" height="720" />
     </state>
+    <state x="458" y="146" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1607062454917" />
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1606541755184" />
-    <state width="1024" height="210" key="GridCell.Tab.0.bottom" timestamp="1606569311411">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="845" height="438" key="GridCell.Tab.0.bottom" timestamp="1607063553791">
+      <screen x="0" y="0" width="1280" height="720" />
     </state>
+    <state width="845" height="438" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1607063553791" />
     <state width="1024" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606569311411" />
-    <state width="1024" height="210" key="GridCell.Tab.0.center" timestamp="1606569311410">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="845" height="438" key="GridCell.Tab.0.center" timestamp="1607063553791">
+      <screen x="0" y="0" width="1280" height="720" />
     </state>
+    <state width="845" height="438" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1607063553791" />
     <state width="1024" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1606569311410" />
-    <state width="1024" height="210" key="GridCell.Tab.0.left" timestamp="1606569311410">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="845" height="438" key="GridCell.Tab.0.left" timestamp="1607063553791">
+      <screen x="0" y="0" width="1280" height="720" />
     </state>
+    <state width="845" height="438" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1607063553791" />
     <state width="1024" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1606569311410" />
-    <state width="1024" height="210" key="GridCell.Tab.0.right" timestamp="1606569311411">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="845" height="438" key="GridCell.Tab.0.right" timestamp="1607063553791">
+      <screen x="0" y="0" width="1280" height="720" />
     </state>
+    <state width="845" height="438" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1607063553791" />
     <state width="1024" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1606569311411" />
-    <state width="1024" height="210" key="GridCell.Tab.1.bottom" timestamp="1606569311411">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="845" height="438" key="GridCell.Tab.1.bottom" timestamp="1607063553791">
+      <screen x="0" y="0" width="1280" height="720" />
     </state>
+    <state width="845" height="438" key="GridCell.Tab.1.bottom/0.0.1280.720@0.0.1280.720" timestamp="1607063553791" />
     <state width="1024" height="210" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1606569311411" />
-    <state width="1024" height="210" key="GridCell.Tab.1.center" timestamp="1606569311411">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="845" height="438" key="GridCell.Tab.1.center" timestamp="1607063553791">
+      <screen x="0" y="0" width="1280" height="720" />
     </state>
+    <state width="845" height="438" key="GridCell.Tab.1.center/0.0.1280.720@0.0.1280.720" timestamp="1607063553791" />
     <state width="1024" height="210" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1606569311411" />
-    <state width="1024" height="210" key="GridCell.Tab.1.left" timestamp="1606569311411">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="845" height="438" key="GridCell.Tab.1.left" timestamp="1607063553791">
+      <screen x="0" y="0" width="1280" height="720" />
     </state>
+    <state width="845" height="438" key="GridCell.Tab.1.left/0.0.1280.720@0.0.1280.720" timestamp="1607063553791" />
     <state width="1024" height="210" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1606569311411" />
-    <state width="1024" height="210" key="GridCell.Tab.1.right" timestamp="1606569311411">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="845" height="438" key="GridCell.Tab.1.right" timestamp="1607063553791">
+      <screen x="0" y="0" width="1280" height="720" />
     </state>
+    <state width="845" height="438" key="GridCell.Tab.1.right/0.0.1280.720@0.0.1280.720" timestamp="1607063553791" />
     <state width="1024" height="210" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1606569311411" />
     <state x="299" y="67" key="Maven.ArtifactSearchDialog" timestamp="1606542333758">
       <screen x="0" y="0" width="1536" height="824" />

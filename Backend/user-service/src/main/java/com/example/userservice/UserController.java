@@ -28,7 +28,7 @@ public class UserController {
     @Autowired
     RestTemplate restTemplate;
 
-    @GetMapping("/getUser/{id}")
+    @GetMapping("/user/{id}")
     public Msg getUserById(
             HttpServletRequest request,
             @PathVariable(value = "id") int userId){
@@ -41,7 +41,7 @@ public class UserController {
         return MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.SUCCESS_MSG,userService.getUserById(userId));
     }
 
-    @PostMapping("/verify")
+    @PostMapping("/verify/tel")
     public Msg verify(
             @RequestParam(name = "tel") String tel
     ){
@@ -53,13 +53,6 @@ public class UserController {
             @RequestParam(name = "email")String email
     ) {
         return userService.verifyEmail(email);
-    }
-
-    @PostMapping("/testRedisCache")
-    public String testRedisCache(
-            @RequestParam(name = "tel") String tel
-    ){
-        return userService.testRedisCache(tel);
     }
 
     @PostMapping("/register")

@@ -40,7 +40,12 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[_currentIndex],
+      body: WillPopScope(
+        onWillPop: () async{
+          return false;
+        },
+        child: pages[_currentIndex],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(

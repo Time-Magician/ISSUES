@@ -5,6 +5,13 @@ import com.example.userservice.Entity.User;
 import com.example.userservice.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Base64;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -37,5 +44,27 @@ public class UserDaoImpl implements UserDao {
     public User getUserByTel(String tel) {
         User newUser = userRepository.getUserByTelEquals(tel);
         return newUser;
+    }
+
+    @Override
+    public void modifyUsername(int userId, String username) {
+        User user = userRepository.findById(userId).get();
+        user.setUsername(username);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void modifyGender(int userId, String gender) {
+        User user = userRepository.findById(userId).get();
+        user.setUsername(gender);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void modifyProfilePicture(int userId, MultipartFile profilePicture) throws IOException {
+        User user = userRepository.findById(userId).get();
+        Base64.Encoder pictureEncoder  = Base64.getEncoder();
+        user.setProfilePicture(pictureEncoder.encodeToString(profilePicture.getBytes()));
+        userRepository.save(user);
     }
 }

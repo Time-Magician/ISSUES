@@ -1,6 +1,8 @@
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:demo5/common/global.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'dart:io';
@@ -95,7 +97,6 @@ class MyStudyRoom extends State<StudyRoom>{
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
-
               child: SizedBox(
                   height: ScreenUtil().setHeight(320),
                   width: ScreenUtil().setWidth(640),

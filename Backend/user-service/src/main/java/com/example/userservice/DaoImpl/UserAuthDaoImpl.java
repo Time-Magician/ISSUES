@@ -38,4 +38,20 @@ public class UserAuthDaoImpl implements UserAuthDao {
         }
         return userAuth;
     }
+
+    @Override
+    public boolean checkUserByIdAndPassword(int userId, String password) {
+        UserAuth userAuth = userAuthRepository.findById(userId).get();
+        if(!passwordEncoder.matches(password,userAuth.getPassword())) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void modifyPassword(int userId, String password) {
+        UserAuth userAuth = userAuthRepository.findById(userId).get();
+        userAuth.setPassword(password);
+        userAuthRepository.save(userAuth);
+    }
 }

@@ -28,7 +28,7 @@ public class User {
     private String gender;
     private String email;
     private String tel;
-    private Byte[] profilePicture;
+    private String profilePicture;
 
     @Id
     @Column(name = "user_id")
@@ -75,10 +75,10 @@ public class User {
 
     @Lob
     @Column(name = "profile_picture")
-    public void setProfilePicture(Byte[] profilePicture) {
+    public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
     }
-    public Byte[] getProfilePicture() {
+    public String getProfilePicture() {
         return profilePicture;
     }
 }

@@ -22,10 +22,12 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -121,7 +123,37 @@ public class UserServiceImpl implements UserService {
         return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.VERIFY_TRY_AGAIN_MSG);
     }
 
-    public String testRedisCache(String tel) {
-        return redisDao.getRedis(tel);
+    @Override
+    public Msg modifyUsername(int userId, String username) {
+        userDao.modifyUsername(userId,username);
+        return MsgUtil.makeMsg(MsgUtil.SUCCESS,MsgUtil.SUCCESS_MSG);
+    }
+
+    @Override
+    public Msg modifyGender(int userId, String gender) {
+        userDao.modifyGender(userId,gender);
+        return MsgUtil.makeMsg(MsgUtil.SUCCESS,MsgUtil.SUCCESS_MSG);
+
+    }
+
+    @Override
+    public Msg modifyProfilePicture(int userId, MultipartFile profilePicture) throws IOException {
+        try {
+            userDao.modifyProfilePicture(userId, profilePicture);
+        }catch (IOException e){
+            return MsgUtil.makeMsg(MsgUtil.ERROR,MsgUtil.ERROR_MSG);
+        }
+        return MsgUtil.makeMsg(MsgUtil.SUCCESS,MsgUtil.SUCCESS_MSG);
+    }
+
+    @Override
+    public boolean checkUserByIdAndPassword(int userId, String password) {
+        return userAuthDao.checkUserByIdAndPassword(userId, password);
+    }
+
+    @Override
+    public Msg modifyPassword(int userId, String password) {
+        userAuthDao.modifyPassword(userId,password);
+        return MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.SUCCESS_MSG);
     }
 }

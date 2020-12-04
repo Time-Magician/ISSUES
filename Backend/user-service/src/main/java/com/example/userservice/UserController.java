@@ -7,13 +7,18 @@ import com.example.userservice.util.msgUtils.MsgCode;
 import com.example.userservice.util.msgUtils.MsgUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.Arrays;
 
 @Slf4j
@@ -92,5 +97,50 @@ public class UserController {
         Msg result = MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.LOGIN_SUCCESS_MSG, user);
         result.setExtraInfo(oAuth2AccessToken);
         return result;
+    }
+
+
+    @PatchMapping("/user/{userId}/username")
+    public Msg modifyUsername(
+            HttpServletRequest request,
+            @PathVariable(value = "userId")int userId,
+            @RequestParam(name = "username") String newUsername
+    ){
+        userId = Integer.parseInt(request.getHeader("userId"));
+        return userService.modifyUsername(userId,newUsername);
+    }
+
+    @PatchMapping("/user/{userId}/gender")
+    public Msg modifyGender(
+            HttpServletRequest request,
+            @PathVariable(value = "userId")int userId,
+            @RequestParam(name = "gender") String newGender
+    ){
+        userId = Integer.parseInt(request.getHeader("userId"));
+        return userService.modifyGender(userId,newGender);
+    }
+
+    @PatchMapping("/user/{userId}/profilePicture")
+    public Msg modifyProfilePicture(
+            HttpServletRequest request,
+            @PathVariable(value = "userId")int userId,
+            @RequestParam(name = "profilePicture")MultipartFile newProfilePicture
+    ) throws IOException {
+        userId = Integer.parseInt(request.getHeader("userId"));
+        return userService.modifyProfilePicture(userId,newProfilePicture);
+    }
+
+    @PatchMapping("user/{userId}/password")
+    public Msg modifyPassword(
+            HttpServletRequest request,
+            @PathVariable(value = "userId")int userId,
+            @RequestParam(name = "oldPassword") String oldPwd,
+            @RequestParam(name = "newPassword") String newPwd
+    ){
+        userId = Integer.parseInt(request.getHeader("userId"));
+        if(!userService.checkUserByIdAndPassword(userId,oldPwd))
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.PASSWORD_ERROR);
+        return userService.modifyPassword(userId,passwordEncoder.encode(newPwd));
+
     }
 }

@@ -50,4 +50,12 @@ public class AlarmDaoImpl implements AlarmDao{
         alarmRepository.save(alarm);
         return "success";
     }
+
+    @Override
+    public void uploadAlarmList(int userId, List<Alarm> alarmList) {
+        alarmRepository.deleteAlarmByUserId(userId);
+        for(Alarm alarm:alarmList){
+            alarmRepository.save(alarm);
+        }
+    }
 }

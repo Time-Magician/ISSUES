@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:easy_dialog/easy_dialog.dart';
 import '../common/global.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:demo5/models/index.dart';
 import 'package:http/http.dart' as http;
 import 'dart:io';
@@ -30,6 +29,7 @@ class AlarmList extends State<AlarmView> {
     // TODO: implement initState
     super.initState();
     // ignore: missing_return
+    _alarmList = Global.alarmList;
     Global.methodChannel.setMethodCallHandler((call) {
       if(call.method != "test")
          return;
@@ -86,20 +86,21 @@ class AlarmList extends State<AlarmView> {
     int timeSpan = Global.nextAlarmTime(time.hour, time.minute, newAlarmInfo.repeat);
     Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":id.toString(),"timeSpan":timeSpan});
 
-    // int userId=1;
-    // int alarmId = newAlarmInfo.alarmId;
-    // String label = newAlarmInfo.label;
-    // String repeat = AlarmInfo.repeatToJson(newAlarmInfo.repeat);
-    // String mission = newAlarmInfo.mission;
-    // String audio = newAlarmInfo.audio;
-    // String _time = AlarmInfo.timeToJson(time)+":00";
+    int userId = Global.userId;
+    int alarmId = newAlarmInfo.alarmId;
+    String label = newAlarmInfo.label;
+    String repeat = AlarmInfo.repeatToJson(newAlarmInfo.repeat);
+    String mission = newAlarmInfo.mission;
+    String audio = newAlarmInfo.audio;
+    String _time = AlarmInfo.timeToJson(time)+":00";
 
-    // postRequestCreateAlarm(userId, alarmId, label, repeat, _time, mission, audio);
+    postRequestCreateAlarm(userId, alarmId, label, repeat, _time, mission, audio);
 
   }
 
   void postRequestCreateAlarm(int userId,int alarmId,String label,String repeat,String time,String mission ,String audio) async {
     Dio dio = new Dio();
+    dio.options.headers["authorization"] = "Bearer "+Global.token;
     FormData formData = FormData.fromMap({'user_id': userId, 'alarm_id': alarmId, 'label': label, 'repeat': repeat, 'time': time, 'mission': mission, 'audio': audio});
     String url ="http://10.0.2.2:9000/alarm-service/alarm/createAlarm";
     Response response = await dio
@@ -114,12 +115,13 @@ class AlarmList extends State<AlarmView> {
     Global.db.delete("alarms", where: "alarmId = ?", whereArgs: [alarmId]);
     this.setState(() {
     });
-    int userId=1;
-    // deleteRequestDeleteAlarm(alarmId, userId);
+    int userId=Global.userId;
+    deleteRequestDeleteAlarm(alarmId, userId);
   }
 
   void deleteRequestDeleteAlarm(int alarmId, int userId) async{
     Dio dio = new Dio();
+    dio.options.headers["authorization"] = "Bearer "+Global.token;
     FormData formData = FormData.fromMap({'user_id': userId, 'alarm_id': alarmId});
     String url ="http://10.0.2.2:9000/alarm-service/alarm/deleteAlarm";
     Response response = await dio
@@ -252,7 +254,7 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
       Global.methodChannel.invokeMethod("startAlarm",{"hour":time.hour,"minute":time.minute,"alarmIndex":alarmId.toString(),"timeSpan":timeSpan});
     }
 
-    int userId=1;
+    int userId=Global.userId;
     int _alarmId = newAlarmInfo.alarmId;
     String label = newAlarmInfo.label;
     String repeat = AlarmInfo.repeatToJson(newAlarmInfo.repeat);
@@ -260,12 +262,12 @@ class Alarm extends State<AlarmWidget> with TickerProviderStateMixin {
     String audio = newAlarmInfo.audio;
     String _time = AlarmInfo.timeToJson(newAlarmInfo.time)+":00";
 
-    // putRequestUpdateAlarm(userId, alarmId, label, repeat, _time, mission, audio);
+    putRequestUpdateAlarm(userId, alarmId, label, repeat, _time, mission, audio);
   }
 
   void putRequestUpdateAlarm(int userId,int alarmId,String label,String repeat,String time,String mission ,String audio) async {
     Dio dio = new Dio();
-    print("dio");
+    dio.options.headers["authorization"] = "Bearer "+Global.token;
     FormData formData = FormData.fromMap({'user_id': userId, 'alarm_id': alarmId, 'label': label, 'repeat': repeat, 'time': time, 'mission': mission, 'audio': audio});
     String url ="http://10.0.2.2:9000/alarm-service/alarm/updateAlarm";
     Response response = await dio

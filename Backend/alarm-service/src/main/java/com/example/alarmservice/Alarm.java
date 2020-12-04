@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.sql.Time;
 
 @Entity
-@Table(name = "alarm")
+@Table(name = "alarms")
 @Data
 public class Alarm {
     @Id

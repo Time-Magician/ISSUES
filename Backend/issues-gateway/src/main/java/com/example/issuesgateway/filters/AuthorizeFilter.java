@@ -28,10 +28,12 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
     @SneakyThrows
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        log.info("here");
         String token = exchange.getRequest().getHeaders().getFirst(AuthConstants.JWT_TOKEN_HEADER);
         if (StrUtil.isBlank(token)) {
             return chain.filter(exchange);
         }
+        log.info("here1");
         token = token.replace(AuthConstants.JWT_TOKEN_PREFIX, Strings.EMPTY);
         JWSObject jwsObject = null;
         try {

@@ -32,4 +32,10 @@ public class UserDaoImpl implements UserDao {
     public User checkEmailDuplicate(String email) {
         return userRepository.getUserByEmailEquals(email);
     }
+
+    @Override
+    public User getUserByTel(String tel) {
+        User newUser = userRepository.getUserByTelEquals(tel);
+        return newUser;
+    }
 }

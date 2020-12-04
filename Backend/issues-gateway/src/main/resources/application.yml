@@ -47,17 +47,13 @@ spring:
           filters:
             - StripPrefix=1
 
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    service-url:
-      defaultZone: http://localhost:3000/eureka
 
 
 white-list:
   urls:
     - "/issues-auth/oauth/token"
     - "/issues-auth/rsa/publicKey"
+    - "/user-service/verify"
     - "/user-service/login"
     - "/user-service/register"
+    - "/user-service/testRedisCache"

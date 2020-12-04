@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="alarm-service/Hibernate" uuid="a3eb30d0-e82e-403c-a3ee-b9f655896c0e">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+    <data-source name="issues@localhost" uuid="c4b45438-fd53-478e-9519-0c813101fd3a">
+      <database-info product="MySQL" version="5.7.30-log" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.21 (Revision: 33f65445a1bcc544eb0120491926484da168f199)" dbms="MYSQL" exact-version="5.7.30" exact-driver-version="8.0">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <schema-mapping />
-    </data-source>
-    <data-source name="authorization-server/Hibernate" uuid="6893f36c-406f-4de6-b106-964640291fe5">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
-      <user-name>root</user-name>
-      <schema-mapping />
-    </data-source>
-    <data-source name="user-service/Hibernate" uuid="17a503a6-823e-48f8-9ce8-4d2123dec28f">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
-      <user-name>root</user-name>
-    <data-source name="issues@localhost" uuid="faa54fdb-628f-4172-8ecd-4953b4b725d2">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
-      <schema-mapping />
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
     </data-source>
   </component>
 </project>

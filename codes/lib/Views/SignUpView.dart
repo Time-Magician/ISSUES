@@ -243,7 +243,7 @@ class MySignUpView extends State<SignUpView>{
     Response response = await dio.post(url, queryParameters: form);
     print(response.data["status"]);
 
-    return response.data["status"];
+    return response.data["status"]==0?true:false;
   }
 
   void getVeriCode() async {

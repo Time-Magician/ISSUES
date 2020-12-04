@@ -46,6 +46,13 @@ spring:
             - Path=/alarm-service/**
           filters:
             - StripPrefix=1
+        - id: study-service
+          uri: lb://study-service
+          predicates:
+            - Path=/study-alarm/**
+          filters:
+            - StripPrefix=1
+
 
 
 
@@ -56,4 +63,3 @@ white-list:
     - "/user-service/verify"
     - "/user-service/login"
     - "/user-service/register"
-    - "/user-service/testRedisCache"

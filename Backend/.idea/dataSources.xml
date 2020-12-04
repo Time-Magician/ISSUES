@@ -25,5 +25,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/issues?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT%2B8&amp;autoReconnect=true&amp;failOverReadOnly=false</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="issues@localhost" uuid="2cbe6bc2-a66f-4858-bb31-c15f48bae5d5">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/issues</jdbc-url>
+    </data-source>
   </component>
 </project>

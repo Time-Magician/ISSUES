@@ -31,4 +31,8 @@ public class AlarmServiceImpl implements AlarmService {
         return alarmDao.updateAlarm(alarmId,userId,mission,audio,label,repeat,time);
     }
 
+    @Override
+    public void uploadAlarmList(int userId, List<Alarm> alarmList) {
+        alarmDao.uploadAlarmList(userId,alarmList);
+    }
 }

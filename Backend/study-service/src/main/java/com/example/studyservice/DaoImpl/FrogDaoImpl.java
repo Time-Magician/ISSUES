@@ -23,7 +23,27 @@ public class FrogDaoImpl implements FrogDao {
         frog.setUserId(userId);
 
         frogRepository.save(frog);
-;
+
         return frog;
+    }
+
+    @Override
+    public Frog updateFrog(String name, int level, int exp, boolean isGraduated, String graduateDate, String school, int userId) {
+        Frog frog = frogRepository.findByUserIdAndGraduated(userId,false);
+        frog.setName(name);
+        frog.setLevel(level);
+        frog.setExp(exp);
+        frog.setGraduated(isGraduated);
+        frog.setGraduateDate(graduateDate);
+        frog.setSchool(school);
+
+        frogRepository.save(frog);
+
+        return frog;
+    }
+
+    @Override
+    public Frog getFrogByUser(int userId) {
+        return frogRepository.findByUserIdAndGraduated(userId,false);
     }
 }

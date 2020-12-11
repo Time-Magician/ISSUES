@@ -15,4 +15,16 @@ public class FrogServiceImpl implements FrogService {
     public Frog createFrog(String name, int level, int exp, boolean isGraduated, String graduateDate, String school, int userId) {
         return frogDao.createFrog(name,level,exp,isGraduated,graduateDate,school,userId);
     }
+
+    @Override
+    public Frog updateFrog(String name, int level, int exp, boolean isGraduated, String graduateDate, String school, int userId) {
+        return frogDao.updateFrog(name,level,exp,isGraduated,graduateDate,school,userId);
+    }
+
+    @Override
+    public Frog getFrogByUser(int userId) {
+        return frogDao.getFrogByUser(userId);
+    }
+
+
 }

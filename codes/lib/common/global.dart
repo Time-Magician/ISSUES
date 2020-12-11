@@ -40,6 +40,7 @@ class Global {
     if (_profile != null) {
       try {
         profile = Profile.fromJson(jsonDecode(_profile));
+        frog = Frog.fromJson(jsonDecode(_frog));
       } catch (e) {
         print(e);
       }
@@ -55,6 +56,10 @@ class Global {
       rootBundle.loadString('jsons/settings.json').then((String value){
         Map<String,dynamic> tmp = jsonDecode(value);
         profile.settings = Settings.fromJson(tmp);
+      });
+      rootBundle.loadString('jsons/frog.json').then((String value){
+        Map<String,dynamic> tmp = jsonDecode(value);
+        frog = Frog.fromJson(tmp);
       });
     }
     if(_hasLogin == null){
@@ -74,12 +79,6 @@ class Global {
     }
     else{
       token = null;
-    }
-    if(_frog != null){
-      frog = Frog.fromJson(jsonDecode(_frog));
-    }
-    else{
-      frog = null;
     }
     methodChannel = MethodChannel("Channel");
 

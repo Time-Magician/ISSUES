@@ -1,16 +1,15 @@
 package com.example.studyservice.Entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "alarm_records")
 public class AlarmRecord {
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
     private int id;
 
     @Column(name = "user_id")

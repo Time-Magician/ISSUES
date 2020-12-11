@@ -1,15 +1,16 @@
 package com.example.studyservice.Entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "frogs")
 public class Frog {
     @Id
     @Column(name = "frog_id")
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private int frogId;
 
     @Column(name = "user_id")
@@ -25,7 +26,7 @@ public class Frog {
     private int exp;
 
     @Column(name = "is_graduated")
-    private  boolean isGraduated;
+    private  boolean Graduated;
 
     @Column(name = "graduate_date")
     private String graduateDate;
@@ -69,16 +70,16 @@ public class Frog {
         this.exp = exp;
     }
 
-    public int setExp(){
+    public int getExp(){
         return this.exp;
     }
 
     public void setGraduated(boolean isGraduated){
-        this.isGraduated = isGraduated;
+        this.Graduated = isGraduated;
     }
 
     public boolean getGraduated(){
-        return this.isGraduated;
+        return this.Graduated;
     }
 
     public void setGraduateDate(String graduateDate){

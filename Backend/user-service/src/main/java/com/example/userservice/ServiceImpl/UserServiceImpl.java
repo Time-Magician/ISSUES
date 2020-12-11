@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
                 .email(null)
                 .tel(tel)
                 .password(password)
-                .userType(0)
+                .userType(1)
                 .build();
 
         userDao.addUser(newUser);
@@ -155,5 +155,10 @@ public class UserServiceImpl implements UserService {
     public Msg modifyPassword(int userId, String password) {
         userAuthDao.modifyPassword(userId,password);
         return MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.SUCCESS_MSG);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
     }
 }

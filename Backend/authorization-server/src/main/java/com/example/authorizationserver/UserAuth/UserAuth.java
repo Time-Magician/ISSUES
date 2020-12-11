@@ -66,6 +66,6 @@ public class UserAuth implements UserDetails {
     }
 
     public String getUserType(){
-        return userType == 0? "USER":"ADMIN";
+        return userType == 0? "ADMIN":"USER";
     }
 }

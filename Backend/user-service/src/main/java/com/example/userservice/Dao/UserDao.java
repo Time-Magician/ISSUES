@@ -6,10 +6,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 public interface UserDao {
     User getUserById(int userId);
     User addUser(User user);
+    List<User> getAllUsers();
     User checkTelDuplicate(String tel);
     User checkEmailDuplicate(String email);
     User getUserByTel(String tel);

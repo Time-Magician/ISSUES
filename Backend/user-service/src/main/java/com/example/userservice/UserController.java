@@ -33,13 +33,24 @@ public class UserController {
     @Autowired
     RestTemplate restTemplate;
 
+    @GetMapping("/admin/users")
+    public Msg getAllUsers(
+            HttpServletRequest request
+    ){
+        String userType = request.getHeader("userType");
+        if(!userType.equals("ADMIN")){
+            log.info(userType);
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.PERMISSION_DENIED);
+        }
+        return MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.SUCCESS_MSG,userService.getAllUsers());
+    }
     @GetMapping("/user/{id}")
     public Msg getUserById(
             HttpServletRequest request,
             @PathVariable(value = "id") int userId){
         String userType = request.getHeader("userType");
         int requesterUserId = Integer.parseInt(request.getHeader("userId"));
-        if(userType != "ADMIN" && requesterUserId != userId){
+        if(!userType.equals("ADMIN") && requesterUserId != userId){
             return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.PERMISSION_DENIED);
         }
 

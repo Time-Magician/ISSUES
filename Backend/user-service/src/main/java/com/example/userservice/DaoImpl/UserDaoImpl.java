@@ -2,7 +2,10 @@ package com.example.userservice.DaoImpl;
 
 import com.example.userservice.Dao.UserDao;
 import com.example.userservice.Entity.User;
+import com.example.userservice.Entity.UserAuth;
+import com.example.userservice.Repository.UserAuthRepository;
 import com.example.userservice.Repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,12 +14,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 @Repository
+@Slf4j
 public class UserDaoImpl implements UserDao {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    UserAuthRepository userAuthRepository;
 
     @Override
     public User getUserById(int userId) {
@@ -66,5 +74,16 @@ public class UserDaoImpl implements UserDao {
         Base64.Encoder pictureEncoder  = Base64.getEncoder();
         user.setProfilePicture(pictureEncoder.encodeToString(profilePicture.getBytes()));
         userRepository.save(user);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        List<UserAuth> users = userAuthRepository.getUserAuthByUserTypeEquals(0);
+        List<Integer> userIdSet = new ArrayList<>();
+        for(UserAuth user:users){
+            userIdSet.add(user.getUserId());
+        }
+        log.info(userIdSet.toString());
+        return userRepository.getUserByUserIdIsNotIn(userIdSet);
     }
 }

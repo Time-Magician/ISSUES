@@ -4,9 +4,11 @@ import com.example.userservice.util.msgUtils.Msg;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface UserService {
     User getUserById(int userId);
+    List<User> getAllUsers();
     Msg register(String password, String tel,String verificationCode);
     User checkUser(String credentials,String password);
     boolean checkUserByIdAndPassword(int userId,String password);

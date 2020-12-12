@@ -65,8 +65,20 @@ class UserView extends StatelessWidget {
               icon: Icons.settings,
               router:"AppSetting"
           ),
-          OrderTitle(title: "我的好友", icon: Icons.group, router: "FriendPage"),
-          OrderTitle(title: "关于一心", icon: Icons.favorite),
+          OrderTitle(
+              title: "我的好友",
+              icon: Icons.group,
+              router: "FriendPage"
+          ),
+          OrderTitle(
+              title: "我的消息",
+              icon: Icons.message,
+              router: "MessagePage"
+          ),
+          OrderTitle(
+              title: "关于一心",
+              icon: Icons.favorite
+          ),
         ],
       ),
     );

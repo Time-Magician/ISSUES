@@ -2,6 +2,8 @@ package com.example.userservice.ServiceImpl;
 
 import com.example.userservice.Dao.RedisDao;
 import com.example.userservice.Dao.UserAuthDao;
+import com.example.userservice.Entity.Friends;
+import com.example.userservice.Entity.Message;
 import com.example.userservice.Entity.UserAuth;
 import com.example.userservice.Service.UserService;
 import com.example.userservice.Entity.User;
@@ -13,23 +15,14 @@ import com.example.userservice.util.msgUtils.MsgUtil;
 import com.example.userservice.util.msgUtils.SendSmsUtil;
 import com.example.userservice.util.msgUtils.*;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Properties;
-import java.util.Random;
 
 @Slf4j
 @Service
@@ -119,6 +112,54 @@ public class UserServiceImpl implements UserService {
             return MsgUtil.makeMsg(MsgUtil.SUCCESS, MsgUtil.SUCCESS_MSG);
         }
         return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.VERIFY_TRY_AGAIN_MSG);
+    }
+
+    @Override
+    public List<User> getFriendList(int userId){
+        return userDao.getFriendList(userId);
+    }
+
+    @Override
+    public User deleteFriend(int userId, int friendId){
+        User user = userDao.getUserById(friendId);
+        userDao.deleteFriend(userId, friendId);
+        userDao.deleteFriend(friendId, userId);
+        return user;
+    }
+
+    @Override
+    public User addFriend(int userId, int friendId) {
+        User user = userDao.getUserById(friendId);
+        userDao.addFriend(userId, friendId);
+        userDao.addFriend(friendId, userId);
+        return user;
+    }
+
+    @Override
+    public List<Message> getMessages(int userId){
+        return userDao.getMessages(userId);
+    }
+
+    @Override
+    public Message addMessage(int senderId, int receiverId, String type, String detail){
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String time = sdf.format(date);
+        return userDao.addMessage(senderId, receiverId, time, type, detail);
+    }
+
+    @Override
+    public Message checkMessage(String messageId){
+        return userDao.updateMessage(messageId);
+    }
+
+    @Override
+    public User searchUser(String identifier){
+        User user = userDao.getUserByTel(identifier);
+        if(user == null){
+            user = userDao.getUserByEmail(identifier);
+        }
+        return user;
     }
 
     public String testRedisCache(String tel) {

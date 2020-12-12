@@ -204,6 +204,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.2.9"
+  date_format:
+    dependency: "direct main"
+    description:
+      name: date_format
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "1.0.9"
   day_night_time_picker:
     dependency: "direct main"
     description:
@@ -373,6 +380,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  fluttertoast:
+    dependency: "direct main"
+    description:
+      name: fluttertoast
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "7.1.5"
   font_awesome_flutter:
     dependency: "direct main"
     description:

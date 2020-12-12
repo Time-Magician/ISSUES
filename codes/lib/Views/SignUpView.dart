@@ -243,14 +243,15 @@ class MySignUpView extends State<SignUpView>{
     Response response = await dio.post(url, queryParameters: form);
     print(response.data["status"]);
 
-    return response.data["status"]==0?true:false;
+    return response.data["status"]==0? true:false;
   }
 
   void getVeriCode() async {
     if(tel.isEmpty) return;
     Dio dio = new Dio();
-    String url = "http://10.0.2.2:9000/user-service/verify?tel="+tel;
-    Response response = await dio.post(url);
+    String url = "http://10.0.2.2:9000/user-service/verify/tel";
+    FormData formData = FormData.fromMap({'tel':tel});
+    Response response = await dio.post(url,data:formData);
     print(response.data["status"]);
   }
 

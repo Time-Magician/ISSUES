@@ -20,6 +20,7 @@
         <module>authorization-server</module>
         <module>alarm-service</module>
         <module>user-service</module>
+        <module>study-service</module>
     </modules>
 
     <!--相关的性质    -->

@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import '../models/AlarmInfo.dart';
 import '../common/global.dart';
 import 'package:dio/dio.dart';
+import '../models/Frog.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 
 class LoginView extends StatefulWidget {
@@ -152,7 +155,7 @@ class MyLoginView extends State<LoginView>{
 
     String url = "http://10.0.2.2:9000/user-service/login?credentials="+user+"&password="+password+"&client_id=issuesApp&client_secret=sjtu";
     Response response = await dio.get(url);
-    print(response.data["extraInfo"]["access_token"]);
+    // print(response.data["extraInfo"]["access_token"]);
     if(response.data["status"] == 0){
       Global.saveHasLogin(true);
       Global.saveToken(response.data["extraInfo"]["access_token"]);
@@ -162,6 +165,7 @@ class MyLoginView extends State<LoginView>{
       Global.userId = response.data["data"]["userId"];
 
       await initAlarmList(response.data["data"]["userId"]);
+      await initFrog(response.data["data"]["userId"]);
       return Global.hasLogin;
     }
     else
@@ -184,5 +188,31 @@ class MyLoginView extends State<LoginView>{
     });
   }
 
-}
+  Future<void> initFrog(int userId) async {
+    Dio dio = new Dio();
+    dio.options.headers["authorization"] = "Bearer "+Global.token;
+    String url = "http://10.0.2.2:9000/study-service/user/"+userId.toString()+"/frog";
+    Response response = await dio.get(url);
+    print(response.data);
+    if(response.data == ""){
+      url = "http://10.0.2.2:9000/study-service/user/"+userId.toString()+"/frog";
+      FormData formData = FormData.fromMap({"name":Frog.randomFrogName(),"level":0,"exp":0,"is_graduated":false,"graduate_date":"","school":Frog.randomSchoolName()});
+      response = await dio.post(url,data:formData);
+      Frog _frog = Frog(response.data["frogId"],response.data["name"] , response.data["level"], response.data["exp"], response.data["graduated"], response.data["graduateDate"], response.data["school"]);
+      Global.frog = _frog;
+      Global.saveFrog();
+    }
+    else{
+    Frog _frog = Frog(response.data["frogId"],response.data["name"] , response.data["level"], response.data["exp"], response.data["graduated"], response.data["graduateDate"], response.data["school"]);
+    Global.frog = _frog;
+    Global.saveFrog();
+    }
+  }
 
+  Future<void> createFirstFrog(int userId) async {
+    Dio dio = new Dio();
+    String url = "http://10.0.2.2:9000/study-service/user/"+userId.toString()+"/frog";
+
+  }
+
+}

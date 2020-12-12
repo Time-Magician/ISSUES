@@ -1,6 +1,7 @@
 package com.example.userservice.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -29,6 +31,7 @@ public class User {
     private String email;
     private String tel;
     private Byte[] profilePicture;
+    private List<User> friends;
 
     @Id
     @Column(name = "user_id")
@@ -81,4 +84,9 @@ public class User {
     public Byte[] getProfilePicture() {
         return profilePicture;
     }
+
+    @JsonIgnore
+    @Transient
+    public List<User> getFriends() { return friends;}
+    public void setFriends(List<User> friends) { this.friends = friends;}
 }

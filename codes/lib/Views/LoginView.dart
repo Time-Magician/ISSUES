@@ -153,7 +153,7 @@ class MyLoginView extends State<LoginView>{
     print(password);
     Dio dio = new Dio();
 
-    String url = "http://10.0.2.2:9000/user-service/login?credentials="+user+"&client_id=issuesApp&client_secret=sjtu&password="+password+"&grant_type=password";
+    String url = "http://10.0.2.2:9000/user-service/login?credentials="+user+"&password="+password+"&client_id=issuesApp&client_secret=sjtu";
     Response response = await dio.get(url);
     // print(response.data["extraInfo"]["access_token"]);
     if(response.data["status"] == 0){

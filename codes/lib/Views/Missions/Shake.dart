@@ -1,5 +1,6 @@
 import 'package:demo5/Views/StudyView.dart';
 import 'package:demo5/index.dart';
+import 'package:dio/dio.dart';
 import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:flutter_screenutil/screenutil.dart';
@@ -174,7 +175,30 @@ class MyShakeMission extends State<ShakeMission>{
     });
   }
 
+  updateFrog() async{
+    Dio dio = new Dio();
+    dio.options.headers["authorization"] = "Bearer "+Global.token;
+    String url = "http://10.0.2.2:9000/study-service/user/"+Global.userId.toString()+"/frog";
+    FormData formData = FormData.fromMap({"name":Global.frog.name,"level":Global.frog.level,"exp":Global.frog.exp,"is_graduated":Global.frog.isGraduated,"graduate_date":Global.frog.graduateDate,"school":Global.frog.school});
+    dio.put(url,data: formData);
+  }
+
+
   void success(){
+    if(Global.frog.level < 17){
+      int exp = 10;
+      Global.frog.exp += exp;
+      if(Global.frog.exp >= 100) {
+        Global.frog.exp -= 100;
+        Global.frog.level += 1;
+        if(Global.frog.level == 17){
+          Global.frog.exp = 100;
+          Global.frog.isGraduated = true;
+        }
+      }
+      Global.saveFrog();
+      updateFrog();
+    }
     EasyDialog(
       fogOpacity: 0.12,
       width: ScreenUtil().setWidth(600),

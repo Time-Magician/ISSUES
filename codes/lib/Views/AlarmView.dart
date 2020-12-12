@@ -133,6 +133,7 @@ class AlarmList extends State<AlarmView> {
 
   @override
   Widget build(BuildContext context){
+    List<AlarmInfo> _alarmList = Global.alarmList;
     ScreenUtil.init(context, width: 720, height: 1280, allowFontScaling: true);
     return Scaffold(
         appBar: AppBar(

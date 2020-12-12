@@ -1,34 +1,36 @@
+
+import 'dart:convert';
+
+import 'package:demo5/models/index.dart';
+import 'package:demo5/common/global.dart';
+import 'package:dio/dio.dart';
+import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class FriendsView extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MyHomePage(title: '好友');
+    return FriendList(title: '好友');
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class FriendList extends StatefulWidget {
+  FriendList({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyFriendList createState() => MyFriendList();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyFriendList extends State<FriendList> {
   SlidableController slidableController;
-  final List<_HomeItem> items = List.generate(
-    20,
-        (i) => _HomeItem(
-      i,
-      '陈$i狗',
-      _getSubtitle(i),
-      _getAvatarColor(i),
-    ),
-  );
+
+  List<Friend> friendList = [];
 
   @protected
   void initState() {
@@ -37,21 +39,127 @@ class _MyHomePageState extends State<MyHomePage> {
       onSlideIsOpenChanged: handleSlideIsOpenChanged,
     );
     super.initState();
+    getFriendList();
   }
 
-  Animation<double> _rotationAnimation;
-  Color _fabColor = Colors.blue;
+  void getFriendList() async {
+    Dio dio = new Dio();
+    dio.options.headers["authorization"] = "Bearer "+Global.token;
+    String url ="http://10.0.2.2:9000/user-service/user/"+Global.userId.toString()+"/friends";
+    Response response = await dio
+        .get(url);
+    List<Friend> tmpList = [];
+    response.data["data"].forEach((item) {
+      tmpList.add(Friend.fromJson(item));
+    });
+    setState(() {
+        friendList = tmpList;
+    });
+  }
 
   void handleSlideAnimationChanged(Animation<double> slideAnimation) {
     setState(() {
-      _rotationAnimation = slideAnimation;
     });
   }
 
   void handleSlideIsOpenChanged(bool isOpen) {
     setState(() {
-      _fabColor = isOpen ? Colors.green : Colors.blue;
     });
+  }
+
+  void addFriend(){
+    String searchInfo = "";
+    EasyDialog(
+      fogOpacity: 0.12,
+      width: ScreenUtil().setWidth(600),
+      height: ScreenUtil().setWidth(400),
+      closeButton: false,
+      title: Text(
+        "添加好友",
+        style: TextStyle(fontSize: ScreenUtil().setSp(40)),
+      ),
+      contentList: [
+        Container(
+          width: ScreenUtil().setWidth(540),
+          margin: EdgeInsets.fromLTRB(0, ScreenUtil().setWidth(10), 0, ScreenUtil().setWidth(30)),
+          child: TextField(
+              controller: new TextEditingController(text: searchInfo),
+              decoration: InputDecoration(
+                hintText: "请输入手机号/邮箱",
+                prefixIcon: Icon(Icons.search, color: Colors.grey),
+              ),
+              maxLines: 1,
+              onChanged: (v) {
+                searchInfo = v;
+              }
+          ),
+        ),
+        Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                width: ScreenUtil().setWidth(180),
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "取消",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+              ),
+              Container(
+                width: ScreenUtil().setWidth(180),
+                child: FlatButton(
+                  onPressed: () {
+                    goAddFriend(searchInfo);
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "添加",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+              )
+            ]
+        )
+      ],
+    ).show(context);
+  }
+
+  void goAddFriend(String identifier) async {
+    Dio dio = new Dio();
+    dio.options.headers["authorization"] = "Bearer "+Global.token;
+    FormData formData = FormData.fromMap({"sender_id":Global.userId, "identifier":identifier});
+    String url ="http://10.0.2.2:9000/user-service/user";
+    Response response = await dio
+        .post(url, data:formData);
+    print(response.data["status"]);
+    if(response.data["status"] == -1){
+      Fluttertoast.showToast(
+          msg: "用户不存在，请检查输入",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.blue,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+    } else {
+      Fluttertoast.showToast(
+          msg: "好友请求已发送",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.blue,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+    }
   }
 
   @override
@@ -61,318 +169,147 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: OrientationBuilder(
-          builder: (context, orientation) => _buildList(
-              context,
-              orientation == Orientation.portrait
-                  ? Axis.vertical
-                  : Axis.horizontal),
-        ),
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            return getSlidableWithLists(context, index);
+          },
+          itemCount: friendList.length,
+        )
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: _fabColor,
-        onPressed: null,
-        child: _rotationAnimation == null
-            ? Icon(Icons.add)
-            : RotationTransition(
-          turns: _rotationAnimation,
-          child: Icon(Icons.add),
+        backgroundColor: Colors.blue,
+        onPressed: () => addFriend(),
+        child: Icon(Icons.add),
         ),
-      ),
-    );
+      );
   }
 
-  Widget _buildList(BuildContext context, Axis direction) {
-    return ListView.builder(
-      scrollDirection: direction,
-      itemBuilder: (context, index) {
-        final Axis slidableDirection =
-        direction == Axis.horizontal ? Axis.vertical : Axis.horizontal;
-        var item = items[index];
-        if (item.index < 8) {
-          return _getSlidableWithLists(context, index, slidableDirection);
-        } else {
-          return _getSlidableWithDelegates(context, index, slidableDirection);
-        }
-      },
-      itemCount: items.length,
-    );
-  }
-
-  Widget _getSlidableWithLists(
-      BuildContext context, int index, Axis direction) {
-    final _HomeItem item = items[index];
-    //final int t = index;
+  Widget getSlidableWithLists(
+      BuildContext context, int index) {
+    var item = friendList[index];
     return Slidable(
-      key: Key(item.title),
+      key: Key(item.name),
       controller: slidableController,
-      direction: direction,
-      dismissal: SlidableDismissal(
-        child: SlidableDrawerDismissal(),
-        onDismissed: (actionType) {
-          _showSnackBar(
-              context,
-              actionType == SlideActionType.primary
-                  ? 'Dismiss Archive'
-                  : 'Dimiss Delete');
-          setState(() {
-            items.removeAt(index);
-          });
-        },
-      ),
-      actionPane: _getActionPane(item.index),
-      actionExtentRatio: 0.25,
-      child: direction == Axis.horizontal
-          ? VerticalListItem(items[index])
-          : HorizontalListItem(items[index]),
-      actions: <Widget>[
-        IconSlideAction(
-          caption: 'Archive',
-          color: Colors.blue,
-          icon: Icons.archive,
-          onTap: () => _showSnackBar(context, 'Archive'),
-        ),
-        IconSlideAction(
-          caption: 'Share',
-          color: Colors.indigo,
-          icon: Icons.share,
-          onTap: () => _showSnackBar(context, 'Share'),
-        ),
-      ],
+      direction: Axis.horizontal,
+      actionPane: SlidableScrollActionPane(),
+      actionExtentRatio: 0.2,
+      child: FriendListItem(friendList[index]),
       secondaryActions: <Widget>[
-        Container(
-          height: 800,
-          color: Colors.green,
-          child: Text('a'),
-        ),
         IconSlideAction(
-          caption: 'More',
-          color: Colors.grey.shade200,
-          icon: Icons.more_horiz,
-          onTap: () => _showSnackBar(context, 'More'),
+          caption: '设置闹钟',
+          color: Colors.green,
+          icon: Icons.alarm_add,
+          onTap: () => addAlarm(index),
           closeOnTap: false,
         ),
         IconSlideAction(
-          caption: 'Delete',
+          caption: '删除好友',
           color: Colors.red,
           icon: Icons.delete,
-          onTap: () => _showSnackBar(context, 'Delete'),
+          onTap: () => deleteFriend(index),
         ),
       ],
     );
   }
 
-  Widget _getSlidableWithDelegates(
-      BuildContext context, int index, Axis direction) {
-    final _HomeItem item = items[index];
+  void addAlarm(index) async {
+      final result = await Navigator.pushNamed(context,"AlarmSetting",arguments:
+        AlarmInfo(null ,"闹钟", [], TimeOfDay.now(), "算术题", "audio1", true, false),
+      );
 
-    return Slidable.builder(
-      key: Key(item.title),
-      controller: slidableController,
-      direction: direction,
-      dismissal: SlidableDismissal(
-        child: SlidableDrawerDismissal(),
-        closeOnCanceled: true,
-        onWillDismiss: (item.index != 10)
-            ? null
-            : (actionType) {
-          return showDialog<bool>(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                title: Text('Delete'),
-                content: Text('Item will be deleted'),
-                actions: <Widget>[
-                  FlatButton(
-                    child: Text('Cancel'),
-                    onPressed: () => Navigator.of(context).pop(false),
-                  ),
-                  FlatButton(
-                    child: Text('Ok'),
-                    onPressed: () => Navigator.of(context).pop(true),
-                  ),
-                ],
-              );
-            },
-          );
-        },
-        onDismissed: (actionType) {
-          _showSnackBar(
-              context,
-              actionType == SlideActionType.primary
-                  ? 'Dismiss Archive'
-                  : 'Dimiss Delete');
-          setState(() {
-            items.removeAt(index);
-          });
-        },
+      if(result.runtimeType != AlarmInfo) return;
+      AlarmInfo newAlarmInfo = result as AlarmInfo;
+
+      Map<String, dynamic> alarmJson = newAlarmInfo.toJson();
+      Dio dio = new Dio();
+      dio.options.headers["authorization"] = "Bearer "+Global.token;
+      FormData formData = FormData.fromMap({"sender_id":Global.userId, "type":"闹钟设置", "detail":jsonEncode(alarmJson)});
+      String url ="http://10.0.2.2:9000/user-service/user/"+friendList[index].userId.toString()+"/messages";
+      Response response = await dio
+          .post(url, data:formData);
+      print(response.data["status"]);
+      if(response.data["status"] == 0){
+        Fluttertoast.showToast(
+            msg: "闹钟请求已发送",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.blue,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+      }
+  }
+
+  void deleteFriend(index){
+    EasyDialog(
+      fogOpacity: 0.12,
+      width: ScreenUtil().setWidth(600),
+      height: ScreenUtil().setWidth(280),
+      closeButton: false,
+      title: Text(
+        "删除好友",
+        style: TextStyle(fontSize: ScreenUtil().setSp(40)),
       ),
-      actionPane: _getActionPane(item.index),
-      actionExtentRatio: 0.25,
-      child: direction == Axis.horizontal
-          ? VerticalListItem(items[index])
-          : HorizontalListItem(items[index]),
-      actionDelegate: SlideActionBuilderDelegate(
-          actionCount: 2,
-          builder: (context, index, animation, renderingMode) {
-            if (index == 0) {
-              return IconSlideAction(
-                caption: 'Archive',
-                color: renderingMode == SlidableRenderingMode.slide
-                    ? Colors.blue.withOpacity(animation.value)
-                    : (renderingMode == SlidableRenderingMode.dismiss
-                    ? Colors.blue
-                    : Colors.green),
-                icon: Icons.archive,
-                onTap: () async {
-                  var state = Slidable.of(context);
-                  var dismiss = await showDialog<bool>(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: Text('Delete'),
-                        content: Text('Item will be deleted'),
-                        actions: <Widget>[
-                          FlatButton(
-                            child: Text('Cancel'),
-                            onPressed: () => Navigator.of(context).pop(false),
-                          ),
-                          FlatButton(
-                            child: Text('Ok'),
-                            onPressed: () => Navigator.of(context).pop(true),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-
-                  if (dismiss) {
-                    state.dismiss();
-                  }
-                },
-              );
-            } else {
-              return IconSlideAction(
-                caption: 'Share',
-                color: renderingMode == SlidableRenderingMode.slide
-                    ? Colors.indigo.withOpacity(animation.value)
-                    : Colors.indigo,
-                icon: Icons.share,
-                onTap: () => _showSnackBar(context, 'Share'),
-              );
-            }
-          }),
-      secondaryActionDelegate: SlideActionBuilderDelegate(
-          actionCount: 2,
-          builder: (context, index, animation, renderingMode) {
-            if (index == 0) {
-              return IconSlideAction(
-                caption: 'More',
-                color: renderingMode == SlidableRenderingMode.slide
-                    ? Colors.grey.shade200.withOpacity(animation.value)
-                    : Colors.grey.shade200,
-                icon: Icons.more_horiz,
-                onTap: () => _showSnackBar(context, 'More'),
-                closeOnTap: false,
-              );
-            } else {
-              return IconSlideAction(
-                caption: 'Delete',
-                color: renderingMode == SlidableRenderingMode.slide
-                    ? Colors.red.withOpacity(animation.value)
-                    : Colors.red,
-                icon: Icons.delete,
-                onTap: () => _showSnackBar(context, 'Delete'),
-              );
-            }
-          }),
-    );
-  }
-
-  static Widget _getActionPane(int index) {
-    switch (index % 4) {
-      case 0:
-        return SlidableBehindActionPane();
-      case 1:
-        return SlidableStrechActionPane();
-      case 2:
-        return SlidableScrollActionPane();
-      case 3:
-        return SlidableDrawerActionPane();
-      default:
-        return null;
-    }
-  }
-
-  static Color _getAvatarColor(int index) {
-    switch (index % 4) {
-      case 0:
-        return Colors.red;
-      case 1:
-        return Colors.green;
-      case 2:
-        return Colors.blue;
-      case 3:
-        return Colors.indigoAccent;
-      default:
-        return null;
-    }
-  }
-
-  static String _getSubtitle(int index) {
-    switch (index % 4) {
-      case 0:
-        return '今天喝奶茶';
-      case 1:
-        return '今天吃炸鸡';
-      case 2:
-        return '今天吃烤肉';
-      case 3:
-        return '今天吃火锅';
-      default:
-        return null;
-    }
-  }
-
-  void _showSnackBar(BuildContext context, String text) {
-    Scaffold.of(context).showSnackBar(SnackBar(content: Text(text)));
-  }
-}
-
-class HorizontalListItem extends StatelessWidget {
-  HorizontalListItem(this.item);
-  final _HomeItem item;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      width: 160.0,
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          Expanded(
-            child: CircleAvatar(
-              backgroundColor: item.color,
-              child: Text('${item.index}'),
-              foregroundColor: Colors.white,
-            ),
-          ),
-          Expanded(
-            child: Center(
-              child: Text(
-                item.subtitle,
+      description: Text(
+        "你确定要删除好友吗？",
+        style: TextStyle(fontSize: ScreenUtil().setSp(30)),
+      ),
+      contentList: [
+        Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                width: ScreenUtil().setWidth(180),
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "取消",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ],
-      ),
-    );
+              Container(
+                width: ScreenUtil().setWidth(180),
+                child: FlatButton(
+                  onPressed: () {
+                    goDeleteFriend(index);
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "确认",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                ),
+              )
+            ]
+        )
+      ],
+    ).show(context);
   }
+
+  void goDeleteFriend(index) async {
+    Dio dio = new Dio();
+    dio.options.headers["authorization"] = "Bearer "+Global.token;
+    String url ="http://10.0.2.2:9000/user-service/user/"+Global.userId.toString()+"/friends/"+friendList[index].userId.toString();
+    Response response = await dio
+        .delete(url);
+    print(response.data["data"]);
+    setState(() {
+      friendList.removeAt(index);
+    });
+  }
+
 }
 
-class VerticalListItem extends StatelessWidget {
-  VerticalListItem(this.item);
-  final _HomeItem item;
+class FriendListItem extends StatelessWidget {
+  FriendListItem(this.item);
+  final Friend item;
 
   @override
   Widget build(BuildContext context) {
@@ -382,31 +319,19 @@ class VerticalListItem extends StatelessWidget {
           ? Slidable.of(context)?.open()
           : Slidable.of(context)?.close(),
       child: Container(
-        color: Colors.white,
+        color: Colors.white24,
+
         child: ListTile(
           leading: CircleAvatar(
-            backgroundColor: item.color,
-            child: Text('${item.index}'),
+            backgroundColor: Colors.blue,
+            child: Text('${item.name[0]}'),
             foregroundColor: Colors.white,
           ),
-          title: Text(item.title),
-          subtitle: Text(item.subtitle),
+          title: Text(item.name),
+          subtitle: Text(item.email),
         ),
       ),
     );
   }
-}
 
-class _HomeItem {
-  const _HomeItem(
-      this.index,
-      this.title,
-      this.subtitle,
-      this.color,
-      );
-
-  final int index;
-  final String title;
-  final String subtitle;
-  final Color color;
 }

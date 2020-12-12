@@ -150,7 +150,7 @@ class MyLoginView extends State<LoginView>{
     print(password);
     Dio dio = new Dio();
 
-    String url = "http://10.0.2.2:9000/user-service/login?credentials="+user+"&client_id=issuesApp&client_secret=sjtu&password="+password+"&grant_type=password";
+    String url = "http://10.0.2.2:9000/user-service/login?credentials="+user+"&password="+password+"&client_id=issuesApp&client_secret=sjtu";
     Response response = await dio.get(url);
     print(response.data["extraInfo"]["access_token"]);
     if(response.data["status"] == 0){
@@ -171,7 +171,7 @@ class MyLoginView extends State<LoginView>{
   Future<void> initAlarmList(int userId) async {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    String url = "http://10.0.2.2:9000/alarm-service/alarm/getAlarmList/"+userId.toString();
+    String url = "http://10.0.2.2:9000/alarm-service/user/"+userId.toString()+"/alarms";
     Response response = await dio.get(url);
     Global.alarmList = [];
     await Global.initDB();

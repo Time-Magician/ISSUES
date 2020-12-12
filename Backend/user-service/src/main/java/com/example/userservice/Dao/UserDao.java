@@ -2,7 +2,6 @@ package com.example.userservice.Dao;
 
 import com.example.userservice.Entity.Message;
 import com.example.userservice.Entity.User;
-import javafx.beans.binding.ObjectExpression;
 import org.bson.types.ObjectId;
 
 import java.util.List;

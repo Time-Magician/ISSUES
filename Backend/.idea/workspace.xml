@@ -23,29 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="904a45ad-a0cc-447e-9093-076e0ca2935d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_bson_4_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongodb_driver_core_4_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongodb_driver_sync_4_0_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_mongodb_2_3_6_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_mongodb_3_0_5_RELEASE.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/Dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/Dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/AlarmView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/AlarmView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/DiplomasView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/DiplomasView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/MessageView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/MessageView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/Missions/Arithmetic.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/Missions/Arithmetic.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/Missions/Blow.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/Missions/Blow.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/Missions/Game.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/Missions/Game.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/Missions/Game2.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/Missions/Game2.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/Missions/Game3.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/Missions/Game3.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/Missions/Shake.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/Missions/Shake.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/Missions/TakePhoto.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/Missions/TakePhoto.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/StudyRoomView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/StudyRoomView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/StudyView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/StudyView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/UserView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/UserView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/main.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,11 +139,6 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
             </expand>
             <select />
           </treeState>
@@ -197,6 +170,7 @@
       <workItem from="1607239509298" duration="3000" />
       <workItem from="1607342679647" duration="5000" />
       <workItem from="1607432240911" duration="2000" />
+      <workItem from="1608080568140" duration="632000" />
     </task>
     <servers />
   </component>

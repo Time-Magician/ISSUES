@@ -1,6 +1,7 @@
 package com.example.userservice;
 
 import com.example.userservice.Entity.User;
+import com.example.userservice.Entity.UserAuth;
 import com.example.userservice.Service.UserService;
 import com.example.userservice.util.msgUtils.Msg;
 import com.example.userservice.util.msgUtils.MsgCode;
@@ -33,6 +34,23 @@ public class UserController {
     @Autowired
     RestTemplate restTemplate;
 
+    @PutMapping("/admin/user/{userId}")
+    public Msg setUserEnable(
+            HttpServletRequest request,
+            @RequestParam( name = "enable" ) boolean flag,
+            @PathVariable(value = "userId") int userId
+    ){
+        String userType = request.getHeader("userType");
+        if(!userType.equals("ADMIN")){
+            log.info(userType);
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.PERMISSION_DENIED);
+        }
+        if(flag)
+            return userService.enableUser(userId);
+        return userService.disableUser(userId);
+    }
+
+
     @GetMapping("/admin/users")
     public Msg getAllUsers(
             HttpServletRequest request
@@ -50,6 +68,8 @@ public class UserController {
             @PathVariable(value = "id") int userId){
         String userType = request.getHeader("userType");
         int requesterUserId = Integer.parseInt(request.getHeader("userId"));
+        if(userType.equals("DISABLED"))
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.FORBIDDEN_MSG);
         if(!userType.equals("ADMIN") && requesterUserId != userId){
             return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.PERMISSION_DENIED);
         }
@@ -96,10 +116,10 @@ public class UserController {
         paramsMap.add("client_id",clientId);
         paramsMap.add("client_secret",clientSecret);
         paramsMap.add("grant_type","password");
-        User user = userService.checkUser(credentials,password);
-        if(user == null)
-            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.LOGIN_USER_ERROR_MSG);
-
+        Msg checkUserMsg = userService.checkUser(credentials,password);
+        if(checkUserMsg.getStatus() != MsgUtil.SUCCESS)
+            return checkUserMsg;
+        User user = userService.getUserById(((UserAuth)checkUserMsg.getData()).getUserId());
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);

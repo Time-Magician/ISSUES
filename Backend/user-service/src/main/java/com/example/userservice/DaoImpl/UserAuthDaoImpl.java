@@ -4,6 +4,9 @@ import com.example.userservice.Dao.UserAuthDao;
 import com.example.userservice.Entity.User;
 import com.example.userservice.Entity.UserAuth;
 import com.example.userservice.Repository.UserAuthRepository;
+import com.example.userservice.util.msgUtils.Msg;
+import com.example.userservice.util.msgUtils.MsgCode;
+import com.example.userservice.util.msgUtils.MsgUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -53,5 +56,25 @@ public class UserAuthDaoImpl implements UserAuthDao {
         UserAuth userAuth = userAuthRepository.findById(userId).get();
         userAuth.setPassword(password);
         userAuthRepository.save(userAuth);
+    }
+
+    @Override
+    public Msg disableUser(int userId) {
+        UserAuth userAuth = userAuthRepository.findById(userId).get();
+        if(userAuth == null)
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.USER_NOT_FOUND);
+        userAuth.setUserType(2);
+        userAuthRepository.save(userAuth);
+        return MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.SUCCESS_MSG);
+    }
+
+    @Override
+    public Msg enableUser(int userId) {
+        UserAuth userAuth = userAuthRepository.findById(userId).get();
+        if(userAuth == null)
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.USER_NOT_FOUND);
+        userAuth.setUserType(1);
+        userAuthRepository.save(userAuth);
+        return MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.SUCCESS_MSG);
     }
 }

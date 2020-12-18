@@ -83,12 +83,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User checkUser(String credentials, String password) {
+    public Msg checkUser(String credentials, String password) {
         UserAuth userAuth = userAuthDao.findUserByTelOrEmailAndPassword(credentials,password);
         if(userAuth == null) {
-            return null;
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.LOGIN_USER_ERROR_MSG);
         }
-        return userDao.getUserById(userAuth.getUserId());
+        if(userAuth.getUserType() == 2)
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.FORBIDDEN_MSG);
+        return MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.SUCCESS_MSG,userAuth);
     }
 
     @Override
@@ -160,5 +162,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
+    }
+
+
+    @Override
+    public Msg enableUser(int userId) {
+        return userAuthDao.enableUser(userId);
+    }
+
+    @Override
+    public Msg disableUser(int userId) {
+        return userAuthDao.disableUser(userId);
     }
 }

@@ -49,7 +49,7 @@ public class UserAuth implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(userType == 0? "ADMIN":"USER"));
+        authorities.add(new SimpleGrantedAuthority(UserAuthConstant.userTypeToAuthority.get(userType)));
         return authorities;
     }
 
@@ -66,6 +66,6 @@ public class UserAuth implements UserDetails {
     }
 
     public String getUserType(){
-        return userType == 0? "ADMIN":"USER";
+        return UserAuthConstant.userTypeToAuthority.get(userType);
     }
 }

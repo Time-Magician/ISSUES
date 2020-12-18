@@ -5,6 +5,9 @@ import com.example.userservice.Entity.User;
 import com.example.userservice.Entity.UserAuth;
 import com.example.userservice.Repository.UserAuthRepository;
 import com.example.userservice.Repository.UserRepository;
+import com.example.userservice.util.msgUtils.Msg;
+import com.example.userservice.util.msgUtils.MsgCode;
+import com.example.userservice.util.msgUtils.MsgUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -86,4 +89,5 @@ public class UserDaoImpl implements UserDao {
         log.info(userIdSet.toString());
         return userRepository.getUserByUserIdIsNotIn(userIdSet);
     }
+
 }

@@ -10,7 +10,7 @@ public interface UserService {
     User getUserById(int userId);
     List<User> getAllUsers();
     Msg register(String password, String tel,String verificationCode);
-    User checkUser(String credentials,String password);
+    Msg checkUser(String credentials,String password);
     boolean checkUserByIdAndPassword(int userId,String password);
     Msg verify(String tel);
     Msg verifyEmail(String email);
@@ -18,4 +18,6 @@ public interface UserService {
     Msg modifyGender(int userId,String gender);
     Msg modifyProfilePicture(int userId, MultipartFile profilePicture) throws IOException;
     Msg modifyPassword(int userId,String password);
+    Msg enableUser(int userId);
+    Msg disableUser(int userId);
 }

@@ -1,6 +1,7 @@
 package com.example.userservice;
 
 import com.example.userservice.Entity.User;
+import com.example.userservice.Entity.UserAuth;
 import com.example.userservice.Service.UserService;
 import com.example.userservice.util.msgUtils.Msg;
 import com.example.userservice.util.msgUtils.MsgCode;
@@ -8,13 +9,18 @@ import com.example.userservice.util.msgUtils.MsgUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.jni.Time;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -32,12 +38,42 @@ public class UserController {
     @Autowired
     RestTemplate restTemplate;
 
+    @PutMapping("/admin/user/{userId}")
+    public Msg setUserEnable(
+            HttpServletRequest request,
+            @RequestParam( name = "enable" ) boolean flag,
+            @PathVariable(value = "userId") int userId
+    ){
+        String userType = request.getHeader("userType");
+        if(!userType.equals("ADMIN")){
+            log.info(userType);
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.PERMISSION_DENIED);
+        }
+        if(flag)
+            return userService.enableUser(userId);
+        return userService.disableUser(userId);
+    }
+
+
+    @GetMapping("/admin/users")
+    public Msg getAllUsers(
+            HttpServletRequest request
+    ){
+        String userType = request.getHeader("userType");
+        if(!userType.equals("ADMIN")){
+            log.info(userType);
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.PERMISSION_DENIED);
+        }
+        return MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.SUCCESS_MSG,userService.getAllUsers());
+    }
     @GetMapping("/user/{id}")
     public Msg getUserById(
             HttpServletRequest request,
             @PathVariable(value = "id") int userId){
         String userType = request.getHeader("userType");
         int requesterUserId = Integer.parseInt(request.getHeader("userId"));
+        if(userType.equals("DISABLED"))
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.FORBIDDEN_MSG);
         if(!userType.equals("ADMIN") && requesterUserId != userId){
             return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.PERMISSION_DENIED);
         }
@@ -174,10 +210,10 @@ public class UserController {
         paramsMap.add("client_id",clientId);
         paramsMap.add("client_secret",clientSecret);
         paramsMap.add("grant_type","password");
-        User user = userService.checkUser(credentials,password);
-        if(user == null)
-            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.LOGIN_USER_ERROR_MSG);
-
+        Msg checkUserMsg = userService.checkUser(credentials,password);
+        if(checkUserMsg.getStatus() != MsgUtil.SUCCESS)
+            return checkUserMsg;
+        User user = userService.getUserById(((UserAuth)checkUserMsg.getData()).getUserId());
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -186,5 +222,50 @@ public class UserController {
         Msg result = MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.LOGIN_SUCCESS_MSG, user);
         result.setExtraInfo(oAuth2AccessToken);
         return result;
+    }
+
+
+    @PatchMapping("/user/{userId}/username")
+    public Msg modifyUsername(
+            HttpServletRequest request,
+            @PathVariable(value = "userId")int userId,
+            @RequestParam(name = "username") String newUsername
+    ){
+        userId = Integer.parseInt(request.getHeader("userId"));
+        return userService.modifyUsername(userId,newUsername);
+    }
+
+    @PatchMapping("/user/{userId}/gender")
+    public Msg modifyGender(
+            HttpServletRequest request,
+            @PathVariable(value = "userId")int userId,
+            @RequestParam(name = "gender") String newGender
+    ){
+        userId = Integer.parseInt(request.getHeader("userId"));
+        return userService.modifyGender(userId,newGender);
+    }
+
+    @PatchMapping("/user/{userId}/profilePicture")
+    public Msg modifyProfilePicture(
+            HttpServletRequest request,
+            @PathVariable(value = "userId")int userId,
+            @RequestParam(name = "profilePicture")MultipartFile newProfilePicture
+    ) throws IOException {
+        userId = Integer.parseInt(request.getHeader("userId"));
+        return userService.modifyProfilePicture(userId,newProfilePicture);
+    }
+
+    @PatchMapping("user/{userId}/password")
+    public Msg modifyPassword(
+            HttpServletRequest request,
+            @PathVariable(value = "userId")int userId,
+            @RequestParam(name = "oldPassword") String oldPwd,
+            @RequestParam(name = "newPassword") String newPwd
+    ){
+        userId = Integer.parseInt(request.getHeader("userId"));
+        if(!userService.checkUserByIdAndPassword(userId,oldPwd))
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.PASSWORD_ERROR);
+        return userService.modifyPassword(userId,passwordEncoder.encode(newPwd));
+
     }
 }

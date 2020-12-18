@@ -30,6 +30,7 @@ public class User {
     private String gender;
     private String email;
     private String tel;
+    private String profilePicture;
     private Byte[] profilePicture;
     private List<User> friends;
 
@@ -78,10 +79,10 @@ public class User {
 
     @Lob
     @Column(name = "profile_picture")
-    public void setProfilePicture(Byte[] profilePicture) {
+    public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
     }
-    public Byte[] getProfilePicture() {
+    public String getProfilePicture() {
         return profilePicture;
     }
 

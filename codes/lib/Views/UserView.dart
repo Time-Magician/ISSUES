@@ -37,7 +37,7 @@ class UserView extends StatelessWidget {
       Global.audioCache1.loop(Global.alarmList[index].audio+".mp3");
       switch(mission){
         case "算术题": Navigator.pushNamed(context, "Arithmetic");break;
-        case "小游戏": Navigator.pushNamed(context, "Game");break;
+        case "小游戏": Navigator.pushNamed(context, "Game"+((new Random()).nextInt(3)+1).toString());break;
         case "指定物品拍照": Navigator.pushNamed(context, "TakePhoto");break;
         case "摇晃手机": Navigator.pushNamed(context, "Shake");break;
         case "随机任务": Navigator.pushNamed(context, Global.missionRouteList[(new Random()).nextInt(4)]);break;

@@ -126,6 +126,7 @@ class MyMessageCard extends State<MessageCard>{
   void addAlarm() async {
     var id = await Global.db.insert("alarms", alarmInfo.toJson());
     print("add alarm: $id");
+    Global.alarmList.add(alarmInfo);
     alarmInfo.alarmId = id;
     setState(() {
     });

@@ -161,8 +161,6 @@ public class UserController {
         return userService.register(passwordEncoder.encode(password),tel,verificationCode);
     }
 
-
-
     @GetMapping("/login")
     public Msg login(
             @RequestParam(name = "credentials")String credentials,

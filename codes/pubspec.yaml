@@ -109,6 +109,7 @@ flutter:
     - assets/image/random.png
     - assets/image/arithmetic.png
     - assets/image/shake.png
+    - assets/image/blow.png
     - assets/image/tree1.png
     - assets/image/tree2.png
     - assets/image/tree3.png

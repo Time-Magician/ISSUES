@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
           "GenderSetting": (context) => GenderSettingView(),
           "AppSetting": (context) => AppSettingView(),
           "Arithmetic":(context)=>Arithmetic(),
-          "Game":(context)=>Game(),
+          "Game1":(context)=>Game(),
           "Game2":(context)=>Game2(),
           "Game3":(context)=>Game3(),
           "Shake":(context)=>Shake(),

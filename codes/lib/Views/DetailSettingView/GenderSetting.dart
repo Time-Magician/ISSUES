@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:smart_select/smart_select.dart';
 import 'package:provider/provider.dart';
 import 'package:demo5/states/index.dart';
@@ -23,14 +24,16 @@ class _GenderSettingViewState extends State<GenderSettingView>{
       appBar:AppBar(
         title: Text('修改性别'),
         actions: <Widget>[
-          OutlineButton(
-            child: Text('保存'),
-            textColor: Colors.white,
+          MaterialButton(
+            child: Text(
+              "保存",
+              style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(36)),
+            ),
             onPressed:(){
               userModel.gender = genderValue;
               Navigator.pop(context);
             },
-          )
+          ),
         ],
       ),
       body: GenderSelect(callback:(val)=>onChange(val),value:userModel.gender)
@@ -55,16 +58,19 @@ class _GenderSelectState extends State<GenderSelect>{
       value=widget.value;
     });
   }
+
   List<S2Choice<String>> genderOptions=[
     S2Choice<String>(value:'男性',title:'男性'),
     S2Choice<String>(value:'女性',title:'女性'),
     S2Choice<String>(value:'其他',title:'其他'),
   ];
+
   @override
   Widget build(BuildContext context) {
     return SmartSelect<String>.single(
       title:'性别',
       choiceItems:genderOptions,
+      modalType: S2ModalType.bottomSheet,
       value: value,
       onChange: (state)
         {setState(() => value = state.value);

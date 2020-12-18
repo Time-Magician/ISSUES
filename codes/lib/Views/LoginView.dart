@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:demo5/index.dart';
 import 'package:flutter/material.dart';
 import '../models/AlarmInfo.dart';
 import '../common/global.dart';
@@ -22,13 +23,27 @@ class MyLoginView extends State<LoginView>{
   String password = "";
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Global.saveHasLogin(false);
+    Global.hasLogin = false;
+    Global.clearDB();
+  }
+
+  @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 720, height: 1280, allowFontScaling: true);
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: loginBody(context),
-      ),
+      body: WillPopScope(
+        onWillPop: () async{
+          return false;
+        },
+        child: Center(
+          child: loginBody(context),
+        ),
+      )
     );
   }
 
@@ -155,11 +170,21 @@ class MyLoginView extends State<LoginView>{
 
     String url = "http://10.0.2.2:9000/user-service/login?credentials="+user+"&password="+password+"&client_id=issuesApp&client_secret=sjtu";
     Response response = await dio.get(url);
-    // print(response.data["extraInfo"]["access_token"]);
+    print(response);
     if(response.data["status"] == 0){
       Global.saveHasLogin(true);
       Global.saveToken(response.data["extraInfo"]["access_token"]);
       Global.saveUserId(response.data["data"]["userId"]);
+      User user = new User(
+        response.data["data"]["userId"],
+        response.data["data"]["username"],
+        response.data["data"]["name"],
+        response.data["data"]["email"],
+        response.data["data"]["gender"],
+        password
+      );
+      Global.profile.user = user;
+      Global.saveProfile();
       Global.token = response.data["extraInfo"]["access_token"];
       Global.hasLogin = true;
       Global.userId = response.data["data"]["userId"];

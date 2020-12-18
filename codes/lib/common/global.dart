@@ -23,10 +23,13 @@ class Global {
   static List<AlarmInfo> alarmList = [];
   static List<AlarmInfo> webAlarmList = [];
   static List<String> missionRouteList = [
-    "Game",
+    "Game1",
+    "Game2",
+    "Game3",
     "Arithmetic",
     "TakePhoto",
-    "Shake"
+    "Shake",
+    "Blow"
   ];
 
   static Future init() async {
@@ -164,7 +167,7 @@ class Global {
     }
 
     List<int> repeatDays = [];
-    if (repeat.isEmpty){
+    if (repeat.isEmpty || repeat[0] == ""){
       if(hasPassed){
         return 1;
       }

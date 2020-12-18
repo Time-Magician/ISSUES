@@ -1,5 +1,6 @@
 import 'package:demo5/states/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
 
 class UserNameSettingView extends StatelessWidget{
@@ -13,14 +14,16 @@ class UserNameSettingView extends StatelessWidget{
       appBar:AppBar(
         title: Text('修改用户名'),
         actions: <Widget>[
-          OutlineButton(
-            child: Text('保存'),
-            textColor: Colors.white,
-            onPressed:(){
-              userModel.userName = ctrl.text;
-              Navigator.pop(context);
+          MaterialButton(
+            child: Text(
+              "保存",
+              style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(36)),
+            ),
+            onPressed: (){
+                userModel.userName = ctrl.text;
+                Navigator.pop(context);
             },
-          )
+          ),
         ],
       ),
       body: TextField(

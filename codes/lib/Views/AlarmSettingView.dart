@@ -8,7 +8,6 @@ import 'package:grouped_buttons/grouped_buttons.dart';
 import 'package:day_picker/day_picker.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-// import '../Class/AlarmInfo.dart';
 import '../Utils/Adapt.dart';
 import '../common/global.dart';
 import 'package:demo5/models/index.dart';

@@ -1,5 +1,6 @@
 import 'package:demo5/Views/LoginView.dart';
 import 'package:demo5/Views/Missions/TakePhoto.dart';
+import 'Views/MessageView.dart';
 import 'Views/Missions/Blow.dart';
 import 'Views/Missions/Game.dart';
 import 'Views/Missions/Game2.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
           "HomePage": (context) => BottomNavigationWidget(),
           "UserDetail": (context) => UserDetailView(),
           "FriendPage": (context) => FriendsView(),
+          "MessagePage": (context) => MessageView(),
           "UserNameSetting": (context) => UserNameSettingView(),
           "NameSetting": (context) => NameSettingView(),
           "EmailSetting": (context) => EmailSettingView(),
@@ -52,7 +54,7 @@ class MyApp extends StatelessWidget {
           "GenderSetting": (context) => GenderSettingView(),
           "AppSetting": (context) => AppSettingView(),
           "Arithmetic":(context)=>Arithmetic(),
-          "Game":(context)=>Game(),
+          "Game1":(context)=>Game(),
           "Game2":(context)=>Game2(),
           "Game3":(context)=>Game3(),
           "Shake":(context)=>Shake(),

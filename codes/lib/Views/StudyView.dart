@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:dio/dio.dart';
 import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +16,7 @@ import 'package:audioplayers/audioplayers.dart';
 import '../common/global.dart';
 import 'package:demo5/index.dart';
 
-Frog frog = Global.frog;
-StudyInfo studyInfo = new StudyInfo(frog, false);
+StudyInfo studyInfo = new StudyInfo(Global.frog, false);
 AudioCache audioPlayer;
 AudioPlayer advancedPlayer1 = new AudioPlayer();
 AudioCache audioCache1= new AudioCache(prefix: "audios/",fixedPlayer: advancedPlayer1);
@@ -84,7 +84,7 @@ class MyStudyView extends State<StudyView> {
       Global.audioCache1.loop(Global.alarmList[index].audio+".mp3");
       switch(mission){
         case "算术题": Navigator.pushNamed(context, "Arithmetic");break;
-        case "小游戏": Navigator.pushNamed(context, "Game");break;
+        case "小游戏": Navigator.pushNamed(context, "Game"+((new Random()).nextInt(3)+1).toString());break;
         case "指定物品拍照": Navigator.pushNamed(context, "TakePhoto");break;
         case "摇晃手机": Navigator.pushNamed(context, "Shake");break;
         case "随机任务": Navigator.pushNamed(context, Global.missionRouteList[(new Random()).nextInt(4)]);break;
@@ -162,14 +162,14 @@ class MyProgressBlock extends State<ProgressBlock>{
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        frog.name+" Lv "+level[frog.level],
+                        Global.frog.name+" Lv "+level[Global.frog.level],
                         style: TextStyle(
                           fontSize: ScreenUtil().setSp(32.0),
                           color: Colors.black,
                         ),
                       ),
                       Text(
-                        frog.level<=12?"正在备考 "+frog.school:"正在修读 "+frog.school,
+                        Global.frog.level<=12?"正在备考 "+Global.frog.school:"正在修读 "+Global.frog.school,
                         style: TextStyle(
                           fontSize: ScreenUtil().setSp(28.0),
                           color: Colors.black,
@@ -183,7 +183,7 @@ class MyProgressBlock extends State<ProgressBlock>{
                   height: ScreenUtil().setWidth(36),
                   child: FAProgressBar(
                     backgroundColor: Colors.white,
-                    currentValue: frog.exp,
+                    currentValue: Global.frog.exp,
                     maxValue: 100,
                     changeColorValue: 60,
                     displayText: '%',
@@ -225,11 +225,11 @@ class MyFrogBlock extends State<FrogBlock>{
                             return new CircularProfileAvatar(
                               '',
                               child: Image.asset(
-                                  frog.level < 7?
+                                  Global.frog.level < 7?
                                   'assets/image/frogStudy1.png' :(
-                                      frog.level < 10?
+                                      Global.frog.level < 10?
                                       'assets/image/frogStudy2.png':(
-                                          frog.level < 13?
+                                          Global.frog.level < 13?
                                           'assets/image/frogStudy3.png':
                                           'assets/image/frogStudy4.png'
                                       )),
@@ -250,11 +250,11 @@ class MyFrogBlock extends State<FrogBlock>{
                     onSelectionChange:  _updateLabels,
                     child: ClipOval( //圆形头像
                       child: Image.asset(
-                        frog.level < 7?
+                        Global.frog.level < 7?
                         'assets/image/frogPlay1.png' :(
-                            frog.level < 10?
+                            Global.frog.level < 10?
                             'assets/image/frogPlay2.png':(
-                                frog.level < 13?
+                                Global.frog.level < 13?
                                 'assets/image/frogPlay3.png':
                                 'assets/image/frogPlay4.png'
                             )),
@@ -302,22 +302,28 @@ class MyTimerBlock extends State<TimerBlock>{
       return this.hourLeft.toString();
   }
 
+  updateFrog() async{
+    Dio dio = new Dio();
+    dio.options.headers["authorization"] = "Bearer "+Global.token;
+    String url = "http://10.0.2.2:9000/study-service/user/"+Global.userId.toString()+"/frog";
+    FormData formData = FormData.fromMap({"name":Global.frog.name,"level":Global.frog.level,"exp":Global.frog.exp,"is_graduated":Global.frog.isGraduated,"graduate_date":Global.frog.graduateDate,"school":Global.frog.school});
+    dio.put(url,data: formData);
+  }
+
   void onDone(){
-    if(frog.level < 17){
-      int exp = totalMinute ~/ 3;
-      frog.exp += exp;
-      if(frog.exp >= 100) {
-        frog.exp -= 100;
-        frog.level += 1;
-        if(frog.level == 17){
-          frog.exp = 100;
-          frog.isGraduated = true;
+    if(Global.frog.level < 17){
+      int exp = totalMinute ~/ 1;
+      Global.frog.exp += exp;
+      if(Global.frog.exp >= 100) {
+        Global.frog.exp -= 100;
+        Global.frog.level += 1;
+        if(Global.frog.level == 17){
+          Global.frog.exp = 100;
+          Global.frog.isGraduated = true;
         }
       }
-      Global.frog.exp = frog.exp;
-      Global.frog.level = frog.level;
-      Global.frog.isGraduated = frog.isGraduated;
       Global.saveFrog();
+      updateFrog();
     }
 
     EasyDialog(

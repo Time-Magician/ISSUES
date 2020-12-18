@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:easy_dialog/easy_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -156,8 +157,29 @@ class MyQuestion extends State<Question>{
   var x3;
   var sum;
 
+  updateFrog() async{
+    Dio dio = new Dio();
+    dio.options.headers["authorization"] = "Bearer "+Global.token;
+    String url = "http://10.0.2.2:9000/study-service/user/"+Global.userId.toString()+"/frog";
+    FormData formData = FormData.fromMap({"name":Global.frog.name,"level":Global.frog.level,"exp":Global.frog.exp,"is_graduated":Global.frog.isGraduated,"graduate_date":Global.frog.graduateDate,"school":Global.frog.school});
+    dio.put(url,data: formData);
+  }
   void checkAnswer(value){
-    if(value == sum.toString())
+    if(value == sum.toString()) {
+      if(Global.frog.level < 17){
+        int exp = 5;
+        Global.frog.exp += exp;
+        if(Global.frog.exp >= 100) {
+          Global.frog.exp -= 100;
+          Global.frog.level += 1;
+          if(Global.frog.level == 17){
+            Global.frog.exp = 100;
+            Global.frog.isGraduated = true;
+          }
+        }
+        Global.saveFrog();
+        updateFrog();
+      }
       EasyDialog(
         fogOpacity: 0.12,
         width: ScreenUtil().setWidth(600),
@@ -181,7 +203,8 @@ class MyQuestion extends State<Question>{
                   child: FlatButton(
                     onPressed: () {
                       Global.advancedPlayer1.release();
-                      Navigator.pushNamedAndRemoveUntil(context, "HomePage",(Route route) =>false);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, "HomePage", (Route route) => false);
                     },
                     child: Text(
                       "确认",
@@ -194,6 +217,7 @@ class MyQuestion extends State<Question>{
           )
         ],
       ).show(context);
+    }
   }
 
   @override

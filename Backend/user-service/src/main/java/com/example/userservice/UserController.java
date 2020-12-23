@@ -245,6 +245,27 @@ public class UserController {
         return userService.modifyGender(userId,newGender);
     }
 
+    @PatchMapping("/user/{userId}/name")
+    public Msg modifyName(
+            HttpServletRequest request,
+            @PathVariable(value = "userId")int userId,
+            @RequestParam(name = "name") String newName
+    ){
+        userId = Integer.parseInt(request.getHeader("userId"));
+        return userService.modifyName(userId,newName);
+    }
+
+    @PatchMapping("/user/{userId}/email")
+    public Msg modifyEmail(
+            HttpServletRequest request,
+            @PathVariable(value = "userId")int userId,
+            @RequestParam(name = "email") String newEmail,
+            @RequestParam(name = "verifyCode") String verificationCode
+    ){
+        userId = Integer.parseInt(request.getHeader("userId"));
+        return userService.modifyEmail(userId,newEmail,verificationCode);
+    }
+
     @PatchMapping("/user/{userId}/profilePicture")
     public Msg modifyProfilePicture(
             HttpServletRequest request,

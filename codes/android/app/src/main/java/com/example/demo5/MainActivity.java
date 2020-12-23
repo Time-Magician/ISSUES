@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -44,6 +46,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
 
 public class MainActivity extends FlutterActivity{
@@ -70,6 +73,11 @@ public class MainActivity extends FlutterActivity{
             public void onMethodCall(MethodCall call, Result result) {
                 switch (call.method) {
                     case "startStudy":
+                        String mode = call.argument("mode");
+                        List<String> whiteListList = call.argument("whiteList");
+                        String[] whiteList = whiteListList.toArray(new String[whiteListList.size()]);
+                        serviceIntent.putExtra("whiteList", whiteList);
+                        serviceIntent.putExtra("mode", mode);
                         if (VERSION.SDK_INT >= Build.VERSION_CODES.O)
                             MainActivity.this.startForegroundService(serviceIntent);
                         else
@@ -183,6 +191,11 @@ public class MainActivity extends FlutterActivity{
                     case "stopAudioSensor":
                         audioRecordManger.stopRecord();
                         break;
+                    case "getApplicationList":{
+                        Map<String, String> appList = getAppList();
+                        methodChannel.invokeMethod("appList",appList);
+                        break;
+                    }
                     default:
                         result.notImplemented();
                         break;
@@ -194,6 +207,25 @@ public class MainActivity extends FlutterActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    public Map<String, String> getAppList() {
+        Map<String, String> appList = new HashMap<>();
+        PackageManager pm = getPackageManager();
+        // Return a List of all packages that are installed on the device.
+        List<PackageInfo> packages = pm.getInstalledPackages(0);
+        for (PackageInfo packageInfo : packages) {
+            // 判断系统/非系统应用
+            if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) // 非系统应用
+            {
+                String packageName = packageInfo.packageName;
+                String appName = packageInfo.applicationInfo.loadLabel(getPackageManager()).toString();
+                System.out.println(appName);
+                appList.put(packageName, appName);
+            }
+        }
+        appList.remove("com.example.demo5");
+        return appList;
     }
 
     public void shake() { methodChannel.invokeMethod("shake",1); }

@@ -35,7 +35,7 @@ class MyLoginView extends State<LoginView>{
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 720, height: 1280, allowFontScaling: true);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFF75CCE8),
       body: WillPopScope(
         onWillPop: () async{
           return false;
@@ -57,21 +57,21 @@ class MyLoginView extends State<LoginView>{
   loginHeader() => Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: <Widget>[
-      Image.asset("assets/image/Froglogo.png", width: ScreenUtil().setWidth(200),),
+      Image.asset("assets/image/login.png", width: ScreenUtil().setWidth(240)),
       SizedBox(
-        height: ScreenUtil().setHeight(60.0),
+        height: ScreenUtil().setHeight(20.0),
       ),
       Text(
-        "Welcome to ISSUES",
-        style: TextStyle(fontWeight: FontWeight.w700, color: Colors.green),
+        "ISSUES",
+        style: TextStyle(fontSize: ScreenUtil().setSp(70), fontWeight: FontWeight.w700, color: Colors.white, fontFamily: 'Knewave'),
       ),
-      SizedBox(
-        height: ScreenUtil().setHeight(10.0),
-      ),
-      Text(
-        "Sign in to continue",
-        style: TextStyle(color: Colors.grey),
-      ),
+      // SizedBox(
+      //   height: ScreenUtil().setHeight(10.0),
+      // ),
+      // Text(
+      //   "Sign in to continue",
+      //   style: TextStyle(color: Colors.white),
+      // ),
     ],
   );
 
@@ -85,10 +85,11 @@ class MyLoginView extends State<LoginView>{
           child: TextField(
             maxLines: 1,
             decoration: InputDecoration(
-              prefixIcon: Icon(Icons.perm_identity, color: Colors.green),
+              prefixIcon: Icon(Icons.perm_identity, color: Colors.black54),
               hintText: "请输入手机号",
+              hintStyle: TextStyle(color: Colors.black54),
               labelText: "手机号",
-              labelStyle: TextStyle(color: Colors.green),
+              labelStyle: TextStyle(color: Colors.black54),
               focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.green, //边框颜色为绿色
@@ -108,10 +109,10 @@ class MyLoginView extends State<LoginView>{
             maxLines: 1,
             obscureText: true,
             decoration: InputDecoration(
-                prefixIcon: Icon(Icons.lock_outline, color: Colors.green),
+                prefixIcon: Icon(Icons.lock_outline, color: Colors.black54),
                 hintText: "请输入密码",
                 labelText: "密码",
-                labelStyle: TextStyle(color: Colors.green),
+                labelStyle: TextStyle(color: Colors.black54),
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.green, //边框颜色为绿色
@@ -145,6 +146,7 @@ class MyLoginView extends State<LoginView>{
               if(flag){
                 Navigator.pushNamed(context,"HomePage");
               }
+              // Navigator.pushNamed(context,"HomePage");
             },
           ),
         ),
@@ -155,7 +157,7 @@ class MyLoginView extends State<LoginView>{
           onTap: () => Navigator.pushNamed(context, "SignUp"),
           child: Text(
             "立即注册",
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(color: Colors.black54),
           ),
         ),
       ],
@@ -170,7 +172,7 @@ class MyLoginView extends State<LoginView>{
 
     String url = "http://10.0.2.2:9000/user-service/login?credentials="+user+"&password="+password+"&client_id=issuesApp&client_secret=sjtu";
     Response response = await dio.get(url);
-    print(response);
+    print(response.data);
     if(response.data["status"] == 0){
       Global.saveHasLogin(true);
       Global.saveToken(response.data["extraInfo"]["access_token"]);
@@ -216,11 +218,11 @@ class MyLoginView extends State<LoginView>{
   Future<void> initFrog(int userId) async {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    String url = "http://10.0.2.2:9000/study-service/user/"+userId.toString()+"/frog";
+    String url = "http://10.0.2.2:9000/study-service/user/"+userId.toString()+"/frogs/candidate";
     Response response = await dio.get(url);
     print(response.data);
     if(response.data == ""){
-      url = "http://10.0.2.2:9000/study-service/user/"+userId.toString()+"/frog";
+      url = "http://10.0.2.2:9000/study-service/user/"+userId.toString()+"/frogs";
       FormData formData = FormData.fromMap({"name":Frog.randomFrogName(),"level":0,"exp":0,"is_graduated":false,"graduate_date":"","school":Frog.randomSchoolName()});
       response = await dio.post(url,data:formData);
       Frog _frog = Frog(response.data["frogId"],response.data["name"] , response.data["level"], response.data["exp"], response.data["graduated"], response.data["graduateDate"], response.data["school"]);
@@ -236,7 +238,7 @@ class MyLoginView extends State<LoginView>{
 
   Future<void> createFirstFrog(int userId) async {
     Dio dio = new Dio();
-    String url = "http://10.0.2.2:9000/study-service/user/"+userId.toString()+"/frog";
+    String url = "http://10.0.2.2:9000/study-service/user/"+userId.toString()+"/frogs";
 
   }
 

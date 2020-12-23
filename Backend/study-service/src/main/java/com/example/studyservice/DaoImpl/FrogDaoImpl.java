@@ -6,6 +6,8 @@ import com.example.studyservice.Repository.FrogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class FrogDaoImpl implements FrogDao {
     @Autowired
@@ -29,7 +31,8 @@ public class FrogDaoImpl implements FrogDao {
 
     @Override
     public Frog updateFrog(String name, int level, int exp, boolean isGraduated, String graduateDate, String school, int userId) {
-        Frog frog = frogRepository.findByUserIdAndGraduated(userId,false);
+        List<Frog> frogList = frogRepository.findByUserIdAndGraduated(userId,false);
+        Frog frog = frogList.get(0);
         frog.setName(name);
         frog.setLevel(level);
         frog.setExp(exp);
@@ -44,6 +47,12 @@ public class FrogDaoImpl implements FrogDao {
 
     @Override
     public Frog getFrogByUser(int userId) {
-        return frogRepository.findByUserIdAndGraduated(userId,false);
+        List<Frog> frogList = frogRepository.findByUserIdAndGraduated(userId,false);
+        return frogList.get(0);
+    }
+
+    @Override
+    public List<Frog> getGraduatedFrogs(int userId){
+        return frogRepository.findByUserIdAndGraduated(userId,true);
     }
 }

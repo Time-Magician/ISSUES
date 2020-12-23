@@ -20,8 +20,10 @@ class MyAppSettingView extends State<AppSettingView>{
     return SettingsScreen(
         title: '应用设置',
         children: <Widget>[
-          StudyModelSoundSetting(soundSettingValue: settingModel.soundSetting),
-          TaskSetting(taskSettingValue: settingModel.taskSetting)
+          StudyModelSetting(studyModeSettingValue: settingModel.studyModeSetting),
+          StyleSetting(styleSettingValue: settingModel.styleSetting),
+          TaskSetting(taskSettingValue: settingModel.taskSetting),
+          WhiteListSetting(whiteListSettingValue: settingModel.whiteListSetting),
       ],
     );
   }
@@ -34,7 +36,6 @@ class TaskSetting extends StatefulWidget{
   State<StatefulWidget> createState() {
     return new MyTaskSetting();
   }
-
 }
 
 class MyTaskSetting extends State<TaskSetting>{
@@ -67,33 +68,115 @@ class MyTaskSetting extends State<TaskSetting>{
   }
 }
 
-class StudyModelSoundSetting extends StatefulWidget{
-  final soundSettingValue;
-  StudyModelSoundSetting({Key key,this.soundSettingValue}):super(key:key);
+class StudyModelSetting extends StatefulWidget{
+  final studyModeSettingValue;
+  StudyModelSetting({Key key,this.studyModeSettingValue}):super(key:key);
   @override
-  createState()=> new MyStudyModelSoundSetting();
+  createState()=> new MyStudyModelSetting();
 }
 
-class MyStudyModelSoundSetting extends State<StudyModelSoundSetting>{
+class MyStudyModelSetting extends State<StudyModelSetting>{
   void initState(){
     super.initState();
   }
-  List<S2Choice<soundSettingOption>> soundSettingOptions=[
-    S2Choice<soundSettingOption>(value:soundSettingOption.normal,title:'正常'),
-    S2Choice<soundSettingOption>(value:soundSettingOption.vibrate,title:'震动'),
-    S2Choice<soundSettingOption>(value:soundSettingOption.mute,title:'静音'),
-    S2Choice<soundSettingOption>(value:soundSettingOption.systemPreferences,title:'系统预设'),
+  List<S2Choice<studyModeSettingOption>> studyModeSettingOptions=[
+    S2Choice<studyModeSettingOption>(value:studyModeSettingOption.normal,title:'普通模式'),
+    S2Choice<studyModeSettingOption>(value:studyModeSettingOption.focus,title:'专注模式'),
+    S2Choice<studyModeSettingOption>(value:studyModeSettingOption.tomato,title:'番茄学习法'),
   ];
   Widget build(BuildContext context){
     var settingModel = context.watch<SettingsModel>();
-    return SmartSelect<soundSettingOption>.single(
-        title:'铃声模式',
-        choiceItems:soundSettingOptions,
+    return SmartSelect<studyModeSettingOption>.single(
+        title:'学习模式',
+        choiceItems:studyModeSettingOptions,
         modalType: S2ModalType.bottomSheet,
-        value: widget.soundSettingValue,
+        value: widget.studyModeSettingValue == null?studyModeSettingOption.normal:widget.studyModeSettingValue,
         onChange: (state) {
-          settingModel.soundSetting=state.value;
+          settingModel.studyModeSetting=state.value;
       },
+    );
+  }
+}
+
+class StyleSetting extends StatefulWidget{
+  final styleSettingValue;
+  StyleSetting({Key key,this.styleSettingValue}):super(key:key);
+  @override
+  createState()=> new MyStyleSetting();
+}
+
+class MyStyleSetting extends State<StyleSetting>{
+  void initState(){
+    super.initState();
+  }
+  List<S2Choice<styleSettingOption>> styleSettingOptions=[
+    S2Choice<styleSettingOption>(value:styleSettingOption.classic,title:'经典主题'),
+    S2Choice<styleSettingOption>(value:styleSettingOption.nighttime,title:'夜间主题'),
+  ];
+  Widget build(BuildContext context){
+    var settingModel = context.watch<SettingsModel>();
+    return SmartSelect<styleSettingOption>.single(
+      title:'主题',
+      choiceItems: styleSettingOptions,
+      modalType: S2ModalType.bottomSheet,
+      value: widget.styleSettingValue == null?styleSettingOption.classic:widget.styleSettingValue,
+      onChange: (state) {
+        settingModel.styleSetting=state.value;
+      },
+    );
+  }
+}
+
+class WhiteListSetting extends StatefulWidget{
+  final whiteListSettingValue;
+  WhiteListSetting({Key key,this.whiteListSettingValue}):super(key:key);
+  @override
+  createState()=> new MyWhiteListSetting();
+}
+
+class MyWhiteListSetting extends State<WhiteListSetting>{
+  Map<String, String> appList;
+  List<S2Choice<String>> whiteListOptions=[];
+
+  void initState(){
+    super.initState();
+    getAppList();
+    Global.methodChannel.setMethodCallHandler((call) async {
+      if(call.method == "appList"){
+        // print(call.arguments);
+        whiteListOptions=[];
+
+        call.arguments.forEach((key, value) {
+          whiteListOptions.add(S2Choice<String>(value:key,title:value));
+        });
+        setState(() {
+
+        });
+        return;
+      }
+    });
+  }
+
+  void getAppList() async {
+    Global.methodChannel.invokeMethod("getApplicationList");
+  }
+
+  Widget build(BuildContext context){
+    var settingModel = context.watch<SettingsModel>();
+    return SmartSelect<String>.multiple(
+      title:'白名单',
+      value: widget.whiteListSettingValue,
+      choiceConfig:S2ChoiceConfig(
+          type:S2ChoiceType.chips
+      ),
+      modalType: S2ModalType.fullPage,
+      choiceType: S2ChoiceType.switches,
+      modalFilter: true,
+      modalFilterAuto: true,
+      onChange: (state){
+        settingModel.whiteListSetting=state.value;
+      },
+      choiceItems: whiteListOptions,
     );
   }
 }

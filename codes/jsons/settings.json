@@ -1,4 +1,6 @@
 {
-  "soundSetting": "systemPreferences",
-  "taskSetting":[]
+  "studyModeSetting": "normal",
+  "taskSetting":[],
+  "whiteListSetting": [],
+  "styleSetting": "classic"
 }

@@ -1,5 +1,8 @@
+import 'package:demo5/common/global.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:smart_select/smart_select.dart';
 import 'package:provider/provider.dart';
 import 'package:demo5/states/index.dart';
@@ -17,6 +20,26 @@ class _GenderSettingViewState extends State<GenderSettingView>{
     });
   }
 
+  void updateGender(String gender) async {
+    Dio dio = new Dio();
+    dio.options.headers["authorization"] = "Bearer "+Global.token;
+    FormData formData = FormData.fromMap({"gender": gender});
+    String url = "http://10.0.2.2:9000/user-service/user/"+Global.userId.toString()+"/gender";
+    Response response = await dio.patch(url, data: formData);
+
+    if(response.data["status"] == 0){
+      Fluttertoast.showToast(
+          msg: "信息更新成功",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.blue,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var userModel = context.watch<UserModel>();
@@ -31,6 +54,7 @@ class _GenderSettingViewState extends State<GenderSettingView>{
             ),
             onPressed:(){
               userModel.gender = genderValue;
+              updateGender(genderValue);
               Navigator.pop(context);
             },
           ),

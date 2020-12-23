@@ -9,6 +9,6 @@ public class UserAuthConstant {
         userTypeToAuthority = new HashMap<>();
         userTypeToAuthority.put(0,"ADMIN");
         userTypeToAuthority.put(1,"USER");
-        userTypeToAuthority.put(0,"DISABLED");
+        userTypeToAuthority.put(2,"DISABLED");
     }
 }

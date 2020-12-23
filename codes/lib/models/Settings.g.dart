@@ -8,13 +8,19 @@ part of 'Settings.dart';
 
 Settings _$SettingsFromJson(Map<String, dynamic> json) {
   return Settings(
-      _$enumDecodeNullable(_$soundSettingOptionEnumMap, json['soundSetting']),
-      (json['taskSetting'] as List)?.map((e) => e as String)?.toList());
+      _$enumDecodeNullable(
+          _$studyModeSettingOptionEnumMap, json['studyModeSetting']),
+      _$enumDecodeNullable(_$styleSettingOptionEnumMap, json['styleSetting']),
+      (json['taskSetting'] as List)?.map((e) => e as String)?.toList(),
+      (json['whiteListSetting'] as List)?.map((e) => e as String)?.toList());
 }
 
 Map<String, dynamic> _$SettingsToJson(Settings instance) => <String, dynamic>{
-      'soundSetting': _$soundSettingOptionEnumMap[instance.soundSetting],
-      'taskSetting': instance.taskSetting
+      'studyModeSetting':
+          _$studyModeSettingOptionEnumMap[instance.studyModeSetting],
+      'styleSetting': _$styleSettingOptionEnumMap[instance.styleSetting],
+      'taskSetting': instance.taskSetting,
+      'whiteListSetting': instance.whiteListSetting
     };
 
 T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
@@ -37,9 +43,13 @@ T _$enumDecodeNullable<T>(Map<T, dynamic> enumValues, dynamic source) {
   return _$enumDecode<T>(enumValues, source);
 }
 
-const _$soundSettingOptionEnumMap = <soundSettingOption, dynamic>{
-  soundSettingOption.normal: 'normal',
-  soundSettingOption.mute: 'mute',
-  soundSettingOption.vibrate: 'vibrate',
-  soundSettingOption.systemPreferences: 'systemPreferences'
+const _$studyModeSettingOptionEnumMap = <studyModeSettingOption, dynamic>{
+  studyModeSettingOption.normal: 'normal',
+  studyModeSettingOption.focus: 'focus',
+  studyModeSettingOption.tomato: 'tomato'
+};
+
+const _$styleSettingOptionEnumMap = <styleSettingOption, dynamic>{
+  styleSettingOption.classic: 'classic',
+  styleSettingOption.nighttime: 'nighttime'
 };

@@ -1,14 +1,20 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'Settings.g.dart';
 
-enum soundSettingOption{
-  normal,mute,vibrate,systemPreferences
+enum studyModeSettingOption{
+  normal, focus, tomato
 }
+enum styleSettingOption{
+  classic, nighttime
+}
+
 @JsonSerializable()
 class Settings{
-  soundSettingOption soundSetting;
+  studyModeSettingOption studyModeSetting;
+  styleSettingOption styleSetting;
   List<String> taskSetting;
-  Settings(this.soundSetting,this.taskSetting);
+  List<String> whiteListSetting;
+  Settings(this.studyModeSetting, this.styleSetting, this.taskSetting, this.whiteListSetting);
 
   factory Settings.fromJson(Map<String, dynamic> json) => _$SettingsFromJson(json);
   Map<String, dynamic> toJson() => _$SettingsToJson(this);

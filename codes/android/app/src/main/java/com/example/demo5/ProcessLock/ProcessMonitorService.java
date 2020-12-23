@@ -31,6 +31,7 @@ import com.example.demo5.MainActivity;
 import com.example.demo5.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -42,26 +43,36 @@ public class ProcessMonitorService extends Service {
     //第一次打开“有权查看使用情况的应用”
     private boolean isFirst = true;
     ArrayList<String> forbidApps = new ArrayList<>();
-    private boolean isStoped = false;
+    ArrayList<String> whiteList = new ArrayList<>();
+    private String mode = "normal";
+    private boolean isStopped = false;
 
     @SuppressLint("HandlerLeak")
     Handler  handler = new Handler(){
 
         public void handleMessage(android.os.Message msg){
             super.handleMessage(msg);
-            //getTaskPackname();
-//            if("com.ljheee.jokes".equals(getTaskPackname())){
-            if(forbidApps.contains(getTaskPackname()) && !isStoped){
+
+            if(!whiteList.contains(getTaskPackname()) && !isStopped){
+                Log.e("TAG", getTaskPackname());
                 Log.e("TAG","handler triggered");
                 Intent intent = new Intent(getApplicationContext(),LockActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
-
             }
 
             handler.sendEmptyMessageDelayed(1, 500);//500毫秒“轮询”一次，查看栈顶app
         }
     };
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        String[] whiteListArray = intent.getStringArrayExtra("whiteList");
+        whiteList.addAll(Arrays.asList(whiteListArray));
+        mode = intent.getStringExtra("mode");
+        System.out.println(whiteList.contains("com.example.demo5"));
+        return super.onStartCommand(intent, flags, startId);
+    }
 
     @Override
     public void onCreate() {
@@ -81,24 +92,15 @@ public class ProcessMonitorService extends Service {
             startForeground(1, builder.build());
         }
 
-        getAppList();
-        int selfIndex = forbidApps.indexOf("com.example.demo5");
-        forbidApps.remove(selfIndex);
-//        forbidApps.add("com.android.chrome");
-//        forbidApps.add("com.tencent.mm");
-//        forbidApps.add("com.tencent.mobileqq");
+//        getAppList();
+//        int selfIndex = forbidApps.indexOf("com.example.demo5");
+//        forbidApps.remove(selfIndex);
+
+        getSysAppList();
+        whiteList.add("com.example.demo5");
 
         handler.sendEmptyMessageDelayed(1, 500);
-//        handler.sendEmptyMessageDelayed(1, 10000);
-        //isNoSwitch();
 
-//        button.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View arg0) {
-//                goToAndroidSettings();
-//                //使用UsageStatsManager获取，但是这种获取方法需要用户在手机上赋予APP权限才可以使用，就是在安全-高级-有权查看使用情况的应用 在这个模块中勾选上指定APP就可以获取到栈顶的应用名
-//            }
-//        });
     }
 
     @Override
@@ -108,7 +110,7 @@ public class ProcessMonitorService extends Service {
 
     @Override
     public void onDestroy() {
-        isStoped = true;
+        isStopped = true;
 
         handler = new Handler(){
 
@@ -132,17 +134,16 @@ public class ProcessMonitorService extends Service {
         this.stopSelf();
     }
 
-    private void getAppList() {
+    private void getSysAppList() {
         PackageManager pm = getPackageManager();
         // Return a List of all packages that are installed on the device.
         List<PackageInfo> packages = pm.getInstalledPackages(0);
         for (PackageInfo packageInfo : packages) {
             // 判断系统/非系统应用
-            if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0) // 非系统应用
+            if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) // 非系统应用
             {
                 String packageName = packageInfo.packageName;
-                System.out.println("MainActivity.getAppList, packageInfo=" + packageName);
-                forbidApps.add(packageName);
+                whiteList.add(packageName);
             }
         }
     }
@@ -176,7 +177,7 @@ public class ProcessMonitorService extends Service {
         boolean isNoSwitch = isNoSwitch();
         Log.e("Android", "isNoSwitch=: " + isNoSwitch);
 
-        String currentApp = "CurrentNULL";
+        String currentApp = "com.example.demo5";
         //LOLLIPOP = API 21,Android 5.0
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
 

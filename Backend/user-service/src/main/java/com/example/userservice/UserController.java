@@ -247,15 +247,15 @@ public class UserController {
         return userService.modifyGender(userId,newGender);
     }
 
-    @PatchMapping("/user/{userId}/profilePicture")
-    public Msg modifyProfilePicture(
-            HttpServletRequest request,
-            @PathVariable(value = "userId")int userId,
-            @RequestParam(name = "profilePicture")MultipartFile newProfilePicture
-    ) throws IOException {
-        userId = Integer.parseInt(request.getHeader("userId"));
-        return userService.modifyProfilePicture(userId,newProfilePicture);
-    }
+//    @PatchMapping("/user/{userId}/profilePicture")
+//    public Msg modifyProfilePicture(
+//            HttpServletRequest request,
+//            @PathVariable(value = "userId")int userId,
+//            @RequestParam(name = "profilePicture")MultipartFile newProfilePicture
+//    ) throws IOException {
+//        userId = Integer.parseInt(request.getHeader("userId"));
+//        return userService.modifyProfilePicture(userId,newProfilePicture);
+//    }
 
     @PatchMapping("user/{userId}/password")
     public Msg modifyPassword(

@@ -1,5 +1,6 @@
 package com.example.alarmservice;
 
+import com.example.alarmservice.Entity.Alarm;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.transaction.Transactional;

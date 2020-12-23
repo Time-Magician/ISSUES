@@ -1,4 +1,4 @@
-package com.example.alarmservice;
+package com.example.alarmservice.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

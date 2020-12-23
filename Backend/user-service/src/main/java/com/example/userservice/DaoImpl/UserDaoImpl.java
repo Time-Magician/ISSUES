@@ -159,7 +159,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void modifyGender(int userId, String gender) {
         User user = userRepository.findById(userId).get();
-        user.setUsername(gender);
+        user.setGender(gender);
         userRepository.save(user);
     }
 

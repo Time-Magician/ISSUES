@@ -1,4 +1,6 @@
-package com.example.alarmservice;
+package com.example.alarmservice.Dao;
+
+import com.example.alarmservice.Entity.Alarm;
 
 import java.sql.Time;
 import java.util.List;

@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService {
         String targetVerificationCode = redisDao.getRedis(tel);
         System.out.println(targetVerificationCode);
         System.out.println(verificationCode);
+
         if(!targetVerificationCode.equals(verificationCode)){
             return  MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.VERIFY_ERROR_MSG);
         }
@@ -169,6 +170,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Msg disableUser(int userId) {
         return userAuthDao.disableUser(userId);
+    }
     public List<User> getFriendList(int userId){
         return userDao.getFriendList(userId);
     }

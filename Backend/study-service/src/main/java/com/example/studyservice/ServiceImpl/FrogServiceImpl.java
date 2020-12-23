@@ -6,6 +6,8 @@ import com.example.studyservice.Service.FrogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FrogServiceImpl implements FrogService {
     @Autowired
@@ -26,5 +28,8 @@ public class FrogServiceImpl implements FrogService {
         return frogDao.getFrogByUser(userId);
     }
 
-
+    @Override
+    public List<Frog> getGraduatedFrogs(int userId){
+        return frogDao.getGraduatedFrogs(userId);
+    };
 }

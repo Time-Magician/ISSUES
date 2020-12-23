@@ -64,7 +64,8 @@ class AlarmList extends State<AlarmView> {
         case "小游戏": Navigator.pushNamed(context, "Game"+((new Random()).nextInt(3)+1).toString());break;
         case "指定物品拍照": Navigator.pushNamed(context, "TakePhoto");break;
         case "摇晃手机": Navigator.pushNamed(context, "Shake");break;
-        case "随机任务": Navigator.pushNamed(context, Global.missionRouteList[(new Random()).nextInt(4)]);break;
+        case "吹气": Navigator.pushNamed(context, "Blow");break;
+        case "随机任务": Navigator.pushNamed(context, Global.profile.settings.taskSetting[(new Random()).nextInt(Global.profile.settings.taskSetting.length)]);break;
         default: break;
       }
     });

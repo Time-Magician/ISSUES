@@ -20,6 +20,8 @@ public interface UserDao {
     User getUserByTel(String tel);
     void modifyUsername(int userId, String username);
     void modifyGender(int userId,String gender);
+    void modifyName(int userId, String name);
+    void modifyEmail(int userId, String email);
     void modifyProfilePicture(int userId, MultipartFile profilePicture) throws IOException;
     User getUserByEmail(String email);
     List<User> getFriendList(int userId);

@@ -164,6 +164,20 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public void modifyName(int userId, String name) {
+        User user = userRepository.findById(userId).get();
+        user.setName(name);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void modifyEmail(int userId, String email){
+        User user = userRepository.findById(userId).get();
+        user.setEmail(email);
+        userRepository.save(user);
+    }
+
+    @Override
     public void modifyProfilePicture(int userId, MultipartFile profilePicture) throws IOException {
         User user = userRepository.findById(userId).get();
         Base64.Encoder pictureEncoder  = Base64.getEncoder();

@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
         User newUser = new User();
 
         newUser = User.builder()
-                .name("anonymous")
+                .name("")
                 .username(MailUtil.getRandomString(9))
                 .email(null)
                 .tel(tel)
@@ -132,7 +132,24 @@ public class UserServiceImpl implements UserService {
     public Msg modifyGender(int userId, String gender) {
         userDao.modifyGender(userId,gender);
         return MsgUtil.makeMsg(MsgUtil.SUCCESS,MsgUtil.SUCCESS_MSG);
+    }
 
+    @Override
+    public Msg modifyName(int userId, String name){
+        userDao.modifyName(userId, name);
+        return MsgUtil.makeMsg(MsgUtil.SUCCESS,MsgUtil.SUCCESS_MSG);
+    }
+
+    @Override
+    public Msg modifyEmail(int userId, String email, String verificationCode){
+        String targetVerificationCode = redisDao.getRedis(email);
+        System.out.println(targetVerificationCode);
+        System.out.println(verificationCode);
+        if(!targetVerificationCode.equals(verificationCode)){
+            return  MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.VERIFY_ERROR_MSG);
+        }
+        userDao.modifyEmail(userId, email);
+        return MsgUtil.makeMsg(MsgUtil.SUCCESS,MsgUtil.SUCCESS_MSG);
     }
 
     @Override
@@ -171,6 +188,8 @@ public class UserServiceImpl implements UserService {
     public Msg disableUser(int userId) {
         return userAuthDao.disableUser(userId);
     }
+    
+    @Override
     public List<User> getFriendList(int userId){
         return userDao.getFriendList(userId);
     }

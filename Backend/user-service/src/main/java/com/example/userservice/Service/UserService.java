@@ -19,6 +19,8 @@ public interface UserService {
     Msg verifyEmail(String email);
     Msg modifyUsername(int userId,String username);
     Msg modifyGender(int userId,String gender);
+    Msg modifyName(int userId,String name);
+    Msg modifyEmail(int userId,String email, String verificationCode);
     Msg modifyProfilePicture(int userId, MultipartFile profilePicture) throws IOException;
     Msg modifyPassword(int userId,String password);
     Msg enableUser(int userId);

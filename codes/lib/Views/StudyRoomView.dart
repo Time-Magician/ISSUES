@@ -2,12 +2,18 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:demo5/common/global.dart';
+import 'package:demo5/states/ProfileChangeNotifier.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'dart:io';
 import 'dart:async';
 import 'package:flutter/services.dart';
+import 'package:demo5/index.dart';
+import 'package:flutter/material.dart';
+import 'package:smart_select/smart_select.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 
 class StudyRoomWidget extends StatefulWidget{
   @override
@@ -45,14 +51,22 @@ class StudyRoom extends StatefulWidget{
 }
 
 class MyStudyRoom extends State<StudyRoom>{
+  var settingModel;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     Global.methodChannel.setMethodCallHandler((call) {
+      if(call.method == "appList"){
+        print(call.arguments.runtimeType);
+        // print(call.arguments);
+        return;
+      }
+
       if(call.method != "test")
         return;
+
       print(call.arguments);
       String _id = call.arguments;
       int id = int.parse(_id);
@@ -88,8 +102,14 @@ class MyStudyRoom extends State<StudyRoom>{
     });
   }
 
+  void getAppList() async {
+    print(Global.profile.settings.whiteListSetting);
+  }
+
   @override
   Widget build(BuildContext context) {
+    settingModel = context.watch<SettingsModel>();
+
     // TODO: implement build
     return Center(
       child: Column(
@@ -111,7 +131,7 @@ class MyStudyRoom extends State<StudyRoom>{
                       ),
                       onPressed: () {
                         //TODO
-                        Navigator.pushNamed(context, "Blow");
+                        getAppList();
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.max,

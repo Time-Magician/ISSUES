@@ -36,6 +36,9 @@ public class Message {
         this.details = details;
     }
 
+    public Message() {
+    }
+
     public int getReceiverId() {
         return receiverId;
     }

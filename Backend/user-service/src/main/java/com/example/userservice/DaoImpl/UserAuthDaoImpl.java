@@ -35,7 +35,6 @@ public class UserAuthDaoImpl implements UserAuthDao {
         }else{
             userAuth = userAuthRepository.findUserAuthByTelEquals(credentials);
         }
-
         if(userAuth == null||!passwordEncoder.matches(password,userAuth.getPassword())) {
             return null;
         }
@@ -45,6 +44,8 @@ public class UserAuthDaoImpl implements UserAuthDao {
     @Override
     public boolean checkUserByIdAndPassword(int userId, String password) {
         UserAuth userAuth = userAuthRepository.findById(userId).get();
+        log.info(password);
+        log.info(userAuth.getPassword());
         if(!passwordEncoder.matches(password,userAuth.getPassword())) {
             return false;
         }

@@ -5,7 +5,7 @@ part 'User.g.dart';
 class User{
   int userId;
   String username;
-  final String name;
+  String name;
   String password;
   String email;
   String gender;

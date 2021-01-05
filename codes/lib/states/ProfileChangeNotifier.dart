@@ -37,20 +37,36 @@ class UserModel extends ProfileChangeNotifier {
     _profile.user.gender = gender;
     notifyListeners();
   }
+  set name(String name){
+    _profile.user.name = name;
+    notifyListeners();
+  }
 }
 
 
 class SettingsModel extends ProfileChangeNotifier {
   List<String> get taskSetting => _profile.settings.taskSetting;
-  soundSettingOption get soundSetting => _profile.settings.soundSetting;
+  List<String> get whiteListSetting => _profile.settings.whiteListSetting;
+  styleSettingOption get styleSetting => _profile.settings.styleSetting;
+  studyModeSettingOption get studyModeSetting => _profile.settings.studyModeSetting;
 
   set taskSetting(List<String> taskSetting){
     _profile.settings.taskSetting = taskSetting;
     notifyListeners();
   }
 
-  set soundSetting(soundSettingOption soundSetting){
-    _profile.settings.soundSetting = soundSetting;
+  set styleSetting(styleSettingOption styleSetting){
+    _profile.settings.styleSetting = styleSetting;
+    notifyListeners();
+  }
+
+  set whiteListSetting(List<String> whiteListSetting){
+    _profile.settings.whiteListSetting = whiteListSetting;
+    notifyListeners();
+  }
+
+  set studyModeSetting(studyModeSettingOption studySetting){
+    _profile.settings.studyModeSetting = studySetting;
     notifyListeners();
   }
 }

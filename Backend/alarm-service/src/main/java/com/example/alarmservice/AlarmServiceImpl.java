@@ -1,5 +1,7 @@
 package com.example.alarmservice;
 
+import com.example.alarmservice.Dao.AlarmDao;
+import com.example.alarmservice.Entity.Alarm;
 import com.example.alarmservice.Service.AlarmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

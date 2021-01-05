@@ -7,11 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="alarm-service" />
-        <module name="authorization-server" />
+        <module name="study-service" />
         <module name="user-service" />
         <module name="issues-gateway" />
-        <module name="study-service" />
+        <module name="authorization-server" />
+        <module name="alarm-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,7 +19,7 @@
       <module name="authorization-server" target="1.8" />
       <module name="Backend" target="1.8" />
       <module name="issues-gateway" target="1.8" />
-      <module name="study-service" target="11" />
+      <module name="study-service" target="1.8" />
       <module name="user-service" target="1.8" />
     </bytecodeTargetLevel>
   </component>

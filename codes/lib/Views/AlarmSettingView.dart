@@ -22,11 +22,11 @@ const List<String> audios = [
 
 List<MissionItem> missionList = [
   MissionItem("算术题","assets/image/math.png","闹钟响起时会出现一道数学题，填写正确答案之后就能关闭闹钟。"),
-  MissionItem("唱歌","assets/image/music.png","闹钟响起时需要对着麦克风唱歌，跟唱15秒之后就能关闭闹钟。"),
   MissionItem("小游戏","assets/image/game.png","闹钟响起时需要玩连连看、消消乐等小游戏，获得足够的积分之后就能关闭闹钟。"),
   MissionItem("指定物品拍照","assets/image/camera.png","闹钟响起后，需要拍一张指定物品的照片并上传，识别正确后就能关闭闹钟。"),
-  MissionItem("随机任务","assets/image/random.png","闹钟任务会从任务库中随机指定，完成对应任务之后即可关闭闹钟。"),
   MissionItem("摇晃手机","assets/image/shake.png","闹钟响起后需要连续不断快速摇晃手机，达到一定次数后即可关闭闹钟。"),
+  MissionItem("吹气","assets/image/blow.png","闹钟响起后需要对准麦克风用力吹气，吹到一定程度后可以关闭闹钟。"),
+  MissionItem("随机任务","assets/image/random.png","闹钟任务会从任务库中随机指定，完成对应任务之后即可关闭闹钟。"),
 ];
 
 AlarmInfo newAlarmInfo;

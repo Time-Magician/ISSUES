@@ -32,8 +32,6 @@ List<MissionItem> missionList = [
 AlarmInfo newAlarmInfo;
 
 class AlarmSettingWidget extends StatefulWidget{
-
-
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -43,7 +41,6 @@ class AlarmSettingWidget extends StatefulWidget{
 }
 
 class AlarmSetting extends State<AlarmSettingWidget>{
-
 
   @override
   void initState() {

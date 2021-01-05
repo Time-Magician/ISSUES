@@ -16,6 +16,10 @@ class Global {
   static bool hasLogin;
   static String token;
   static int userId;
+
+  static String studyStartTime;
+  static String studyEndTime;
+
   static Database db;
   static var methodChannel;
   static AudioPlayer advancedPlayer1 = new AudioPlayer();

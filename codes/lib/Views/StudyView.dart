@@ -347,6 +347,7 @@ class MyTimerBlock extends State<TimerBlock>{
   }
 
   void onDone(){
+    getEndTime();
     if(!studyInfo.isStudying) return;
 
     if(Global.frog.level < 17){
@@ -405,6 +406,7 @@ class MyTimerBlock extends State<TimerBlock>{
     ).show(context);
     endLockService();
     widget.onDone();
+    putRequestAddStudyRecord(totalMinute);
   }
 
   @override
@@ -555,6 +557,7 @@ class MyBtnBlock extends State<BtnBlock>{
             colorBrightness: Brightness.dark,
             onPressed: () {
               //TODO
+              getStartTime();
               startLockService();
               widget.onPress();
             },
@@ -591,6 +594,37 @@ Future<Null> startLockService() async {
     print('${e.message}');
   }
 
+}
+
+void getStartTime(){
+  DateTime dateTime= DateTime.now();
+  Global.studyStartTime = dateTimeToString(dateTime);
+}
+
+void getEndTime(){
+  DateTime dateTime= DateTime.now();
+  Global.studyEndTime = dateTimeToString(dateTime);
+}
+
+String dateTimeToString(DateTime date){
+  int year = date.year;
+  int month = date.month;
+  int day = date.day;
+
+  String ret = year.toString()+"-"+month.toString()+"-"+day.toString();
+  print(ret);
+  return ret;
+}
+
+void putRequestAddStudyRecord(int duration) async {
+  Dio dio = new Dio();
+  dio.options.headers["authorization"] = "Bearer "+Global.token;
+  FormData formData = FormData.fromMap({'start_time': Global.studyStartTime, 'end_time': Global.studyEndTime, 'frog_id': Global.frog.frogId, 'duration': duration});
+  String url ="http://10.0.2.2:9000/study-service/user/"+Global.userId.toString()+"/studyRecord";
+  Response response = await dio
+      .put(url, data: formData);
+  var result = response.data.toString();
+  print(result);
 }
 
 Future<Null> endLockService() async {

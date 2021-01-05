@@ -1,18 +1,19 @@
 package com.example.studyservice.Utility;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class CommonUtil {
-    public static java.sql.Time strToTime(String strDate) {
+    public static java.sql.Date strToDate(String strDate) {
         String str = strDate;
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-        java.util.Date date = null;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        java.util.Date d = null;
         try {
-            date = format.parse(str);
+            d = format.parse(str);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        java.sql.Time time = new java.sql.Time(date.getTime());
-        return time.valueOf(str);
+        java.sql.Date date = new java.sql.Date(d.getTime());
+        return date;
     }
 }

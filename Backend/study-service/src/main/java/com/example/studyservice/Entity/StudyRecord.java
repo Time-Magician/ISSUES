@@ -3,6 +3,7 @@ package com.example.studyservice.Entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Time;
 
 @Entity
@@ -16,11 +17,11 @@ public class StudyRecord {
 
     @Basic
     @Column(name = "start_time")
-    private Time startTime;
+    private Date startTime;
 
     @Basic
     @Column(name = "end_time")
-    private Time endTime;
+    private Date endTime;
 
     @Basic
     @Column(name = "frog_id")
@@ -30,6 +31,10 @@ public class StudyRecord {
     @Column(name = "user_id")
     private int userId;
 
+    @Basic
+    @Column(name = "duration")
+    private int duration;
+
     public void setId(int id){
         this.id = id;
     }
@@ -38,19 +43,19 @@ public class StudyRecord {
         return this.id;
     }
 
-    public void setStartTime(Time startTime){
+    public void setStartTime(Date startTime){
         this.startTime = startTime;
     }
 
-    public Time getStartTime(){
+    public Date getStartTime(){
         return this.startTime;
     }
 
-    public void setEndTime(Time endTime){
+    public void setEndTime(Date endTime){
         this.endTime = endTime;
     }
 
-    public Time getEndTime(){
+    public Date getEndTime(){
         return this.endTime;
     }
 
@@ -68,6 +73,14 @@ public class StudyRecord {
 
     public int getUserId(){
         return this.userId;
+    }
+
+    public int getDuration(){
+        return this.duration;
+    }
+
+    public void setDuration(int duration){
+        this.duration = duration;
     }
 
 }

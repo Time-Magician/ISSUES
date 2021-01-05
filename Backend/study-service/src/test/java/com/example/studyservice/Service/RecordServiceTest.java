@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.transaction.Transactional;
+import java.sql.Date;
 import java.sql.Time;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,7 +30,7 @@ public class RecordServiceTest {
     @Test
     @Transactional
     public void createStudyRecordTest(){
-        recordService.createStudyRecord(Time.valueOf("13:00:00"),Time.valueOf("15:00:00"),1,2);
+        recordService.createStudyRecord(Date.valueOf("2021-1-1"),Date.valueOf("2020-1-1"),1,2,60);
     }
 
     @Test

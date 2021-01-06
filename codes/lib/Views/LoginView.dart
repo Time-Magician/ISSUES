@@ -248,7 +248,7 @@ class MyLoginView extends State<LoginView> {
                                 WhitelistingTextInputFormatter.digitsOnly
                               ],
                               maxLines: 1,
-                              obscureText: true,
+                              obscureText: false,
                               decoration: InputDecoration(
                                 prefixIcon: Icon(Icons.check_circle_outline,
                                     color: Colors.black54),

@@ -62,5 +62,7 @@ white-list:
     - "/issues-auth/rsa/publicKey"
     - "/user-service/verify/tel"
     - "/user-service/login"
+    - "/user-service/loginByVerifyCode"
     - "/user-service/register"
     - "/study-service/hello"
+    - "/user-service/verifyLogin/tel"

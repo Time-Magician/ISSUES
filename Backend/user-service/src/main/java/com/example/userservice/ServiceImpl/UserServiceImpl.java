@@ -47,6 +47,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserByTel(String tel) {
+        return userDao.getUserByTel(tel);
+    }
+
+    @Override
     public Msg register(String password, String tel,String verificationCode) {
         String targetVerificationCode = redisDao.getRedis(tel);
         System.out.println(targetVerificationCode);
@@ -94,20 +99,29 @@ public class UserServiceImpl implements UserService {
     public Msg verify(String tel) {
         User user = userDao.getUserByTel(tel);
         if(user == null){
-            String verificationCode = RandomUtil.RandomNumber();
-            Boolean flag =  SendSmsUtil.sendSms(tel,verificationCode);
-            if(flag){
-               redisDao.setRedis(tel,verificationCode);
-               return  MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.MSG_SENT_SUCCESS_MSG);
-            }
-            else{
-                return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.VERIFY_TRY_AGAIN_MSG);
-            }
+            return getMsg(tel);
         }
         else{
             return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.TEL_DUPLICATE_MSG);
         }
 
+    }
+
+    @Override
+    public Msg verifyLogin(String tel){
+        return getMsg(tel);
+    }
+
+    private Msg getMsg(String tel) {
+        String vCode = RandomUtil.RandomNumber();
+        Boolean flag =  SendSmsUtil.sendSms(tel,vCode);
+        if(flag){
+            redisDao.setRedis(tel,vCode);
+            return  MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.MSG_SENT_SUCCESS_MSG);
+        }
+        else{
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.VERIFY_TRY_AGAIN_MSG);
+        }
     }
 
     @Override
@@ -226,6 +240,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public Message checkMessage(String messageId){
         return userDao.updateMessage(messageId);
+    }
+
+    @Override
+    public String getRedisCache(String credential) {
+        String targetVerificationCode = redisDao.getRedis(credential);
+        return targetVerificationCode;
     }
 
     @Override

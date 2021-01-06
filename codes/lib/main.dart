@@ -1,3 +1,4 @@
+import 'package:demo5/Views/ChartView.dart';
 import 'package:demo5/Views/LoginView.dart';
 import 'package:demo5/Views/Missions/TakePhoto.dart';
 import 'Views/MessageView.dart';
@@ -62,6 +63,7 @@ class MyApp extends StatelessWidget {
           "TakePhoto":(context)=>TakePhoto(),
           "SignUp":(context)=>SignUpView(),
           "Login": (context) => LoginView(),
+          "Statistics":(context) => ChartView(),
         });
   }
 }

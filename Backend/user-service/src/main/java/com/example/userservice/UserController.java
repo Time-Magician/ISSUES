@@ -219,6 +219,7 @@ public class UserController {
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity(paramsMap, headers);
         Object oAuth2AccessToken = restTemplate.postForObject("http://localhost:8080/oauth/token",request,Object.class);
+        log.info(oAuth2AccessToken.toString());
         Msg result = MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.LOGIN_SUCCESS_MSG, user);
         result.setExtraInfo(oAuth2AccessToken);
         return result;
@@ -265,17 +266,7 @@ public class UserController {
         userId = Integer.parseInt(request.getHeader("userId"));
         return userService.modifyEmail(userId,newEmail,verificationCode);
     }
-
-    @PatchMapping("/user/{userId}/profilePicture")
-    public Msg modifyProfilePicture(
-            HttpServletRequest request,
-            @PathVariable(value = "userId")int userId,
-            @RequestParam(name = "profilePicture")MultipartFile newProfilePicture
-    ) throws IOException {
-        userId = Integer.parseInt(request.getHeader("userId"));
-        return userService.modifyProfilePicture(userId,newProfilePicture);
-    }
-
+  
     @PatchMapping("user/{userId}/password")
     public Msg modifyPassword(
             HttpServletRequest request,

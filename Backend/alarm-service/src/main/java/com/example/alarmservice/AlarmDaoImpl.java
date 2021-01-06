@@ -1,14 +1,15 @@
 package com.example.alarmservice;
 
+import com.example.alarmservice.Dao.AlarmDao;
+import com.example.alarmservice.Entity.Alarm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.Time;
 import java.util.List;
 
 @Repository
-public class AlarmDaoImpl implements AlarmDao{
+public class AlarmDaoImpl implements AlarmDao {
     @Autowired
     AlarmRepository alarmRepository;
 

@@ -33,4 +33,4 @@ spring:
         timeout: 5000
     data:
         mongodb:
-            uri: mongodb://localhost:27017/issues
+            uri: mongodb://localhost:27017/ISSUES

@@ -173,11 +173,20 @@ public class UserController {
         }
     }
 
+
+
     @PostMapping("/verify/tel")
     public Msg verify(
             @RequestParam(name = "tel") String tel
     ){
         return userService.verify(tel);
+    }
+
+    @PostMapping("/verifyLogin/tel")
+    public Msg verifyLogin(
+            @RequestParam(name = "tel") String tel
+    ){
+        return userService.verifyLogin(tel);
     }
 
     @PostMapping("/verify/email")
@@ -215,6 +224,35 @@ public class UserController {
             return checkUserMsg;
         User user = userService.getUserById(((UserAuth)checkUserMsg.getData()).getUserId());
         HttpHeaders headers = new HttpHeaders();
+        return getMsg(paramsMap, headers, user);
+    }
+
+    @GetMapping("/loginByVerifyCode")
+    public Msg loginByVerifyCode(
+            @RequestParam(name = "credentials")String credentials,
+            @RequestParam(name = "verificationCode")String verificationCode
+    ){
+        String tel = credentials;
+        credentials = credentials.substring(0,credentials.length()-6);
+        System.out.println(tel);
+        System.out.println(credentials);
+        String targetVerificationCode = userService.getRedisCache(credentials);
+        if(targetVerificationCode.equals(verificationCode));
+        {
+
+            MultiValueMap<String,String> paramsMap = new LinkedMultiValueMap<>();
+            paramsMap.add("username",tel);
+            paramsMap.add("password","root");
+            paramsMap.add("client_id","issuesApp");
+            paramsMap.add("client_secret","sjtu");
+            paramsMap.add("grant_type","password");
+            HttpHeaders headers = new HttpHeaders();
+            User user = userService.getUserByTel(credentials);
+            return getMsg(paramsMap, headers, user);
+        }
+    }
+
+    private Msg getMsg(MultiValueMap<String, String> paramsMap, HttpHeaders headers, User user) {
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity(paramsMap, headers);

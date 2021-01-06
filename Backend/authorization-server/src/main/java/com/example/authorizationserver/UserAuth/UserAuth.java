@@ -58,7 +58,10 @@ public class UserAuth implements UserDetails {
         return password;
     }
 
-
+//    @Override
+//    public void setPassword(String password){
+//        this.password = password;
+//    }
     //getUsername具体的返回值不影响验证
     @Override
     public String getUsername() {

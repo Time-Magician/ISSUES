@@ -1,13 +1,12 @@
-package com.example.alarmservice;
+package com.example.alarmservice.Controller;
 
+import com.example.alarmservice.Entity.Alarm;
 import com.example.alarmservice.Service.AlarmService;
-import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.alarmservice.utility.CommonUtil;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Time;
 import java.util.List;
 
 @RestController

@@ -1,6 +1,6 @@
 package com.example.alarmservice.Service;
 
-import com.example.alarmservice.Alarm;
+import com.example.alarmservice.Entity.Alarm;
 
 import java.sql.Time;
 import java.util.List;

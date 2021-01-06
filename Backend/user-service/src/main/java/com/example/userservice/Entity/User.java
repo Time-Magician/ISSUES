@@ -31,7 +31,6 @@ public class User {
     private String email;
     private String tel;
     private String profilePicture;
-    private Byte[] profilePicture;
     private List<User> friends;
 
     @Id

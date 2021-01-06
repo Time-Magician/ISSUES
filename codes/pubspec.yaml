@@ -62,6 +62,8 @@ dependencies:
   tcard: ^1.2.2
   date_format: ^1.0.9
   fluttertoast: ^7.1.5
+  syncfusion_flutter_charts: ^18.4.30
+  fluwx: ^2.5.0+1
 
 dev_dependencies:
   build_runner: ^1.9.0
@@ -101,6 +103,7 @@ flutter:
     - assets/image/frog3.png
     - assets/image/cat.jpg
     - assets/image/logo.png
+    - assets/image/login.png
     - assets/image/Froglogo.png
     - assets/image/math.png
     - assets/image/music.png
@@ -109,6 +112,7 @@ flutter:
     - assets/image/random.png
     - assets/image/arithmetic.png
     - assets/image/shake.png
+    - assets/image/blow.png
     - assets/image/tree1.png
     - assets/image/tree2.png
     - assets/image/tree3.png

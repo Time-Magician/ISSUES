@@ -59,7 +59,8 @@ class UserView extends StatelessWidget {
           OrderTitle(
               title: "个人信息",
               icon: Icons.assignment_ind,
-              router: "UserDetail"),
+              router: "UserDetail"
+          ),
           OrderTitle(
               title: "设置",
               icon: Icons.settings,
@@ -79,6 +80,11 @@ class UserView extends StatelessWidget {
               title: "关于一心",
               icon: Icons.favorite
           ),
+          OrderTitle(
+              title: "退出登录",
+              icon: Icons.exit_to_app,
+              router: "Login",
+          ),
         ],
       ),
     );
@@ -88,7 +94,7 @@ class UserView extends StatelessWidget {
 Widget _topHeader() {
   return Container(
     padding: EdgeInsets.all(ScreenUtil().setWidth(40.0)),
-    color: Colors.blueAccent,
+    color: Color(0xFF75CCE8),
     child: Column(
       children: <Widget>[
         Container(
@@ -96,14 +102,16 @@ Widget _topHeader() {
           child: ClipOval(
             //圆形头像
             child: Image.asset(
-              'assets/image/cat.jpg',
+              'assets/image/frogMa.png',
               width: ScreenUtil().setWidth(160.0),
             ),
           ),
         ),
         Container(
           margin: EdgeInsets.only(top: ScreenUtil().setHeight(20.0)),
-          child: Text("Chen Ergou", style: TextStyle(color: Colors.white)),
+          child: Text(
+            Global.profile.user.username,
+            style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(30.0))),
         )
       ],
     ),

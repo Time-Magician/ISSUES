@@ -9,6 +9,7 @@ import 'package:flutter_circular_slider/flutter_circular_slider.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter_screenutil/screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:slide_countdown_clock/slide_countdown_clock.dart';
 import '../Class/StudyInfo.dart';
 import 'package:audioplayers/audio_cache.dart';
@@ -52,6 +53,33 @@ class MyStudyView extends State<StudyView> {
     widget.blockNavi();
   }
 
+  void createFrog() async {
+    if(Global.frog.isGraduated == false){
+      Fluttertoast.showToast(
+          msg: "当前的小青蛙还没有毕业哦",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.blue,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+      return;
+    }
+
+    Dio dio = new Dio();
+    dio.options.headers["authorization"] = "Bearer "+Global.token;
+    String url = "http://10.0.2.2:9000/study-service/user/"+Global.userId.toString()+"/frogs";
+    FormData formData = FormData.fromMap({"name":Frog.randomFrogName(),"level":0,"exp":0,"is_graduated":false,"graduate_date":"","school":Frog.randomSchoolName()});
+    Response response = await dio.post(url,data:formData);
+    Frog _frog = Frog(response.data["frogId"],response.data["name"] , response.data["level"], response.data["exp"], response.data["graduated"], response.data["graduateDate"], response.data["school"]);
+    Global.frog = _frog;
+    Global.saveFrog();
+    setState(() {
+
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -93,6 +121,8 @@ class MyStudyView extends State<StudyView> {
     });
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,6 +134,12 @@ class MyStudyView extends State<StudyView> {
             "ISSUES",
             style: TextStyle(fontSize: ScreenUtil().setSp(60.0), fontFamily: 'Knewave'),
           ),
+        leading: IconButton(
+          icon: Icon(Icons.add_circle),
+          onPressed: () {
+            createFrog();
+          },
+        ),
         actions: <Widget>[
           new IconButton(
             icon: new Icon(Icons.school),
@@ -305,13 +341,17 @@ class MyTimerBlock extends State<TimerBlock>{
   updateFrog() async{
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    String url = "http://10.0.2.2:9000/study-service/user/"+Global.userId.toString()+"/frog";
+    String url = "http://10.0.2.2:9000/study-service/user/"+Global.userId.toString()+"/frogs";
     FormData formData = FormData.fromMap({"name":Global.frog.name,"level":Global.frog.level,"exp":Global.frog.exp,"is_graduated":Global.frog.isGraduated,"graduate_date":Global.frog.graduateDate,"school":Global.frog.school});
     dio.put(url,data: formData);
   }
 
   void onDone(){
+    getEndTime();
+    if(!studyInfo.isStudying) return;
+
     if(Global.frog.level < 17){
+
       int exp = totalMinute ~/ 1;
       Global.frog.exp += exp;
       if(Global.frog.exp >= 100) {
@@ -320,6 +360,9 @@ class MyTimerBlock extends State<TimerBlock>{
         if(Global.frog.level == 17){
           Global.frog.exp = 100;
           Global.frog.isGraduated = true;
+
+          var date = DateTime.now();
+          Global.frog.graduateDate = date.year.toString() + "/" + date.month.toString() + "/" + date.day.toString();
         }
       }
       Global.saveFrog();
@@ -363,6 +406,7 @@ class MyTimerBlock extends State<TimerBlock>{
     ).show(context);
     endLockService();
     widget.onDone();
+    putRequestAddStudyRecord(totalMinute);
   }
 
   @override
@@ -513,6 +557,7 @@ class MyBtnBlock extends State<BtnBlock>{
             colorBrightness: Brightness.dark,
             onPressed: () {
               //TODO
+              getStartTime();
               startLockService();
               widget.onPress();
             },
@@ -526,12 +571,60 @@ class MyBtnBlock extends State<BtnBlock>{
 
 Future<Null> startLockService() async {
   try {
-    final result = await platform.invokeMethod("startStudy");
+    if(Global.profile.settings.studyModeSetting == studyModeSettingOption.focus){
+      final result = await platform.invokeMethod("startStudy", {
+        "mode": "focus",
+        "whiteList": []
+      });
+    } else {
+      if(Global.profile.settings.studyModeSetting == studyModeSettingOption.tomato)
+        final result = await platform.invokeMethod("startStudy", {
+          "mode": "tomato",
+          "whiteList": Global.profile.settings.whiteListSetting
+        });
+      else
+        final result = await platform.invokeMethod("startStudy", {
+          "mode": "normal",
+          "whiteList": Global.profile.settings.whiteListSetting
+        });
+    }
+
     // batteryLevel = 'Battery level at $result % .';
   } on PlatformException catch (e) {
     print('${e.message}');
   }
 
+}
+
+void getStartTime(){
+  DateTime dateTime= DateTime.now();
+  Global.studyStartTime = dateTimeToString(dateTime);
+}
+
+void getEndTime(){
+  DateTime dateTime= DateTime.now();
+  Global.studyEndTime = dateTimeToString(dateTime);
+}
+
+String dateTimeToString(DateTime date){
+  int year = date.year;
+  int month = date.month;
+  int day = date.day;
+
+  String ret = year.toString()+"-"+month.toString()+"-"+day.toString();
+  print(ret);
+  return ret;
+}
+
+void putRequestAddStudyRecord(int duration) async {
+  Dio dio = new Dio();
+  dio.options.headers["authorization"] = "Bearer "+Global.token;
+  FormData formData = FormData.fromMap({'start_time': Global.studyStartTime, 'end_time': Global.studyEndTime, 'frog_id': Global.frog.frogId, 'duration': duration});
+  String url ="http://10.0.2.2:9000/study-service/user/"+Global.userId.toString()+"/studyRecord";
+  Response response = await dio
+      .put(url, data: formData);
+  var result = response.data.toString();
+  print(result);
 }
 
 Future<Null> endLockService() async {

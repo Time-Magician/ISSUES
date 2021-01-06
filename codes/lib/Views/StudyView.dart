@@ -75,9 +75,20 @@ class MyStudyView extends State<StudyView> {
     Frog _frog = Frog(response.data["frogId"],response.data["name"] , response.data["level"], response.data["exp"], response.data["graduated"], response.data["graduateDate"], response.data["school"]);
     Global.frog = _frog;
     Global.saveFrog();
+
     setState(() {
 
     });
+
+    Fluttertoast.showToast(
+        msg: "新的小青蛙 "+response.data["name"]+" 已经来报道啦！",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.blue,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
   }
 
   @override
@@ -350,8 +361,8 @@ class MyTimerBlock extends State<TimerBlock>{
     if(!studyInfo.isStudying) return;
 
     if(Global.frog.level < 17){
-
-      int exp = totalMinute ~/ 1;
+      int exp = totalMinute * 2; // for test;
+      // int exp = totalMinute ~/ 1;
       Global.frog.exp += exp;
       if(Global.frog.exp >= 100) {
         Global.frog.exp -= 100;
@@ -531,6 +542,63 @@ class MyBtnBlock extends State<BtnBlock>{
     ).show(context);
   }
 
+  void haveMaxLevel(){
+    if(Global.frog.level == 17){
+      EasyDialog(
+        fogOpacity: 0.12,
+        width: ScreenUtil().setWidth(640),
+        height: ScreenUtil().setWidth(320),
+        closeButton: false,
+        title: Text(
+          "毕业啦！",
+          style: TextStyle(fontSize: ScreenUtil().setSp(40)),
+        ),
+        description: Text(
+            "您的小青蛙已经毕业啦，无法获得更多的经验值了。\n点击左上角新领养一只小青蛙吧！"
+        ),
+        contentList: [
+          Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Container(
+                  width: ScreenUtil().setWidth(180),
+                  child: FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(
+                      "终止学习",
+                      textAlign: TextAlign.right,
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: ScreenUtil().setWidth(180),
+                  child: FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      startLockService();
+                      widget.onPress();
+                    },
+                    child: Text(
+                      "继续学习",
+                      textAlign: TextAlign.right,
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                )
+              ]
+          )
+        ],
+      ).show(context);
+    } else {
+      startLockService();
+      widget.onPress();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -555,8 +623,7 @@ class MyBtnBlock extends State<BtnBlock>{
             colorBrightness: Brightness.dark,
             onPressed: () {
               //TODO
-              startLockService();
-              widget.onPress();
+              haveMaxLevel();
             },
             child: Text(
               '开 始 学 习',

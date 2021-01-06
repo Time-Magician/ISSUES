@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:demo5/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import '../models/AlarmInfo.dart';
 import '../common/global.dart';
 import 'package:dio/dio.dart';
@@ -186,7 +188,17 @@ class MyLoginView extends State<LoginView> {
                           bool flag = await Login();
                           if (flag) {
                             Navigator.pushNamed(context, "HomePage");
-                          }
+                          }else {
+                Fluttertoast.showToast(
+                    msg: "账号或密码错误 TAT",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.redAccent,
+                    textColor: Colors.white,
+                    fontSize: 16.0
+                );
+              }
                           // Navigator.pushNamed(context,"HomePage");
                         },
                       ),

@@ -49,6 +49,7 @@ class MyFriendList extends State<FriendList> {
     Response response = await dio
         .get(url);
     List<Friend> tmpList = [];
+    // print(response);
     response.data["data"].forEach((item) {
       tmpList.add(Friend.fromJson(item));
     });
@@ -324,10 +325,10 @@ class FriendListItem extends StatelessWidget {
         child: ListTile(
           leading: CircleAvatar(
             backgroundColor: Colors.blue,
-            child: Text('${item.name[0]}'),
+            child: Text('${item.name == ""?" ":item.name[0]}'),
             foregroundColor: Colors.white,
           ),
-          title: Text(item.name),
+          title: Text(item.name == ""? item.username:item.name),
           subtitle: Text(item.email),
         ),
       ),

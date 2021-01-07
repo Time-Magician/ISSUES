@@ -17,6 +17,7 @@
     <bytecodeTargetLevel>
       <module name="alarm-service" target="1.8" />
       <module name="authorization-server" target="1.8" />
+      <module name="Backend" target="1.8" />
       <module name="issues-gateway" target="1.8" />
       <module name="study-service" target="1.8" />
       <module name="user-service" target="1.8" />

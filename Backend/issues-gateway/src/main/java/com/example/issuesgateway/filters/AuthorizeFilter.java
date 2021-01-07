@@ -18,8 +18,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.text.ParseException;
-
 @Slf4j
 @Component
 public class AuthorizeFilter implements GlobalFilter, Ordered {
@@ -35,12 +33,7 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
         }
         log.info("here1");
         token = token.replace(AuthConstants.JWT_TOKEN_PREFIX, Strings.EMPTY);
-        JWSObject jwsObject = null;
-        try {
-            jwsObject = JWSObject.parse(token);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        JWSObject jwsObject = JWSObject.parse(token);
         String payload = jwsObject.getPayload().toString();
         JSONObject jsonObject = JSONUtil.parseObj(payload);
         //解析出accessToken中Jwt中的参数

@@ -23,13 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="904a45ad-a0cc-447e-9093-076e0ca2935d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-memory.log.2021-01-07.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/nacos.log.2021-01-07.0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-performance.log.2021-01-07.0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/config-memory.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-memory.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/nacos.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/nacos.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/naming-performance.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-performance.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +163,7 @@
       <workItem from="1608705529312" duration="1798000" />
       <workItem from="1609934266585" duration="1239000" />
       <workItem from="1609939068830" duration="66000" />
-      <workItem from="1609998070389" duration="15747000" />
+      <workItem from="1609998070389" duration="15957000" />
     </task>
     <servers />
   </component>

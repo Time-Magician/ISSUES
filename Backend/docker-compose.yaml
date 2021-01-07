@@ -27,6 +27,7 @@ services:
     volumes:
       - ./nacos/standalone-logs/:/home/nacos/logs
       - ./nacos/init.d/custom-v2.properties:/home/nacos/init.d/custom.properties
+      - ./data_source/mongo:/docker-entrypoint-initdb.d/
     depends_on:
       - mysql
     restart: always

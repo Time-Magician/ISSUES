@@ -23,42 +23,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="904a45ad-a0cc-447e-9093-076e0ca2935d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/nacos/env/nacos-standlone-mysql.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/init.d/custom.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/alipay-jraft.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/cmdb-main.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-client-request.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-dump.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-fatal.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-memory.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-notify.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-pull-check.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-pull.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-server.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-trace.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/core-auth.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/istio-main.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/nacos-address.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/nacos-cluster.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/nacos.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/nacos_gc.log.0.current" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-distro.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-event.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-performance.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-push.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-raft.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-rt.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-server.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/protocol-distro.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/protocol-raft.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/nacos/standalone-logs/start.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alarm-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/alarm-service/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/authorization-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/authorization-server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/issues-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/issues-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nacos/env/nacos-standlone-mysql.env" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/env/nacos-standlone-mysql.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/alipay-jraft.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/alipay-jraft.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/config-fatal.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-fatal.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/config-memory.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-memory.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/config-server.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-server.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/nacos-cluster.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/nacos-cluster.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/nacos.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/nacos.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/nacos_gc.log.0.current" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/nacos_gc.log.0.current" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/naming-distro.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-distro.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/naming-event.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-event.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/naming-raft.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-raft.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/naming-server.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-server.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/protocol-raft.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/protocol-raft.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/start.out" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/start.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/study-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/study-service/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
     </list>
@@ -82,7 +65,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.3.3\plugins\maven\lib\maven3" />
+        <option name="mavenHome" value="E:\jetbrains\TOOLBOX\apps\IDEA-U\ch-0\202.6948.69\plugins\maven\lib\maven3" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -128,19 +111,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.AlarmServiceApplication">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AlarmServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="alarm-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.alarmservice.AlarmServiceApplication" />
@@ -212,11 +182,15 @@
       <workItem from="1608705529312" duration="1798000" />
       <workItem from="1609934266585" duration="1239000" />
       <workItem from="1609939068830" duration="66000" />
+      <workItem from="1609998070389" duration="6565000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

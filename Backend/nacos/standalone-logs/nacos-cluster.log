@@ -6,3 +6,49 @@
 
 2021-01-07 13:12:25,696 WARN [serverlist] updated to : [Member{ip='172.18.0.3', port=8848, state=UP, extendInfo={adWeight=0, raftPort=7848, site=unknow, weight=1}}]
 
+2021-01-07 13:32:23,964 INFO Current addressing mode selection : StandaloneMemberLookup
+
+2021-01-07 13:32:23,968 WARN [serverlist] updated to : [Member{ip='172.18.0.3', port=8848, state=UP, extendInfo={adWeight=0, raftPort=7848, site=unknow, weight=1}}]
+
+2021-01-07 14:17:48,800 INFO Current addressing mode selection : StandaloneMemberLookup
+
+2021-01-07 14:17:48,804 WARN [serverlist] updated to : [Member{ip='172.18.0.3', port=8848, state=UP, extendInfo={adWeight=0, raftPort=7848, site=unknow, weight=1}}]
+
+2021-01-07 14:25:56,091 INFO Current addressing mode selection : StandaloneMemberLookup
+
+2021-01-07 14:25:56,095 WARN [serverlist] updated to : [Member{ip='172.18.0.3', port=8848, state=UP, extendInfo={adWeight=0, raftPort=7848, site=unknow, weight=1}}]
+
+2021-01-07 14:34:07,480 INFO Current addressing mode selection : StandaloneMemberLookup
+
+2021-01-07 14:34:07,485 WARN [serverlist] updated to : [Member{ip='172.18.0.3', port=8848, state=UP, extendInfo={adWeight=0, raftPort=7848, site=unknow, weight=1}}]
+
+2021-01-07 14:45:13,082 INFO Current addressing mode selection : StandaloneMemberLookup
+
+2021-01-07 14:45:13,086 WARN [serverlist] updated to : [Member{ip='ff7212d9c5ab', port=8848, state=UP, extendInfo={adWeight=0, raftPort=7848, site=unknow, weight=1}}]
+
+2021-01-07 14:52:40,643 INFO Current addressing mode selection : StandaloneMemberLookup
+
+2021-01-07 14:52:40,648 WARN [serverlist] updated to : [Member{ip='ff7212d9c5ab', port=8848, state=UP, extendInfo={adWeight=0, raftPort=7848, site=unknow, weight=1}}]
+
+2021-01-07 14:53:19,211 INFO Current addressing mode selection : StandaloneMemberLookup
+
+2021-01-07 14:53:19,216 WARN [serverlist] updated to : [Member{ip='c7d60fa130c8', port=8848, state=UP, extendInfo={adWeight=0, raftPort=7848, site=unknow, weight=1}}]
+
+2021-01-07 14:59:59,238 INFO Current addressing mode selection : StandaloneMemberLookup
+
+2021-01-07 14:59:59,243 WARN [serverlist] updated to : [Member{ip='2491ab821e97', port=8848, state=UP, extendInfo={adWeight=0, raftPort=7848, site=unknow, weight=1}}]
+
+2021-01-07 15:11:31,416 INFO Current addressing mode selection : StandaloneMemberLookup
+
+2021-01-07 15:11:31,420 WARN [serverlist] updated to : [Member{ip='2491ab821e97', port=8848, state=UP, extendInfo={adWeight=0, raftPort=7848, site=unknow, weight=1}}]
+
+2021-01-07 15:14:56,795 INFO Current addressing mode selection : StandaloneMemberLookup
+
+2021-01-07 15:14:56,799 WARN [serverlist] updated to : [Member{ip='e9d9e46c87fa', port=8848, state=UP, extendInfo={adWeight=0, raftPort=7848, site=unknow, weight=1}}]
+
+2021-01-07 15:20:29,850 INFO Current addressing mode selection : StandaloneMemberLookup
+
+2021-01-07 15:20:29,854 WARN [serverlist] updated to : [Member{ip='e9d9e46c87fa', port=8848, state=UP, extendInfo={adWeight=0, raftPort=7848, site=unknow, weight=1}}]
+
+2021-01-07 15:20:35,086 INFO This node is ready to provide external services
+

@@ -25324,3 +25324,9 @@ Caused by: java.lang.IllegalStateException: No DataSource set
 
 2021-01-07 19:38:27,021 INFO [capacityManagement] end correct usage, cost: 0s
 
+2021-01-07 19:48:27,019 WARN clearConfigHistory start
+
+2021-01-07 19:48:27,021 INFO [capacityManagement] start correct usage
+
+2021-01-07 19:48:27,023 INFO [capacityManagement] end correct usage, cost: 0s
+

@@ -81,6 +81,11 @@ class UserView extends StatelessWidget {
               icon: Icons.favorite
           ),
           OrderTitle(
+              title: "学习统计",
+              icon: Icons.message,
+              router: "Statistics"
+          ),
+          OrderTitle(
               title: "退出登录",
               icon: Icons.exit_to_app,
               router: "Login",

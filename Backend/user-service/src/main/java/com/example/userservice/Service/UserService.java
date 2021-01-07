@@ -11,12 +11,14 @@ import java.util.List;
 
 public interface UserService {
     User getUserById(int userId);
+    User getUserByTel(String tel);
     List<User> getAllUsers();
     Msg register(String password, String tel,String verificationCode);
     Msg checkUser(String credentials,String password);
     boolean checkUserByIdAndPassword(int userId,String password);
     Msg verify(String tel);
     Msg verifyEmail(String email);
+    Msg verifyLogin(String tel);
     Msg modifyUsername(int userId,String username);
     Msg modifyGender(int userId,String gender);
     Msg modifyName(int userId,String name);
@@ -33,4 +35,5 @@ public interface UserService {
     Message addMessage(int senderId, int receiverId, String type, String detail);
     User searchUser(String identifier);
     Message checkMessage(String messageId);
+    String getRedisCache(String credential);
 }

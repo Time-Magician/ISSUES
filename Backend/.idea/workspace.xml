@@ -24,13 +24,20 @@
   <component name="ChangeListManager">
     <list default="true" id="904a45ad-a0cc-447e-9093-076e0ca2935d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-service/src/main/java/com/example/studyservice/DaoImpl/FrogDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/study-service/src/main/java/com/example/studyservice/DaoImpl/FrogDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/Entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/ServiceImpl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/ServiceImpl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/util/msgUtils/SendSmsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/util/msgUtils/SendSmsUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/BottomNavigatorView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/BottomNavigatorView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/AlarmView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/AlarmView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/ChartView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/ChartView.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../codes/lib/Views/DetailSettingView/EmailSettingView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/DetailSettingView/EmailSettingView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/DetailSettingView/GenderSetting.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/DetailSettingView/GenderSetting.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/DetailSettingView/NameSettingView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/DetailSettingView/NameSettingView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/DetailSettingView/PasswordSettingView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/DetailSettingView/PasswordSettingView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/DetailSettingView/UserNameSettingView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/DetailSettingView/UserNameSettingView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/DiplomasView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/DiplomasView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/FriendsView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/FriendsView.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../codes/lib/Views/LoginView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/LoginView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/MessageView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/MessageView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/SignUpView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/SignUpView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/StudyView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/StudyView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codes/lib/common/global.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/common/global.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,14 +172,14 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.All in Backend" />
+      <item itemvalue="JUnit.All in alarm-service" />
+      <item itemvalue="JUnit.AlarmControllerTest.updateAlarmTest" />
       <item itemvalue="Spring Boot.AlarmServiceApplication" />
       <item itemvalue="Spring Boot.AuthorizationServerApplication" />
       <item itemvalue="Spring Boot.IssuesGatewayApplication" />
       <item itemvalue="Spring Boot.StudyServiceApplication" />
       <item itemvalue="Spring Boot.UserServiceApplication" />
-      <item itemvalue="JUnit.All in Backend" />
-      <item itemvalue="JUnit.All in alarm-service" />
-      <item itemvalue="JUnit.AlarmControllerTest.updateAlarmTest" />
     </list>
     <recent_temporary>
       <list>
@@ -238,11 +245,12 @@
       <workItem from="1608702533346" duration="2611000" />
       <workItem from="1608705529312" duration="1798000" />
       <workItem from="1609934266585" duration="1239000" />
+      <workItem from="1610002706723" duration="759000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -290,38 +298,38 @@
     </state>
     <state x="458" y="146" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1607062454917" />
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1608290703204" />
-    <state width="1024" height="210" key="GridCell.Tab.0.bottom" timestamp="1610001540299">
+    <state width="1024" height="217" key="GridCell.Tab.0.bottom" timestamp="1610002800295">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610001540299" />
-    <state width="1024" height="210" key="GridCell.Tab.0.center" timestamp="1610001540298">
+    <state width="1024" height="217" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610002800295" />
+    <state width="1024" height="217" key="GridCell.Tab.0.center" timestamp="1610002800295">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1610001540298" />
-    <state width="1024" height="210" key="GridCell.Tab.0.left" timestamp="1610001540298">
+    <state width="1024" height="217" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1610002800295" />
+    <state width="1024" height="217" key="GridCell.Tab.0.left" timestamp="1610002800295">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1610001540298" />
-    <state width="1024" height="210" key="GridCell.Tab.0.right" timestamp="1610001540299">
+    <state width="1024" height="217" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1610002800295" />
+    <state width="1024" height="217" key="GridCell.Tab.0.right" timestamp="1610002800295">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1610001540299" />
-    <state width="1024" height="210" key="GridCell.Tab.1.bottom" timestamp="1610001540299">
+    <state width="1024" height="217" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1610002800295" />
+    <state width="1024" height="217" key="GridCell.Tab.1.bottom" timestamp="1610002800295">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610001540299" />
-    <state width="1024" height="210" key="GridCell.Tab.1.center" timestamp="1610001540299">
+    <state width="1024" height="217" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610002800295" />
+    <state width="1024" height="217" key="GridCell.Tab.1.center" timestamp="1610002800295">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1610001540299" />
-    <state width="1024" height="210" key="GridCell.Tab.1.left" timestamp="1610001540299">
+    <state width="1024" height="217" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1610002800295" />
+    <state width="1024" height="217" key="GridCell.Tab.1.left" timestamp="1610002800295">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1610001540299" />
-    <state width="1024" height="210" key="GridCell.Tab.1.right" timestamp="1610001540299">
+    <state width="1024" height="217" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1610002800295" />
+    <state width="1024" height="217" key="GridCell.Tab.1.right" timestamp="1610002800295">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="210" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1610001540299" />
+    <state width="1024" height="217" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1610002800295" />
     <state width="212" height="477" key="HiddenNamespacesPopup" timestamp="1607071080812">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

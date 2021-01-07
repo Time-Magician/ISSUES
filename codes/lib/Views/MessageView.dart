@@ -30,7 +30,7 @@ class MyMessageView extends State<MessageView>{
   void getMessage() async {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    String url ="http://10.0.2.2:9000/user-service/user/"+Global.userId.toString()+"/messages";
+    String url ="http://"+Global.url+":9000/user-service/user/"+Global.userId.toString()+"/messages";
     Response response = await dio
         .get(url);
     print(response.data["data"]);
@@ -100,7 +100,7 @@ class MyMessageCard extends State<MessageCard>{
   void checkMessage(String id) async {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    String url ="http://10.0.2.2:9000/user-service/user/"+Global.userId.toString()+"/messages/"+id;
+    String url ="http://"+Global.url+":9000/user-service/user/"+Global.userId.toString()+"/messages/"+id;
     Response response = await dio
         .put(url);
     print(response.data["data"]);
@@ -109,7 +109,7 @@ class MyMessageCard extends State<MessageCard>{
   void addFriend(int senderId) async {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    String url ="http://10.0.2.2:9000/user-service/user/"+Global.userId.toString()+"/friends/"+senderId.toString();
+    String url ="http://"+Global.url+":9000/user-service/user/"+Global.userId.toString()+"/friends/"+senderId.toString();
     Response response = await dio
         .post(url);
     print(response.data["data"]);
@@ -150,7 +150,7 @@ class MyMessageCard extends State<MessageCard>{
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
     FormData formData = FormData.fromMap({'label': label, 'repeat': repeat, 'time': time, 'mission': mission, 'audio': audio});
-    String url ="http://10.0.2.2:9000/alarm-service/user/"+userId.toString()+"/alarm/"+alarmId.toString();
+    String url ="http://"+Global.url+":9000/alarm-service/user/"+userId.toString()+"/alarm/"+alarmId.toString();
     Response response = await dio
         .post(url, data: formData);
     var result = response.data.toString();

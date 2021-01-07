@@ -239,7 +239,7 @@ class MySignUpView extends State<SignUpView>{
     form["password"] = password;
 
 
-    String url = "http://10.0.2.2:9000/user-service/register";
+    String url = "http://"+Global.url+":9000/user-service/register";
     Response response = await dio.post(url, queryParameters: form);
     print(response.data["status"]);
 
@@ -249,7 +249,7 @@ class MySignUpView extends State<SignUpView>{
   void getVeriCode() async {
     if(tel.isEmpty) return;
     Dio dio = new Dio();
-    String url = "http://10.0.2.2:9000/user-service/verify/tel";
+    String url = "http://"+Global.url+":9000/user-service/verify/tel";
     FormData formData = FormData.fromMap({'tel':tel});
     Response response = await dio.post(url,data:formData);
     print(response.data["status"]);

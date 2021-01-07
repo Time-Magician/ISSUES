@@ -24,7 +24,7 @@ class _GenderSettingViewState extends State<GenderSettingView>{
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
     FormData formData = FormData.fromMap({"gender": gender});
-    String url = "http://10.0.2.2:9000/user-service/user/"+Global.userId.toString()+"/gender";
+    String url = "http://"+Global.url+":9000/user-service/user/"+Global.userId.toString()+"/gender";
     Response response = await dio.patch(url, data: formData);
 
     if(response.data["status"] == 0){

@@ -69,7 +69,7 @@ class MyStudyView extends State<StudyView> {
 
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    String url = "http://10.0.2.2:9000/study-service/user/"+Global.userId.toString()+"/frogs";
+    String url = "http://"+Global.url+":9000/study-service/user/"+Global.userId.toString()+"/frogs";
     FormData formData = FormData.fromMap({"name":Frog.randomFrogName(),"level":0,"exp":0,"is_graduated":false,"graduate_date":"","school":Frog.randomSchoolName()});
     Response response = await dio.post(url,data:formData);
     Frog _frog = Frog(response.data["frogId"],response.data["name"] , response.data["level"], response.data["exp"], response.data["graduated"], response.data["graduateDate"], response.data["school"]);
@@ -352,7 +352,7 @@ class MyTimerBlock extends State<TimerBlock>{
   updateFrog() async{
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    String url = "http://10.0.2.2:9000/study-service/user/"+Global.userId.toString()+"/frogs";
+    String url = "http://"+Global.url+":9000/study-service/user/"+Global.userId.toString()+"/frogs";
     FormData formData = FormData.fromMap({"name":Global.frog.name,"level":Global.frog.level,"exp":Global.frog.exp,"is_graduated":Global.frog.isGraduated,"graduate_date":Global.frog.graduateDate,"school":Global.frog.school});
     dio.put(url,data: formData);
   }
@@ -687,7 +687,7 @@ void putRequestAddStudyRecord(int duration) async {
   Dio dio = new Dio();
   dio.options.headers["authorization"] = "Bearer "+Global.token;
   FormData formData = FormData.fromMap({'start_time': Global.studyStartTime, 'end_time': Global.studyEndTime, 'frog_id': Global.frog.frogId, 'duration': duration});
-  String url ="http://10.0.2.2:9000/study-service/user/"+Global.userId.toString()+"/studyRecord";
+  String url ="http://"+Global.url+":9000/study-service/user/"+Global.userId.toString()+"/studyRecord";
   Response response = await dio
       .put(url, data: formData);
   var result = response.data.toString();

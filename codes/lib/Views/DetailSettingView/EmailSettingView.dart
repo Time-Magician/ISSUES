@@ -54,7 +54,7 @@ class MyEmailSettingView extends State<EmailSettingView>{
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
     FormData formData = FormData.fromMap({"email": email, "verifyCode":verifyCode});
-    String url = "http://10.0.2.2:9000/user-service/user/"+Global.userId.toString()+"/email";
+    String url = "http://"+Global.url+":9000/user-service/user/"+Global.userId.toString()+"/email";
     Response response = await dio.patch(url, data: formData);
     if(response.data["status"] == 0){
       userModel.email = email;
@@ -88,7 +88,7 @@ class MyEmailSettingView extends State<EmailSettingView>{
     if(!emailValidator(email)) return;
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    String url = "http://10.0.2.2:9000/user-service/verify/email";
+    String url = "http://"+":9000/user-service/verify/email";
     FormData formData = FormData.fromMap({'email':email});
     Response response = await dio.post(url,data:formData);
     print(response.data["status"]);

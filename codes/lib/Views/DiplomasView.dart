@@ -66,7 +66,7 @@ class MyDiplomasView extends State<DiplomasWidget>{
   void getFrogList() async {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    String url = "http://10.0.2.2:9000/study-service/user/"+Global.userId.toString()+"/frogs/graduated";
+    String url = "http://"+Global.url+":9000/study-service/user/"+Global.userId.toString()+"/frogs/graduated";
     Response response = await dio.get(url);
     response.data.forEach((element) {
       Frog frog = Frog.fromJson(element);

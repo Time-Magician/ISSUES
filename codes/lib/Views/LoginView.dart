@@ -345,7 +345,7 @@ class MyLoginView extends State<LoginView> {
     // print(password);
     Dio dio = new Dio();
 
-    String url = "http://10.0.2.2:9000/user-service/login?credentials=" +
+    String url = "http://"+Global.url+":9000/user-service/login?credentials=" +
         user +
         "&password=" +
         password +
@@ -382,7 +382,7 @@ class MyLoginView extends State<LoginView> {
     Dio dio = new Dio();
 
     String url =
-        "http://10.0.2.2:9000/user-service/loginByVerifyCode?credentials=" +
+        "http://"+Global.url+":9000/user-service/loginByVerifyCode?credentials=" +
             tel +
             "verify" +
             "&verificationCode=" +
@@ -416,7 +416,7 @@ class MyLoginView extends State<LoginView> {
   Future<void> initAlarmList(int userId) async {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer " + Global.token;
-    String url = "http://10.0.2.2:9000/alarm-service/user/" +
+    String url = "http://"+Global.url+":9000/alarm-service/user/" +
         userId.toString() +
         "/alarms";
     Response response = await dio.get(url);
@@ -434,13 +434,13 @@ class MyLoginView extends State<LoginView> {
   Future<void> initFrog(int userId) async {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer " + Global.token;
-    String url = "http://10.0.2.2:9000/study-service/user/" +
+    String url = "http://"+Global.url+":9000/study-service/user/" +
         userId.toString() +
         "/frogs/candidate";
     Response response = await dio.get(url);
     print(response.data);
     if (response.data == "") {
-      url = "http://10.0.2.2:9000/study-service/user/" +
+      url = "http://"+Global.url+":9000/study-service/user/" +
           userId.toString() +
           "/frogs";
       FormData formData = FormData.fromMap({
@@ -480,7 +480,7 @@ class MyLoginView extends State<LoginView> {
   void getVeriCode() async {
     if (tel.isEmpty) return;
     Dio dio = new Dio();
-    String url = "http://10.0.2.2:9000/user-service/verifyLogin/tel";
+    String url = "http://"+Global.url+":9000/user-service/verifyLogin/tel";
     FormData formData = FormData.fromMap({'tel': tel});
     Response response = await dio.post(url, data: formData);
     print(response.data["status"]);
@@ -505,7 +505,7 @@ class MyLoginView extends State<LoginView> {
 
   Future<void> createFirstFrog(int userId) async {
     Dio dio = new Dio();
-    String url = "http://10.0.2.2:9000/study-service/user/" +
+    String url = "http://"+Global.url+":9000/study-service/user/" +
         userId.toString() +
         "/frogs";
   }

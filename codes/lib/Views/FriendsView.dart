@@ -45,7 +45,7 @@ class MyFriendList extends State<FriendList> {
   void getFriendList() async {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    String url ="http://10.0.2.2:9000/user-service/user/"+Global.userId.toString()+"/friends";
+    String url ="http://"+Global.url+":9000/user-service/user/"+Global.userId.toString()+"/friends";
     Response response = await dio
         .get(url);
     List<Friend> tmpList = [];
@@ -136,7 +136,7 @@ class MyFriendList extends State<FriendList> {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
     FormData formData = FormData.fromMap({"sender_id":Global.userId, "identifier":identifier});
-    String url ="http://10.0.2.2:9000/user-service/user";
+    String url ="http://"+Global.url+":9000/user-service/user";
     Response response = await dio
         .post(url, data:formData);
     print(response.data["status"]);
@@ -225,7 +225,7 @@ class MyFriendList extends State<FriendList> {
       Dio dio = new Dio();
       dio.options.headers["authorization"] = "Bearer "+Global.token;
       FormData formData = FormData.fromMap({"sender_id":Global.userId, "type":"闹钟设置", "detail":jsonEncode(alarmJson)});
-      String url ="http://10.0.2.2:9000/user-service/user/"+friendList[index].userId.toString()+"/messages";
+      String url ="http://"+Global.url+":9000/user-service/user/"+friendList[index].userId.toString()+"/messages";
       Response response = await dio
           .post(url, data:formData);
       print(response.data["status"]);
@@ -297,7 +297,7 @@ class MyFriendList extends State<FriendList> {
   void goDeleteFriend(index) async {
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    String url ="http://10.0.2.2:9000/user-service/user/"+Global.userId.toString()+"/friends/"+friendList[index].userId.toString();
+    String url ="http://"+Global.url+":9000/user-service/user/"+Global.userId.toString()+"/friends/"+friendList[index].userId.toString();
     Response response = await dio
         .delete(url);
     print(response.data["data"]);

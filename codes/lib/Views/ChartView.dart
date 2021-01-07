@@ -82,7 +82,7 @@ class _MyHomePageState extends State<_MyHomePage> {
     List<RecordData> _chartData = <RecordData>[];
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer " + Global.token;
-    String url = "http://10.0.2.2:9000/study-service/user/" +
+    String url = "http://"+Global.url+":9000/study-service/user/" +
         Global.userId.toString() + "/studyRecords";
     Response response = await dio
         .get(url);

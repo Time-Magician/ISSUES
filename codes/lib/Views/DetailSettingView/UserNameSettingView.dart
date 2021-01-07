@@ -11,7 +11,7 @@ class UserNameSettingView extends StatelessWidget{
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
     FormData formData = FormData.fromMap({"username":username});
-    String url = "http://10.0.2.2:9000/user-service/user/"+Global.userId.toString()+"/username";
+    String url = "http://"+Global.url+":9000/user-service/user/"+Global.userId.toString()+"/username";
     Response response = await dio.patch(url, data: formData);
 
     if(response.data["status"] == 0){

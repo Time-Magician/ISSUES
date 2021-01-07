@@ -12,7 +12,7 @@ class NameSettingView extends StatelessWidget{
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
     FormData formData = FormData.fromMap({"name": name});
-    String url = "http://10.0.2.2:9000/user-service/user/"+Global.userId.toString()+"/name";
+    String url = "http://"+Global.url+":9000/user-service/user/"+Global.userId.toString()+"/name";
     Response response = await dio.patch(url, data: formData);
 
     if(response.data["status"] == 0){

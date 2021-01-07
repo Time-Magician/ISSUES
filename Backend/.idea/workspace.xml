@@ -26,9 +26,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alarm-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/alarm-service/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/authorization-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/authorization-server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/issues-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/issues-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nacos/env/nacos-standlone-mysql.env" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/env/nacos-standlone-mysql.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/alipay-jraft.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/alipay-jraft.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/config-fatal.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-fatal.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/config-memory.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-memory.log" afterDir="false" />
@@ -43,6 +41,7 @@
       <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/protocol-raft.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/protocol-raft.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/start.out" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/start.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/study-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/study-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -182,7 +181,7 @@
       <workItem from="1608705529312" duration="1798000" />
       <workItem from="1609934266585" duration="1239000" />
       <workItem from="1609939068830" duration="66000" />
-      <workItem from="1609998070389" duration="6565000" />
+      <workItem from="1609998070389" duration="12074000" />
     </task>
     <servers />
   </component>

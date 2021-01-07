@@ -33,17 +33,17 @@ services:
     networks:
       - issues-net
 
-#  mongodb:
-#    image: mongo:4.2
-#    container_name: mongodb
-#    volumes:
-#      - type: bind
-#        source: ./data_source/redis
-#        target: /docker-entrypoint-initdb.d/
-#    ports:
-#      - "27017:27017"
-#    networks:
-#      - net
+  mongodb:
+    image: mongo:4.2
+    container_name: mongodb
+    volumes:
+      - type: bind
+        source: ./data_source/redis
+        target: /docker-entrypoint-initdb.d/
+    ports:
+      - "27017:27017"
+    networks:
+      - issues-net
 
   redis:
     image: redis:latest
@@ -55,44 +55,47 @@ services:
     ports:
       - "16379:6379"
     networks:
-      - net
+      - issues-net
 
-#  user-service:
-#    image: user-service:latest
-#    build:  ./user-service
-#    depends_on:
-#      - nacos
-#    ports:
-#      - "4000:4000"
-#    environment:
-#      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
-#    networks:
-#      - net
+  user-service:
+    image: user-service:latest
+    container_name: user-service
+    build:  ./user-service
+    depends_on:
+      - nacos
+    ports:
+      - "4000:4000"
+    environment:
+      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
+    networks:
+      - issues-net
 
-#  alarm-service:
-#    image: alarm-service:latest
-#    build:  ./alarm-service
-#    depends_on:
-#      - nacos
-#    ports:
-#      - "5000:5000"
-#    environment:
-#      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
-#    networks:
-#      - net
-#
-#  study-service:
-#    image: study-service:latest
-#    build:  ./study-service
-#    depends_on:
-#      - nacos
-#    ports:
-#      - "6000:6000"
-#    environment:
-#      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
-#    networks:
-#      - net
-#
+  alarm-service:
+    image: alarm-service:latest
+    container_name: alarm-service
+    build:  ./alarm-service
+    depends_on:
+      - nacos
+    ports:
+      - "5000:5000"
+    environment:
+      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
+    networks:
+      - issues-net
+
+  study-service:
+    image: study-service:latest
+    container_name: study-service
+    build:  ./study-service
+    depends_on:
+      - nacos
+    ports:
+      - "6000:6000"
+    environment:
+      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
+    networks:
+      - issues-net
+
   issues-gateway:
     image: issues-gateway:latest
     container_name: issues-gateway
@@ -105,18 +108,19 @@ services:
       - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
     networks:
       - issues-net
-#
-#  authorization-server:
-#    image: authorization-server:latest
-#    build:  ./authorization-server
-#    depends_on:
-#      - nacos
-#    ports:
-#      - "8080:8080"
-#    environment:
-#      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
-#    networks:
-#      - net
+
+  authorization-server:
+    image: authorization-server:latest
+    container_name: authorization-service
+    build:  ./authorization-server
+    depends_on:
+      - nacos
+    ports:
+      - "8080:8080"
+    environment:
+      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
+    networks:
+      - issues-net
 
 networks:
   issues-net:

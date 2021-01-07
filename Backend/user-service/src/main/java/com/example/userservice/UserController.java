@@ -256,7 +256,7 @@ public class UserController {
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity(paramsMap, headers);
-        Object oAuth2AccessToken = restTemplate.postForObject("http://localhost:8080/oauth/token",request,Object.class);
+        Object oAuth2AccessToken = restTemplate.postForObject("http://authorization-service:8080/oauth/token",request,Object.class);
         log.info(oAuth2AccessToken.toString());
         Msg result = MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.LOGIN_SUCCESS_MSG, user);
         result.setExtraInfo(oAuth2AccessToken);

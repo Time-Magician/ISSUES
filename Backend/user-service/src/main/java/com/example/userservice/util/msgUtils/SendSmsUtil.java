@@ -14,7 +14,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Random;
 
 public class SendSmsUtil {
-    public static Boolean sendSms(String tel ,String verificationCode) {
+    public static Boolean sendSms(String tel ,String verificationCode, boolean isLogin) {
         DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI4G9pM8bq5fpppJ8abL4t", "ZPPBwfScC77YkNDLVO3BVj8nE4u7bk");
         IAcsClient client = new DefaultAcsClient(profile);
 
@@ -26,8 +26,14 @@ public class SendSmsUtil {
         request.putQueryParameter("RegionId", "cn-hangzhou");
         request.putQueryParameter("PhoneNumbers", tel);
         request.putQueryParameter("SignName", "一心APP");
+        if(!isLogin){
         request.putQueryParameter("TemplateCode", "SMS_205881573");
         request.putQueryParameter("TemplateParam", "{\"code\":"+verificationCode+"}");
+        }
+        else{
+            request.putQueryParameter("TemplateCode", "SMS_205891625");
+            request.putQueryParameter("TemplateParam", "{\"code\":"+verificationCode+"}");
+    }
         try {
             CommonResponse response = client.getCommonResponse(request);
             String responseData  = response.getData();
@@ -35,8 +41,9 @@ public class SendSmsUtil {
             if(jsonObject.getString("Code").equals("OK")){
                 return true;
             }
-            else
-                return false;
+            else{
+                System.out.println(jsonObject.getString("Code"));
+                return false;}
         } catch (ServerException e) {
             e.printStackTrace();
             return false;

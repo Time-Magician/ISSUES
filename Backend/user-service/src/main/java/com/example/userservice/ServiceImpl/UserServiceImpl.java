@@ -79,8 +79,12 @@ public class UserServiceImpl implements UserService {
                 .userType(1)
                 .build();
 
+        UserAuth userAuth = userAuthDao.addUserAuth(newUserAuth);
+        Integer userId = userAuth.getUserId();
+        newUser.setUserId(userId);
         userDao.addUser(newUser);
-        userAuthDao.addUserAuth(newUserAuth);
+
+
         return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.SIGNUP_SUCCESS_MSG);
     }
 
@@ -99,7 +103,7 @@ public class UserServiceImpl implements UserService {
     public Msg verify(String tel) {
         User user = userDao.getUserByTel(tel);
         if(user == null){
-            return getMsg(tel);
+            return getMsg(tel, false);
         }
         else{
             return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.TEL_DUPLICATE_MSG);
@@ -109,12 +113,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Msg verifyLogin(String tel){
-        return getMsg(tel);
+        return getMsg(tel, true);
     }
 
-    private Msg getMsg(String tel) {
+    private Msg getMsg(String tel, boolean isLogin) {
         String vCode = RandomUtil.RandomNumber();
-        Boolean flag =  SendSmsUtil.sendSms(tel,vCode);
+        Boolean flag =  SendSmsUtil.sendSms(tel,vCode,isLogin);
         if(flag){
             redisDao.setRedis(tel,vCode);
             return  MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.MSG_SENT_SUCCESS_MSG);

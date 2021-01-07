@@ -75,15 +75,15 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
                 '我的',
                 style: TextStyle(color: _bottomNavigationColor),
               )),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.account_balance,
-                color: _bottomNavigationColor,
-              ),
-              title: Text(
-                '自习室',
-                style: TextStyle(color: _bottomNavigationColor),
-              )),
+          // BottomNavigationBarItem(
+          //     icon: Icon(
+          //       Icons.account_balance,
+          //       color: _bottomNavigationColor,
+          //     ),
+          //     title: Text(
+          //       '自习室',
+          //       style: TextStyle(color: _bottomNavigationColor),
+          //     )),
         ],
         currentIndex: _currentIndex,
         onTap: (int index) {

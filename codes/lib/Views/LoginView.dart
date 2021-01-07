@@ -96,8 +96,7 @@ class MyLoginView extends State<LoginView> {
           children: <Widget>[
             Container(
               padding: EdgeInsets.all(ScreenUtil().setWidth(1.0)),
-              child:
-                  ToggleSwitch(
+              child: ToggleSwitch(
                 minWidth: ScreenUtil().setWidth(290.0),
                 cornerRadius: ScreenUtil().setWidth(50.0),
                 activeBgColors: [Colors.blue, Colors.blue],
@@ -188,17 +187,16 @@ class MyLoginView extends State<LoginView> {
                           bool flag = await Login();
                           if (flag) {
                             Navigator.pushNamed(context, "HomePage");
-                          }else {
-                Fluttertoast.showToast(
-                    msg: "账号或密码错误 TAT",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.BOTTOM,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.redAccent,
-                    textColor: Colors.white,
-                    fontSize: 16.0
-                );
-              }
+                          } else {
+                            Fluttertoast.showToast(
+                                msg: "账号或密码错误 TAT",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.redAccent,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                          }
                           // Navigator.pushNamed(context,"HomePage");
                         },
                       ),
@@ -301,7 +299,7 @@ class MyLoginView extends State<LoginView> {
                       ),
                     ),
                     SizedBox(
-                      height: ScreenUtil().setHeight(80),
+                      height: ScreenUtil().setHeight(60.0),
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(
@@ -324,6 +322,16 @@ class MyLoginView extends State<LoginView> {
                           }
                           // Navigator.pushNamed(context,"HomePage");
                         },
+                      ),
+                    ),
+                    SizedBox(
+                      height: ScreenUtil().setWidth(10),
+                    ),
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, "SignUp"),
+                      child: Text(
+                        "立即注册",
+                        style: TextStyle(color: Colors.black54),
                       ),
                     ),
                   ]))
@@ -373,9 +381,12 @@ class MyLoginView extends State<LoginView> {
     // print(password);
     Dio dio = new Dio();
 
-    String url = "http://10.0.2.2:9000/user-service/loginByVerifyCode?credentials=" +
-         tel+"verify"+
-        "&verificationCode=" +verifyCode;
+    String url =
+        "http://10.0.2.2:9000/user-service/loginByVerifyCode?credentials=" +
+            tel +
+            "verify" +
+            "&verificationCode=" +
+            verifyCode;
     Response response = await dio.get(url);
     print(response.data);
     if (response.data["status"] == 0) {
@@ -441,6 +452,7 @@ class MyLoginView extends State<LoginView> {
         "school": Frog.randomSchoolName()
       });
       response = await dio.post(url, data: formData);
+      print(response.data);
       Frog _frog = Frog(
           response.data["frogId"],
           response.data["name"],
@@ -466,33 +478,30 @@ class MyLoginView extends State<LoginView> {
   }
 
   void getVeriCode() async {
-    if(tel.isEmpty) return;
+    if (tel.isEmpty) return;
     Dio dio = new Dio();
     String url = "http://10.0.2.2:9000/user-service/verifyLogin/tel";
-    FormData formData = FormData.fromMap({'tel':tel});
-    Response response = await dio.post(url,data:formData);
+    FormData formData = FormData.fromMap({'tel': tel});
+    Response response = await dio.post(url, data: formData);
     print(response.data["status"]);
   }
-
 
   void myCountDown() {
     setState(() {
       countDown = 60;
     });
-    timer = new Timer.periodic(
-        Duration(milliseconds: 1000), (timer){
-      if(countDown == 0){
+    timer = new Timer.periodic(Duration(milliseconds: 1000), (timer) {
+      if (countDown == 0) {
         timer.cancel();
         return;
       }
       setState(() {
-        countDown --;
+        countDown--;
       });
     });
 
     return;
   }
-
 
   Future<void> createFirstFrog(int userId) async {
     Dio dio = new Dio();

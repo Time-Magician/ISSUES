@@ -8,11 +8,11 @@ spring:
       resourceserver:
         jwt:
           # 获取JWT验签公钥请求路径
-          jwk-set-uri: 'http://authorization-server:8080/rsa/publicKey'
+          jwk-set-uri: 'http://localhost:8080/rsa/publicKey'
   cloud:
     nacos:
       discovery:
-        server-addr: http://nacos:8848
+        server-addr: http://localhost:8848
     gateway:
       discovery:
         locator:

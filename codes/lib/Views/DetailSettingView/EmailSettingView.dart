@@ -88,7 +88,7 @@ class MyEmailSettingView extends State<EmailSettingView>{
     if(!emailValidator(email)) return;
     Dio dio = new Dio();
     dio.options.headers["authorization"] = "Bearer "+Global.token;
-    String url = "http://"+":9000/user-service/verify/email";
+    String url = "http://"+Global.url+":9000/user-service/verify/email";
     FormData formData = FormData.fromMap({'email':email});
     Response response = await dio.post(url,data:formData);
     print(response.data["status"]);
@@ -135,6 +135,7 @@ class MyEmailSettingView extends State<EmailSettingView>{
       return false;
     }
     if(!isEmail(val)){
+      print(val);
       Fluttertoast.showToast(
           msg: "邮箱格式不正确",
           toastLength: Toast.LENGTH_SHORT,

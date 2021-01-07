@@ -40,7 +40,7 @@ class _MyHomePageState extends State<_MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Syncfusion Flutter chart'),
+          // title: const Text('我的学习记录'),
           actions: <Widget>[
             new MaterialButton(
               child: Text(

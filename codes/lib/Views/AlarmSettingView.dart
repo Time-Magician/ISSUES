@@ -182,7 +182,7 @@ class MySettings extends State<Settings>{
                   OrderTitle(title: "标签", icon: Icons.loyalty, subtitle: widget.alarmInfo.label, onClick: "label"),
                   OrderTitle(title: "铃声", icon: Icons.audiotrack, subtitle: widget.alarmInfo.audio, onClick: "audio"),
                   OrderTitle(title: "重复", icon: Icons.calendar_today, subtitle: generateRepeat(widget.alarmInfo.repeat), onClick: "repeat"),
-                  OrderTitle(title: "振动", icon: Icons.notifications_active, subtitle: widget.alarmInfo.vibration == true?"是":"否", onClick: "vibration"),
+                  // OrderTitle(title: "振动", icon: Icons.notifications_active, subtitle: widget.alarmInfo.vibration == true?"是":"否", onClick: "vibration"),
                   OrderTitle(title: "任务", icon: Icons.games, subtitle: widget.alarmInfo.mission, onClick: "mission"),
                 ],
               ),

@@ -62,7 +62,7 @@ class UserView extends StatelessWidget {
               router: "UserDetail"
           ),
           OrderTitle(
-              title: "设置",
+              title: "系统设置",
               icon: Icons.settings,
               router:"AppSetting"
           ),
@@ -76,14 +76,15 @@ class UserView extends StatelessWidget {
               icon: Icons.message,
               router: "MessagePage"
           ),
-          OrderTitle(
-              title: "关于一心",
-              icon: Icons.favorite
-          ),
+
           OrderTitle(
               title: "学习统计",
               icon: Icons.message,
               router: "Statistics"
+          ),
+          OrderTitle(
+              title: "关于一心",
+              icon: Icons.favorite
           ),
           OrderTitle(
               title: "退出登录",

@@ -1,0 +1,101 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - type: bind
+        source: ./data_source/mysql
+        target: /docker-entrypoint-initdb.d/
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=issues
+    networks:
+      - net
+
+  mongodb:
+    image: mongo:4.2
+    volumes:
+      - type: bind
+        source: ./data_source/mongo
+        target: /docker-entrypoint-initdb.d/
+    ports:
+      - "27017:27017"
+    networks:
+      - net
+
+  user-service:
+    image: user-service:latest
+    build:  ./user-service
+    depends_on:
+      - nacos-server
+    ports:
+      - "4000:4000"
+    environment:
+      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
+    networks:
+      - net
+
+  alarm-service:
+    image: alarm-service:latest
+    build:  ./alarm-service
+    depends_on:
+      - nacos-server
+    ports:
+      - "5000:5000"
+    environment:
+      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
+    networks:
+      - net
+
+  study-service:
+    image: study-service:latest
+    build:  ./study-service
+    depends_on:
+      - nacos-server
+    ports:
+      - "6000:6000"
+    environment:
+      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
+    networks:
+      - net
+
+  issues-gateway:
+    image: issues-gateway:latest
+    build:  ./issues-gateway
+    ports:
+      - "9000:9000"
+    depends_on:
+      - nacos-server
+    environment:
+      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
+    networks:
+      - net
+
+  authorization-server:
+    image: authorization-server:latest
+    build:  ./authorization-server
+    depends_on:
+      - nacos-server
+    ports:
+      - "8080:8080"
+    environment:
+      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
+    networks:
+      - net
+
+  nacos:
+    image: nacos/nacos-server:latest
+    ports:
+      - "8848"
+    environment:
+      - MODE=standalone
+    networks:
+      - net
+
+
+networks:
+  net:
+    driver: bridge

@@ -1,0 +1,10 @@
+OpenJDK 64-Bit Server VM (25.272-b10) for linux-amd64 JRE (1.8.0_272-b10), built on Nov  4 2020 21:49:13 by "mockbuild" with gcc 4.8.5 20150623 (Red Hat 4.8.5-44)
+Memory: 4k page, physical 12985708k(6731420k free), swap 4194304k(4194304k free)
+CommandLine flags: -XX:GCLogFileSize=104857600 -XX:InitialHeapSize=2147483648 -XX:MaxHeapSize=2147483648 -XX:MaxNewSize=1073741824 -XX:NewSize=1073741824 -XX:NumberOfGCLogFiles=10 -XX:+PrintGC -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:+UseGCLogFileRotation -XX:+UseParallelGC 
+2021-01-07T13:12:09.594+0800: 1.778: [GC (Metadata GC Threshold) [PSYoungGen: 597693K->15350K(917504K)] 597693K->15438K(1966080K), 0.0401592 secs] [Times: user=0.16 sys=0.00, real=0.04 secs] 
+2021-01-07T13:12:09.635+0800: 1.819: [Full GC (Metadata GC Threshold) [PSYoungGen: 15350K->0K(917504K)] [ParOldGen: 88K->15166K(1048576K)] 15438K->15166K(1966080K), [Metaspace: 20684K->20684K(1069056K)], 0.0612955 secs] [Times: user=0.34 sys=0.02, real=0.06 secs] 
+2021-01-07T13:12:11.927+0800: 4.111: [GC (Allocation Failure) [PSYoungGen: 786432K->55332K(917504K)] 801598K->70507K(1966080K), 0.0902274 secs] [Times: user=0.25 sys=0.02, real=0.09 secs] 
+2021-01-07T13:12:13.378+0800: 5.562: [GC (Metadata GC Threshold) [PSYoungGen: 429759K->22705K(917504K)] 444934K->37888K(1966080K), 0.0255557 secs] [Times: user=0.11 sys=0.00, real=0.02 secs] 
+2021-01-07T13:12:13.404+0800: 5.588: [Full GC (Metadata GC Threshold) [PSYoungGen: 22705K->0K(917504K)] [ParOldGen: 15182K->28259K(1048576K)] 37888K->28259K(1966080K), [Metaspace: 34200K->34200K(1081344K)], 0.0812075 secs] [Times: user=0.52 sys=0.01, real=0.09 secs] 
+2021-01-07T13:12:26.832+0800: 19.016: [GC (Metadata GC Threshold) [PSYoungGen: 780343K->31403K(917504K)] 808602K->59671K(1966080K), 0.0349495 secs] [Times: user=0.20 sys=0.00, real=0.04 secs] 
+2021-01-07T13:12:26.868+0800: 19.052: [Full GC (Metadata GC Threshold) [PSYoungGen: 31403K->0K(917504K)] [ParOldGen: 28267K->47966K(1048576K)] 59671K->47966K(1966080K), [Metaspace: 56952K->56952K(1101824K)], 0.1402001 secs] [Times: user=0.83 sys=0.00, real=0.14 secs] 

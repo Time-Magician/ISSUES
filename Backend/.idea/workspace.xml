@@ -24,25 +24,9 @@
   <component name="ChangeListManager">
     <list default="true" id="904a45ad-a0cc-447e-9093-076e0ca2935d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarm-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/alarm-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authorization-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/authorization-server/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/alipay-jraft.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/alipay-jraft.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/config-fatal.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-fatal.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/config-memory.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-memory.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/config-server.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/config-server.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/nacos-cluster.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/nacos-cluster.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/nacos.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/nacos.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/nacos_gc.log.0.current" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/nacos_gc.log.0.current" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/naming-distro.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-distro.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/naming-event.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-event.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/naming-raft.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-raft.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/naming-server.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/naming-server.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/protocol-raft.log" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/protocol-raft.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nacos/standalone-logs/start.out" beforeDir="false" afterPath="$PROJECT_DIR$/nacos/standalone-logs/start.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/study-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +165,7 @@
       <workItem from="1608705529312" duration="1798000" />
       <workItem from="1609934266585" duration="1239000" />
       <workItem from="1609939068830" duration="66000" />
-      <workItem from="1609998070389" duration="12074000" />
+      <workItem from="1609998070389" duration="14281000" />
     </task>
     <servers />
   </component>

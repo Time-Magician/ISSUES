@@ -25270,3 +25270,57 @@ Caused by: java.lang.IllegalStateException: No DataSource set
 
 2021-01-07 18:08:26,999 INFO [capacityManagement] end correct usage, cost: 0s
 
+2021-01-07 18:18:26,999 WARN clearConfigHistory start
+
+2021-01-07 18:18:26,999 INFO [capacityManagement] start correct usage
+
+2021-01-07 18:18:27,002 INFO [capacityManagement] end correct usage, cost: 0s
+
+2021-01-07 18:28:27,001 WARN clearConfigHistory start
+
+2021-01-07 18:28:27,002 INFO [capacityManagement] start correct usage
+
+2021-01-07 18:28:27,004 INFO [capacityManagement] end correct usage, cost: 0s
+
+2021-01-07 18:38:27,003 WARN clearConfigHistory start
+
+2021-01-07 18:38:27,005 INFO [capacityManagement] start correct usage
+
+2021-01-07 18:38:27,007 INFO [capacityManagement] end correct usage, cost: 0s
+
+2021-01-07 18:48:27,006 WARN clearConfigHistory start
+
+2021-01-07 18:48:27,007 INFO [capacityManagement] start correct usage
+
+2021-01-07 18:48:27,009 INFO [capacityManagement] end correct usage, cost: 0s
+
+2021-01-07 18:58:27,008 WARN clearConfigHistory start
+
+2021-01-07 18:58:27,009 INFO [capacityManagement] start correct usage
+
+2021-01-07 18:58:27,011 INFO [capacityManagement] end correct usage, cost: 0s
+
+2021-01-07 19:08:27,010 WARN clearConfigHistory start
+
+2021-01-07 19:08:27,012 INFO [capacityManagement] start correct usage
+
+2021-01-07 19:08:27,014 INFO [capacityManagement] end correct usage, cost: 0s
+
+2021-01-07 19:18:27,013 WARN clearConfigHistory start
+
+2021-01-07 19:18:27,015 INFO [capacityManagement] start correct usage
+
+2021-01-07 19:18:27,016 INFO [capacityManagement] end correct usage, cost: 0s
+
+2021-01-07 19:28:27,015 WARN clearConfigHistory start
+
+2021-01-07 19:28:27,017 INFO [capacityManagement] start correct usage
+
+2021-01-07 19:28:27,019 INFO [capacityManagement] end correct usage, cost: 0s
+
+2021-01-07 19:38:27,017 WARN clearConfigHistory start
+
+2021-01-07 19:38:27,019 INFO [capacityManagement] start correct usage
+
+2021-01-07 19:38:27,021 INFO [capacityManagement] end correct usage, cost: 0s
+

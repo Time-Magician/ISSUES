@@ -1,0 +1,97 @@
+2021-01-07 16:30:52,893 INFO DEFAULT_GROUP@@issues-gateway is changed, add it to push queue.
+
+2021-01-07 16:30:52,904 INFO serviceName: DEFAULT_GROUP@@issues-gateway changed, schedule push for: 172.19.0.5:47355, agent: Nacos-Java-Client:v1.3.3, key: 172.19.0.5,47355,14865680520088
+
+2021-01-07 16:30:52,905 INFO send udp packet: 172.19.0.5,47355,14865680520088
+
+2021-01-07 16:30:52,907 INFO serviceName: DEFAULT_GROUP@@issues-gateway changed, schedule push for: 172.19.0.5:47355, agent: Nacos-Java-Client:v1.3.3, key: 172.19.0.5,47355,14865680520088
+
+2021-01-07 16:30:52,907 INFO send udp packet: 172.19.0.5,47355,14865680520088
+
+2021-01-07 16:30:52,917 INFO received ack: {"type": "push-ack", "lastRefTime":"14865680520088", "data":""} from: 172.19.0.5:47355, cost: 10 ms, unacked: 0, total push: 1
+
+2021-01-07 16:30:52,961 ERROR [NACOS-PUSH] error while receiving ack data
+
+java.lang.IllegalStateException: unable to find ackEntry for key: 172.19.0.5,47355,14865680520088, ack json: {"type": "push-ack", "lastRefTime":"14865680520088", "data":""}
+	at com.alibaba.nacos.naming.push.PushService$Receiver.run(PushService.java:677)
+	at java.lang.Thread.run(Thread.java:748)
+2021-01-07 17:06:34,871 INFO DEFAULT_GROUP@@alarm-service is changed, add it to push queue.
+
+2021-01-07 17:06:34,947 INFO serviceName: DEFAULT_GROUP@@alarm-service changed, schedule push for: 172.19.0.6:50998, agent: Nacos-Java-Client:v1.3.3, key: 172.19.0.6,50998,17007729553588
+
+2021-01-07 17:06:34,948 INFO send udp packet: 172.19.0.6,50998,17007729553588
+
+2021-01-07 17:06:34,983 INFO received ack: {"type": "push-ack", "lastRefTime":"17007729553588", "data":""} from: 172.19.0.6:50998, cost: 35 ms, unacked: 0, total push: 2
+
+2021-01-07 17:06:38,498 INFO DEFAULT_GROUP@@issues-auth is changed, add it to push queue.
+
+2021-01-07 17:06:38,499 INFO serviceName: DEFAULT_GROUP@@issues-auth changed, schedule push for: 172.19.0.7:43399, agent: Nacos-Java-Client:v1.3.3, key: 172.19.0.7,43399,17011281838288
+
+2021-01-07 17:06:38,500 INFO send udp packet: 172.19.0.7,43399,17011281838288
+
+2021-01-07 17:06:38,507 INFO received ack: {"type": "push-ack", "lastRefTime":"17011281838288", "data":""} from: 172.19.0.7:43399, cost: 7 ms, unacked: 0, total push: 3
+
+2021-01-07 17:06:41,367 INFO DEFAULT_GROUP@@study-service is changed, add it to push queue.
+
+2021-01-07 17:06:41,368 INFO serviceName: DEFAULT_GROUP@@study-service changed, schedule push for: 172.19.0.9:48541, agent: Nacos-Java-Client:v1.3.3, key: 172.19.0.9,48541,17014150132488
+
+2021-01-07 17:06:41,368 INFO send udp packet: 172.19.0.9,48541,17014150132488
+
+2021-01-07 17:06:41,374 INFO received ack: {"type": "push-ack", "lastRefTime":"17014150132488", "data":""} from: 172.19.0.9:48541, cost: 6 ms, unacked: 0, total push: 4
+
+2021-01-07 17:06:42,838 INFO DEFAULT_GROUP@@user-service is changed, add it to push queue.
+
+2021-01-07 17:06:42,839 INFO serviceName: DEFAULT_GROUP@@user-service changed, schedule push for: 172.19.0.10:51973, agent: Nacos-Java-Client:v1.3.3, key: 172.19.0.10,51973,17015621429888
+
+2021-01-07 17:06:42,839 INFO send udp packet: 172.19.0.10,51973,17015621429888
+
+2021-01-07 17:06:42,843 INFO received ack: {"type": "push-ack", "lastRefTime":"17015621429888", "data":""} from: 172.19.0.10:51973, cost: 4 ms, unacked: 0, total push: 5
+
+2021-01-07 17:30:06,246 INFO DEFAULT_GROUP@@user-service is changed, add it to push queue.
+
+2021-01-07 17:30:06,258 INFO serviceName: DEFAULT_GROUP@@user-service changed, schedule push for: 172.19.0.5:47355, agent: Nacos-Java-Client:v1.3.3, key: 172.19.0.5,47355,18419040244688
+
+2021-01-07 17:30:06,258 INFO send udp packet: 172.19.0.5,47355,18419040244688
+
+2021-01-07 17:30:06,259 INFO serviceName: DEFAULT_GROUP@@user-service changed, schedule push for: 172.19.0.10:51973, agent: Nacos-Java-Client:v1.3.3, key: 172.19.0.10,51973,18419040244688
+
+2021-01-07 17:30:06,259 INFO send udp packet: 172.19.0.10,51973,18419040244688
+
+2021-01-07 17:30:06,261 INFO received ack: {"type": "push-ack", "lastRefTime":"18419040244688", "data":""} from: 172.19.0.5:47355, cost: 3 ms, unacked: 1, total push: 7
+
+2021-01-07 17:30:06,261 INFO received ack: {"type": "push-ack", "lastRefTime":"18419040244688", "data":""} from: 172.19.0.10:51973, cost: 2 ms, unacked: 0, total push: 7
+
+2021-01-07 17:33:16,238 INFO DEFAULT_GROUP@@user-service is changed, add it to push queue.
+
+2021-01-07 17:33:16,259 INFO serviceName: DEFAULT_GROUP@@user-service changed, schedule push for: 172.19.0.10:57583, agent: Nacos-Java-Client:v1.3.3, key: 172.19.0.10,57583,18609041635288
+
+2021-01-07 17:33:16,260 INFO send udp packet: 172.19.0.10,57583,18609041635288
+
+2021-01-07 17:33:16,263 INFO received ack: {"type": "push-ack", "lastRefTime":"18609041635288", "data":""} from: 172.19.0.10:57583, cost: 3 ms, unacked: 0, total push: 8
+
+2021-01-07 22:36:59,925 INFO DEFAULT_GROUP@@issues-auth is changed, add it to push queue.
+
+2021-01-07 22:37:04,404 INFO DEFAULT_GROUP@@study-service is changed, add it to push queue.
+
+2021-01-07 22:37:04,404 INFO DEFAULT_GROUP@@user-service is changed, add it to push queue.
+
+2021-01-07 22:37:04,405 INFO serviceName: DEFAULT_GROUP@@user-service changed, schedule push for: 172.19.0.5:47355, agent: Nacos-Java-Client:v1.3.3, key: 172.19.0.5,47355,35636595906288
+
+2021-01-07 22:37:04,406 INFO send udp packet: 172.19.0.5,47355,35636595906288
+
+2021-01-07 22:37:04,406 INFO serviceName: DEFAULT_GROUP@@user-service changed, schedule push for: 172.19.0.10:57583, agent: Nacos-Java-Client:v1.3.3, key: 172.19.0.10,57583,35636595906288
+
+2021-01-07 22:37:04,407 INFO send udp packet: 172.19.0.10,57583,35636595906288
+
+2021-01-07 22:37:04,407 INFO received ack: {"type": "push-ack", "lastRefTime":"35636595906288", "data":""} from: 172.19.0.5:47355, cost: 1 ms, unacked: 1, total push: 10
+
+2021-01-07 22:37:04,408 INFO received ack: {"type": "push-ack", "lastRefTime":"35636595906288", "data":""} from: 172.19.0.10:57583, cost: 1 ms, unacked: 0, total push: 10
+
+2021-01-07 22:37:04,701 INFO DEFAULT_GROUP@@issues-auth is changed, add it to push queue.
+
+2021-01-07 22:37:04,701 INFO serviceName: DEFAULT_GROUP@@issues-auth changed, schedule push for: 172.19.0.7:43399, agent: Nacos-Java-Client:v1.3.3, key: 172.19.0.7,43399,35636892289088
+
+2021-01-07 22:37:04,701 INFO send udp packet: 172.19.0.7,43399,35636892289088
+
+2021-01-07 22:37:04,703 INFO received ack: {"type": "push-ack", "lastRefTime":"35636892289088", "data":""} from: 172.19.0.7:43399, cost: 2 ms, unacked: 0, total push: 11
+

@@ -1,0 +1,96 @@
+2021-01-07 13:10:19,097 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 13:12:37,027 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 13:20:04,162 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 13:26:18,914 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 13:30:01,888 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 13:31:44,630 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 13:37:34,198 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 13:43:29,458 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 13:48:04,530 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 13:49:42,311 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 13:52:02,057 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 13:52:45,617 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 13:56:26,390 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 14:39:51,715 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 14:43:41,544 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 14:45:59,764 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 14:48:58,441 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 15:07:13,128 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 16:09:20,706 ERROR [UPDATE-DOMAIN] Exception while taking item from LinkedBlockingDeque.
+
+2021-01-07 16:30:51,890 INFO DEFAULT_GROUP@@issues-gateway {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [172.19.0.5:9000:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2021-01-07 16:30:51,893 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@issues-gateway, ips: 172.19.0.5:9000_true,
+
+2021-01-07 17:06:33,870 INFO DEFAULT_GROUP@@alarm-service {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [172.19.0.6:5000:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2021-01-07 17:06:33,871 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@alarm-service, ips: 172.19.0.6:5000_true,
+
+2021-01-07 17:06:37,493 INFO DEFAULT_GROUP@@issues-auth {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [172.19.0.7:8080:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2021-01-07 17:06:37,494 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@issues-auth, ips: 172.19.0.7:8080_true,
+
+2021-01-07 17:06:40,366 INFO DEFAULT_GROUP@@study-service {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [172.19.0.9:6000:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2021-01-07 17:06:40,367 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@study-service, ips: 172.19.0.9:6000_true,
+
+2021-01-07 17:06:41,837 INFO DEFAULT_GROUP@@user-service {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [172.19.0.10:4000:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2021-01-07 17:06:41,838 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@user-service, ips: 172.19.0.10:4000_true,
+
+2021-01-07 17:30:05,246 INFO DEFAULT_GROUP@@user-service {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [172.19.0.10:4000:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2021-01-07 17:30:05,246 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@user-service, ips: 
+
+2021-01-07 17:33:15,238 INFO DEFAULT_GROUP@@user-service {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [172.19.0.10:4000:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2021-01-07 17:33:15,238 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@user-service, ips: 172.19.0.10:4000_true,
+
+2021-01-07 22:36:58,924 INFO {POS} {IP-DISABLED} valid: 172.19.0.7:8080@DEFAULT@DEFAULT_GROUP@@issues-auth, region: unknown, msg: client timeout after 15000, last beat: 1610029018104
+
+2021-01-07 22:36:59,260 INFO DEFAULT_GROUP@@issues-auth {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [172.19.0.7:8080:unknown:DEFAULT_1.0_false_false_DEFAULT]
+
+2021-01-07 22:36:59,260 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@issues-auth, ips: 
+
+2021-01-07 22:37:03,404 INFO {POS} {IP-DISABLED} valid: 172.19.0.10:4000@DEFAULT@DEFAULT_GROUP@@user-service, region: unknown, msg: client timeout after 15000, last beat: 1610029017816
+
+2021-01-07 22:37:03,404 INFO {POS} {IP-DISABLED} valid: 172.19.0.9:6000@DEFAULT@DEFAULT_GROUP@@study-service, region: unknown, msg: client timeout after 15000, last beat: 1610029017817
+
+2021-01-07 22:37:03,409 INFO DEFAULT_GROUP@@user-service {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [172.19.0.10:4000:unknown:DEFAULT_1.0_false_false_DEFAULT]
+
+2021-01-07 22:37:03,409 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@user-service, ips: 
+
+2021-01-07 22:37:03,410 INFO DEFAULT_GROUP@@study-service {SYNC} {IP-DEAD} cluster: DEFAULT, dead ips size: 1, content: [172.19.0.9:6000:unknown:DEFAULT_1.0_false_false_DEFAULT]
+
+2021-01-07 22:37:03,412 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@study-service, ips: 
+
+2021-01-07 22:37:03,421 INFO DEFAULT_GROUP@@user-service {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [172.19.0.10:4000:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2021-01-07 22:37:03,421 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@user-service, ips: 172.19.0.10:4000_true,
+
+2021-01-07 22:37:03,421 INFO DEFAULT_GROUP@@study-service {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [172.19.0.9:6000:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2021-01-07 22:37:03,421 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@study-service, ips: 172.19.0.9:6000_true,
+
+2021-01-07 22:37:03,701 INFO DEFAULT_GROUP@@issues-auth {SYNC} {IP-NEW} cluster: DEFAULT, new ips size: 1, content: [172.19.0.7:8080:unknown:DEFAULT_1.0_true_false_DEFAULT]
+
+2021-01-07 22:37:03,701 INFO [IP-UPDATED] namespace: public, service: DEFAULT_GROUP@@issues-auth, ips: 172.19.0.7:8080_true,
+

@@ -1,13 +1,11 @@
-version: '3.7'
+version: '3.3'
 
 services:
   mysql:
     image: mysql:8.0
     container_name: mysql
     volumes:
-      - type: bind
-        source: ./data_source/mysql
-        target: /docker-entrypoint-initdb.d/
+      - ./data_source/mysql/nacos-mysql.sql:/nacos.sql
     ports:
       - "3306:3306"
     environment:
@@ -16,35 +14,36 @@ services:
       - MYSQL_USER=root
       - MYSQL_PASSWORD=root
     networks:
-      - net
+      - issues-net
 
   nacos:
     image: nacos/nacos-server:latest
-    container_name: nacos-server
+    container_name: nacos
     env_file:
       - ./nacos/env/nacos-standlone-mysql.env
     ports:
       - "8848:8848"
+      - "9555:9555"
     volumes:
       - ./nacos/standalone-logs/:/home/nacos/logs
-      - ./nacos/init.d:/home/nacos/init.d
+      - ./nacos/init.d/custom-v2.properties:/home/nacos/init.d/custom.properties
     depends_on:
       - mysql
     restart: always
     networks:
-      - net
+      - issues-net
 
-  mongodb:
-    image: mongo:4.2
-    container_name: issues_mongodb
-    volumes:
-      - type: bind
-        source: ./data_source/redis
-        target: /docker-entrypoint-initdb.d/
-    ports:
-      - "27017:27017"
-    networks:
-      - net
+#  mongodb:
+#    image: mongo:4.2
+#    container_name: mongodb
+#    volumes:
+#      - type: bind
+#        source: ./data_source/redis
+#        target: /docker-entrypoint-initdb.d/
+#    ports:
+#      - "27017:27017"
+#    networks:
+#      - net
 
   redis:
     image: redis:latest
@@ -94,17 +93,18 @@ services:
 #    networks:
 #      - net
 #
-#  issues-gateway:
-#    image: issues-gateway:latest
-#    build:  ./issues-gateway
-#    ports:
-#      - "9000:9000"
-#    depends_on:
-#      - nacos
-#    environment:
-#      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
-#    networks:
-#      - net
+  issues-gateway:
+    image: issues-gateway:latest
+    container_name: issues-gateway
+    build:  ./issues-gateway
+    ports:
+      - "9000:9000"
+    depends_on:
+      - nacos
+    environment:
+      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
+    networks:
+      - issues-net
 #
 #  authorization-server:
 #    image: authorization-server:latest
@@ -117,6 +117,7 @@ services:
 #      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
 #    networks:
 #      - net
+
 networks:
-  net:
+  issues-net:
     driver: bridge

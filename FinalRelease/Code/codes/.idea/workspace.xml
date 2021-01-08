@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5ca88278-3eda-4c6f-8757-36836e033e87" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Backend/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Backend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Backend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Views/LoginView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/LoginView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Views/SignUpView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/SignUpView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/Views/UserView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/Views/UserView.dart" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_28" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1kRJorzCMYeF47QSxCrj4QZRi4b" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="1" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Backend" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.statistic.project.settings" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5ca88278-3eda-4c6f-8757-36836e033e87" name="Default Changelist" comment="" />
+      <created>1605657649080</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605657649080</updated>
+      <workItem from="1605657661830" duration="110000" />
+      <workItem from="1605658014933" duration="33646000" />
+      <workItem from="1605884338923" duration="19000" />
+      <workItem from="1605943924745" duration="13673000" />
+      <workItem from="1605959202200" duration="1447000" />
+      <workItem from="1606102041805" duration="1513000" />
+      <workItem from="1606281684190" duration="720000" />
+      <workItem from="1606283187362" duration="18403000" />
+      <workItem from="1606455469933" duration="15181000" />
+      <workItem from="1606560644745" duration="5760000" />
+      <workItem from="1606653740549" duration="3000" />
+      <workItem from="1606998066453" duration="2000" />
+      <workItem from="1607060706933" duration="7339000" />
+      <workItem from="1607667804171" duration="15088000" />
+      <workItem from="1607690633347" duration="43000" />
+      <workItem from="1607768028328" duration="4195000" />
+      <workItem from="1608080603742" duration="1433000" />
+      <workItem from="1608269451708" duration="292000" />
+      <workItem from="1608270488447" duration="23466000" />
+      <workItem from="1608356165406" duration="12891000" />
+      <workItem from="1608560992798" duration="6000" />
+      <workItem from="1609079278987" duration="2000" />
+      <workItem from="1609589967480" duration="2396000" />
+      <workItem from="1609818419167" duration="826000" />
+      <workItem from="1609843741574" duration="5196000" />
+      <workItem from="1609928500040" duration="31314000" />
+      <workItem from="1610020315442" duration="6237000" />
+      <workItem from="1610070321462" duration="2932000" />
+      <workItem from="1610086401231" duration="622000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1610086422869">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1610086422869" />
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom" timestamp="1610074356310">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610074356310" />
+    <state width="1493" height="203" key="GridCell.Tab.0.center" timestamp="1610074356309">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1610074356309" />
+    <state width="1493" height="203" key="GridCell.Tab.0.left" timestamp="1610074356309">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1610074356309" />
+    <state width="1493" height="203" key="GridCell.Tab.0.right" timestamp="1610074356309">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="203" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1610074356309" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1610070434341">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1610070434341" />
+    <state x="619" y="124" key="VCS.ChangeListViewerDialog" timestamp="1609947949131">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="619" y="124" key="VCS.ChangeListViewerDialog/0.0.1536.824@0.0.1536.824" timestamp="1609947949131" />
+    <state x="93" y="93" width="1350" height="638" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1610068544983">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1536.824@0.0.1536.824" timestamp="1610068544983" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1610071484692">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1610071484692" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1610004632393">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1610004632393" />
+  </component>
+</project>

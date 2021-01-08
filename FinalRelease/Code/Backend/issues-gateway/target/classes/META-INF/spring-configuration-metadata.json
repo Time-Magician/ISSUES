@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "whitelist",
+      "type": "com.example.issuesgateway.config.WhiteListConfig",
+      "sourceType": "com.example.issuesgateway.config.WhiteListConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "whitelist.urls",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.example.issuesgateway.config.WhiteListConfig"
+    }
+  ],
+  "hints": []
+}

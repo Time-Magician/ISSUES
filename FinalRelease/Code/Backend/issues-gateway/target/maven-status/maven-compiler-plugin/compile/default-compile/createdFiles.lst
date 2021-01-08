@@ -1,0 +1,7 @@
+com\example\issuesgateway\config\ResourceServerConfig.class
+com\example\issuesgateway\security\AuthorizationManager.class
+com\example\issuesgateway\filters\AuthorizeFilter.class
+com\example\issuesgateway\constant\AuthConstants.class
+com\example\issuesgateway\IssuesGatewayApplication.class
+com\example\issuesgateway\config\WhiteListConfig.class
+META-INF\spring-configuration-metadata.json

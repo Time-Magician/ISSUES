@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.springframework.cloud:spring-cloud-security:3.0.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-security/3.0.0-SNAPSHOT/spring-cloud-security-3.0.0-20201124.124135-439.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-security/3.0.0-SNAPSHOT/spring-cloud-security-3.0.0-20201124.124135-439-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-security/3.0.0-SNAPSHOT/spring-cloud-security-3.0.0-20201124.124135-439-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

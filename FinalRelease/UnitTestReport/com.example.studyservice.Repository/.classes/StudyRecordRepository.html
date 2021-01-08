@@ -1,0 +1,64 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: StudyRecordRepository</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.example.studyservice.Repository</a> ]
+</div>
+
+<h1>Coverage Summary for Class: StudyRecordRepository (com.example.studyservice.Repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">StudyRecordRepository</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.example.studyservice.Repository;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.example.studyservice.Entity.StudyRecord;
+<i>4</i>&nbsp;import org.springframework.data.jpa.repository.JpaRepository;
+<i>5</i>&nbsp;import org.springframework.data.jpa.repository.Query;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import javax.swing.text.Style;
+<i>8</i>&nbsp;import java.sql.Date;
+<i>9</i>&nbsp;import java.util.List;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;public interface StudyRecordRepository extends JpaRepository&lt;StudyRecord,Integer&gt; {
+<i>12</i>&nbsp;    @Query(nativeQuery = true,value=&quot;select * from study_records where user_id=?1&quot;)
+<i>13</i>&nbsp;   List&lt;StudyRecord&gt; getStudyRecordsByUser(int userId);
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    @Query(nativeQuery = true,value=&quot;select * from study_records where user_id=?1 and start_time = ?2&quot;)
+<i>16</i>&nbsp;    StudyRecord getStudyRecordByUserAndStartTime(int userId, Date startTime);
+<i>17</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-01-08 13:19</div>
+</div>
+</body>
+</html>

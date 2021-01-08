@@ -1,0 +1,80 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UserDao</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.example.userservice.Dao</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UserDao (com.example.userservice.Dao)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">UserDao</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.example.userservice.Dao;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.example.userservice.Entity.Message;
+<i>4</i>&nbsp;import com.example.userservice.Entity.User;
+<i>5</i>&nbsp;import com.example.userservice.util.msgUtils.Msg;
+<i>6</i>&nbsp;import org.springframework.web.multipart.MultipartFile;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import java.io.FileNotFoundException;
+<i>9</i>&nbsp;import java.io.IOException;
+<i>10</i>&nbsp;import org.bson.types.ObjectId;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import java.util.List;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;public interface UserDao {
+<i>15</i>&nbsp;    User getUserById(int userId);
+<i>16</i>&nbsp;    User addUser(User user);
+<i>17</i>&nbsp;    List&lt;User&gt; getAllUsers();
+<i>18</i>&nbsp;    User checkTelDuplicate(String tel);
+<i>19</i>&nbsp;    User checkEmailDuplicate(String email);
+<i>20</i>&nbsp;    User getUserByTel(String tel);
+<i>21</i>&nbsp;    void modifyUsername(int userId, String username);
+<i>22</i>&nbsp;    void modifyGender(int userId,String gender);
+<i>23</i>&nbsp;    void modifyName(int userId, String name);
+<i>24</i>&nbsp;    void modifyEmail(int userId, String email);
+<i>25</i>&nbsp;    void modifyProfilePicture(int userId, MultipartFile profilePicture) throws IOException;
+<i>26</i>&nbsp;    User getUserByEmail(String email);
+<i>27</i>&nbsp;    List&lt;User&gt; getFriendList(int userId);
+<i>28</i>&nbsp;    User deleteFriend(int userId, int friendId);
+<i>29</i>&nbsp;    User addFriend(int userId, int friendId);
+<i>30</i>&nbsp;    List&lt;Message&gt; getMessages(int userId);
+<i>31</i>&nbsp;    Message addMessage(int senderId, int receiverId, String time, String type, String detail);
+<i>32</i>&nbsp;    Message updateMessage(String messageId);
+<i>33</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-01-08 13:19</div>
+</div>
+</body>
+</html>

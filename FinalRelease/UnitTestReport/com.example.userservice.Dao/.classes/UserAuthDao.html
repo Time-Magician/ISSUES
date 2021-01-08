@@ -1,0 +1,62 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UserAuthDao</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.example.userservice.Dao</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UserAuthDao (com.example.userservice.Dao)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">UserAuthDao</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.example.userservice.Dao;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.example.userservice.Entity.User;
+<i>4</i>&nbsp;import com.example.userservice.Entity.UserAuth;
+<i>5</i>&nbsp;import com.example.userservice.util.msgUtils.Msg;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;public interface UserAuthDao {
+<i>8</i>&nbsp;    UserAuth addUserAuth(UserAuth userAuth);
+<i>9</i>&nbsp;    UserAuth findUserByTelOrEmailAndPassword(String credentials,String password);
+<i>10</i>&nbsp;    boolean checkUserByIdAndPassword(int userId,String password);
+<i>11</i>&nbsp;    void modifyPassword(int userId,String password);
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    Msg disableUser(int userId);
+<i>14</i>&nbsp;    Msg enableUser(int userId);
+<i>15</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-01-08 13:19</div>
+</div>
+</body>
+</html>

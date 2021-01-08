@@ -1,0 +1,32 @@
+#redis:
+#    pool:
+#        maxActive: 600
+#        maxIdle: 300
+#        maxWait: 3000
+server:
+    port: 8080
+spring:
+    cloud:
+      nacos:
+        discovery:
+            server-addr: http://nacos:8848
+    application:
+        name: issues-auth
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        password: root
+        tomcat:
+            max-active: 20
+        url: jdbc:mysql://mysql:3306/issues?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&autoReconnect=true&failOverReadOnly=false
+        username: root
+    jpa:
+        database: mysql
+        properties:
+            hibernate:
+                hbm2ddl:
+                    auto: update
+        show-sql: true
+#    redis:
+#        database: 0
+#        host: 127.0.0.1
+#        port: 6379

@@ -1,0 +1,187 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: MailUtil</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.example.userservice.util.emailUtil</a> ]
+</div>
+
+<h1>Coverage Summary for Class: MailUtil (com.example.userservice.util.emailUtil)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MailUtil</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (2/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    86.2%
+  </span>
+  <span class="absValue">
+    (25/ 29)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">MailUtil$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.9%
+  </span>
+  <span class="absValue">
+    (29/ 33)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.example.userservice.util.emailUtil;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import javax.mail.*;
+<i>4</i>&nbsp;import javax.mail.internet.InternetAddress;
+<i>5</i>&nbsp;import javax.mail.internet.MimeMessage;
+<i>6</i>&nbsp;import java.util.Properties;
+<i>7</i>&nbsp;import java.util.Random;
+<i>8</i>&nbsp;
+<b class="nc"><i>9</i>&nbsp;public class MailUtil {</b>
+<i>10</i>&nbsp;    private static final String USER = &quot;SJTU_ISSUES@163.com&quot;; // 发件人称号，同邮箱地址
+<i>11</i>&nbsp;    private static final String PASSWORD = &quot;AYDYAQZVLXFILMNE&quot;; // 如果是qq邮箱可以使户端授权码，或者登录密码
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    /**
+<i>14</i>&nbsp;     *
+<i>15</i>&nbsp;     * @param to 收件人邮箱
+<i>16</i>&nbsp;     * @param text 邮件正文
+<i>17</i>&nbsp;     * @param title 标题
+<i>18</i>&nbsp;     */
+<i>19</i>&nbsp;    /* 发送验证信息的邮件 */
+<i>20</i>&nbsp;    public static boolean sendMail(String to, String text, String title){
+<i>21</i>&nbsp;        try {
+<b class="fc"><i>22</i>&nbsp;            final Properties props = new Properties();</b>
+<b class="fc"><i>23</i>&nbsp;            props.put(&quot;mail.smtp.auth&quot;, &quot;true&quot;);</b>
+<b class="fc"><i>24</i>&nbsp;            props.put(&quot;mail.smtp.host&quot;, &quot;smtp.163.com&quot;);</b>
+<b class="fc"><i>25</i>&nbsp;            props.setProperty(&quot;mail.transport.protocol&quot;, &quot;smtp&quot;);</b>
+<i>26</i>&nbsp;            // 发件人的账号
+<b class="fc"><i>27</i>&nbsp;            props.put(&quot;mail.user&quot;, USER);</b>
+<i>28</i>&nbsp;            //发件人的密码
+<b class="fc"><i>29</i>&nbsp;            props.put(&quot;mail.password&quot;, PASSWORD);</b>
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;            // 构建授权信息，用于进行SMTP进行身份验证
+<b class="fc"><i>32</i>&nbsp;            Authenticator authenticator = new Authenticator() {</b>
+<i>33</i>&nbsp;                @Override
+<i>34</i>&nbsp;                protected PasswordAuthentication getPasswordAuthentication() {
+<i>35</i>&nbsp;                    // 用户名、密码
+<b class="fc"><i>36</i>&nbsp;                    String userName = props.getProperty(&quot;mail.user&quot;);</b>
+<b class="fc"><i>37</i>&nbsp;                    String password = props.getProperty(&quot;mail.password&quot;);</b>
+<b class="fc"><i>38</i>&nbsp;                    return new PasswordAuthentication(userName, password);</b>
+<i>39</i>&nbsp;                }
+<i>40</i>&nbsp;            };
+<i>41</i>&nbsp;            // 使用环境属性和授权信息，创建邮件会话
+<b class="fc"><i>42</i>&nbsp;            Session mailSession = Session.getInstance(props, authenticator);</b>
+<i>43</i>&nbsp;            // 创建邮件消息
+<b class="fc"><i>44</i>&nbsp;            MimeMessage message = new MimeMessage(mailSession);</b>
+<i>45</i>&nbsp;            // 设置发件人
+<b class="fc"><i>46</i>&nbsp;            String username = props.getProperty(&quot;mail.user&quot;);</b>
+<b class="fc"><i>47</i>&nbsp;            InternetAddress form = new InternetAddress(username);</b>
+<b class="fc"><i>48</i>&nbsp;            message.setFrom(form);</b>
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;            // 设置收件人
+<b class="fc"><i>51</i>&nbsp;            InternetAddress toAddress = new InternetAddress(to);</b>
+<b class="fc"><i>52</i>&nbsp;            message.setRecipient(Message.RecipientType.TO, toAddress);</b>
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;            // 设置邮件标题
+<b class="fc"><i>55</i>&nbsp;            message.setSubject(title);</b>
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;            // 设置邮件的内容体
+<b class="fc"><i>58</i>&nbsp;            message.setContent(text, &quot;text/html;charset=UTF-8&quot;);</b>
+<i>59</i>&nbsp;            // 发送邮件
+<b class="fc"><i>60</i>&nbsp;            Transport.send(message);</b>
+<b class="fc"><i>61</i>&nbsp;            return true;</b>
+<b class="nc"><i>62</i>&nbsp;        }catch (Exception e){</b>
+<b class="nc"><i>63</i>&nbsp;            e.printStackTrace();</b>
+<i>64</i>&nbsp;        }
+<b class="nc"><i>65</i>&nbsp;        return false;</b>
+<i>66</i>&nbsp;    }
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    public static String getRandomString(int length){
+<b class="fc"><i>69</i>&nbsp;        final String str=&quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&quot;;</b>
+<b class="fc"><i>70</i>&nbsp;        Random random=new Random();</b>
+<b class="fc"><i>71</i>&nbsp;        StringBuffer result=new StringBuffer();</b>
+<b class="fc"><i>72</i>&nbsp;        for(int i=0;i&lt;length;i++){</b>
+<b class="fc"><i>73</i>&nbsp;            int number=random.nextInt(62);</b>
+<b class="fc"><i>74</i>&nbsp;            result.append(str.charAt(number));</b>
+<i>75</i>&nbsp;        }
+<b class="fc"><i>76</i>&nbsp;        return result.toString();</b>
+<i>77</i>&nbsp;    }
+<i>78</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-01-08 13:19</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,264 @@
+2021-01-07 13:10:04,498 ERROR [master-db] master db not found.
+
+2021-01-07 13:10:09,574 ERROR [db-error] master db  down.
+
+2021-01-07 13:10:12,851 WARN isQuickStart:false
+
+2021-01-07 13:10:12,862 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 13:10:24,667 ERROR [master-db] master db not found.
+
+2021-01-07 13:10:29,637 ERROR [db-error] master db  down.
+
+2021-01-07 13:12:20,275 ERROR [master-db] master db not found.
+
+2021-01-07 13:12:25,296 ERROR [db-error] master db  down.
+
+2021-01-07 13:12:27,843 WARN isQuickStart:false
+
+2021-01-07 13:12:27,847 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 13:12:40,327 ERROR [master-db] master db not found.
+
+2021-01-07 13:12:44,680 ERROR [db-error] master db  down.
+
+2021-01-07 13:19:47,759 ERROR [master-db] master db not found.
+
+2021-01-07 13:19:52,779 ERROR [db-error] master db  down.
+
+2021-01-07 13:19:55,437 WARN isQuickStart:false
+
+2021-01-07 13:19:55,443 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 13:20:07,807 ERROR [master-db] master db not found.
+
+2021-01-07 13:20:11,167 ERROR [db-error] master db  down.
+
+2021-01-07 13:25:58,545 ERROR [master-db] master db not found.
+
+2021-01-07 13:26:03,566 ERROR [db-error] master db  down.
+
+2021-01-07 13:26:06,729 WARN isQuickStart:false
+
+2021-01-07 13:26:06,734 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 13:26:18,611 ERROR [master-db] master db not found.
+
+2021-01-07 13:26:23,547 ERROR [db-error] master db  down.
+
+2021-01-07 13:29:50,961 ERROR [master-db] master db not found.
+
+2021-01-07 13:29:55,978 ERROR [db-error] master db  down.
+
+2021-01-07 13:29:58,713 WARN isQuickStart:false
+
+2021-01-07 13:29:58,719 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 13:30:10,988 ERROR [db-error] master db  down.
+
+2021-01-07 13:30:15,576 ERROR [master-db] master db not found.
+
+2021-01-07 13:31:23,889 ERROR [master-db] master db not found.
+
+2021-01-07 13:31:28,946 ERROR [db-error] master db  down.
+
+2021-01-07 13:31:31,835 WARN isQuickStart:false
+
+2021-01-07 13:31:31,840 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 13:31:44,023 ERROR [master-db] master db not found.
+
+2021-01-07 13:31:48,635 ERROR [db-error] master db  down.
+
+2021-01-07 13:37:17,654 ERROR [master-db] master db not found.
+
+2021-01-07 13:37:22,703 ERROR [db-error] master db  down.
+
+2021-01-07 13:37:25,044 WARN isQuickStart:false
+
+2021-01-07 13:37:25,048 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 13:37:37,772 ERROR [master-db] master db not found.
+
+2021-01-07 13:37:41,905 ERROR [db-error] master db  down.
+
+2021-01-07 13:43:12,516 ERROR [master-db] master db not found.
+
+2021-01-07 13:43:17,569 ERROR [db-error] master db  down.
+
+2021-01-07 13:43:20,279 WARN isQuickStart:false
+
+2021-01-07 13:43:20,283 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 13:43:32,648 ERROR [master-db] master db not found.
+
+2021-01-07 13:43:37,124 ERROR [db-error] master db  down.
+
+2021-01-07 13:47:46,320 ERROR [master-db] master db not found.
+
+2021-01-07 13:47:51,371 ERROR [db-error] master db  down.
+
+2021-01-07 13:47:53,697 WARN isQuickStart:false
+
+2021-01-07 13:47:53,703 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 13:48:06,441 ERROR [master-db] master db not found.
+
+2021-01-07 13:48:10,535 ERROR [db-error] master db  down.
+
+2021-01-07 13:49:27,943 ERROR [master-db] master db not found.
+
+2021-01-07 13:49:32,997 ERROR [db-error] master db 172.18.0.2 down.
+
+2021-01-07 13:49:35,479 WARN isQuickStart:false
+
+2021-01-07 13:49:35,484 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 13:49:48,074 ERROR [master-db] master db not found.
+
+2021-01-07 13:49:52,320 ERROR [db-error] master db 172.18.0.2 down.
+
+2021-01-07 13:51:41,415 ERROR [master-db] master db not found.
+
+2021-01-07 13:51:46,467 ERROR [db-error] master db 172.18.0.2 down.
+
+2021-01-07 13:51:49,219 WARN isQuickStart:false
+
+2021-01-07 13:51:49,224 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 13:52:01,513 ERROR [db-error] master db 172.18.0.2 down.
+
+2021-01-07 13:52:06,078 ERROR [master-db] master db not found.
+
+2021-01-07 13:52:25,912 ERROR [master-db] master db not found.
+
+2021-01-07 13:52:30,979 ERROR [db-error] master db 172.18.0.1 down.
+
+2021-01-07 13:52:33,810 WARN isQuickStart:false
+
+2021-01-07 13:52:33,819 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 13:52:46,050 ERROR [master-db] master db not found.
+
+2021-01-07 13:52:49,624 ERROR [db-error] master db 172.18.0.1 down.
+
+2021-01-07 13:56:11,997 ERROR [master-db] master db not found.
+
+2021-01-07 13:56:17,056 ERROR [db-error] master db  down.
+
+2021-01-07 13:56:19,558 WARN isQuickStart:false
+
+2021-01-07 13:56:19,563 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 13:56:32,120 ERROR [master-db] master db not found.
+
+2021-01-07 13:56:36,399 ERROR [db-error] master db  down.
+
+2021-01-07 14:39:30,892 ERROR [master-db] master db not found.
+
+2021-01-07 14:39:38,914 ERROR [db-error] master db 172.18.0.2 down.
+
+2021-01-07 14:39:41,893 WARN isQuickStart:false
+
+2021-01-07 14:39:41,899 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 14:39:56,944 ERROR [master-db] master db not found.
+
+2021-01-07 14:40:02,935 ERROR [db-error] master db 172.18.0.2 down.
+
+2021-01-07 14:43:27,412 ERROR [master-db] master db not found.
+
+2021-01-07 14:43:32,467 ERROR [db-error] master db  down.
+
+2021-01-07 14:43:34,861 WARN isQuickStart:false
+
+2021-01-07 14:43:34,867 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 14:43:47,524 ERROR [db-error] master db  down.
+
+2021-01-07 14:43:51,821 ERROR [master-db] master db not found.
+
+2021-01-07 14:45:44,466 ERROR [master-db] master db not found.
+
+2021-01-07 14:45:49,522 ERROR [db-error] master db  down.
+
+2021-01-07 14:45:51,943 WARN isQuickStart:false
+
+2021-01-07 14:45:51,948 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 14:46:04,605 ERROR [master-db] master db not found.
+
+2021-01-07 14:46:08,807 ERROR [db-error] master db  down.
+
+2021-01-07 14:47:57,802 WARN isQuickStart:false
+
+2021-01-07 14:48:40,189 ERROR [master-db] master db not found.
+
+2021-01-07 14:48:45,247 ERROR [db-error] master db 172.19.0.2 down.
+
+2021-01-07 14:48:47,587 WARN isQuickStart:false
+
+2021-01-07 14:48:47,592 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 14:49:00,333 ERROR [master-db] master db not found.
+
+2021-01-07 14:49:04,446 ERROR [db-error] master db 172.19.0.2 down.
+
+2021-01-07 15:06:56,638 ERROR [master-db] master db not found.
+
+2021-01-07 15:06:56,656 ERROR [db-error] master db 172.19.0.2 down.
+
+2021-01-07 15:06:59,287 WARN isQuickStart:false
+
+2021-01-07 15:06:59,293 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-07 15:07:06,666 ERROR [db-error] master db 172.19.0.2 down.
+
+2021-01-07 15:07:06,675 ERROR [master-db] master db not found.
+
+2021-01-07 15:15:51,284 WARN [master-db] jdbc:mysql://172.19.0.2:3306/nacos?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+
+2021-01-07 15:15:53,704 WARN isQuickStart:false
+
+2021-01-07 15:19:56,211 WARN [master-db] jdbc:mysql://mysql:3306/nacos?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+
+2021-01-07 15:19:58,770 WARN isQuickStart:false
+
+2021-01-07 15:23:57,997 WARN [master-db] jdbc:mysql://mysql:3306/nacos?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+
+2021-01-07 15:24:02,509 WARN isQuickStart:false
+
+2021-01-07 15:25:58,024 WARN [master-db] jdbc:mysql://mysql:3306/nacos?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+
+2021-01-07 15:26:01,916 WARN isQuickStart:false
+
+2021-01-07 15:30:39,753 WARN [master-db] jdbc:mysql://mysql:3306/nacos?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+
+2021-01-07 15:30:43,897 WARN isQuickStart:false
+
+2021-01-07 15:45:21,625 WARN [master-db] jdbc:mysql://mysql:3306/nacos?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+
+2021-01-07 15:45:25,971 WARN isQuickStart:false
+
+2021-01-07 15:49:50,463 WARN [master-db] jdbc:mysql://mysql:3306/nacos?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+
+2021-01-07 15:49:53,387 WARN isQuickStart:false
+

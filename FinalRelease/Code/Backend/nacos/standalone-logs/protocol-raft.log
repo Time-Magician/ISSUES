@@ -1,0 +1,368 @@
+2021-01-07 13:10:10,107 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 13:10:10,324 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 13:10:10,739 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 13:10:10,758 INFO create raft group : naming_persistent_service
+
+2021-01-07 13:10:11,538 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='172.18.0.3:7848', term=1, raftClusterInfo=[172.18.0.3:7848]}
+
+2021-01-07 13:10:12,870 INFO shutdown jraft server
+
+2021-01-07 13:10:12,871 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 13:10:12,917 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 13:12:25,838 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 13:12:26,016 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 13:12:26,363 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 13:12:26,387 INFO create raft group : naming_persistent_service
+
+2021-01-07 13:12:26,719 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='172.18.0.3:7848', term=1, raftClusterInfo=[172.18.0.3:7848]}
+
+2021-01-07 13:12:27,852 INFO shutdown jraft server
+
+2021-01-07 13:12:27,853 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 13:12:27,887 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 13:19:53,279 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 13:19:53,494 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 13:19:53,908 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 13:19:53,922 INFO create raft group : naming_persistent_service
+
+2021-01-07 13:19:54,247 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='570ae5b08f2c:7848', term=1, raftClusterInfo=[570ae5b08f2c:7848]}
+
+2021-01-07 13:19:55,448 INFO shutdown jraft server
+
+2021-01-07 13:19:55,449 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 13:19:55,487 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 13:26:04,261 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 13:26:04,559 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 13:26:04,984 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 13:26:04,996 INFO create raft group : naming_persistent_service
+
+2021-01-07 13:26:05,344 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='67f3334517c3:7848', term=1, raftClusterInfo=[67f3334517c3:7848]}
+
+2021-01-07 13:26:06,739 INFO shutdown jraft server
+
+2021-01-07 13:26:06,740 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 13:26:06,782 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 13:29:56,618 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 13:29:56,827 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 13:29:57,165 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 13:29:57,217 INFO create raft group : naming_persistent_service
+
+2021-01-07 13:29:57,598 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='b14d860e285a:7848', term=1, raftClusterInfo=[b14d860e285a:7848]}
+
+2021-01-07 13:29:58,724 INFO shutdown jraft server
+
+2021-01-07 13:29:58,724 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 13:29:58,767 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 13:31:29,428 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 13:31:29,813 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 13:31:30,169 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 13:31:30,191 INFO create raft group : naming_persistent_service
+
+2021-01-07 13:31:30,822 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='6cb06185a17f:7848', term=1, raftClusterInfo=[6cb06185a17f:7848]}
+
+2021-01-07 13:31:31,845 INFO shutdown jraft server
+
+2021-01-07 13:31:31,846 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 13:31:31,881 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 13:37:23,098 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 13:37:23,305 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 13:37:23,640 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 13:37:23,654 INFO create raft group : naming_persistent_service
+
+2021-01-07 13:37:24,173 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='6cb06185a17f:7848', term=2, raftClusterInfo=[6cb06185a17f:7848]}
+
+2021-01-07 13:37:25,053 INFO shutdown jraft server
+
+2021-01-07 13:37:25,053 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 13:37:25,089 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 13:43:18,019 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 13:43:18,268 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 13:43:18,627 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 13:43:18,641 INFO create raft group : naming_persistent_service
+
+2021-01-07 13:43:19,310 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='1b7c046fb984:7848', term=1, raftClusterInfo=[1b7c046fb984:7848]}
+
+2021-01-07 13:43:20,288 INFO shutdown jraft server
+
+2021-01-07 13:43:20,289 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 13:43:20,331 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 13:47:51,778 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 13:47:51,970 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 13:47:52,348 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 13:47:52,360 INFO create raft group : naming_persistent_service
+
+2021-01-07 13:47:52,885 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='0c34c7bf57b3:7848', term=1, raftClusterInfo=[0c34c7bf57b3:7848]}
+
+2021-01-07 13:47:53,709 INFO shutdown jraft server
+
+2021-01-07 13:47:53,709 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 13:47:53,755 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 13:49:33,375 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 13:49:33,581 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 13:49:34,086 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 13:49:34,098 INFO create raft group : naming_persistent_service
+
+2021-01-07 13:49:34,627 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='e6bfa9946b27:7848', term=1, raftClusterInfo=[e6bfa9946b27:7848]}
+
+2021-01-07 13:49:35,490 INFO shutdown jraft server
+
+2021-01-07 13:49:35,491 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 13:49:35,536 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 13:51:46,963 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 13:51:47,170 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 13:51:47,561 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 13:51:47,574 INFO create raft group : naming_persistent_service
+
+2021-01-07 13:51:48,181 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='172.18.0.3:7848', term=1, raftClusterInfo=[172.18.0.3:7848]}
+
+2021-01-07 13:51:49,228 INFO shutdown jraft server
+
+2021-01-07 13:51:49,229 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 13:51:49,271 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 13:52:31,410 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 13:52:31,839 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 13:52:32,266 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 13:52:32,282 INFO create raft group : naming_persistent_service
+
+2021-01-07 13:52:32,826 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='172.18.0.3:7848', term=1, raftClusterInfo=[172.18.0.3:7848]}
+
+2021-01-07 13:52:33,823 INFO shutdown jraft server
+
+2021-01-07 13:52:33,823 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 13:52:33,855 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 13:56:17,472 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 13:56:17,761 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 13:56:18,083 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 13:56:18,098 INFO create raft group : naming_persistent_service
+
+2021-01-07 13:56:18,669 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='172.20.0.3:7848', term=1, raftClusterInfo=[172.20.0.3:7848]}
+
+2021-01-07 13:56:19,568 INFO shutdown jraft server
+
+2021-01-07 13:56:19,568 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 13:56:19,610 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 14:39:39,461 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 14:39:39,694 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 14:39:40,108 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 14:39:40,132 INFO create raft group : naming_persistent_service
+
+2021-01-07 14:39:40,727 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='7da702685b83:7848', term=1, raftClusterInfo=[7da702685b83:7848]}
+
+2021-01-07 14:39:41,904 INFO shutdown jraft server
+
+2021-01-07 14:39:41,904 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 14:39:41,948 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 14:43:32,900 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 14:43:33,086 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 14:43:33,427 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 14:43:33,440 INFO create raft group : naming_persistent_service
+
+2021-01-07 14:43:33,958 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='ca482f826d57:7848', term=1, raftClusterInfo=[ca482f826d57:7848]}
+
+2021-01-07 14:43:34,872 INFO shutdown jraft server
+
+2021-01-07 14:43:34,873 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 14:43:34,920 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 14:45:49,969 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 14:45:50,212 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 14:45:50,540 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 14:45:50,559 INFO create raft group : naming_persistent_service
+
+2021-01-07 14:45:51,069 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='c355ef360e58:7848', term=1, raftClusterInfo=[c355ef360e58:7848]}
+
+2021-01-07 14:45:51,953 INFO shutdown jraft server
+
+2021-01-07 14:45:51,954 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 14:45:52,006 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 14:47:55,409 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 14:47:55,671 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 14:47:56,405 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 14:47:56,429 INFO create raft group : naming_persistent_service
+
+2021-01-07 14:47:56,773 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='eb4edfc8a696:7848', term=1, raftClusterInfo=[eb4edfc8a696:7848]}
+
+2021-01-07 14:48:45,667 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 14:48:45,912 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 14:48:46,241 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 14:48:46,256 INFO create raft group : naming_persistent_service
+
+2021-01-07 14:48:46,763 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='a6681e44ba9d:7848', term=1, raftClusterInfo=[a6681e44ba9d:7848]}
+
+2021-01-07 14:48:47,596 INFO shutdown jraft server
+
+2021-01-07 14:48:47,597 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 14:48:47,628 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 15:06:57,124 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 15:06:57,340 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 15:06:57,958 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 15:06:57,987 INFO create raft group : naming_persistent_service
+
+2021-01-07 15:06:58,356 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='5b20e9ece416:7848', term=1, raftClusterInfo=[5b20e9ece416:7848]}
+
+2021-01-07 15:06:59,298 INFO shutdown jraft server
+
+2021-01-07 15:06:59,299 INFO ========= The raft protocol is starting to close =========
+
+2021-01-07 15:06:59,335 INFO ========= The raft protocol has been closed =========
+
+2021-01-07 15:15:51,783 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 15:15:51,985 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 15:15:52,316 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 15:15:52,329 INFO create raft group : naming_persistent_service
+
+2021-01-07 15:15:52,804 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='5b20e9ece416:7848', term=2, raftClusterInfo=[5b20e9ece416:7848]}
+
+2021-01-07 15:19:56,785 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 15:19:56,990 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 15:19:57,344 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 15:19:57,361 INFO create raft group : naming_persistent_service
+
+2021-01-07 15:19:57,907 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='ad851787f17a:7848', term=1, raftClusterInfo=[ad851787f17a:7848]}
+
+2021-01-07 15:23:59,046 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 15:23:59,513 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 15:24:00,413 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 15:24:00,446 INFO create raft group : naming_persistent_service
+
+2021-01-07 15:24:01,418 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='ad851787f17a:7848', term=2, raftClusterInfo=[ad851787f17a:7848]}
+
+2021-01-07 15:25:59,350 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 15:25:59,618 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 15:26:00,003 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 15:26:00,019 INFO create raft group : naming_persistent_service
+
+2021-01-07 15:26:00,701 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='402fb5796930:7848', term=1, raftClusterInfo=[402fb5796930:7848]}
+
+2021-01-07 15:30:41,101 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 15:30:41,457 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 15:30:41,895 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 15:30:41,910 INFO create raft group : naming_persistent_service
+
+2021-01-07 15:30:42,558 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='3941e0156b63:7848', term=1, raftClusterInfo=[3941e0156b63:7848]}
+
+2021-01-07 15:45:22,609 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 15:45:23,028 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 15:45:23,720 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 15:45:23,744 INFO create raft group : naming_persistent_service
+
+2021-01-07 15:45:24,469 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='3941e0156b63:7848', term=2, raftClusterInfo=[3941e0156b63:7848]}
+
+2021-01-07 15:49:51,140 INFO Initializes the Raft protocol, raft-config info : {}
+
+2021-01-07 15:49:51,405 INFO ========= The raft protocol is starting... =========
+
+2021-01-07 15:49:51,786 INFO ========= The raft protocol start finished... =========
+
+2021-01-07 15:49:51,807 INFO create raft group : naming_persistent_service
+
+2021-01-07 15:49:52,426 INFO This Raft event changes : RaftEvent{groupId='naming_persistent_service', leader='3941e0156b63:7848', term=3, raftClusterInfo=[3941e0156b63:7848]}
+

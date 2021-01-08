@@ -1,0 +1,68 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: issues-gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # 获取JWT验签公钥请求路径
+          jwk-set-uri: 'http://authorization-server:8080/rsa/publicKey'
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 启用自动根据服务ID生成路由
+          lower-case-service-id: true # 设置路由的路径为小写的服务ID
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "docs.spring.io"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/user-service/**
+          filters:
+            - StripPrefix=1
+        - id: issues-auth
+          uri: lb://issues-auth
+          predicates:
+            - Path=/issues-auth/**
+          filters:
+            - StripPrefix=1
+        - id: alarm-service
+          uri: lb://alarm-service
+          predicates:
+            - Path=/alarm-service/**
+          filters:
+            - StripPrefix=1
+        - id: study-service
+          uri: lb://study-service
+          predicates:
+            - Path=/study-service/**
+          filters:
+            - StripPrefix=1
+
+
+
+
+white-list:
+  urls:
+    - "/issues-auth/oauth/token"
+    - "/issues-auth/rsa/publicKey"
+    - "/user-service/verify/tel"
+    - "/user-service/login"
+    - "/user-service/loginByVerifyCode"
+    - "/user-service/register"
+    - "/study-service/hello"
+    - "/user-service/verifyLogin/tel"

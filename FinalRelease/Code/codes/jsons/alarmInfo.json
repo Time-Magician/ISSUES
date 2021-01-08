@@ -1,0 +1,9 @@
+{
+  "label": "起床",
+  "repeat": ["周一", "周二", "周三", "周四", "周五"],
+  "time": "06:30",
+  "mission": "算术题",
+  "audio": "audio1",
+  "vibration": 1,
+  "isOpen": 1
+}

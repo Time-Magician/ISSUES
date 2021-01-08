@@ -1,0 +1,61 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FrogService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.example.studyservice.Service</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FrogService (com.example.studyservice.Service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">FrogService</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.example.studyservice.Service;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.example.studyservice.Entity.Frog;
+<i>4</i>&nbsp;import org.springframework.web.bind.annotation.PathVariable;
+<i>5</i>&nbsp;import org.springframework.web.bind.annotation.RequestParam;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.util.List;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;public interface FrogService {
+<i>10</i>&nbsp;   Frog createFrog(String name, int level, int exp, boolean isGraduated, String graduateDate, String school,int userId);
+<i>11</i>&nbsp;   Frog updateFrog(String name, int level, int exp, boolean isGraduated, String graduateDate, String school,int userId);
+<i>12</i>&nbsp;   Frog getFrogByUser(int userId);
+<i>13</i>&nbsp;   List&lt;Frog&gt; getGraduatedFrogs(int userId);
+<i>14</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-01-08 13:19</div>
+</div>
+</body>
+</html>

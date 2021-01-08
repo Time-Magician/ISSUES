@@ -35,7 +35,7 @@ class Global {
     "Shake",
     "Blow"
   ];
-  static String url = "10.0.2.2";
+  static String url = "3.91.77.51";
 
   static Future init() async {
     WidgetsFlutterBinding.ensureInitialized();

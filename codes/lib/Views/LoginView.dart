@@ -439,7 +439,8 @@ class MyLoginView extends State<LoginView> {
         "/frogs/candidate";
     Response response = await dio.get(url);
     print(response.data);
-    if (response.data == "") {
+
+    if (response.data == "" || response.statusCode == 500) {
       url = "http://"+Global.url+":9000/study-service/user/" +
           userId.toString() +
           "/frogs";

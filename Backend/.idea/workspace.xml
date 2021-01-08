@@ -23,9 +23,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="904a45ad-a0cc-447e-9093-076e0ca2935d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../codes/lib/Views/LoginView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/LoginView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/common/global.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/common/global.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/SignUpView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/SignUpView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/UserView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/UserView.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,12 +184,7 @@
       <list>
         <serviceView>
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -230,6 +227,8 @@
       <workItem from="1609934266585" duration="1239000" />
       <workItem from="1610002706723" duration="6760000" />
       <workItem from="1610020405065" duration="6722000" />
+      <workItem from="1610070317888" duration="1983000" />
+      <workItem from="1610086427325" duration="836000" />
     </task>
     <servers />
   </component>

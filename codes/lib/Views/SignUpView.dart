@@ -31,7 +31,7 @@ class MySignUpView extends State<SignUpView>{
   Widget build(BuildContext context) {
     ScreenUtil.init(context, width: 720, height: 1280, allowFontScaling: true);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFF75CCE8),
       body: Center(
         child: signUpBody(context),
       ),
@@ -46,21 +46,22 @@ class MySignUpView extends State<SignUpView>{
   );
 
   signUpHeader() => Column(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: <Widget>[
-      Image.asset("assets/image/Froglogo.png", width: ScreenUtil().setWidth(80),),
-      SizedBox(
-        height: ScreenUtil().setHeight(20.0),
-      ),
-      Text(
-        "Sign Up to Use ISSUES!",
-        style: TextStyle(fontWeight: FontWeight.w700, color: Colors.green),
-      ),
-      SizedBox(
-        height: ScreenUtil().setHeight(10.0),
-      )
-    ],
-  );
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+          Image.asset("assets/image/login.png",
+            width: ScreenUtil().setWidth(240)),
+          SizedBox(
+            height: ScreenUtil().setHeight(20.0),
+          ),
+          Text(
+            "ISSUES",
+            style: TextStyle(
+              fontSize: ScreenUtil().setSp(70),
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
+              fontFamily: 'Knewave'),
+          )]
+    );
 
   signUpFields(context) => Container(
     child: Column(
@@ -76,10 +77,10 @@ class MySignUpView extends State<SignUpView>{
             ],
             maxLines: 1,
             decoration: InputDecoration(
-                prefixIcon: Icon(Icons.perm_identity, color: Colors.green),
+                prefixIcon: Icon(Icons.perm_identity, color: Colors.black54),
                 hintText: "请输入手机号",
                 labelText: "手机号",
-                labelStyle: TextStyle(color: Colors.green),
+                labelStyle: TextStyle(color: Colors.black54),
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.green, //边框颜色为绿色
@@ -101,7 +102,7 @@ class MySignUpView extends State<SignUpView>{
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                width: ScreenUtil().setWidth(420),
+                width: ScreenUtil().setWidth(360),
                 child: TextField(
                   inputFormatters: [
                     LengthLimitingTextInputFormatter(6),
@@ -110,10 +111,10 @@ class MySignUpView extends State<SignUpView>{
                   maxLines: 1,
                   obscureText: false,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.check_circle_outline, color: Colors.green),
+                    prefixIcon: Icon(Icons.check_circle_outline, color: Colors.black54),
                     hintText: "请输入验证码",
                     labelText: "验证码",
-                    labelStyle: TextStyle(color: Colors.green),
+                    labelStyle: TextStyle(color: Colors.black54),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Colors.green, //边框颜色为绿色
@@ -154,10 +155,10 @@ class MySignUpView extends State<SignUpView>{
             maxLines: 1,
             obscureText: true,
             decoration: InputDecoration(
-                prefixIcon: Icon(Icons.lock_outline, color: Colors.green),
+                prefixIcon: Icon(Icons.lock_outline, color: Colors.black54),
                 hintText: "请输入密码",
                 labelText: "密码",
-                labelStyle: TextStyle(color: Colors.green),
+                labelStyle: TextStyle(color: Colors.black54),
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.green, //边框颜色为绿色
@@ -177,10 +178,10 @@ class MySignUpView extends State<SignUpView>{
             maxLines: 1,
             obscureText: true,
             decoration: InputDecoration(
-                prefixIcon: Icon(Icons.lock_outline, color: pwdMatch?Colors.green:Colors.red),
+                prefixIcon: Icon(Icons.lock_outline, color: pwdMatch?Colors.black54:Colors.red),
                 hintText: "请再次输入密码",
                 labelText: "确认密码",
-                labelStyle: TextStyle(color: pwdMatch?Colors.green:Colors.red),
+                labelStyle: TextStyle(color: pwdMatch?Colors.black54:Colors.red),
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
                       color: pwdMatch?Colors.green:Colors.red, //边框颜色为绿色

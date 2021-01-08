@@ -79,7 +79,7 @@ class UserView extends StatelessWidget {
 
           OrderTitle(
               title: "学习统计",
-              icon: Icons.message,
+              icon: Icons.assessment,
               router: "Statistics"
           ),
           OrderTitle(

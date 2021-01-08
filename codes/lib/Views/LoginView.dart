@@ -251,7 +251,7 @@ class MyLoginView extends State<LoginView> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            width: ScreenUtil().setWidth(420),
+                            width: ScreenUtil().setWidth(360),
                             child: TextField(
                               inputFormatters: [
                                 LengthLimitingTextInputFormatter(6),

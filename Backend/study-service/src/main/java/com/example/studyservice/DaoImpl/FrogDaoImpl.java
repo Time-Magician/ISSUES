@@ -48,6 +48,9 @@ public class FrogDaoImpl implements FrogDao {
     @Override
     public Frog getFrogByUser(int userId) {
         List<Frog> frogList = frogRepository.findByUserIdAndGraduated(userId,false);
+        if(frogList.isEmpty()){
+            return null;
+        }
         return frogList.get(0);
     }
 

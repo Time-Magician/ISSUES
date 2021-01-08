@@ -1,2 +1,2 @@
-{"_id":{"$oid":"5ff6c997571edb4eb86de9e9"},"sender_id":4,"receiver_id":3,"time":"2021-01-07 16:43:03","type":"好友申请","status":1,"details":"用户  希望添加您为好友。","_class":"com.example.userservice.Entity.Message"}
-{"_id":{"$oid":"5ff6ca43571edb4eb86de9ea"},"sender_id":3,"receiver_id":4,"time":"2021-01-07 16:45:55","type":"好友申请","status":1,"details":"用户  希望添加您为好友。","_class":"com.example.userservice.Entity.Message"}
+{"_id":{"$oid":"5ff6c8db571edb4eb86de9e7"},"user_id":3,"friends":[4],"_class":"com.example.userservice.Entity.Friends"}
+{"_id":{"$oid":"5ff6c953571edb4eb86de9e8"},"user_id":4,"friends":[3],"_class":"com.example.userservice.Entity.Friends"}

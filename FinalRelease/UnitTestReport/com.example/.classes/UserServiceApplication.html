@@ -1,0 +1,160 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UserServiceApplication</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.example</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UserServiceApplication (com.example)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserServiceApplication</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (3/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (6/ 8)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">UserServiceApplication$$EnhancerBySpringCGLIB$$fe7766d5</td>
+  </tr>
+  <tr>
+    <td class="name">UserServiceApplication$$EnhancerBySpringCGLIB$$fe7766d5$$FastClassBySpringCGLIB$$6bbf68d2</td>
+  </tr>
+  <tr>
+    <td class="name">UserServiceApplication$$FastClassBySpringCGLIB$$f17f35b7</td>
+  </tr>
+  <tr>
+    <td class="name">UserServiceApplication$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (1/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (1/ 4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (4/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    58.3%
+  </span>
+  <span class="absValue">
+    (7/ 12)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.example;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import org.springframework.boot.SpringApplication;
+<i>4</i>&nbsp;import org.springframework.boot.autoconfigure.SpringBootApplication;
+<i>5</i>&nbsp;import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+<i>6</i>&nbsp;import org.springframework.context.annotation.Bean;
+<i>7</i>&nbsp;import org.springframework.http.client.ClientHttpResponse;
+<i>8</i>&nbsp;import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+<i>9</i>&nbsp;import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+<i>10</i>&nbsp;import org.springframework.security.crypto.password.PasswordEncoder;
+<i>11</i>&nbsp;import org.springframework.web.client.DefaultResponseErrorHandler;
+<i>12</i>&nbsp;import org.springframework.web.client.RestTemplate;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import java.io.IOException;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;@SpringBootApplication
+<i>18</i>&nbsp;@EnableDiscoveryClient
+<b class="fc"><i>19</i>&nbsp;public class UserServiceApplication {</b>
+<i>20</i>&nbsp;    @Bean
+<i>21</i>&nbsp;    RestTemplate restTemplate(){
+<b class="fc"><i>22</i>&nbsp;        RestTemplate restTemplate = new RestTemplate();</b>
+<b class="fc"><i>23</i>&nbsp;        restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());</b>
+<b class="fc"><i>24</i>&nbsp;        restTemplate.setErrorHandler(new DefaultResponseErrorHandler(){</b>
+<i>25</i>&nbsp;             @Override
+<i>26</i>&nbsp;             public void handleError(ClientHttpResponse response) throws IOException {
+<b class="nc"><i>27</i>&nbsp;                 if (response.getRawStatusCode() != 401) {</b>
+<b class="nc"><i>28</i>&nbsp;                     super.handleError(response);</b>
+<i>29</i>&nbsp;                 }
+<b class="nc"><i>30</i>&nbsp;             }</b>
+<i>31</i>&nbsp;            }
+<i>32</i>&nbsp;        );
+<b class="fc"><i>33</i>&nbsp;        return restTemplate;</b>
+<i>34</i>&nbsp;    }
+<i>35</i>&nbsp;    @Bean
+<i>36</i>&nbsp;    public PasswordEncoder passwordEncoder() {
+<b class="fc"><i>37</i>&nbsp;        return new BCryptPasswordEncoder();</b>
+<i>38</i>&nbsp;    }
+<i>39</i>&nbsp;    public static void main(String[] args) {
+<b class="nc"><i>40</i>&nbsp;        SpringApplication.run(UserServiceApplication.class, args);</b>
+<b class="nc"><i>41</i>&nbsp;    }</b>
+<i>42</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-01-08 13:19</div>
+</div>
+</body>
+</html>

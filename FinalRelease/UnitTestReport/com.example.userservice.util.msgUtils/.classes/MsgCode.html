@@ -1,0 +1,108 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: MsgCode</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.example.userservice.util.msgUtils</a> ]
+</div>
+
+<h1>Coverage Summary for Class: MsgCode (com.example.userservice.util.msgUtils)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MsgCode</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    91.7%
+  </span>
+  <span class="absValue">
+    (11/ 12)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.example.userservice.util.msgUtils;
+<i>2</i>&nbsp;
+<b class="fc"><i>3</i>&nbsp;public enum MsgCode {</b>
+<b class="fc"><i>4</i>&nbsp;    SUCCESS(MsgUtil.SUCCESS, MsgUtil.SUCCESS_MSG),</b>
+<b class="fc"><i>5</i>&nbsp;    ERROR(MsgUtil.ERROR,MsgUtil.ERROR_MSG),</b>
+<b class="fc"><i>6</i>&nbsp;    LOGIN_USER_ERROR(MsgUtil.LOGIN_USER_ERROR,MsgUtil.LOGIN_USER_ERROR_MSG),</b>
+<b class="fc"><i>7</i>&nbsp;    NOT_LOGGED_IN_ERROR(MsgUtil.NOT_LOGGED_IN_ERROR,MsgUtil.NOT_LOGGED_IN_ERROR_MSG),</b>
+<b class="fc"><i>8</i>&nbsp;    FORBIDDEN_ERROR(MsgUtil.ERROR,MsgUtil.FORBIDDEN_MSG);</b>
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;    private int status;
+<i>11</i>&nbsp;    private String msg;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    public int getStatus() {
+<b class="fc"><i>14</i>&nbsp;        return status;</b>
+<i>15</i>&nbsp;    }
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    public String getMsg() {
+<b class="nc"><i>18</i>&nbsp;        return msg;</b>
+<i>19</i>&nbsp;    }
+<i>20</i>&nbsp;
+<b class="fc"><i>21</i>&nbsp;    private MsgCode(int status, String msg) {</b>
+<b class="fc"><i>22</i>&nbsp;        this.status = status;</b>
+<b class="fc"><i>23</i>&nbsp;        this.msg = msg;</b>
+<b class="fc"><i>24</i>&nbsp;    }</b>
+<i>25</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-01-08 13:19</div>
+</div>
+</body>
+</html>

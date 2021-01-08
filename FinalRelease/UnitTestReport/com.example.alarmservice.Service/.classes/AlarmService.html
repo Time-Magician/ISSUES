@@ -1,0 +1,61 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AlarmService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.example.alarmservice.Service</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AlarmService (com.example.alarmservice.Service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">AlarmService</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.example.alarmservice.Service;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.example.alarmservice.Entity.Alarm;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.sql.Time;
+<i>6</i>&nbsp;import java.util.List;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;public interface AlarmService {
+<i>9</i>&nbsp;    List&lt;Alarm&gt; getAlarmList(int userId);
+<i>10</i>&nbsp;    void uploadAlarmList(int userId,List&lt;Alarm&gt; alarmList);
+<i>11</i>&nbsp;    String deleteAlarm(int alarmId,int userId);
+<i>12</i>&nbsp;    String createAlarm(int alarmId,int userId, String mission,String audio,String label,String repeat,Time time);
+<i>13</i>&nbsp;    String updateAlarm(int alarmId,int userId, String mission,String audio,String label,String repeat,Time time);
+<i>14</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-01-08 13:19</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,298 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UserDaoImpl</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.example.userservice.DaoImpl</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UserDaoImpl (com.example.userservice.DaoImpl)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserDaoImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    70%
+  </span>
+  <span class="absValue">
+    (14/ 20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    73.8%
+  </span>
+  <span class="absValue">
+    (59/ 80)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">UserDaoImpl$$EnhancerBySpringCGLIB$$4760db03</td>
+  </tr>
+  <tr>
+    <td class="name">UserDaoImpl$$EnhancerBySpringCGLIB$$4760db03$$FastClassBySpringCGLIB$$5dc11c21</td>
+  </tr>
+  <tr>
+    <td class="name">UserDaoImpl$$FastClassBySpringCGLIB$$3f60a3d6</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    70%
+  </span>
+  <span class="absValue">
+    (14/ 20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    73.8%
+  </span>
+  <span class="absValue">
+    (59/ 80)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.example.userservice.DaoImpl;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.example.userservice.Dao.UserDao;
+<i>4</i>&nbsp;import com.example.userservice.Entity.Friends;
+<i>5</i>&nbsp;import com.example.userservice.Entity.Message;
+<i>6</i>&nbsp;import com.example.userservice.Entity.User;
+<i>7</i>&nbsp;import com.example.userservice.Entity.UserAuth;
+<i>8</i>&nbsp;import com.example.userservice.Repository.UserAuthRepository;
+<i>9</i>&nbsp;import com.example.userservice.Repository.UserRepository;
+<i>10</i>&nbsp;import com.example.userservice.util.msgUtils.Msg;
+<i>11</i>&nbsp;import com.example.userservice.util.msgUtils.MsgCode;
+<i>12</i>&nbsp;import com.example.userservice.util.msgUtils.MsgUtil;
+<i>13</i>&nbsp;import lombok.extern.slf4j.Slf4j;
+<i>14</i>&nbsp;import com.example.userservice.Repository.FriendsRepository;
+<i>15</i>&nbsp;import com.example.userservice.Repository.MessageRepository;
+<i>16</i>&nbsp;import com.example.userservice.Repository.UserRepository;
+<i>17</i>&nbsp;import org.bson.types.ObjectId;
+<i>18</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i>19</i>&nbsp;import org.springframework.stereotype.Repository;
+<i>20</i>&nbsp;import org.springframework.web.multipart.MultipartFile;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;import java.io.FileNotFoundException;
+<i>23</i>&nbsp;import java.io.FileOutputStream;
+<i>24</i>&nbsp;import java.io.IOException;
+<i>25</i>&nbsp;import java.io.OutputStream;
+<i>26</i>&nbsp;import java.util.ArrayList;
+<i>27</i>&nbsp;import java.util.Base64;
+<i>28</i>&nbsp;import java.util.List;
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;import java.util.ArrayList;
+<i>31</i>&nbsp;import java.util.List;
+<i>32</i>&nbsp;import java.util.Optional;
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;@Repository
+<b class="fc"><i>35</i>&nbsp;@Slf4j</b>
+<b class="fc"><i>36</i>&nbsp;public class UserDaoImpl implements UserDao {</b>
+<i>37</i>&nbsp;    @Autowired
+<i>38</i>&nbsp;    UserRepository userRepository;
+<i>39</i>&nbsp;    @Autowired
+<i>40</i>&nbsp;    UserAuthRepository userAuthRepository;
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    @Autowired
+<i>43</i>&nbsp;    FriendsRepository friendsRepository;
+<i>44</i>&nbsp;
+<i>45</i>&nbsp;    @Autowired
+<i>46</i>&nbsp;    MessageRepository messageRepository;
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;    @Override
+<i>49</i>&nbsp;    public User getUserById(int userId) {
+<b class="fc"><i>50</i>&nbsp;        return userRepository.getOne(userId);</b>
+<i>51</i>&nbsp;    }
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    @Override
+<i>54</i>&nbsp;    public User addUser(User user) {
+<b class="fc"><i>55</i>&nbsp;        userRepository.save(user);</b>
+<b class="fc"><i>56</i>&nbsp;        friendsRepository.save(new Friends(user.getUserId(), new ArrayList&lt;&gt;()));</b>
+<b class="fc"><i>57</i>&nbsp;        return user;</b>
+<i>58</i>&nbsp;    }
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;    @Override
+<i>61</i>&nbsp;    public User checkTelDuplicate(String tel) {
+<b class="nc"><i>62</i>&nbsp;        return userRepository.getUserByTelEquals(tel);</b>
+<i>63</i>&nbsp;    }
+<i>64</i>&nbsp;
+<i>65</i>&nbsp;    @Override
+<i>66</i>&nbsp;    public User checkEmailDuplicate(String email) {
+<b class="nc"><i>67</i>&nbsp;        return userRepository.getUserByEmailEquals(email);</b>
+<i>68</i>&nbsp;    }
+<i>69</i>&nbsp;
+<i>70</i>&nbsp;    @Override
+<i>71</i>&nbsp;    public User getUserByTel(String tel) {
+<b class="fc"><i>72</i>&nbsp;        return userRepository.getUserByTelEquals(tel);</b>
+<i>73</i>&nbsp;    }
+<i>74</i>&nbsp;
+<i>75</i>&nbsp;    @Override
+<i>76</i>&nbsp;    public User getUserByEmail(String email){
+<b class="nc"><i>77</i>&nbsp;        return userRepository.getUserByEmailEquals(email);</b>
+<i>78</i>&nbsp;    }
+<i>79</i>&nbsp;
+<i>80</i>&nbsp;    @Override
+<i>81</i>&nbsp;    public List&lt;User&gt; getFriendList(int userId){
+<b class="fc"><i>82</i>&nbsp;        Optional&lt;Friends&gt; friends = friendsRepository.findByUserId(userId);</b>
+<b class="fc"><i>83</i>&nbsp;        List&lt;User&gt; friendList = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>84</i>&nbsp;        if(friends.isPresent()) {</b>
+<b class="fc"><i>85</i>&nbsp;            List&lt;Integer&gt; friendIdList = friends.get().getFriends();</b>
+<b class="fc"><i>86</i>&nbsp;            for(int f : friendIdList){</b>
+<b class="fc"><i>87</i>&nbsp;                User friend = userRepository.getOne(f);</b>
+<b class="fc"><i>88</i>&nbsp;                friendList.add(friend);</b>
+<b class="fc"><i>89</i>&nbsp;            }</b>
+<i>90</i>&nbsp;        }
+<b class="fc"><i>91</i>&nbsp;        return friendList;</b>
+<i>92</i>&nbsp;    }
+<i>93</i>&nbsp;
+<i>94</i>&nbsp;    @Override
+<i>95</i>&nbsp;    public User deleteFriend(int userId, int friendId){
+<b class="fc"><i>96</i>&nbsp;        Optional&lt;Friends&gt; f = friendsRepository.findByUserId(userId);</b>
+<b class="fc"><i>97</i>&nbsp;        User friend = userRepository.getOne(friendId);</b>
+<b class="fc"><i>98</i>&nbsp;        if(f.isPresent()) {</b>
+<b class="fc"><i>99</i>&nbsp;            Friends friends = f.get();</b>
+<b class="fc"><i>100</i>&nbsp;            List&lt;Integer&gt; friendIdList = friends.getFriends();</b>
+<b class="fc"><i>101</i>&nbsp;            friendIdList.remove(friendIdList.indexOf(friendId));</b>
+<b class="fc"><i>102</i>&nbsp;            friends.setFriends(friendIdList);</b>
+<b class="fc"><i>103</i>&nbsp;            friendsRepository.save(friends);</b>
+<i>104</i>&nbsp;        }
+<b class="fc"><i>105</i>&nbsp;        return friend;</b>
+<i>106</i>&nbsp;    }
+<i>107</i>&nbsp;
+<i>108</i>&nbsp;    @Override
+<i>109</i>&nbsp;    public User addFriend(int userId, int friendId){
+<b class="fc"><i>110</i>&nbsp;        Optional&lt;Friends&gt; f = friendsRepository.findByUserId(userId);</b>
+<b class="fc"><i>111</i>&nbsp;        User friend = userRepository.getOne(friendId);</b>
+<b class="fc"><i>112</i>&nbsp;        if(f.isPresent()) {</b>
+<b class="fc"><i>113</i>&nbsp;            Friends friends = f.get();</b>
+<b class="fc"><i>114</i>&nbsp;            List&lt;Integer&gt; friendIdList = friends.getFriends();</b>
+<b class="fc"><i>115</i>&nbsp;            if(!friendIdList.contains(friendId)){</b>
+<b class="fc"><i>116</i>&nbsp;                friendIdList.add(friendId);</b>
+<i>117</i>&nbsp;            }
+<b class="fc"><i>118</i>&nbsp;            friends.setFriends(friendIdList);</b>
+<b class="fc"><i>119</i>&nbsp;            friendsRepository.save(friends);</b>
+<i>120</i>&nbsp;        }
+<b class="fc"><i>121</i>&nbsp;        return friend;</b>
+<i>122</i>&nbsp;    }
+<i>123</i>&nbsp;
+<i>124</i>&nbsp;    @Override
+<i>125</i>&nbsp;    public List&lt;Message&gt; getMessages(int userId){
+<b class="fc"><i>126</i>&nbsp;        Optional&lt;List&lt;Message&gt;&gt; messages = messageRepository.findByReceiverId(userId);</b>
+<b class="fc"><i>127</i>&nbsp;        if(messages.isPresent()) {</b>
+<b class="fc"><i>128</i>&nbsp;            return messages.get();</b>
+<i>129</i>&nbsp;        }
+<b class="nc"><i>130</i>&nbsp;        return null;</b>
+<i>131</i>&nbsp;    }
+<i>132</i>&nbsp;
+<i>133</i>&nbsp;    @Override
+<i>134</i>&nbsp;    public Message addMessage(int senderId, int receiverId, String time, String type, String detail){
+<b class="fc"><i>135</i>&nbsp;        Message message = new Message(senderId, receiverId, time, type, 0, detail);</b>
+<b class="fc"><i>136</i>&nbsp;        messageRepository.save(message);</b>
+<b class="fc"><i>137</i>&nbsp;        return message;</b>
+<i>138</i>&nbsp;    }
+<i>139</i>&nbsp;
+<i>140</i>&nbsp;    @Override
+<i>141</i>&nbsp;    public Message updateMessage(String messageId){
+<b class="fc"><i>142</i>&nbsp;        Optional&lt;Message&gt; message = messageRepository.findById(messageId);</b>
+<b class="fc"><i>143</i>&nbsp;        if(message.isPresent()) {</b>
+<b class="nc"><i>144</i>&nbsp;            Message m = message.get();</b>
+<b class="nc"><i>145</i>&nbsp;            m.setStatus(1);</b>
+<b class="nc"><i>146</i>&nbsp;            messageRepository.save(m);</b>
+<b class="nc"><i>147</i>&nbsp;            return m;</b>
+<i>148</i>&nbsp;        }
+<b class="fc"><i>149</i>&nbsp;        return null;</b>
+<i>150</i>&nbsp;    }
+<i>151</i>&nbsp;
+<i>152</i>&nbsp;    @Override
+<i>153</i>&nbsp;    public void modifyUsername(int userId, String username) {
+<b class="fc"><i>154</i>&nbsp;        User user = userRepository.findById(userId).get();</b>
+<b class="fc"><i>155</i>&nbsp;        user.setUsername(username);</b>
+<b class="fc"><i>156</i>&nbsp;        userRepository.save(user);</b>
+<b class="fc"><i>157</i>&nbsp;    }</b>
+<i>158</i>&nbsp;
+<i>159</i>&nbsp;    @Override
+<i>160</i>&nbsp;    public void modifyGender(int userId, String gender) {
+<b class="fc"><i>161</i>&nbsp;        User user = userRepository.findById(userId).get();</b>
+<b class="fc"><i>162</i>&nbsp;        user.setGender(gender);</b>
+<b class="fc"><i>163</i>&nbsp;        userRepository.save(user);</b>
+<b class="fc"><i>164</i>&nbsp;    }</b>
+<i>165</i>&nbsp;
+<i>166</i>&nbsp;    @Override
+<i>167</i>&nbsp;    public void modifyName(int userId, String name) {
+<b class="nc"><i>168</i>&nbsp;        User user = userRepository.findById(userId).get();</b>
+<b class="nc"><i>169</i>&nbsp;        user.setName(name);</b>
+<b class="nc"><i>170</i>&nbsp;        userRepository.save(user);</b>
+<b class="nc"><i>171</i>&nbsp;    }</b>
+<i>172</i>&nbsp;
+<i>173</i>&nbsp;    @Override
+<i>174</i>&nbsp;    public void modifyEmail(int userId, String email){
+<b class="nc"><i>175</i>&nbsp;        User user = userRepository.findById(userId).get();</b>
+<b class="nc"><i>176</i>&nbsp;        user.setEmail(email);</b>
+<b class="nc"><i>177</i>&nbsp;        userRepository.save(user);</b>
+<b class="nc"><i>178</i>&nbsp;    }</b>
+<i>179</i>&nbsp;
+<i>180</i>&nbsp;    @Override
+<i>181</i>&nbsp;    public void modifyProfilePicture(int userId, MultipartFile profilePicture) throws IOException {
+<b class="nc"><i>182</i>&nbsp;        User user = userRepository.findById(userId).get();</b>
+<b class="nc"><i>183</i>&nbsp;        Base64.Encoder pictureEncoder  = Base64.getEncoder();</b>
+<b class="nc"><i>184</i>&nbsp;        user.setProfilePicture(pictureEncoder.encodeToString(profilePicture.getBytes()));</b>
+<b class="nc"><i>185</i>&nbsp;        userRepository.save(user);</b>
+<b class="nc"><i>186</i>&nbsp;    }</b>
+<i>187</i>&nbsp;
+<i>188</i>&nbsp;    @Override
+<i>189</i>&nbsp;    public List&lt;User&gt; getAllUsers() {
+<b class="fc"><i>190</i>&nbsp;        List&lt;UserAuth&gt; users = userAuthRepository.getUserAuthByUserTypeEquals(0);</b>
+<b class="fc"><i>191</i>&nbsp;        List&lt;Integer&gt; userIdSet = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>192</i>&nbsp;        for(UserAuth user:users){</b>
+<b class="fc"><i>193</i>&nbsp;            userIdSet.add(user.getUserId());</b>
+<b class="fc"><i>194</i>&nbsp;        }</b>
+<b class="fc"><i>195</i>&nbsp;        log.info(userIdSet.toString());</b>
+<b class="fc"><i>196</i>&nbsp;        return userRepository.getUserByUserIdIsNotIn(userIdSet);</b>
+<i>197</i>&nbsp;    }
+<i>198</i>&nbsp;
+<i>199</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-01-08 13:19</div>
+</div>
+</body>
+</html>

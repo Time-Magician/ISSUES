@@ -1,0 +1,64 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AlarmRepository</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.example.alarmservice</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AlarmRepository (com.example.alarmservice)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">AlarmRepository</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.example.alarmservice;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.example.alarmservice.Entity.Alarm;
+<i>4</i>&nbsp;import org.springframework.data.jpa.repository.JpaRepository;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import javax.transaction.Transactional;
+<i>7</i>&nbsp;import java.util.List;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;public interface AlarmRepository extends JpaRepository&lt;Alarm,Integer&gt; {
+<i>10</i>&nbsp;    List&lt;Alarm&gt; getAlarmsByUserId(int userId);
+<i>11</i>&nbsp;    @Transactional
+<i>12</i>&nbsp;    void deleteByAlarmIdAndUserId(int alarmId,int userId);
+<i>13</i>&nbsp;    @Transactional
+<i>14</i>&nbsp;    void deleteAlarmByUserId(int userId);
+<i>15</i>&nbsp;    Alarm findByAlarmIdAndUserId(int alarmId, int userId);
+<i>16</i>&nbsp;}
+<i>17</i>&nbsp;
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-01-08 13:19</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: UserService</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.example.userservice.Service</a> ]
+</div>
+
+<h1>Coverage Summary for Class: UserService (com.example.userservice.Service)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$898508477</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$898508477$auxiliary$CzF39wBi</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$898508477$auxiliary$n7uLPzsn</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.example.userservice.Service;
+<i>2</i>&nbsp;import com.example.userservice.Entity.Message;
+<i>3</i>&nbsp;import com.example.userservice.Entity.User;
+<i>4</i>&nbsp;import com.example.userservice.util.msgUtils.Msg;
+<i>5</i>&nbsp;import org.springframework.web.multipart.MultipartFile;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import java.io.IOException;
+<i>8</i>&nbsp;import java.util.List;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import java.util.List;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;public interface UserService {
+<i>13</i>&nbsp;    User getUserById(int userId);
+<i>14</i>&nbsp;    User getUserByTel(String tel);
+<i>15</i>&nbsp;    List&lt;User&gt; getAllUsers();
+<i>16</i>&nbsp;    Msg register(String password, String tel,String verificationCode);
+<i>17</i>&nbsp;    Msg checkUser(String credentials,String password);
+<i>18</i>&nbsp;    boolean checkUserByIdAndPassword(int userId,String password);
+<i>19</i>&nbsp;    Msg verify(String tel);
+<i>20</i>&nbsp;    Msg verifyEmail(String email);
+<i>21</i>&nbsp;    Msg verifyLogin(String tel);
+<i>22</i>&nbsp;    Msg modifyUsername(int userId,String username);
+<i>23</i>&nbsp;    Msg modifyGender(int userId,String gender);
+<i>24</i>&nbsp;    Msg modifyName(int userId,String name);
+<i>25</i>&nbsp;    Msg modifyEmail(int userId,String email, String verificationCode);
+<i>26</i>&nbsp;    Msg modifyProfilePicture(int userId, MultipartFile profilePicture) throws IOException;
+<i>27</i>&nbsp;    Msg modifyPassword(int userId,String password);
+<i>28</i>&nbsp;    Msg enableUser(int userId);
+<i>29</i>&nbsp;    Msg disableUser(int userId);
+<i>30</i>&nbsp;    List&lt;User&gt; getFriendList(int userId);
+<i>31</i>&nbsp;    String testRedisCache(String tel);
+<i>32</i>&nbsp;    User deleteFriend(int userId, int friendId);
+<i>33</i>&nbsp;    User addFriend(int userId, int friendId);
+<i>34</i>&nbsp;    List&lt;Message&gt; getMessages(int userId);
+<i>35</i>&nbsp;    Message addMessage(int senderId, int receiverId, String type, String detail);
+<i>36</i>&nbsp;    User searchUser(String identifier);
+<i>37</i>&nbsp;    Message checkMessage(String messageId);
+<i>38</i>&nbsp;    String getRedisCache(String credential);
+<i>39</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2021-01-08 13:19</div>
+</div>
+</body>
+</html>

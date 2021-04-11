@@ -106,7 +106,7 @@ public class FrogControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类：level无效值
+         *   无效等价类：level无效值(level > 17)
          *
          */
         paramsMap.set("level","100");
@@ -121,11 +121,43 @@ public class FrogControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类：exp无效值
+         *   无效等价类：level无效值(level < 0)
+         *
+         */
+        paramsMap.set("level","-20");
+        response = mockMvc.perform(
+                MockMvcRequestBuilders.post("http://localhost/user/1/frogs")
+                        //pathVariable中的userId与header中不符
+                        .header("userId",1)
+                        .header("userType","USER")
+                        .params(paramsMap)
+        ).andReturn().getResponse();
+        Assert.assertEquals(response.getStatus(),200);
+        Assert.assertEquals(response.getContentAsString(),"");
+
+
+        /*
+         *   无效等价类：exp无效值(exp < 0)
          *
          */
         paramsMap.set("level","10");
         paramsMap.set("exp","-100");
+        response = mockMvc.perform(
+                MockMvcRequestBuilders.post("http://localhost/user/1/frogs")
+                        //pathVariable中的userId与header中不符
+                        .header("userId",1)
+                        .header("userType","USER")
+                        .params(paramsMap)
+        ).andReturn().getResponse();
+        Assert.assertEquals(response.getStatus(),200);
+        Assert.assertEquals(response.getContentAsString(),"");
+
+
+        /*
+         *   无效等价类：exp无效值(exp > 100)
+         *
+         */
+        paramsMap.set("exp","200");
         response = mockMvc.perform(
                 MockMvcRequestBuilders.post("http://localhost/user/1/frogs")
                         //pathVariable中的userId与header中不符

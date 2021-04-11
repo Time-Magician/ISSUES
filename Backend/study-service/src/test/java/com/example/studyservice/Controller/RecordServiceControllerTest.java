@@ -124,9 +124,22 @@ public class RecordServiceControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
+         *   无效等价类： 起始时间或结束时间Invalid
+         */
+        paramsMap.set("end_time","2021-13-21");
+        response = mockMvc.perform(
+                MockMvcRequestBuilders.put("http://localhost/user/1/studyRecord")
+                        .header("userId",1)
+                        .params(paramsMap)
+        ).andReturn().getResponse();
+        Assert.assertEquals(response.getStatus(),200);
+        Assert.assertEquals(response.getContentAsString(),"");
+
+        /*
          *   无效等价类： duration无效值
          */
         paramsMap.set("start_time","2021-4-11");
+        paramsMap.set("end_time","2021-4-11");
         paramsMap.set("duration","-100");
         response = mockMvc.perform(
                 MockMvcRequestBuilders.put("http://localhost/user/1/studyRecord")
@@ -189,7 +202,7 @@ public class RecordServiceControllerTest {
         paramsMap.set("mission","TestMission");
         response = mockMvc.perform(
                 MockMvcRequestBuilders.post("http://localhost/user/1/alarmRecord")
-                        .header("userId",2)
+                        .header("userId",1)
                         .params(paramsMap)
         ).andReturn().getResponse();
         Assert.assertEquals(response.getStatus(),200);
@@ -202,7 +215,7 @@ public class RecordServiceControllerTest {
         paramsMap.set("frog_id","-10");
         response = mockMvc.perform(
                 MockMvcRequestBuilders.post("http://localhost/user/1/alarmRecord")
-                        .header("userId",2)
+                        .header("userId",1)
                         .params(paramsMap)
         ).andReturn().getResponse();
         Assert.assertEquals(response.getStatus(),200);
@@ -215,7 +228,20 @@ public class RecordServiceControllerTest {
         paramsMap.set("frog_id","1");
         response = mockMvc.perform(
                 MockMvcRequestBuilders.post("http://localhost/user/1/alarmRecord")
-                        .header("userId",2)
+                        .header("userId",1)
+                        .params(paramsMap)
+        ).andReturn().getResponse();
+        Assert.assertEquals(response.getStatus(),200);
+        Assert.assertEquals(response.getContentAsString(),"");
+
+        /*
+         *   无效等价类: duration字段无效
+         */
+        paramsMap.set("alarm_id","1");
+        paramsMap.set("duration","-100");
+        response = mockMvc.perform(
+                MockMvcRequestBuilders.post("http://localhost/user/1/alarmRecord")
+                        .header("userId",1)
                         .params(paramsMap)
         ).andReturn().getResponse();
         Assert.assertEquals(response.getStatus(),200);

@@ -23,12 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="904a45ad-a0cc-447e-9093-076e0ca2935d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarm-service/src/main/java/com/example/alarmservice/Controller/AlarmController.java" beforeDir="false" afterPath="$PROJECT_DIR$/alarm-service/src/main/java/com/example/alarmservice/Controller/AlarmController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alarm-service/src/test/java/com/example/alarmservice/AlarmControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/alarm-service/src/test/java/com/example/alarmservice/AlarmControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-service/src/main/java/com/example/studyservice/Controller/FrogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/study-service/src/main/java/com/example/studyservice/Controller/FrogController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/study-service/src/main/java/com/example/studyservice/Controller/RecordServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/study-service/src/main/java/com/example/studyservice/Controller/RecordServiceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/study-service/src/test/java/com/example/studyservice/Controller/FrogControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/study-service/src/test/java/com/example/studyservice/Controller/FrogControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/study-service/src/test/java/com/example/studyservice/Controller/RecordServiceControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/study-service/src/test/java/com/example/studyservice/Controller/RecordServiceControllerTest.java" afterDir="false" />
@@ -118,22 +113,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AlarmControllerTest.createAlarmTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="alarm-service" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.alarmservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.alarmservice" />
-      <option name="MAIN_CLASS_NAME" value="com.example.alarmservice.AlarmControllerTest" />
-      <option name="METHOD_NAME" value="createAlarmTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AlarmControllerTest.deleteAlarmTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="alarm-service" />
       <extension name="coverage">
@@ -161,6 +140,22 @@
       <option name="PACKAGE_NAME" value="com.example.alarmservice" />
       <option name="MAIN_CLASS_NAME" value="com.example.alarmservice.AlarmControllerTest" />
       <option name="METHOD_NAME" value="updateAlarmTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FrogControllerTest.createFrogTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="study-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.studyservice.Controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.studyservice.Controller" />
+      <option name="MAIN_CLASS_NAME" value="com.example.studyservice.Controller.FrogControllerTest" />
+      <option name="METHOD_NAME" value="createFrogTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -237,9 +232,9 @@
       <list>
         <item itemvalue="JUnit.RecordServiceControllerTest.createAlarmRecordTest" />
         <item itemvalue="JUnit.RecordServiceControllerTest.createStudyRecordTest" />
+        <item itemvalue="JUnit.FrogControllerTest.createFrogTest" />
         <item itemvalue="JUnit.AlarmControllerTest.deleteAlarmTest" />
         <item itemvalue="JUnit.AlarmControllerTest.updateAlarmTest" />
-        <item itemvalue="JUnit.AlarmControllerTest.createAlarmTest" />
       </list>
     </recent_temporary>
   </component>
@@ -283,7 +278,7 @@
       <workItem from="1618028599574" duration="20903000" />
       <workItem from="1618063085597" duration="7286000" />
       <workItem from="1618112310612" duration="8862000" />
-      <workItem from="1618128224751" duration="3995000" />
+      <workItem from="1618128224751" duration="8949000" />
     </task>
     <servers />
   </component>
@@ -327,30 +322,30 @@
     </state>
     <state x="458" y="146" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1610265588115" />
     <state x="687" y="219" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1618126891634" />
-    <state width="1237" height="90" key="GridCell.Tab.0.bottom" timestamp="1618134672321">
-      <screen x="0" y="0" width="1280" height="720" />
+    <state width="827" height="90" key="GridCell.Tab.0.bottom" timestamp="1618140623945">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1237" height="90" key="GridCell.Tab.0.bottom/0.0.1280.720@0.0.1280.720" timestamp="1618134672321" />
     <state width="1024" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609950391545" />
-    <state width="1877" height="337" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1618130614914" />
-    <state width="1237" height="90" key="GridCell.Tab.0.center" timestamp="1618134672320">
-      <screen x="0" y="0" width="1280" height="720" />
+    <state width="827" height="90" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1618140623945" />
+    <state width="827" height="90" key="GridCell.Tab.0.center" timestamp="1618140623944">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1237" height="90" key="GridCell.Tab.0.center/0.0.1280.720@0.0.1280.720" timestamp="1618134672320" />
     <state width="1024" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609950391545" />
-    <state width="1877" height="337" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1618130614913" />
-    <state width="1237" height="90" key="GridCell.Tab.0.left" timestamp="1618134672320">
-      <screen x="0" y="0" width="1280" height="720" />
+    <state width="827" height="90" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1618140623944" />
+    <state width="827" height="90" key="GridCell.Tab.0.left" timestamp="1618140623944">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1237" height="90" key="GridCell.Tab.0.left/0.0.1280.720@0.0.1280.720" timestamp="1618134672320" />
     <state width="1024" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609950391544" />
-    <state width="1877" height="337" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1618130614912" />
-    <state width="1237" height="90" key="GridCell.Tab.0.right" timestamp="1618134672320">
-      <screen x="0" y="0" width="1280" height="720" />
+    <state width="827" height="90" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1618140623944" />
+    <state width="827" height="90" key="GridCell.Tab.0.right" timestamp="1618140623945">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1237" height="90" key="GridCell.Tab.0.right/0.0.1280.720@0.0.1280.720" timestamp="1618134672320" />
     <state width="1024" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609950391545" />
-    <state width="1877" height="337" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1618130614913" />
+    <state width="827" height="90" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1618140623945" />
     <state width="1024" height="210" key="GridCell.Tab.1.bottom" timestamp="1609950391546">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

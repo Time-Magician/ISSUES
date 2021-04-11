@@ -60,7 +60,7 @@ public class RecordServiceController {
         if(!CommonUtil.checkMissionValidate(mission)){
             return null;
         }
-        if(frogId < 0 || alarmId < 0){
+        if(frogId < 0 || alarmId < 0 || duration < 0){
             return null;
         }
         return RecordService.createAlarmRecord(alarmId,frogId,duration,mission,userId);

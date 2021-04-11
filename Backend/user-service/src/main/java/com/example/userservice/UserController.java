@@ -110,8 +110,14 @@ public class UserController {
 
     @PostMapping("/user/{user_id}/friends/{friend_id}")
     public Msg addFriend(
+            HttpServletRequest request,
             @PathVariable(name = "friend_id") int friendId,
             @PathVariable(name = "user_id") int userId){
+        String userType = request.getHeader("userType");
+        int requesterUserId = Integer.parseInt(request.getHeader("userId"));
+        if(!userType.equals("ADMIN") && requesterUserId != userId){
+            return MsgUtil.makeMsg(MsgCode.ERROR,MsgUtil.PERMISSION_DENIED);
+        }
         return MsgUtil.makeMsg(MsgCode.SUCCESS,MsgUtil.SUCCESS_MSG,userService.addFriend(userId, friendId));
     }
 
@@ -304,7 +310,7 @@ public class UserController {
         userId = Integer.parseInt(request.getHeader("userId"));
         return userService.modifyEmail(userId,newEmail,verificationCode);
     }
-  
+
     @PatchMapping("user/{userId}/password")
     public Msg modifyPassword(
             HttpServletRequest request,

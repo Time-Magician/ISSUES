@@ -1,0 +1,92 @@
+2021-01-17 14:20:55,978 INFO SPI service [com.alipay.sofa.jraft.JRaftServiceFactory - com.alipay.sofa.jraft.core.DefaultJRaftServiceFactory] loading.
+
+2021-01-17 14:20:56,575 INFO SPI service [com.alipay.sofa.jraft.rpc.RaftRpcFactory - com.alipay.sofa.jraft.rpc.impl.GrpcRaftRpcFactory] loading.
+
+2021-01-17 14:20:58,238 INFO SPI service [com.alipay.sofa.jraft.util.JRaftSignalHandler - com.alipay.sofa.jraft.NodeDescribeSignalHandler] loading.
+
+2021-01-17 14:20:58,241 INFO SPI service [com.alipay.sofa.jraft.util.JRaftSignalHandler - com.alipay.sofa.jraft.NodeMetricsSignalHandler] loading.
+
+2021-01-17 14:20:58,243 INFO SPI service [com.alipay.sofa.jraft.util.JRaftSignalHandler - com.alipay.sofa.jraft.ThreadPoolMetricsSignalHandler] loading.
+
+2021-01-17 14:20:58,251 INFO SPI service [com.alipay.sofa.jraft.util.timer.RaftTimerFactory - com.alipay.sofa.jraft.util.timer.DefaultRaftTimerFactory] loading.
+
+2021-01-17 14:20:58,259 INFO The number of active nodes increment to 1.
+
+2021-01-17 14:20:58,770 INFO Starts FSMCaller successfully.
+
+2021-01-17 14:20:58,811 INFO Loading snapshot, meta=last_included_index: 6
+last_included_term: 6
+peers: "3941e0156b63:7848"
+.
+
+2021-01-17 14:20:59,140 INFO Node <naming_persistent_service/3941e0156b63:7848> onSnapshotLoadDone, last_included_index: 6
+last_included_term: 6
+peers: "3941e0156b63:7848"
+
+
+2021-01-17 14:20:59,152 INFO Node <naming_persistent_service/3941e0156b63:7848> target priority value has changed from: 0, to: -1.
+
+2021-01-17 14:20:59,275 INFO Node <naming_persistent_service/3941e0156b63:7848> init, term=14, lastLogId=LogId [index=16, term=14], conf=3941e0156b63:7848, oldConf=.
+
+2021-01-17 14:20:59,287 INFO Node <naming_persistent_service/3941e0156b63:7848> start vote and grant vote self, term=14.
+
+2021-01-17 14:20:59,344 INFO Save raft meta, path=/home/nacos/data/protocol/raft/naming_persistent_service/meta-data, term=15, votedFor=3941e0156b63:7848, cost time=48 ms
+
+2021-01-17 14:20:59,345 INFO Node <naming_persistent_service/3941e0156b63:7848> become leader of group, term=15, conf=3941e0156b63:7848, oldConf=.
+
+2021-01-17 14:20:59,353 INFO -Djraft.recyclers.maxCapacityPerThread: 4096.
+
+2021-01-17 14:20:59,362 WARN RPC server is not started in RaftGroupService.
+
+2021-01-17 14:20:59,366 INFO Start the RaftGroupService successfully.
+
+2021-01-17 14:20:59,509 INFO onLeaderStart: term=15.
+
+2021-01-17 14:21:01,340 ERROR Fail to connect 3941e0156b63:7848, remoting exception: java.util.concurrent.ExecutionException: io.grpc.StatusRuntimeException: DEADLINE_EXCEEDED: deadline exceeded after 759400200ns. [buffered_nanos=773175800, waiting_for_connection].
+
+2021-01-17 14:21:01,379 ERROR Fail to connect peer 3941e0156b63:7848 to get leader for group naming_persistent_service.
+
+2021-01-17 14:21:03,437 INFO Node <naming_persistent_service/3941e0156b63:7848> shutdown, currTerm=15 state=STATE_LEADER.
+
+2021-01-17 14:21:03,439 INFO Fail to find the next candidate.
+
+2021-01-17 14:21:03,439 INFO onLeaderStop: status=Status[ESHUTDOWN<1007>: Raft node is going to quit.].
+
+2021-01-17 14:21:03,483 INFO Save raft meta, path=/home/nacos/data/protocol/raft/naming_persistent_service/meta-data, term=15, votedFor=3941e0156b63:7848, cost time=29 ms
+
+2021-01-17 14:21:03,489 INFO Shutting down FSMCaller...
+
+2021-01-17 14:21:03,492 INFO onShutdown.
+
+2021-01-17 14:21:03,493 INFO ThreadPool is terminated: JRaft-RPC-Processor, com.alipay.sofa.jraft.util.MetricThreadPoolExecutor@464649c[Shutting down, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0].
+
+2021-01-17 14:21:03,500 INFO The number of active nodes decrement to 0.
+
+2021-01-17 14:21:03,499 INFO ThreadPool is terminated: JRaft-Node-ScheduleThreadPool, com.alipay.sofa.jraft.util.MetricScheduledThreadPoolExecutor@60bdf15d[Shutting down, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0].
+
+2021-01-17 14:21:03,517 INFO ThreadPool is terminated: JRaft-Global-ElectionTimer, com.alipay.sofa.jraft.util.MetricScheduledThreadPoolExecutor@4bd175cd[Shutting down, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0].
+
+2021-01-17 14:21:03,519 INFO Destroy timer: RepeatedTimer{timeout=null, stopped=true, running=false, destroyed=true, invoking=false, timeoutMs=5000, name='JRaft-ElectionTimer-<naming_persistent_service/3941e0156b63:7848>'}.
+
+2021-01-17 14:21:03,520 INFO ThreadPool is terminated: JRaft-Global-VoteTimer, com.alipay.sofa.jraft.util.MetricScheduledThreadPoolExecutor@7f7bcb66[Shutting down, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0].
+
+2021-01-17 14:21:03,526 INFO Destroy timer: RepeatedTimer{timeout=null, stopped=true, running=false, destroyed=true, invoking=false, timeoutMs=5000, name='JRaft-VoteTimer-<naming_persistent_service/3941e0156b63:7848>'}.
+
+2021-01-17 14:21:03,529 INFO ThreadPool is terminated: JRaft-Global-StepDownTimer, com.alipay.sofa.jraft.util.MetricScheduledThreadPoolExecutor@766d0cc3[Shutting down, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 1].
+
+2021-01-17 14:21:03,530 INFO Destroy timer: RepeatedTimer{timeout=null, stopped=true, running=false, destroyed=true, invoking=false, timeoutMs=2500, name='JRaft-StepDownTimer-<naming_persistent_service/3941e0156b63:7848>'}.
+
+2021-01-17 14:21:03,532 INFO ThreadPool is terminated: JRaft-Global-SnapshotTimer, com.alipay.sofa.jraft.util.MetricScheduledThreadPoolExecutor@3ec6a8ae[Shutting down, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0].
+
+2021-01-17 14:21:03,532 INFO Destroy timer: RepeatedTimer{timeout=null, stopped=true, running=false, destroyed=true, invoking=false, timeoutMs=1800000, name='JRaft-SnapshotTimer-<naming_persistent_service/3941e0156b63:7848>'}.
+
+2021-01-17 14:21:03,536 INFO Node <naming_persistent_service/3941e0156b63:7848> shutdown, currTerm=15 state=STATE_SHUTTING.
+
+2021-01-17 14:21:03,537 INFO Stop the RaftGroupService successfully.
+
+2021-01-17 14:21:03,538 INFO Shutdown managed channel: 3941e0156b63:7848, ManagedChannelOrphanWrapper{delegate=ManagedChannelImpl{logId=4, target=3941e0156b63:7848}}.
+
+2021-01-17 14:21:03,571 INFO ThreadPool is terminated: JRaft-RPC-Processor, com.alipay.sofa.jraft.util.MetricThreadPoolExecutor@51e4ccb3[Shutting down, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0].
+
+2021-01-17 14:21:03,572 INFO ThreadPool is terminated: JRaft-RPC-Processor, com.alipay.sofa.jraft.util.MetricThreadPoolExecutor@46e8a539[Shutting down, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0].
+

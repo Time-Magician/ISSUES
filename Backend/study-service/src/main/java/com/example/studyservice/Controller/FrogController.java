@@ -30,7 +30,7 @@ public class FrogController {
 
         return frogService.createFrog(name,level,exp,isGraduated,graduateDate,school,userId);
     }
-    
+
 
     @PutMapping("/user/{userId}/frogs")
     Frog updateFrog(HttpServletRequest request,

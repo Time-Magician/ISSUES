@@ -1,5 +1,6 @@
 package com.example.studyservice.Entity;
 
+import lombok.Builder;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;

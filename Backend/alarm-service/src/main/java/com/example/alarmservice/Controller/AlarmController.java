@@ -19,7 +19,10 @@ public class AlarmController {
             @PathVariable int userId,
             HttpServletRequest httpRequest
     ){
-        userId = Integer.parseInt(httpRequest.getHeader("userId"));
+        int requestUserId = Integer.parseInt(httpRequest.getHeader("userId"));
+        if(requestUserId != userId){
+            return null;
+        }
         return alarmService.getAlarmList(userId);
     }
 
@@ -29,7 +32,10 @@ public class AlarmController {
             @PathVariable int userId,
             @RequestBody List<Alarm> alarmList
     ){
-        userId = Integer.parseInt(httpRequest.getHeader("userId"));
+        int requestUserId = Integer.parseInt(httpRequest.getHeader("userId"));
+        if(requestUserId != userId){
+            return "Error:Permission Denied!";
+        }
         alarmService.uploadAlarmList(userId,alarmList);
         return "success";
     }
@@ -45,8 +51,23 @@ public class AlarmController {
             @RequestParam(name = "time")String time,
             @RequestParam(name = "repeat")String repeat
     ){
-        userId = Integer.parseInt(httpRequest.getHeader("userId"));
-        return alarmService.createAlarm(alarmId,userId,mission,audio,label,repeat,CommonUtil.strToTime(time));
+        int requestUserId = Integer.parseInt(httpRequest.getHeader("userId"));
+        if(requestUserId != userId){
+            return "Error:Permission Denied!";
+        }
+        if(!CommonUtil.checkRepeatValidate(repeat)){
+            return "Error:Repeat Invalid!";
+        }
+        if(!CommonUtil.checkMissionValidate(mission)){
+            return "Error:Mission Invalid!";
+        }
+        java.sql.Time _time;
+        try {
+            _time = CommonUtil.strToTime(time);
+        }catch (Exception  e){
+            return "Error:Time Invalid!";
+        }
+        return alarmService.createAlarm(alarmId,userId,mission,audio,label,repeat,_time);
     }
 
     @DeleteMapping("/user/{user_id}/alarm/{alarm_id}")
@@ -55,7 +76,11 @@ public class AlarmController {
             @PathVariable(name = "alarm_id") int alarmId,
             @PathVariable(name = "user_id") int userId
     ){
-        userId = Integer.parseInt(httpRequest.getHeader("userId"));
+        int requestUserId = Integer.parseInt(httpRequest.getHeader("userId"));
+        if(requestUserId != userId){
+            return "Error:Permission Denied!";
+        }
+
         return alarmService.deleteAlarm(alarmId,userId);
     }
 
@@ -72,7 +97,22 @@ public class AlarmController {
             @RequestParam(name = "time")String time,
             @RequestParam(name = "repeat")String repeat
     ){
-        userId = Integer.parseInt(httpRequest.getHeader("userId"));
-        return alarmService.updateAlarm(alarmId,userId,mission,audio,label,repeat,CommonUtil.strToTime(time));
+        int requestUserId = Integer.parseInt(httpRequest.getHeader("userId"));
+        if(requestUserId != userId){
+            return "Error:Permission Denied!";
+        }
+        if(!CommonUtil.checkRepeatValidate(repeat)){
+            return "Error:Repeat Invalid!";
+        }
+        if(!CommonUtil.checkMissionValidate(mission)){
+            return "Error:Mission Invalid!";
+        }
+        java.sql.Time _time;
+        try {
+            _time = CommonUtil.strToTime(time);
+        }catch (Exception  e){
+            return "Error:Time Invalid!";
+        }
+        return alarmService.updateAlarm(alarmId,userId,mission,audio,label,repeat,_time);
     }
 }

@@ -1,0 +1,121 @@
+version: '3.3'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    volumes:
+      - ./data_source/mysql/nacos-mysql.sql:/nacos.sql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=nacos
+    networks:
+      - issues-net
+
+  nacos:
+    image: nacos/nacos-server:latest
+    container_name: nacos
+    env_file:
+      - ./nacos/env/nacos-standlone-mysql.env
+    ports:
+      - "8848:8848"
+      - "9555:9555"
+    volumes:
+      - ./nacos/standalone-logs/:/home/nacos/logs
+      - ./nacos/init.d/custom-v2.properties:/home/nacos/init.d/custom.properties
+    depends_on:
+      - mysql
+    restart: always
+    networks:
+      - issues-net
+
+#  mongodb:
+#    image: mongo:4.2
+#    container_name: mongodb
+#    volumes:
+#      - type: bind
+#        source: ./data_source/redis
+#        target: /docker-entrypoint-initdb.d/
+#    ports:
+#      - "27017:27017"
+#    networks:
+#      - net
+
+#  redis:
+#    image: redis:latest
+#    container_name: issues_redis
+#    volumes:
+#      - type: bind
+#        source: ./data_source/mongo
+#        target: /docker-entrypoint-initdb.d/
+#    ports:
+#      - "16379:6379"
+#    networks:
+#      - net
+
+#  user-service:
+#    image: user-service:latest
+#    build:  ./user-service
+#    depends_on:
+#      - nacos
+#    ports:
+#      - "4000:4000"
+#    environment:
+#      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
+#    networks:
+#      - net
+
+#  alarm-service:
+#    image: alarm-service:latest
+#    build:  ./alarm-service
+#    depends_on:
+#      - nacos
+#    ports:
+#      - "5000:5000"
+#    environment:
+#      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
+#    networks:
+#      - net
+#
+#  study-service:
+#    image: study-service:latest
+#    build:  ./study-service
+#    depends_on:
+#      - nacos
+#    ports:
+#      - "6000:6000"
+#    environment:
+#      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
+#    networks:
+#      - net
+#
+  issues-gateway:
+    image: issues-gateway:latest
+    container_name: issues-gateway
+    build:  ./issues-gateway
+    ports:
+      - "9000:9000"
+    depends_on:
+      - nacos
+    environment:
+      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
+    networks:
+      - issues-net
+#
+#  authorization-server:
+#    image: authorization-server:latest
+#    build:  ./authorization-server
+#    depends_on:
+#      - nacos
+#    ports:
+#      - "8080:8080"
+#    environment:
+#      - JVM_OPTS="-Xms128m -Xmx128m -XX:PermSize=128m -XX:MaxPermSize=128m"
+#    networks:
+#      - net
+
+networks:
+  issues-net:
+    driver: bridge

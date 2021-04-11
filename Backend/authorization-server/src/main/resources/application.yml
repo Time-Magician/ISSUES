@@ -15,7 +15,7 @@ spring:
     cloud:
       nacos:
         discovery:
-            server-addr: http://localhost:8848
+            server-addr: http://localhost:8849
     application:
         name: issues-auth
     datasource:

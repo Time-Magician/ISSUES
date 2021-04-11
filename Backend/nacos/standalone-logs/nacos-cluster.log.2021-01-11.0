@@ -1,0 +1,4 @@
+2021-01-11 01:38:03,924 INFO Current addressing mode selection : StandaloneMemberLookup
+
+2021-01-11 01:38:03,937 WARN [serverlist] updated to : [Member{ip='3941e0156b63', port=8848, state=UP, extendInfo={adWeight=0, raftPort=7848, site=unknow, weight=1}}]
+

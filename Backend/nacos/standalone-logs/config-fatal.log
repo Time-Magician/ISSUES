@@ -1,0 +1,13 @@
+2021-01-17 14:20:48,610 ERROR [master-db] master db not found.
+
+2021-01-17 14:20:53,652 ERROR [db-error] master db  down.
+
+2021-01-17 14:21:03,402 WARN isQuickStart:false
+
+2021-01-17 14:21:03,417 ERROR Nacos Server did not start because dumpservice bean construction failure :
+java.lang.IllegalStateException: No DataSource set
+
+2021-01-17 14:21:09,717 ERROR [master-db] master db not found.
+
+2021-01-17 14:21:14,695 ERROR [db-error] master db  down.
+

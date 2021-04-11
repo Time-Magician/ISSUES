@@ -61,6 +61,9 @@ public class AlarmController {
         if(!CommonUtil.checkMissionValidate(mission)){
             return "Error:Mission Invalid!";
         }
+        if(alarmId < 0){
+            return "Error:AlarmID Invalid!";
+        }
         java.sql.Time _time;
         try {
             _time = CommonUtil.strToTime(time);
@@ -80,7 +83,9 @@ public class AlarmController {
         if(requestUserId != userId){
             return "Error:Permission Denied!";
         }
-
+        if(alarmId < 0){
+            return "Error:AlarmID Invalid!";
+        }
         return alarmService.deleteAlarm(alarmId,userId);
     }
 
@@ -106,6 +111,9 @@ public class AlarmController {
         }
         if(!CommonUtil.checkMissionValidate(mission)){
             return "Error:Mission Invalid!";
+        }
+        if(alarmId < 0){
+            return "Error:AlarmID Invalid!";
         }
         java.sql.Time _time;
         try {

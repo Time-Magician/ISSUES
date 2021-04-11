@@ -122,6 +122,32 @@ public class RecordServiceControllerTest {
         ).andReturn().getResponse();
         Assert.assertEquals(response.getStatus(),200);
         Assert.assertEquals(response.getContentAsString(),"");
+
+        /*
+         *   无效等价类： duration无效值
+         */
+        paramsMap.set("start_time","2021-4-11");
+        paramsMap.set("duration","-100");
+        response = mockMvc.perform(
+                MockMvcRequestBuilders.put("http://localhost/user/1/studyRecord")
+                        .header("userId",1)
+                        .params(paramsMap)
+        ).andReturn().getResponse();
+        Assert.assertEquals(response.getStatus(),200);
+        Assert.assertEquals(response.getContentAsString(),"");
+
+        /*
+         *   无效等价类： frog_id无效值
+         */
+        paramsMap.set("frog_id","-20");
+        paramsMap.set("duration","120");
+        response = mockMvc.perform(
+                MockMvcRequestBuilders.put("http://localhost/user/1/studyRecord")
+                        .header("userId",1)
+                        .params(paramsMap)
+        ).andReturn().getResponse();
+        Assert.assertEquals(response.getStatus(),200);
+        Assert.assertEquals(response.getContentAsString(),"");
     }
 
     @Transactional
@@ -161,6 +187,32 @@ public class RecordServiceControllerTest {
          *   无效等价类: mission字段无效
          */
         paramsMap.set("mission","TestMission");
+        response = mockMvc.perform(
+                MockMvcRequestBuilders.post("http://localhost/user/1/alarmRecord")
+                        .header("userId",2)
+                        .params(paramsMap)
+        ).andReturn().getResponse();
+        Assert.assertEquals(response.getStatus(),200);
+        Assert.assertEquals(response.getContentAsString(),"");
+
+        /*
+         *   无效等价类: frog_id字段无效
+         */
+        paramsMap.set("mission","随机任务");
+        paramsMap.set("frog_id","-10");
+        response = mockMvc.perform(
+                MockMvcRequestBuilders.post("http://localhost/user/1/alarmRecord")
+                        .header("userId",2)
+                        .params(paramsMap)
+        ).andReturn().getResponse();
+        Assert.assertEquals(response.getStatus(),200);
+        Assert.assertEquals(response.getContentAsString(),"");
+
+        /*
+         *   无效等价类: alarm_id字段无效
+         */
+        paramsMap.set("alarm_id","-23");
+        paramsMap.set("frog_id","1");
         response = mockMvc.perform(
                 MockMvcRequestBuilders.post("http://localhost/user/1/alarmRecord")
                         .header("userId",2)

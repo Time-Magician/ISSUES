@@ -1,7 +1,6 @@
 package com.example.studyservice.Controller;
 
 import com.example.studyservice.Entity.AlarmRecord;
-import com.example.studyservice.Entity.Frog;
 import com.example.studyservice.Entity.StudyRecord;
 import com.example.studyservice.ServiceImpl.RecordServiceImpl;
 import com.example.studyservice.Utility.CommonUtil;
@@ -38,6 +37,12 @@ public class RecordServiceController {
         if(_startTime.after(_endTime)){
             return null;
         }
+        if(frogId < 0){
+            return null;
+        }
+        if(duration < 0){
+            return null;
+        }
         return RecordService.createStudyRecord(_startTime,_endTime,frogId,userId,duration);
     }
 
@@ -53,6 +58,9 @@ public class RecordServiceController {
             return null;
         }
         if(!CommonUtil.checkMissionValidate(mission)){
+            return null;
+        }
+        if(frogId < 0 || alarmId < 0){
             return null;
         }
         return RecordService.createAlarmRecord(alarmId,frogId,duration,mission,userId);

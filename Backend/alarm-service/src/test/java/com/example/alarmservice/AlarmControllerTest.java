@@ -190,7 +190,6 @@ public class AlarmControllerTest {
         /*
          *   无效等价类：mission字段无效
          */
-        paramsMap.set("repeat","周一 周二 周四");
         paramsMap.set("time", "12:00:00");
         paramsMap.set("mission","TestMission");
         response = mockMvc.perform(
@@ -200,6 +199,19 @@ public class AlarmControllerTest {
         ).andReturn().getResponse();
         Assert.assertEquals(response.getStatus(),200);
         Assert.assertEquals(response.getContentAsString(),"\"Error:Mission Invalid!\"");
+
+        /*
+         *   无效等价类：alarmId字段无效
+         */
+        paramsMap.set("mission","随机任务");
+        response = mockMvc.perform(
+                //alarmId在url的请求路径中
+                MockMvcRequestBuilders.post("http://localhost/user/1/alarm/-100")
+                        .header("userId",1)
+                        .params(paramsMap)
+        ).andReturn().getResponse();
+        Assert.assertEquals(response.getStatus(),200);
+        Assert.assertEquals(response.getContentAsString(),"\"Error:AlarmID Invalid!\"");
     }
 
     @Transactional
@@ -262,7 +274,6 @@ public class AlarmControllerTest {
         /*
          *   无效等价类：mission字段无效
          */
-        paramsMap.set("repeat","周一 周二 周四");
         paramsMap.set("time", "12:00:00");
         paramsMap.set("mission","TestMission");
         response = mockMvc.perform(
@@ -272,6 +283,19 @@ public class AlarmControllerTest {
         ).andReturn().getResponse();
         Assert.assertEquals(response.getStatus(),200);
         Assert.assertEquals(response.getContentAsString(),"\"Error:Mission Invalid!\"");
+
+        /*
+         *   无效等价类：alarmId字段无效
+         */
+        paramsMap.set("mission","随机任务");
+        response = mockMvc.perform(
+                MockMvcRequestBuilders.put("http://localhost/user/1/alarm/-100")
+                        //alarmId在url的请求路径中
+                        .header("userId",1)
+                        .params(paramsMap)
+        ).andReturn().getResponse();
+        Assert.assertEquals(response.getStatus(),200);
+        Assert.assertEquals(response.getContentAsString(),"\"Error:AlarmID Invalid!\"");
     }
 
     @Transactional
@@ -290,14 +314,24 @@ public class AlarmControllerTest {
 
 
         /*
-         *   非法等价类：权限不足
+         *   无效等价类：权限不足
          */
         response = mockMvc.perform(
                 MockMvcRequestBuilders.delete("http://localhost/user/1/alarm/1")
                         .header("userId",2)
         ).andReturn().getResponse();
         Assert.assertEquals(response.getStatus(),200);
-        Assert.assertEquals(response.getContentAsString(),"\"Error:Repeat Invalid!\"");
+        Assert.assertEquals(response.getContentAsString(),"\"Error:Permission Denied!\"");
 
+        /*
+         *   无效等价类：alarmId字段无效
+         */
+        response = mockMvc.perform(
+                MockMvcRequestBuilders.delete("http://localhost/user/1/alarm/-100")
+                        //alarmId在url的请求路径中
+                        .header("userId",1)
+        ).andReturn().getResponse();
+        Assert.assertEquals(response.getStatus(),200);
+        Assert.assertEquals(response.getContentAsString(),"\"Error:AlarmID Invalid!\"");
     }
 }

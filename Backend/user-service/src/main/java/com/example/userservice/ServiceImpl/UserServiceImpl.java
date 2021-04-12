@@ -84,7 +84,6 @@ public class UserServiceImpl implements UserService {
         newUser.setUserId(userId);
         userDao.addUser(newUser);
 
-
         return MsgUtil.makeMsg(MsgCode.SUCCESS, MsgUtil.SIGNUP_SUCCESS_MSG);
     }
 

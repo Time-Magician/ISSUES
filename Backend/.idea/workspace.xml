@@ -23,11 +23,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="904a45ad-a0cc-447e-9093-076e0ca2935d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/LoginView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/LoginView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/SignUpView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/SignUpView.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../codes/lib/Views/UserView.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/lib/Views/UserView.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/ServiceImpl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/ServiceImpl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../codes/android/app/src/main/java/com/example/demo5/AlarmManager/AlarmActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../codes/android/app/src/main/java/com/example/demo5/AlarmManager/AlarmActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,6 +227,14 @@
       <workItem from="1610020405065" duration="6722000" />
       <workItem from="1610070317888" duration="1983000" />
       <workItem from="1610086427325" duration="836000" />
+      <workItem from="1614572960510" duration="2384000" />
+      <workItem from="1614858820224" duration="599000" />
+      <workItem from="1614861999777" duration="64000" />
+      <workItem from="1614862172203" duration="4000" />
+      <workItem from="1615131948631" duration="182000" />
+      <workItem from="1615959298649" duration="33000" />
+      <workItem from="1618128907047" duration="277000" />
+      <workItem from="1618136308083" duration="599000" />
     </task>
     <servers />
   </component>

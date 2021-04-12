@@ -6,7 +6,6 @@ import com.example.demo5.R;
 
 import io.flutter.embedding.android.FlutterActivity;
 
-
 public class AlarmActivity extends FlutterActivity {
 
     @Override

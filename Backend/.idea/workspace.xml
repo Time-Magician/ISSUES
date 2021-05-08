@@ -24,9 +24,6 @@
   <component name="ChangeListManager">
     <list default="true" id="904a45ad-a0cc-447e-9093-076e0ca2935d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/study-service/src/main/java/com/example/studyservice/DaoImpl/FrogDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/study-service/src/main/java/com/example/studyservice/DaoImpl/FrogDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/ServiceImpl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/ServiceImpl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/util/msgUtils/SendSmsUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/com/example/userservice/util/msgUtils/SendSmsUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,6 +170,7 @@
       <workItem from="1609934266585" duration="1239000" />
       <workItem from="1609939068830" duration="66000" />
       <workItem from="1609998070389" duration="17589000" />
+      <workItem from="1620456881996" duration="2117000" />
     </task>
     <servers />
   </component>

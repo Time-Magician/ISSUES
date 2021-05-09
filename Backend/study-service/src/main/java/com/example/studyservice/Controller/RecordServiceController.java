@@ -34,15 +34,15 @@ public class RecordServiceController {
         }catch(Exception e){
             return null;
         }
+
         if(_startTime.after(_endTime)){
             return null;
         }
-        if(frogId < 0){
+
+        if(frogId < 0  || duration < 0){
             return null;
         }
-        if(duration < 0){
-            return null;
-        }
+
         return RecordService.createStudyRecord(_startTime,_endTime,frogId,userId,duration);
     }
 

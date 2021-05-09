@@ -125,6 +125,8 @@ public class AlarmControllerTest {
                 MockMvcRequestBuilders.put("http://localhost/user/1/alarms")
                         //header中userId与pathVariable中userId不一致
                         .header("userId",2)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(JSONObject.toJSONString(alarms))
         ).andReturn().getResponse();
         Assert.assertEquals(response.getStatus(),200);
         Assert.assertEquals(response.getContentAsString(),"\"Error:Permission Denied!\"");

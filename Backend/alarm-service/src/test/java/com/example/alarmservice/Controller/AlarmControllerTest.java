@@ -1,6 +1,7 @@
-package com.example.alarmservice;
+package com.example.alarmservice.Controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.alarmservice.AlarmServiceApplication;
 import com.example.alarmservice.Controller.AlarmController;
 import com.example.alarmservice.Entity.Alarm;
 import com.example.alarmservice.Service.AlarmService;
@@ -81,7 +82,7 @@ public class AlarmControllerTest {
     @Test
     public void getAlarmListTest()throws Exception{
         /*
-        *   合法等价类：获取成功
+        *   START→A→B→C→END
         */
         MockHttpServletResponse response = mockMvc.perform(
                 MockMvcRequestBuilders.get("http://localhost/user/1/alarms")
@@ -91,7 +92,7 @@ public class AlarmControllerTest {
         Assert.assertEquals(response.getContentAsString(),JSONObject.toJSONString(alarms));
 
         /*
-         *   非法等价类：权限不足
+         *   START→A→B→END
          */
         response = mockMvc.perform(
                 MockMvcRequestBuilders.get("http://localhost/user/1/alarms")
@@ -106,7 +107,7 @@ public class AlarmControllerTest {
     @Test
     public void uploadAlarmListTest()throws Exception{
         /*
-         *   合法等价类：上传成功
+         *  START→A→B→D→END
          *  无法mock, 因为uploardAlarm内部调用不返回任何信息
          */
         MockHttpServletResponse response = mockMvc.perform(
@@ -119,7 +120,7 @@ public class AlarmControllerTest {
         Assert.assertEquals(response.getContentAsString(),"\"success\"");
 
         /*
-         *   非法等价类：权限不足
+         *   START→A→B→C→END
          */
         response = mockMvc.perform(
                 MockMvcRequestBuilders.put("http://localhost/user/1/alarms")
@@ -136,7 +137,7 @@ public class AlarmControllerTest {
     @Test
     public void createAlarmTest()throws Exception{
         /*
-         *   合法等价类：创建成功
+         *   START→A→B→D→F→H→J→K→M→END：创建成功
          *
          */
         MultiValueMap<String,String> paramsMap = new LinkedMultiValueMap<>();
@@ -154,7 +155,7 @@ public class AlarmControllerTest {
         Assert.assertEquals(response.getContentAsString(),"\"success\"");
 
         /*
-         *   无效等价类：权限不足
+         *   START→A→B→C→END：权限不足
          */
         response = mockMvc.perform(
                 MockMvcRequestBuilders.post("http://localhost/user/1/alarm/1")
@@ -165,7 +166,7 @@ public class AlarmControllerTest {
         Assert.assertEquals(response.getContentAsString(),"\"Error:Permission Denied!\"");
 
         /*
-         *   无效等价类：repeat字段无效
+         *   START→A→B→D→E→END：repeat字段无效
          */
         paramsMap.set("repeat","周八");
         response = mockMvc.perform(
@@ -177,7 +178,7 @@ public class AlarmControllerTest {
         Assert.assertEquals(response.getContentAsString(),"\"Error:Repeat Invalid!\"");
 
         /*
-         *   无效等价类：time字段无效
+         *   START→A→B→D→F→H→J→K→L→END：time字段无效
          */
         paramsMap.set("repeat","周一 周二 周四");
         paramsMap.set("time", "25:00:00");
@@ -190,7 +191,7 @@ public class AlarmControllerTest {
         Assert.assertEquals(response.getContentAsString(),"\"Error:Time Invalid!\"");
 
         /*
-         *   无效等价类：mission字段无效
+         *   START→A→B→D→F→G→END：mission字段无效
          */
         paramsMap.set("time", "12:00:00");
         paramsMap.set("mission","TestMission");
@@ -203,7 +204,7 @@ public class AlarmControllerTest {
         Assert.assertEquals(response.getContentAsString(),"\"Error:Mission Invalid!\"");
 
         /*
-         *   无效等价类：alarmId字段无效
+         *   START→A→B→D→F→H→I→END：alarmId字段无效
          */
         paramsMap.set("mission","随机任务");
         response = mockMvc.perform(
@@ -220,7 +221,7 @@ public class AlarmControllerTest {
     @Test
     public void updateAlarmTest()throws Exception{
         /*
-         *   合法等价类：更新成功
+         *   START→A→B→D→F→H→J→K→M→END：更新成功
          *
          */
         MultiValueMap<String,String> paramsMap = new LinkedMultiValueMap<>();
@@ -238,7 +239,7 @@ public class AlarmControllerTest {
         Assert.assertEquals(response.getContentAsString(),"\"success\"");
 
         /*
-         *   无效等价类：权限不足
+         *   START→A→B→C→END：权限不足
          */
         response = mockMvc.perform(
                 MockMvcRequestBuilders.put("http://localhost/user/1/alarm/1")
@@ -249,7 +250,7 @@ public class AlarmControllerTest {
         Assert.assertEquals(response.getContentAsString(),"\"Error:Permission Denied!\"");
 
         /*
-         *   无效等价类：repeat字段无效
+         *   START→A→B→D→E→END：repeat字段无效
          */
         paramsMap.set("repeat","周八");
         response = mockMvc.perform(
@@ -261,7 +262,7 @@ public class AlarmControllerTest {
         Assert.assertEquals(response.getContentAsString(),"\"Error:Repeat Invalid!\"");
 
         /*
-         *   无效等价类：time字段无效
+         *   START→A→B→D→F→H→J→K→L→END：time字段无效
          */
         paramsMap.set("repeat","周一 周二 周四");
         paramsMap.set("time", "25:00:00");
@@ -274,7 +275,7 @@ public class AlarmControllerTest {
         Assert.assertEquals(response.getContentAsString(),"\"Error:Time Invalid!\"");
 
         /*
-         *   无效等价类：mission字段无效
+         *   START→A→B→D→F→G→END：mission字段无效
          */
         paramsMap.set("time", "12:00:00");
         paramsMap.set("mission","TestMission");
@@ -287,7 +288,7 @@ public class AlarmControllerTest {
         Assert.assertEquals(response.getContentAsString(),"\"Error:Mission Invalid!\"");
 
         /*
-         *   无效等价类：alarmId字段无效
+         *   START→A→B→D→F→H→I→END：alarmId字段无效
          */
         paramsMap.set("mission","随机任务");
         response = mockMvc.perform(
@@ -304,7 +305,7 @@ public class AlarmControllerTest {
     @Test
     public void deleteAlarmTest()throws Exception{
         /*
-         *   合法等价类：删除成功
+         *   START→A→B→D→F→END：删除成功
          *
          */
         MockHttpServletResponse response = mockMvc.perform(
@@ -316,7 +317,7 @@ public class AlarmControllerTest {
 
 
         /*
-         *   无效等价类：权限不足
+         *   START→A→B→C→END：权限不足
          */
         response = mockMvc.perform(
                 MockMvcRequestBuilders.delete("http://localhost/user/1/alarm/1")
@@ -326,7 +327,7 @@ public class AlarmControllerTest {
         Assert.assertEquals(response.getContentAsString(),"\"Error:Permission Denied!\"");
 
         /*
-         *   无效等价类：alarmId字段无效
+         *   START→A→B→D→E→END：alarmId字段无效
          */
         response = mockMvc.perform(
                 MockMvcRequestBuilders.delete("http://localhost/user/1/alarm/-100")

@@ -10,7 +10,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: http://localhost:8849
+        server-addr: http://localhost:8848
   application:
     name: alarm-service
   datasource:

@@ -71,7 +71,7 @@ public class RecordServiceControllerTest {
     public void createStudyRecordTest()throws Exception{
         Map<String, Object> responseMap;
         /*
-        *   合法等价类：创建成功
+        *   Path1：创建成功
         */
         MultiValueMap<String,String> paramsMap = new LinkedMultiValueMap<>();
         paramsMap.add("start_time","2021-4-10");
@@ -86,10 +86,10 @@ public class RecordServiceControllerTest {
         responseMap = JSONObject.parseObject(response.getContentAsString());
         log.info("tag1234"+responseMap.toString());
         Assert.assertEquals(response.getStatus(),200);
-        Assert.assertEquals(responseMap.get("id"),2);
+        Assert.assertEquals(responseMap.get("id"),3);
 
         /*
-        *   无效等价类： 权限不足
+        *   Path2： 权限不足
         */
         response = mockMvc.perform(
                 MockMvcRequestBuilders.put("http://localhost/user/1/studyRecord")
@@ -100,7 +100,7 @@ public class RecordServiceControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类： 起始时间 > 结束时间
+         *   Path4： 起始时间 > 结束时间
          */
         paramsMap.set("start_time","2021-04-11");
         response = mockMvc.perform(
@@ -112,7 +112,7 @@ public class RecordServiceControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类： 起始时间或结束时间Invalid
+         *   Path3： 起始时间或结束时间Invalid
          */
         paramsMap.set("start_time","2021-13-21");
         response = mockMvc.perform(
@@ -124,7 +124,7 @@ public class RecordServiceControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类： 起始时间或结束时间Invalid
+         *   Path3： 起始时间或结束时间Invalid
          */
         paramsMap.set("end_time","2021-13-21");
         response = mockMvc.perform(
@@ -136,7 +136,7 @@ public class RecordServiceControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类： duration无效值
+         *   Path5： duration无效值
          */
         paramsMap.set("start_time","2021-4-11");
         paramsMap.set("end_time","2021-4-11");
@@ -150,7 +150,7 @@ public class RecordServiceControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类： frog_id无效值
+         *   Path5： frog_id无效值
          */
         paramsMap.set("frog_id","-20");
         paramsMap.set("duration","120");
@@ -168,7 +168,7 @@ public class RecordServiceControllerTest {
     public void createAlarmRecordTest()throws Exception{
         Map<String, Object> responseMap;
         /*
-         *   合法等价类：创建成功
+         *   Path1：创建成功
          */
         MultiValueMap<String,String> paramsMap = new LinkedMultiValueMap<>();
         paramsMap.add("alarm_id","23");
@@ -186,7 +186,7 @@ public class RecordServiceControllerTest {
         Assert.assertEquals(responseMap.get("alarmId"),23);
 
         /*
-         *   无效等价类: 权限不足
+         *   Path2: 权限不足
          */
         response = mockMvc.perform(
                 MockMvcRequestBuilders.post("http://localhost/user/1/alarmRecord")
@@ -197,7 +197,7 @@ public class RecordServiceControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类: mission字段无效
+         *   Path4: mission字段无效
          */
         paramsMap.set("mission","TestMission");
         response = mockMvc.perform(
@@ -209,7 +209,7 @@ public class RecordServiceControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类: frog_id字段无效
+         *   Path4: frog_id字段无效
          */
         paramsMap.set("mission","随机任务");
         paramsMap.set("frog_id","-10");
@@ -222,7 +222,7 @@ public class RecordServiceControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类: alarm_id字段无效
+         *   Path4: alarm_id字段无效
          */
         paramsMap.set("alarm_id","-23");
         paramsMap.set("frog_id","1");
@@ -235,7 +235,7 @@ public class RecordServiceControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类: duration字段无效
+         *   Path3: duration字段无效
          */
         paramsMap.set("alarm_id","1");
         paramsMap.set("duration","-100");

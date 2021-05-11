@@ -65,18 +65,6 @@ public class FrogController {
         return frogService.updateFrog(name,level,exp,isGraduated,graduateDate,school,userId);
     }
 
-    @GetMapping("/user/{userId}/frogs/graduated")
-    List<Frog> getGraduatedFrogs(HttpServletRequest request,
-                                 @PathVariable(name = "userId") int userId) {
-        String userType = request.getHeader("userType");
-        int requesterUserId = Integer.parseInt(request.getHeader("userId"));
-        if (!userType.equals("ADMIN") && requesterUserId != userId) {
-            return null;
-        }
-
-        return frogService.getGraduatedFrogs(userId);
-    }
-
     @GetMapping("/user/{userId}/frogs/candidate")
     Frog getFrogByUser(HttpServletRequest request,
                        @PathVariable(name = "userId") int userId){

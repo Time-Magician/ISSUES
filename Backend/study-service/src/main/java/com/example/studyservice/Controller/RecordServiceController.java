@@ -66,8 +66,4 @@ public class RecordServiceController {
         return RecordService.createAlarmRecord(alarmId,frogId,duration,mission,userId);
     }
 
-    @GetMapping("/user/{userId}/studyRecords")
-    List<StudyRecord> getStudyRecordsByUser(@PathVariable int userId){
-        return RecordService.getStudyRecordsByUser(userId);
-    }
 }

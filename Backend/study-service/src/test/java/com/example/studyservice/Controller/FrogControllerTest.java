@@ -69,7 +69,7 @@ public class FrogControllerTest {
     @Test
     public void createFrogTest()throws Exception{
         /*
-        *   合法等价类：创建成功
+        *   Path1: 创建成功
         *
         */
         Map<String, Object> responseMap;
@@ -92,7 +92,7 @@ public class FrogControllerTest {
         Assert.assertEquals(responseMap.get("frogId"),12);
 
         /*
-         *   无效等价类：权限不符
+         *   Path2：权限不符
          *
          */
         response = mockMvc.perform(
@@ -106,7 +106,7 @@ public class FrogControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类：level无效值(level > 17)
+         *   Path3：level无效值
          *
          */
         paramsMap.set("level","100");
@@ -121,7 +121,7 @@ public class FrogControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类：level无效值(level < 0)
+         *   Path3：level无效值
          *
          */
         paramsMap.set("level","-20");
@@ -137,7 +137,7 @@ public class FrogControllerTest {
 
 
         /*
-         *   无效等价类：exp无效值(exp < 0)
+         *   Path3：exp无效值(exp < 0)
          *
          */
         paramsMap.set("level","10");
@@ -154,7 +154,7 @@ public class FrogControllerTest {
 
 
         /*
-         *   无效等价类：exp无效值(exp > 100)
+         *   Path3：exp无效值(exp > 100)
          *
          */
         paramsMap.set("exp","200");
@@ -169,7 +169,7 @@ public class FrogControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类：graduate_date无效值
+         *   Path4：graduate_date无效值
          *
          */
         paramsMap.set("graduate_date","2020-13-51");
@@ -191,7 +191,7 @@ public class FrogControllerTest {
     public void updateFrogTest()throws Exception{
         Map<String, Object> responseMap;
         /*
-         *   合法等价类：更新成功
+         *   Path1：更新成功
          *
          */
         MultiValueMap<String,String> paramsMap = new LinkedMultiValueMap<>();
@@ -213,7 +213,7 @@ public class FrogControllerTest {
         Assert.assertEquals(responseMap.get("frogId"),23);
 
         /*
-         *   无效等价类：权限不符
+         *   Path2：权限不符
          *
          */
         response = mockMvc.perform(
@@ -227,7 +227,7 @@ public class FrogControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类：level无效值
+         *   Path3：level无效值
          *
          */
         paramsMap.set("level","100");
@@ -242,7 +242,7 @@ public class FrogControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类：exp无效值
+         *   Path3：exp无效值
          *
          */
         paramsMap.set("level","10");
@@ -258,7 +258,7 @@ public class FrogControllerTest {
         Assert.assertEquals(response.getContentAsString(),"");
 
         /*
-         *   无效等价类：graduate_date无效值
+         *   Path4：graduate_date无效值
          *
          */
         paramsMap.set("graduate_date","2020-17-51");
@@ -277,7 +277,12 @@ public class FrogControllerTest {
     @Transactional
     @Test
     public void getFrogByUserTest()throws Exception{
+
         Map<String, Object> responseMap;
+        /*
+         *   Path1：获取成功
+         *
+         */
         MockHttpServletResponse response = mockMvc.perform(
                 MockMvcRequestBuilders.get("http://localhost/user/1/frogs/candidate")
                         .header("userId",1)
@@ -288,7 +293,7 @@ public class FrogControllerTest {
         Assert.assertEquals(responseMap.get("frogId"),34);
 
         /*
-         *   非法等价类：权限不符
+         *   Path2：权限不符
          *
          */
         response = mockMvc.perform(
